@@ -1,0 +1,33 @@
+{
+    "id": 0,
+    "firstName": "Peter",
+    "lastName": "Zwegat",
+    "birthday": "Mon Sep 10 2018 10:49:31 GMT+0200 (Mitteleuropäische Sommerzeit)",
+    "sex": "Männlich",
+    "status": "active",
+    "email": "peter.zwegat@gmx.de",
+    "address": {
+        "postalCode": 12345,
+        "streetAddress": "Dorfstraße 2",
+        "city": "Mannheim",
+        "state": "Baden-Württemberg",
+        "country": "Deutschland"
+    },
+    "bankingAccount": "DE9876543210",
+    "admissioned": true,
+    "memberBankingAccount": "56789",
+    "offices": [
+        "Vorstand",
+        "Nicer Dude"
+    ],
+    "flightAuthorization": [
+        {
+            "authorization": "PPL-A",
+            "expires": "Mon Sep 10 2018 10:49:31 GMT+0200 (Mitteleuropäische Sommerzeit)"
+        },
+        {
+            "authorization": "PPL-B",
+            "expires": "Mon Sep 10 2018 12:49:31 GMT+0200 (Mitteleuropäische Sommerzeit)"
+        }
+    ]
+}
