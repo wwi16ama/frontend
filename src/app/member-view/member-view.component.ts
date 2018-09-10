@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Member } from './../models/member.model';
 import { MemberService } from './../services/member.service';
+import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-member-view',
@@ -10,12 +12,16 @@ import { MemberService } from './../services/member.service';
 export class MemberViewComponent implements OnInit {
   member: Member;
 
-  constructor(public memberService: MemberService) { }
+  constructor(public memberService: MemberService, public activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
-    this.memberService.getMemberData().subscribe(
-      (data: Member) => {
-        this.member = data;
+    this.activatedRoute.params.subscribe(
+      params => {
+        this.memberService.getMemberData(params['id']).subscribe(
+          (data: Member) => {
+            this.member = data;
+          }
+        );
       }
     );
   }
