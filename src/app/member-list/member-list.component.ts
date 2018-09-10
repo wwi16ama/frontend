@@ -3,6 +3,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatSort, MatTableDataSource } from '@angular/material';
 import { ListMember } from './../models/list-member.model';
 import { MemberListService } from './../services/memberlist.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-member-list',
@@ -15,7 +16,7 @@ export class MemberListComponent implements OnInit {
   dataSource = new MatTableDataSource();
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(public memberListService: MemberListService) { }
+  constructor(public memberListService: MemberListService, public router: Router) { }
 
   ngOnInit() {
     this.memberListService.getMemberListData().subscribe(
@@ -24,6 +25,10 @@ export class MemberListComponent implements OnInit {
         this.dataSource.sort = this.sort;
       }
     );
+  }
+
+  public navigateTo(rowId) {
+    this.router.navigate(['/member', rowId]);
   }
 
 }
