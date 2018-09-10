@@ -6,7 +6,7 @@ import { ListMember } from './../models/list-member.model';
 @Injectable({
   providedIn: 'root'
 })
-export class MemberlistService {
+export class MemberListService {
 
   constructor(public httpClient: HttpClient) { }
 
