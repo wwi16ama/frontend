@@ -1,11 +1,11 @@
 [
     {
-        "id": "0",
+        "id": 0,
         "firstName": "Peter",
         "lastName": "Zwegat"
     },
     {
-        "id": "1",
+        "id": 1,
         "firstName": "Max",
         "lastName": "Mustermann"
     }
