@@ -10,7 +10,8 @@ export class MemberService {
 
   constructor(public httpClient: HttpClient) { }
 
-  public getMemberData(): Observable<Member>  {
-    return this.httpClient.get<Member>('http://localhost:4200/assets/mock-data/member.json');
+  public getMemberData(id): Observable<Member>  {
+    const url = 'http://localhost:4200/assets/mock-data/member' + id + '.json';
+    return this.httpClient.get<Member>(url);
   }
 }
