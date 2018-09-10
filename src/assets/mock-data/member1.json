@@ -2,7 +2,7 @@
     "id": 1,
     "firstName": "Max",
     "lastName": "Mustermann",
-    "birthday": "Mon Sep 10 2018 10:49:31 GMT+0200 (Mitteleuropäische Sommerzeit)",
+    "dateOfBirth": "2018-09-10T13:15:19.927+0000",
     "sex": "Männlich",
     "status": "active",
     "email": "peter.zwegat@gmx.de",
@@ -23,11 +23,11 @@
     "flightAuthorization": [
         {
             "authorization": "PPL-A",
-            "expires": "Mon Sep 10 2018 10:49:31 GMT+0200 (Mitteleuropäische Sommerzeit)"
+            "expires": "2018-09-10T13:15:19.927+0000"
         },
         {
             "authorization": "PPL-B",
-            "expires": "Mon Sep 10 2018 12:49:31 GMT+0200 (Mitteleuropäische Sommerzeit)"
+            "expires": "2018-09-10T13:15:19.927+0000"
         }
     ]
 }
