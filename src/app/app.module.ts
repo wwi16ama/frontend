@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 
 import { AppRoutingModule } from './app-routing.module'
 import { MemberListModule } from './member-list/member-list.module';
+import { MemberViewModule } from './member-view/member-view.module';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { MemberListModule } from './member-list/member-list.module';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    MemberListModule
+    MemberListModule,
+    MemberViewModule
   ],
   providers: [],
   bootstrap: [AppComponent]

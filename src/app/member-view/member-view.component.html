@@ -1,0 +1,112 @@
+<div class="member-view-wrapper">
+  <mat-list *ngIf="member != null">
+    <h3 mat-subheader>Übersicht</h3>
+    <mat-list-item>
+      <h4 mat-line>
+        <span class="spacing">Mitgliedsnummer:</span>
+        <span>{{ member.id }}</span>
+      </h4>
+    </mat-list-item>
+    <mat-list-item>
+      <h4 mat-line>
+        <span class="spacing">Vorname:</span>
+        <span>{{ member.firstName }}</span>
+      </h4>
+    </mat-list-item>
+    <mat-list-item>
+      <h4 mat-line>
+        <span class="spacing">Nachname:</span>
+        <span>{{ member.lastName }}</span>
+      </h4>
+    </mat-list-item>
+    <mat-list-item>
+      <h4 mat-line>
+        <span class="spacing">Geburtsdatum:</span>
+        <span>{{ member.birthday }}</span>
+      </h4>
+    </mat-list-item>
+    <mat-list-item>
+      <h4 mat-line>
+        <span class="spacing">Geschlecht:</span>
+        <span>{{ member.sex }}</span>
+      </h4>
+    </mat-list-item>
+    <mat-list-item>
+      <h4 mat-line>
+        <span class="spacing">Status:</span>
+        <span *ngIf="member.status === 'active'">Aktiv</span>
+        <span *ngIf="member.status === 'passive'">Passiv</span>
+        <span *ngIf="member.status === 'honoraryMember'">Ehrenmitglied</span>
+      </h4>
+    </mat-list-item>
+    <mat-list-item>
+      <h4 mat-line>
+        <span class="spacing">Email:</span>
+        <span>{{ member.email }}</span>
+      </h4>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <h3 mat-subheader class="subheader-margin">Adresse</h3>
+    <mat-list-item>
+      <h4 mat-line>
+        <span class="spacing">Postleitzahl:</span>
+        <span>{{ member.address.postalCode }}</span>
+      </h4>
+    </mat-list-item>
+    <mat-list-item>
+      <h4 mat-line>
+        <span class="spacing">Straße:</span>
+        <span>{{ member.address.streetAddress }}</span>
+      </h4>
+    </mat-list-item>
+    <mat-list-item>
+      <h4 mat-line>
+        <span class="spacing">Stadt:</span>
+        <span>{{ member.address.city }}</span>
+      </h4>
+    </mat-list-item>
+    <mat-list-item>
+      <h4 mat-line>
+        <span class="spacing">Bundesland:</span>
+        <span>{{ member.address.state }}</span>
+      </h4>
+    </mat-list-item>
+    <mat-list-item>
+      <h4 mat-line>
+        <span class="spacing">Land:</span>
+        <span>{{ member.address.country }}</span>
+      </h4>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <h3 mat-subheader class="subheader-margin">Kundenkonto</h3>
+    <mat-list-item>
+      <h4 mat-line>
+        <span class="spacing">Bankkonto:</span>
+        <span>{{ member.bankingAccount }}</span>
+      </h4>
+    </mat-list-item>
+    <mat-list-item>
+      <h4 mat-line>
+        <span class="spacing">Mitgliedskontonummer:</span>
+        <span>{{ member.memberBankingAccount }}</span>
+      </h4>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <h3 mat-subheader class="subheader-margin">Ämter</h3>
+    <mat-list-item *ngFor="let office of member.offices">
+      <h4 mat-line>{{ office }}</h4>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <h3 mat-subheader class="subheader-margin">Flugberechtigungen</h3>
+    <mat-list-item *ngFor="let authorization of member.flightAuthorization">
+      <h4 mat-line>{{ authorization.authorization }}</h4>
+      <p mat-line>Gültig bis: {{ authorization.expires }}</p>
+    </mat-list-item>
+    <mat-divider></mat-divider>
+    <mat-list-item>
+      <h4 mat-line>
+        <mat-checkbox [checked]="member.admissioned" disabled="disabled" labelPosition="before" MatCheckboxClickAction="noop"><span class="color-admissioned">Mustereinweisung:</span></mat-checkbox>
+      </h4>
+    </mat-list-item>
+  </mat-list>
+</div>
