@@ -2,7 +2,7 @@ export class Member {
     public id: number;
     public firstName: string;
     public lastName: string;
-    public birthday: Date;
+    public dateOfBirth: Date;
     public sex: string;
     public status: Status;
     public email: string;
