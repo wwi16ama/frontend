@@ -49,7 +49,6 @@ describe('MemberService', () => {
           new Authorization('PPL-A', '2018-09-10T13:15:19.927+0000')
         ]
       );
-      console.log(JSON.stringify(testMemberData));
       const id = '0';
       service.getMemberData(id).subscribe(memberData => {
         expect(memberData).toEqual(testMemberData);
