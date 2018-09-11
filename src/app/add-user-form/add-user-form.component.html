@@ -1,0 +1,174 @@
+<div class="example-container">
+
+  <mat-horizontal-stepper class="user-stepper" [linear]="isLinear" #stepper>
+    <mat-step [stepControl]="allgmeinPersoInfo">
+      <!--allgemeine Personeninfos-->
+      <mat-card class="user-card">
+      <mat-card-header>
+        <mat-card-title class="user-card-title">Personenbezogenen Daten angeben.</mat-card-title>
+      </mat-card-header>
+      <form [formGroup]="allgmeinPersoInfo">
+        <ng-template matStepLabel>Allgemeine Personeninformationen</ng-template>
+
+        <div class="wrapper">
+
+          <div class="user-div">
+            <mat-form-field>
+                <input type="text" matInput placeholder="Name" id="name" required>
+            </mat-form-field>
+          </div>
+
+          <div class="user-div">
+            <mat-form-field>
+              <input type="text" matInput placeholder="Vorname" id="vorname" required>
+            </mat-form-field>
+          </div>
+
+          <div class="user-div">
+            <mat-form-field>
+              <input matInput [matDatepicker]="geburtstag" placeholder="Geburtstag" required>
+              <mat-datepicker-toggle matSuffix [for]="geburtstag"></mat-datepicker-toggle>
+              <mat-datepicker #geburtstag></mat-datepicker>
+            </mat-form-field>                
+          </div>
+
+          <div class="user-div">
+            <mat-form-field>
+              <mat-select placeholder="Geschlecht" id="geschlecht" required>
+                <mat-option *ngFor="let ges of geschlecht" [value]="ges">{{ges}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="user-div">
+            <mat-form-field>
+              <input type="email" matInput placeholder="Email" id="email" [formControl]="emailFormControl"
+              [errorStateMatcher]="matcher" required>
+              <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                  Bitte geben Sie eine gültige Emailadresse ein.
+              </mat-error>
+              <mat-error *ngIf="emailFormControl.hasError('required')">
+                  Die Emailadresse ist <strong>erforderlich</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+        </div>
+        <mat-card-actions>
+          <button mat-raised-button mat-button matStepperNext color="primary" class="mat-btn-user">Weiter</button>
+        </mat-card-actions>
+      </form>
+      </mat-card>
+    </mat-step>
+
+    
+
+    <mat-step [stepControl]="adresse">
+      <mat-card class="user-card">
+        <mat-card-header>
+          <mat-card-title class="user-card-title">Adressinformationen angeben.</mat-card-title>
+        </mat-card-header>
+      <form [formGroup]="adresse">
+        <ng-template matStepLabel>Adressinformationen</ng-template>
+        <!--Adresse-->
+
+        <div class="wrapper">
+
+          <div class="user-div">
+            <mat-form-field>
+              <input type="text" matInput placeholder="PLZ" id="plz" #postalCode maxlength="5" required>
+              <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
+            </mat-form-field>
+          </div>
+
+          <div class="user-div">
+            <mat-form-field>
+              <input type="text" matInput placeholder="Ort" id="ort" required>
+            </mat-form-field>
+          </div>
+
+          <div class="user-div">
+            <mat-form-field>
+              <input type="text" matInput placeholder="Straße" id="straße" required>
+            </mat-form-field>
+          </div>
+
+          <div class="user-div">
+            <mat-form-field>
+              <input type="number" matInput placeholder="Hausnummer" id="hnr" required>
+            </mat-form-field>
+          </div>
+          
+      </div>
+      <mat-card-actions>
+        <button mat-raised-button mat-button matStepperNext color="primary" class="mat-btn-user">Weiter</button>
+        <button mat-raised-button mat-button matStepperPrevious color="primary" class="mat-btn-user">Zurück</button>
+      </mat-card-actions>
+
+      </form>
+      </mat-card>
+    </mat-step>
+
+    <mat-step [stepControl]="interneInfos">
+      <mat-card class="user-card">
+        <mat-card-header>
+          <mat-card-title class="user-card-title">Internen Informationen angeben.</mat-card-title>
+      </mat-card-header>
+      <form [formGroup]="interneInfos">
+        <ng-template matStepLabel>Interne Informationen</ng-template>
+        <!--interne Infos (Flugl etc.)-->
+
+        <div class="wrapper">
+
+          <div class="user-div">
+            <mat-form-field>
+              <mat-select placeholder="Amt" id="amt" multiple>
+                <mat-option *ngFor="let aem of aemter" [value]="aem">{{aem}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="user-div">
+            <mat-form-field>
+              <mat-select placeholder="Status" id="status" required>
+                <mat-option *ngFor="let sta of status" [value]="sta">{{sta}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="user-div">
+            <mat-form-field>
+              <mat-select placeholder="Flugberechtigung" id="flugberechtigung" multiple>
+                <mat-option *ngFor="let flu of flugberechtigung" [value]="flu">{{flu}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="user-div">
+              <mat-form-field>
+                <input matInput [matDatepicker]="gueltigkeit" placeholder="Gültigkeit"
+                matTooltip="Gültigkeit der Flugberechtigung" required>
+                <mat-datepicker-toggle matSuffix [for]="gueltigkeit"></mat-datepicker-toggle>
+                <mat-datepicker #gueltigkeit></mat-datepicker>
+            </mat-form-field>
+          </div>
+
+          <mat-checkbox formControlName="mustereinweisung" id="mustereinweisung">Mustereinweisung wurde durchgeführt</mat-checkbox>
+
+          <div class="user-div">
+            <mat-form-field>
+              <input type="text" matInput placeholder="Bankkonto" id="bankkonto" required>
+              <mat-hint>DE19 1234 1234 1234 1234 12</mat-hint>
+            </mat-form-field>
+          </div>
+
+        </div>
+        <mat-card-actions>
+          <button mat-raised-button mat-button color="primary" class="mat-btn-user">Anlegen</button>
+          <button mat-raised-button mat-button matStepperPrevious color="primary" class="mat-btn-user">Zurück</button>
+        </mat-card-actions>
+
+      </form>
+      </mat-card>
+    </mat-step>
+  </mat-horizontal-stepper>
+</div>
