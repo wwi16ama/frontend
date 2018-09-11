@@ -1,17 +1,41 @@
-import { TestBed } from '@angular/core/testing';
+import { TestBed, getTestBed } from '@angular/core/testing';
 
 import { MemberListService } from './memberlist.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+
+import { ListMember } from './../models/list-member.model';
 
 describe('MemberlistService', () => {
-  beforeEach(() => TestBed.configureTestingModule({
-    imports: [
-      HttpClientModule
-    ]
-  }));
+
+  let injector: TestBed;
+  let service: MemberListService;
+  let httpMock: HttpTestingController;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      imports: [
+        HttpClientTestingModule
+      ]
+    });
+    injector = getTestBed();
+    service = injector.get(MemberListService);
+    httpMock = injector.get(HttpTestingController);
+  });
 
   it('should be created', () => {
-    const service: MemberListService = TestBed.get(MemberListService);
     expect(service).toBeTruthy();
+  });
+
+  it('should trigger get request', () => {
+    const testMemberListData = [
+      new ListMember(0, 'Peter', 'Zwegat'),
+      new ListMember(1, 'Max', 'Mustermann')
+    ];
+    service.getMemberListData().subscribe(memberListData => {
+      expect(memberListData).toEqual(testMemberListData);
+    });
+    const req = httpMock.expectOne('http://localhost:4200/assets/mock-data/memberlist.json');
+    expect(req.request.method).toBe('GET');
+    req.flush(testMemberListData);
   });
 });

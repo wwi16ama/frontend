@@ -38,7 +38,7 @@ describe('MemberService', () => {
       expect(service.getMemberData).toBeDefined();
     });
 
-    it('should trigger get request', () => {
+    it('should trigger get request with correct url', () => {
       const testMemberData = new Member(
         0, 'Peter', 'Zwegat', '2018-09-10T13:15:19.927+0000', 'Männlich', Status.active,
         'peter.zwegat@gmx.de', new Address(
