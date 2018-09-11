@@ -3,9 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
 import { Member } from './../models/member.model';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class MemberService {
 
   constructor(public httpClient: HttpClient) { }

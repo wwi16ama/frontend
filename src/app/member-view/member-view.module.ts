@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { MemberViewComponent } from './member-view.component';
 
 import { MatDividerModule, MatListModule, MatCheckboxModule } from '@angular/material';
+import { MemberService } from './../services/member.service';
 
 @NgModule({
   imports: [
@@ -16,6 +17,9 @@ import { MatDividerModule, MatListModule, MatCheckboxModule } from '@angular/mat
   ],
   exports: [
     MemberViewComponent
+  ],
+  providers: [
+    MemberService
   ]
 })
 export class MemberViewModule { }
