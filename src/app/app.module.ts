@@ -25,11 +25,11 @@ import { DeletePlaneDialogComponent } from './plane-list/delete-plane-dialog/del
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AddUserFormComponent
   ],
   imports: [
     BrowserModule,
-    BrowserAnimationsModule,
     AppRoutingModule,
     MemberListModule,
     MemberViewModule,
