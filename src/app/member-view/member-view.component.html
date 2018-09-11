@@ -34,9 +34,7 @@
     <mat-list-item>
       <h4 mat-line>
         <span class="spacing">Status:</span>
-        <span *ngIf="member.status === 'active'">Aktiv</span>
-        <span *ngIf="member.status === 'passive'">Passiv</span>
-        <span *ngIf="member.status === 'honoraryMember'">Ehrenmitglied</span>
+        <span>{{ member.status }}</span>
       </h4>
     </mat-list-item>
     <mat-list-item>

@@ -17,9 +17,9 @@ export class Member {
 }
 
 export enum Status {
-    'active',
-    'passive',
-    'honoraryMember'
+    active = 'Aktiv',
+    passive = 'Passiv',
+    honoraryMember = 'Ehrenmitglied'
 }
 
 export class Address {

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Member } from './../models/member.model';
+import { Member, Status } from './../models/member.model';
 import { MemberService } from './../services/member.service';
 import { ActivatedRoute } from '@angular/router';
 
@@ -20,6 +20,7 @@ export class MemberViewComponent implements OnInit {
         this.memberService.getMemberData(params['id']).subscribe(
           (data: Member) => {
             this.member = data;
+            this.member.status = Status[this.member.status];
           }
         );
       }
