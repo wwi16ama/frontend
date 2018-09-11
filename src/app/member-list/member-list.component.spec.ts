@@ -1,6 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MemberListComponent } from './member-list.component';
+import { MatTableModule, MatSortModule } from '@angular/material';
+import { HttpClientModule } from '@angular/common/http';
+
+import { Router } from '@angular/router';
+import { AppRoutingModule } from './../app-routing.module';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('MemberListComponent', () => {
   let component: MemberListComponent;
@@ -8,7 +14,16 @@ describe('MemberListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MemberListComponent ]
+      imports: [
+        MatTableModule,
+        MatSortModule,
+        HttpClientModule,
+        BrowserAnimationsModule
+      ],
+      declarations: [ MemberListComponent ],
+      providers: [
+        { provide: Router, useClass: AppRoutingModule },
+      ]
     })
     .compileComponents();
   }));

@@ -1,6 +1,10 @@
+import { of } from 'rxjs';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MemberViewComponent } from './member-view.component';
+import { MatDividerModule, MatListModule, MatCheckboxModule } from '@angular/material';
+import { HttpClientModule } from '@angular/common/http';
+import { ActivatedRoute } from '@angular/router';
 
 describe('MemberViewComponent', () => {
   let component: MemberViewComponent;
@@ -8,7 +12,21 @@ describe('MemberViewComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MemberViewComponent ]
+      imports: [
+        MatDividerModule,
+        MatListModule,
+        MatCheckboxModule,
+        HttpClientModule
+      ],
+      declarations: [ MemberViewComponent ],
+      providers: [
+        {
+          provide: ActivatedRoute,
+          useValue: {
+              params: of([{ id: '0' }]),
+          },
+      },
+      ]
     })
     .compileComponents();
   }));
