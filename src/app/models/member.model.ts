@@ -3,7 +3,7 @@ export class Member {
         public id: number,
         public firstName: string,
         public lastName: string,
-        public dateOfBirth: Date,
+        public dateOfBirth: string,
         public sex: string,
         public status: Status,
         public email: string,
@@ -35,6 +35,6 @@ export class Address {
 export class Authorization {
     constructor(
         public authorization: string,
-        public expires: Date
+        public expires: string
     ) {}
 }
