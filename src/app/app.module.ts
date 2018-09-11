@@ -27,10 +27,10 @@ registerLocaleData(localeDe);
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AddUserFormComponent
   ],
   imports: [
-    BrowserModule,
     AppRoutingModule,
     MemberListModule,
     MemberViewModule,
