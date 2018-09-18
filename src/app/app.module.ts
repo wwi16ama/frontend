@@ -44,7 +44,7 @@ import { CreditListModule } from './credit-list/credit-list.module';
     MatTooltipModule,
     MatDatepickerModule,
     MatNativeDateModule,
-    MatDialogModule
+    MatDialogModule,
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'ger' }
