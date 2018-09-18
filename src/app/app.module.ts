@@ -28,7 +28,8 @@ registerLocaleData(localeDe);
 @NgModule({
   declarations: [
     AppComponent,
-    AddUserFormComponent
+    AddUserFormComponent,
+    NumberOnlyDirective
   ],
   imports: [
     AppRoutingModule,

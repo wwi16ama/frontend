@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { User } from '../user';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {FormControl, FormGroupDirective, NgForm} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
@@ -19,21 +18,83 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class AddUserFormComponent {
 
-  isLinear = false;
   allgmeinPersoInfo: FormGroup;
   adresse: FormGroup;
   interneInfos: FormGroup;
 
   // Initialisierungsarrays für Selecter
-  geschlecht = ['männlich', 'weiblich'];
+  sex = ['männlich', 'weiblich'];
   status = ['Aktiv', 'Passiv', 'Ehrenmitglied'];
-  aemter = ['Mgl. des Vorstandes', 'Fluglehrer', 'Flugwart'];
+  aemter = ['Vorstandvorsitzender', 'Fluglehrer', 'Flugwart',
+  'Systemadministrator', 'Kassierer', 'Betriebsdienst Kontrollturm'];
   flugberechtigung = ['PPL-A', 'PPL-e', 'eZF-I', 'eZF-II', 'Lehrbefugnis'];
+  state = ["Baden-Württemberg",
+    "Bayern",
+    "Berlin", 
+    "Brandenburg",
+    "Bremen", 
+    "Hamburg", 
+    "Hessen",
+    "Mecklenburg-Vorpommern",
+    "Niedersachsen",
+    "Nordrhein-Westfalen",
+    "Rheinland-Pfalz",
+    "Saarland",
+    "Sachsen",
+    "Sachsen-Anhalt",
+    "Schleswig-Holstein",
+    "Thüringen"];
 
+  // Validierung der User-Form
   emailFormControl = new FormControl('', [
     Validators.required,
     Validators.email,
   ]);
+
+  nameFormControl = new FormControl('', [
+    Validators.required,
+  ]);
+
+  firstNameFormControl = new FormControl('', [
+    Validators.required,
+  ]);
+
+  birthdayFormControl = new FormControl('', [
+    Validators.required,
+  ]);
+
+  sexFormControl = new FormControl('', [
+    Validators.required,
+  ]);
+
+  postalCodeFormControl = new FormControl('', [
+    Validators.required,
+  ]);
+
+  cityFormControl = new FormControl('', [
+    Validators.required,
+  ]);
+
+  stateFormControl = new FormControl('', [
+    Validators.required,
+  ]);
+
+  streetFormControl = new FormControl('', [
+    Validators.required,
+  ]);
+
+  houseNumberFormControl = new FormControl('', [
+    Validators.required,
+  ]);
+
+  statusFormControl = new FormControl('', [
+    Validators.required,
+  ]);
+
+  bankingAccountFormControl = new FormControl('', [
+    Validators.required,
+  ]);
+
 
   matcher = new MyErrorStateMatcher();
 
