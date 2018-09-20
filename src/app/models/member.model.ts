@@ -26,15 +26,14 @@ export class Address {
     constructor(
         public postalCode: number,
         public streetAddress: string,
-        public city: string,
-        public state: string,
-        public country: string,
+        public city: string
     ) {}
 }
 
 export class Authorization {
     constructor(
         public authorization: string,
+        public dateOfIssue: string,
         public expires: string
     ) {}
 }

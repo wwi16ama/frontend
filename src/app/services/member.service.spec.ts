@@ -42,11 +42,11 @@ describe('MemberService', () => {
       const testMemberData = new Member(
         0, 'Peter', 'Zwegat', '2018-09-10T13:15:19.927+0000', 'Männlich', Status.active,
         'peter.zwegat@gmx.de', new Address(
-          12345, 'Dorfstraße 2', 'Mannheim', 'Baden-Württemberg', 'Deutschland'
+          12345, 'Dorfstraße 2', 'Mannheim'
         ), 'DE9876543210', true, '56789', ['Vorstand', 'Nicer Dude'],
         [
-          new Authorization('PPL-A', '2018-09-10T13:15:19.927+0000'),
-          new Authorization('PPL-A', '2018-09-10T13:15:19.927+0000')
+          new Authorization('PPL-A', '2018-09-10T13:15:19.927+0000', '2018-09-10T13:15:19.927+0000'),
+          new Authorization('PPL-A', '2018-09-10T13:15:19.927+0000', '2018-09-10T13:15:19.927+0000')
         ]
       );
       const id = '0';

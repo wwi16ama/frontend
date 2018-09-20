@@ -9,9 +9,7 @@
     "address": {
         "postalCode": 12345,
         "streetAddress": "Dorfstraße 2",
-        "city": "Mannheim",
-        "state": "Baden-Württemberg",
-        "country": "Deutschland"
+        "city": "Mannheim"
     },
     "bankingAccount": "DE9876543210",
     "admissioned": true,
@@ -23,10 +21,12 @@
     "flightAuthorization": [
         {
             "authorization": "PPL-A",
+            "dateOfIssue": "2018-09-10T13:15:19.927+0000",
             "expires": "2018-09-10T13:15:19.927+0000"
         },
         {
             "authorization": "PPL-B",
+            "dateOfIssue": "2018-09-10T13:15:19.927+0000",
             "expires": "2018-09-10T13:15:19.927+0000"
         }
     ]
