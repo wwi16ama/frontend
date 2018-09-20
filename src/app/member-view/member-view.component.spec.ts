@@ -2,6 +2,7 @@ import { of } from 'rxjs';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MemberViewComponent } from './member-view.component';
+import { MemberService } from './../services/member.service';
 import { MatDividerModule, MatListModule, MatCheckboxModule } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
@@ -18,17 +19,18 @@ describe('MemberViewComponent', () => {
         MatCheckboxModule,
         HttpClientModule
       ],
-      declarations: [ MemberViewComponent ],
+      declarations: [MemberViewComponent],
       providers: [
         {
           provide: ActivatedRoute,
           useValue: {
-              params: of([{ id: '0' }]),
+            params: of([{ id: '0' }]),
           },
-      },
+        },
+        MemberService
       ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
