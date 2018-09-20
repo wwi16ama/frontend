@@ -15,6 +15,9 @@ describe('MemberlistService', () => {
     TestBed.configureTestingModule({
       imports: [
         HttpClientTestingModule
+      ],
+      providers: [
+        MemberListService
       ]
     });
     injector = getTestBed();
