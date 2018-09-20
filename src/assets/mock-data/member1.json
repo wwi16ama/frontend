@@ -1,0 +1,34 @@
+{
+    "id": 1,
+    "firstName": "Max",
+    "lastName": "Mustermann",
+    "dateOfBirth": "2018-09-10T13:15:19.927+0000",
+    "sex": "Männlich",
+    "status": "active",
+    "email": "peter.zwegat@gmx.de",
+    "address": {
+        "postalCode": 12345,
+        "streetAddress": "Dorfstraße 2",
+        "city": "Mannheim"
+
+    },
+    "bankingAccount": "DE9876543210",
+    "admissioned": true,
+    "memberBankingAccount": "56789",
+    "offices": [
+        "Vorstand",
+        "Nicer Dude"
+    ],
+    "flightAuthorization": [
+        {
+            "authorization": "PPL-A",
+            "dateOfIssue": "2018-09-10T13:15:19.927+0000",
+            "expires": "2018-09-10T13:15:19.927+0000"
+        },
+        {
+            "authorization": "PPL-B",
+            "dateOfIssue": "2018-09-10T13:15:19.927+0000",
+            "expires": "2018-09-10T13:15:19.927+0000"
+        }
+    ]
+}
