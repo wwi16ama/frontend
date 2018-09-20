@@ -3,6 +3,7 @@
   <mat-tab-group backgroundColor="primary" color="accent" [dynamicHeight]="true">
     <mat-tab label="Übersicht">
       <form [formGroup]="allgmeinPersoInfo">
+<<<<<<< HEAD
         <div class="tab-content">
           <mat-form-field class="input-width">
             <input type="text" matInput placeholder="Name" id="name" minlength="3" 
@@ -64,6 +65,65 @@
               Die Emailadresse ist <strong>erforderlich</strong>
             </mat-error>
           </mat-form-field>
+=======
+        <ng-template matStepLabel>Allgemeine Personeninformationen</ng-template>
+
+        <div class="wrapper">
+
+          <div class="user-div">
+            <mat-form-field>
+              <input type="text" matInput placeholder="Name" id="name" minlength="3" 
+              pattern="[a-zA-Z]+" ng-pattern-restrict [formControl]="nameFormControl" required>
+              <mat-error *ngIf="nameFormControl.hasError('required')">
+                Der Name ist <strong>erforderlich</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="user-div">
+            <mat-form-field>
+              <input type="text" matInput placeholder="Vorname" id="firstName" [formControl]="firstNameFormControl" required>
+              <mat-error *ngIf="firstNameFormControl.hasError('required')">
+                Der Vorname ist <strong>erforderlich</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="user-div">
+            <mat-form-field>
+              <input matInput [matDatepicker]="birthday" placeholder="Geburtstag" [formControl]="birthdayFormControl" required>
+              <mat-datepicker-toggle matSuffix [for]="birthday"></mat-datepicker-toggle>
+              <mat-datepicker #birthday></mat-datepicker>
+              <mat-error *ngIf="birthdayFormControl.hasError('required')">
+                Der Geburtstag ist <strong>erforderlich</strong>
+              </mat-error>
+            </mat-form-field>                
+          </div>
+
+          <div class="user-div">
+            <mat-form-field>
+              <mat-select placeholder="Geschlecht" id="sex" [formControl]="sexFormControl" required>
+                <mat-option *ngFor="let sex of sex" [value]="sex">{{sex}}</mat-option>
+              </mat-select>
+              <mat-error *ngIf="sexFormControl.hasError('required')">
+                Das Geschlecht ist <strong>erforderlich</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <div class="user-div">
+            <mat-form-field>
+              <input type="email" matInput placeholder="Email" id="email" [formControl]="emailFormControl"
+              [errorStateMatcher]="matcher" required>
+              <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+                  Bitte geben Sie eine gültige Emailadresse ein.
+              </mat-error>
+              <mat-error *ngIf="emailFormControl.hasError('required')">
+                  Die Emailadresse ist <strong>erforderlich</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+>>>>>>> Validierung-Anpassung Namensfeld
         </div>
       </form>
     </mat-tab>
