@@ -15,7 +15,7 @@
           <div class="user-div">
             <mat-form-field>
               <input type="text" matInput placeholder="Name" id="name" minlength="3" 
-              ng-pattern-restrict="[a-zA-Z]+" [formControl]="nameFormControl" required>
+              pattern="[a-zA-Z]+" ng-pattern-restrict [formControl]="nameFormControl" required>
               <mat-error *ngIf="nameFormControl.hasError('required')">
                 Der Name ist <strong>erforderlich</strong>
               </mat-error>
