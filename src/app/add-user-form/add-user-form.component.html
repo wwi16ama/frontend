@@ -77,14 +77,27 @@
               <mat-error *ngIf="nameFormControl.hasError('required')">
                 Der Name ist <strong>erforderlich</strong>
               </mat-error>
+              <mat-error *ngIf="nameFormControl.hasError('minlength')">
+                  Der Name muss mindestens 3 Zeichen lang sein
+              </mat-error>
+              <mat-error *ngIf="nameFormControl.hasError('pattern')">
+                  Der Name darf keine Zahlen enthalten
+              </mat-error>
             </mat-form-field>
           </div>
 
           <div class="user-div">
             <mat-form-field>
-              <input type="text" matInput placeholder="Vorname" id="firstName" [formControl]="firstNameFormControl" required>
+              <input type="text" matInput placeholder="Vorname" id="firstName" minlength="3"
+              pattern="[a-zA-Z]+" ng-pattern-restrict [formControl]="firstNameFormControl" required>
               <mat-error *ngIf="firstNameFormControl.hasError('required')">
                 Der Vorname ist <strong>erforderlich</strong>
+              </mat-error>
+              <mat-error *ngIf="firstNameFormControl.hasError('minlength')">
+                  Der Vorname muss mindestens 3 Zeichen lang sein
+              </mat-error>
+              <mat-error *ngIf="firstNameFormControl.hasError('pattern')">
+                  Der Vorname darf keine Zahlen enthalten
               </mat-error>
             </mat-form-field>
           </div>
