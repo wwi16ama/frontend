@@ -19,14 +19,27 @@
               <mat-error *ngIf="nameFormControl.hasError('required')">
                 Der Name ist <strong>erforderlich</strong>
               </mat-error>
+              <mat-error *ngIf="nameFormControl.hasError('minlength')">
+                  Der Name muss mindestens 3 Zeichen lang sein
+              </mat-error>
+              <mat-error *ngIf="nameFormControl.hasError('pattern')">
+                  Der Name darf keine Zahlen enthalten
+              </mat-error>
             </mat-form-field>
           </div>
 
           <div class="user-div">
             <mat-form-field>
-              <input type="text" matInput placeholder="Vorname" id="firstName" [formControl]="firstNameFormControl" required>
+              <input type="text" matInput placeholder="Vorname" id="firstName" minlength="3"
+              pattern="[a-zA-Z]+" ng-pattern-restrict [formControl]="firstNameFormControl" required>
               <mat-error *ngIf="firstNameFormControl.hasError('required')">
                 Der Vorname ist <strong>erforderlich</strong>
+              </mat-error>
+              <mat-error *ngIf="firstNameFormControl.hasError('minlength')">
+                  Der Vorname muss mindestens 3 Zeichen lang sein
+              </mat-error>
+              <mat-error *ngIf="firstNameFormControl.hasError('pattern')">
+                  Der Vorname darf keine Zahlen enthalten
               </mat-error>
             </mat-form-field>
           </div>
@@ -109,27 +122,28 @@
 
           <div class="user-div">
             <mat-form-field>
-              <input type="text" matInput placeholder="Ort" id="city" [formControl]="cityFormControl" required>
+              <input type="text" pattern="[a-zA-Z]+" ng-pattern-restrict
+              matInput placeholder="Ort" id="city" [formControl]="cityFormControl" minlength="3" required>
               <mat-error *ngIf="cityFormControl.hasError('required')">
                 Der Ort ist <strong>erforderlich</strong>
               </mat-error>
-            </mat-form-field>
-          </div>
-
-          <div class="user-div">
-            <mat-form-field>
-              <input type="text" matInput placeholder="Straße" id="street" [formControl]="streetFormControl" required>
-              <mat-error *ngIf="streetFormControl.hasError('required')">
-                Die Straße ist <strong>erforderlich</strong>
+              <mat-error *ngIf="cityFormControl.hasError('minlength')">
+                  Der Ort muss mindestens 3 Zeichen lang sein
+              </mat-error>
+              <mat-error *ngIf="cityFormControl.hasError('pattern')">
+                  Der Ort darf keine Zahlen enthalten
               </mat-error>
             </mat-form-field>
           </div>
 
           <div class="user-div">
             <mat-form-field>
-              <input type="number" min="1" matInput placeholder="Hausnummer" myNumberOnly id="houseNumber" [formControl]="houseNumberFormControl" required>
-              <mat-error *ngIf="houseNumberFormControl.hasError('required')">
-                Die Hausnummer ist <strong>erforderlich</strong>
+              <input type="text" matInput placeholder="Straße" id="street" minlength="3" [formControl]="streetFormControl" required>
+              <mat-error *ngIf="streetFormControl.hasError('required')">
+                Die Straße ist <strong>erforderlich</strong>
+              </mat-error>
+              <mat-error *ngIf="streetFormControl.hasError('minlength')">
+                  Die Straße muss mindestens 3 Zeichen lang sein
               </mat-error>
             </mat-form-field>
           </div>
@@ -151,7 +165,7 @@
       </mat-card-header>
       <form [formGroup]="interneInfos">
         <ng-template matStepLabel>Interne Informationen</ng-template>
-        <!--interne Infos (Flugl etc.)-->
+        <!--interne Infos-->
 
         <div class="wrapper">
 
@@ -174,28 +188,11 @@
             </mat-form-field>
           </div>
 
-          <div class="user-div">
-            <mat-form-field>
-              <mat-select placeholder="Flugberechtigung" id="flugberechtigung" multiple>
-                <mat-option *ngFor="let flu of flugberechtigung" [value]="flu">{{flu}}</mat-option>
-              </mat-select>
-            </mat-form-field>
-          </div>
-
-          <div class="user-div">
-              <mat-form-field>
-                <input matInput [matDatepicker]="gueltigkeit" placeholder="Gültigkeit"
-                matTooltip="Gültigkeit der Flugberechtigung" required>
-                <mat-datepicker-toggle matSuffix [for]="gueltigkeit"></mat-datepicker-toggle>
-                <mat-datepicker #gueltigkeit></mat-datepicker>
-            </mat-form-field>
-          </div>
-
           <mat-checkbox id="mustereinweisung">Mustereinweisung wurde durchgeführt</mat-checkbox>
 
           <div class="user-div">
             <mat-form-field>
-              <input type="text" matInput placeholder="Bankkonto" id="bankingAccount" required [formControl]="bankingAccountFormControl">
+              <input type="text" matInput placeholder="Bankkonto" ng-model="iban" id="bankingAccount" required [formControl]="bankingAccountFormControl">
               <mat-hint>DE19 1234 1234 1234 1234 12</mat-hint>
               <mat-error *ngIf="bankingAccountFormControl.hasError('required')">
                 Das Bankkonto ist <strong>erforderlich</strong>
@@ -205,11 +202,46 @@
 
         </div>
         <mat-card-actions>
-          <button mat-raised-button mat-button color="primary" class="mat-btn-user">Anlegen</button>
+            <button mat-raised-button mat-button matStepperNext color="primary" class="mat-btn-user">Weiter</button>
           <button mat-raised-button mat-button matStepperPrevious color="primary" class="mat-btn-user">Zurück</button>
         </mat-card-actions>
 
       </form>
+      </mat-card>
+    </mat-step>
+    <mat-step [stepControl]="Flugberechtigung">
+      <mat-card class="user-card">
+        <mat-card-header>
+            <mat-card-title class="user-card-title">Flugberechtigung angeben.</mat-card-title>
+        </mat-card-header>
+        <form [formGroup]="interneInfos">
+        <ng-template matStepLabel>Flugberechtigung</ng-template>
+
+          <div class="wrapper">
+
+            <div class="user-div">
+              <mat-form-field>
+                <mat-select placeholder="Flugberechtigung" id="flugberechtigung" multiple>
+                  <mat-option *ngFor="let flu of flugberechtigung" [value]="flu">{{flu}}</mat-option>
+                </mat-select>
+              </mat-form-field>
+            </div>
+
+            <!--<div class="user-div">
+                <mat-form-field>
+                  <input matInput [matDatepicker]="gueltigkeit" placeholder="Gültigkeit"
+                  matTooltip="Gültigkeit der Flugberechtigung" required>
+                  <mat-datepicker-toggle matSuffix [for]="gueltigkeit"></mat-datepicker-toggle>
+                  <mat-datepicker #gueltigkeit></mat-datepicker>
+              </mat-form-field>
+            </div>-->
+
+          </div>
+          <mat-card-actions>
+              <button mat-raised-button mat-button color="primary" class="mat-btn-user">Anlegen</button>
+              <button mat-raised-button mat-button matStepperPrevious color="primary" class="mat-btn-user">Zurück</button>
+          </mat-card-actions>
+        </form>
       </mat-card>
     </mat-step>
   </mat-horizontal-stepper>
