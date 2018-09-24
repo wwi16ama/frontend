@@ -1,0 +1,19 @@
+.dialog-wrapper {
+    width: 30vw;
+    margin-top: -24px;
+}
+
+.mat-dialog-content {
+    padding: 0 0;
+}
+
+.tab-content {
+    padding: 24px 24px;
+}
+
+.input-width {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+    display: block;
+}
