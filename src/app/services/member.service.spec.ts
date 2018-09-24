@@ -3,7 +3,7 @@ import { TestBed, getTestBed } from '@angular/core/testing';
 import { MemberService } from './member.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
-import { Member, Address, Status, Authorization } from './../models/member.model';
+import { Member, Gender, Address, Status, Authorization } from './../models/member.model';
 
 describe('MemberService', () => {
 
@@ -40,7 +40,7 @@ describe('MemberService', () => {
 
     it('should trigger get request with correct url', () => {
       const testMemberData = new Member(
-        0, 'Peter', 'Zwegat', '2018-09-10T13:15:19.927+0000', 'Männlich', Status.active,
+        0, 'Peter', 'Zwegat', '2018-09-10T13:15:19.927+0000', Gender.male , Status.active,
         'peter.zwegat@gmx.de', new Address(
           12345, 'Dorfstraße 2', 'Mannheim'
         ), 'DE9876543210', true, '56789', ['Vorstand', 'Nicer Dude'],
