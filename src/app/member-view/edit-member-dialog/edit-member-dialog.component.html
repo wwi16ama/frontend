@@ -11,7 +11,7 @@
             <input matInput placeholder="Nachname" [(ngModel)]="member.lastName">
           </mat-form-field>
           <mat-form-field class="input-width">
-            <input [value]="dateOfBirth.value" matInput [matDatepicker]="dateOfBirthPicker" placeholder="Geburtstag">
+            <input [value]="dateOfBirth" matInput [matDatepicker]="dateOfBirthPicker" placeholder="Geburtstag">
             <mat-datepicker-toggle matSuffix [for]="dateOfBirthPicker"></mat-datepicker-toggle>
             <mat-datepicker #dateOfBirthPicker></mat-datepicker>
           </mat-form-field>
@@ -71,19 +71,39 @@
       </mat-tab>
       <mat-tab label="Ämter">
         <div class="tab-content">
-          <mat-form-field>
+          <mat-form-field class="input-width">
             <mat-select placeholder="Ämter" multiple [(ngModel)]="member.offices" [compareWith]="compareOffices">
               <mat-option *ngFor="let office of possibleOffices" [value]="office">{{office.title}}</mat-option>
             </mat-select>
           </mat-form-field>
         </div>
       </mat-tab>
-      <mat-tab label="Flugberechtigungen"> Flugberechtigungen </mat-tab>
+      <mat-tab label="Flugberechtigungen">
+        <div class="tab-content">
+          <ng-container *ngFor="let authorization of flightAuthorizations">
+            <p class="authorization-title">{{ authorization.authorization }}</p>
+            <mat-form-field>
+                <input [value]="authorization.expires" matInput [matDatepicker]="flightAuthorizationsDate" placeholder="Gültig bis">
+                <mat-datepicker-toggle matSuffix [for]="flightAuthorizationsDate"></mat-datepicker-toggle>
+                <mat-datepicker #flightAuthorizationsDate></mat-datepicker>
+              </mat-form-field>
+              <br>
+          </ng-container>
+          <mat-form-field *ngIf="addAuthorization" class="input-width">
+            <mat-select placeholder="Flugberechtigung" [(value)]="newAuthorization">
+              <mat-option *ngFor="let authorization of availableAuthorizations" [value]="authorization.authorization">
+                {{ authorization.authorization }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <button class="add-button" mat-raised-button (click)="addNewAuthorization()">Hinzufügen</button>
+        </div>
+      </mat-tab>
     </mat-tab-group>
 
   </div>
   <div mat-dialog-actions>
-    <button mat-button (click)="onNoClick()">No Thanks</button>
-    <button mat-button (click)="saveMemberData()">Ok</button>
+    <button mat-button (click)="onNoClick()">Abbrechen</button>
+    <button mat-raised-button (click)="saveMemberData()" color="primary">Speichern</button>
   </div>
 </div>

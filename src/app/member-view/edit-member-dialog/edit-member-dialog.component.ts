@@ -1,7 +1,6 @@
 import { Component, Inject } from '@angular/core';
-import { Member, Office, OfficeEnum } from './../../models/member.model';
+import { Member, Office, OfficeEnum, AuthorizationEnum } from './../../models/member.model';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-edit-member-dialog',
@@ -10,14 +9,15 @@ import { FormControl } from '@angular/forms';
 })
 export class EditMemberDialogComponent {
 
-  dateOfBirth: FormControl;
+  dateOfBirth: Date;
   possibleOffices: Office[];
+  flightAuthorizations: any[];
 
   constructor(
     public editMemberDialogRef: MatDialogRef<EditMemberDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public member: Member
   ) {
-    this.dateOfBirth = new FormControl(new Date(member.dateOfBirth));
+    this.dateOfBirth = new Date(member.dateOfBirth);
     this.possibleOffices = [
       new Office(OfficeEnum.FLUGWART),
       new Office(OfficeEnum.IMBETRIEBSKONTROLLTURMARBEITEND),
@@ -25,6 +25,10 @@ export class EditMemberDialogComponent {
       new Office(OfficeEnum.SYSTEMADMINISTRATOR),
       new Office(OfficeEnum.VORSTANDSVORSITZENDER)
     ];
+    this.flightAuthorizations = this.member.flightAuthorization;
+    for (let i = 0; i < this.flightAuthorizations.length; i++) {
+      this.flightAuthorizations[i].expires = new Date(this.flightAuthorizations[i].expires);
+    }
   }
 
   public onNoClick(): void {
@@ -32,12 +36,15 @@ export class EditMemberDialogComponent {
   }
 
   public saveMemberData(): void {
-    this.member.dateOfBirth = this.dateOfBirth.value;
+    this.member.dateOfBirth = this.dateOfBirth.toString();
+    for (let i = 0; i < this.flightAuthorizations.length; i++) {
+      this.flightAuthorizations[i].expires = this.flightAuthorizations[i].expires.toString();
+    }
+    this.member.flightAuthorization = this.flightAuthorizations;
     this.editMemberDialogRef.close(this.member);
   }
 
   public compareOffices(a, b): boolean {
     return a.title === b.title;
   }
-
 }

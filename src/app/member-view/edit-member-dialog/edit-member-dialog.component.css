@@ -17,3 +17,12 @@
     width: 100%;
     display: block;
 }
+
+.authorization-title {
+    display: inline-block;
+    margin-right: 15px;
+}
+
+.add-button {
+    margin-top: 10px;
+}
