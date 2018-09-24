@@ -6,7 +6,7 @@ import { MemberService } from './../services/member.service';
 import { MatDividerModule, MatListModule, MatCheckboxModule } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
-import { Member, Gender, Address, Authorization, Status } from './../models/member.model';
+import { Member, Gender, Address, Authorization, AuthorizationEnum, Status, Office, OfficeEnum } from './../models/member.model';
 
 describe('MemberViewComponent', () => {
   let component: MemberViewComponent;
@@ -51,16 +51,16 @@ describe('MemberViewComponent', () => {
 
     it('should define ', () => {
       const testMember = new Member(
-        0, 'Peter', 'Zwegat', '2018-09-10T13:15:19.927+0000', Gender.male,
-        Status.active, 'peter.zwegat@gmx.de',
+        0, 'Peter', 'Zwegat', '2018-09-10T13:15:19.927+0000', Gender.MALE,
+        Status.ACTIVE, 'peter.zwegat@gmx.de',
         new Address(
           12345, 'Dorfstraße 2', 'Mannheim',
         ),
         'DE9876543210',
-        true, '56789', ['Vorstand', 'Nicer Dude'],
+        true, '56789', [new Office(OfficeEnum.FLUGWART), new Office(OfficeEnum.IMBETRIEBSKONTROLLTURMARBEITEND)],
         [
-          new Authorization('PPL-A', '2018-09-10T13:15:19.927+0000', '2018-09-10T13:15:19.927+0000'),
-          new Authorization('PPL-B', '2018-09-10T13:15:19.927+0000', '2018-09-10T13:15:19.927+0000')
+          new Authorization(AuthorizationEnum.PPLA, '2018-09-10T13:15:19.927+0000', '2018-09-10T13:15:19.927+0000'),
+          new Authorization(AuthorizationEnum.PPLA, '2018-09-10T13:15:19.927+0000', '2018-09-10T13:15:19.927+0000')
         ]
       );
       spyOn(component.memberService, 'getMemberData').and.returnValue(of(testMember));
