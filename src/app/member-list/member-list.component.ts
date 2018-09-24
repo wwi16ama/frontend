@@ -1,9 +1,11 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
 import { MatTableDataSource, MatSort } from '@angular/material';
+import { MatTableDataSource, MatDialog } from '@angular/material';
 import { ListMember } from './../models/list-member.model';
 import { MemberListService } from './../services/memberlist.service';
 import { Router } from '@angular/router';
+import { AddUserFormComponent } from './../add-user-form/add-user-form.component';
 
 @Component({
   selector: 'app-member-list',
@@ -23,7 +25,7 @@ export class MemberListComponent implements OnInit {
     }
   }
 
-  constructor(public memberListService: MemberListService, public router: Router) {
+  constructor(public memberListService: MemberListService, public router: Router, public addUserDialog: MatDialog) {
     this.displayedColumns = ['id', 'firstName', 'lastName'];
   }
 
@@ -38,6 +40,15 @@ export class MemberListComponent implements OnInit {
 
   public navigateTo(rowId): void {
     this.router.navigate(['/member', rowId]);
+  }
+
+  openAddUserDialog(): void {
+    const dialogRef = this.addUserDialog.open(AddUserFormComponent, {
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+    });
   }
 
 }
