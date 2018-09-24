@@ -30,21 +30,6 @@ import { CreditListModule } from './credit-list/credit-list.module';
     PlaneListModule,
     CreditListModule
     MemberViewModule
-    BrowserModule,
-    BrowserAnimationsModule,
-    FormsModule,
-    MatButtonModule,
-    MatCheckboxModule,
-    MatFormFieldModule,
-    MatInputModule,
-    ReactiveFormsModule,
-    MatSelectModule,
-    MatStepperModule,
-    MatCardModule,
-    MatTooltipModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatDialogModule,
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'ger' }
