@@ -1,0 +1,81 @@
+<div class="dialog-wrapper">
+  <!-- <h1 mat-dialog-title>Mitglied Nummer {{ data.id }} bearbeiten</h1> -->
+  <div mat-dialog-content>
+    <mat-tab-group backgroundColor="primary" color="accent" [dynamicHeight]="true">
+      <mat-tab label="Übersicht">
+        <div class="tab-content">
+          <mat-form-field class="input-width">
+            <input matInput placeholder="Vorname" [(ngModel)]="member.firstName">
+          </mat-form-field>
+          <mat-form-field class="input-width">
+            <input matInput placeholder="Nachname" [(ngModel)]="member.lastName">
+          </mat-form-field>
+          <mat-form-field class="input-width">
+            <input [value]="dateOfBirth.value" matInput [matDatepicker]="dateOfBirthPicker" placeholder="Geburtstag">
+            <mat-datepicker-toggle matSuffix [for]="dateOfBirthPicker"></mat-datepicker-toggle>
+            <mat-datepicker #dateOfBirthPicker></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field class="input-width">
+            <mat-select placeholder="Geschlecht" [(value)]="member.gender">
+              <mat-option value="Männlich">
+                Männlich
+              </mat-option>
+              <mat-option value="Weiblich">
+                Weiblich
+              </mat-option>
+              <mat-option value="Divers">
+                Divers
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="input-width">
+            <mat-select placeholder="Status" [(value)]="member.status">
+              <mat-option value="Aktiv">
+                Aktiv
+              </mat-option>
+              <mat-option value="Passiv">
+                Passiv
+              </mat-option>
+              <mat-option value="Ehrenmitglied">
+                Ehrenmitglied
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field class="input-width">
+            <input matInput placeholder="Email" [(ngModel)]="member.email">
+          </mat-form-field>
+        </div>
+      </mat-tab>
+      <mat-tab label="Adresse">
+        <div class="tab-content">
+          <mat-form-field class="input-width">
+            <input matInput placeholder="Postleitzahl" [(ngModel)]="member.address.postalCode">
+          </mat-form-field>
+          <mat-form-field class="input-width">
+            <input matInput placeholder="Straße" [(ngModel)]="member.address.streetAddress">
+          </mat-form-field>
+          <mat-form-field class="input-width">
+            <input matInput placeholder="Stadt" [(ngModel)]="member.address.city">
+          </mat-form-field>
+        </div>
+      </mat-tab>
+      <mat-tab label="Kundenkonto">
+        <div class="tab-content">
+          <mat-form-field class="input-width">
+            <input matInput placeholder="Bankkonto" [(ngModel)]="member.bankingAccount">
+          </mat-form-field>
+          <mat-form-field class="input-width">
+            <input matInput placeholder="Mitgliedskonto" [(ngModel)]="member.memberBankingAccount">
+          </mat-form-field>
+        </div>
+      </mat-tab>
+      <mat-tab label="Ämter"> Ämter </mat-tab>
+      <mat-tab label="Flugberechtigungen"> Flugberechtigungen </mat-tab>
+    </mat-tab-group>
+
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">No Thanks</button>
+    <button mat-button (click)="saveMemberData()">Ok</button>
+  </div>
+</div>
