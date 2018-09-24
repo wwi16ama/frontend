@@ -42,6 +42,12 @@ import { DeletePlaneDialogComponent } from './plane-list/delete-plane-dialog/del
   ],
   bootstrap: [AppComponent],
   entryComponents: [
+    AddUserFormComponent
+  ],
+  providers: [
+    { provide: localeDe, useValue: 'de' },
+    { provide: MAT_DATE_LOCALE, useValue: 'ger' }
+  ],
     EditMemberDialogComponent,
     EditPlaneDialogComponent,
     DeletePlaneDialogComponent
