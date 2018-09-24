@@ -28,22 +28,22 @@ export class AddUserFormComponent {
   aemter = ['Vorstandvorsitzender', 'Fluglehrer', 'Flugwart',
   'Systemadministrator', 'Kassierer', 'Betriebsdienst Kontrollturm'];
   flugberechtigung = ['PPL-A', 'PPL-e', 'eZF-I', 'eZF-II', 'Lehrbefugnis'];
-  state = ["Baden-Württemberg",
-    "Bayern",
-    "Berlin", 
-    "Brandenburg",
-    "Bremen", 
-    "Hamburg", 
-    "Hessen",
-    "Mecklenburg-Vorpommern",
-    "Niedersachsen",
-    "Nordrhein-Westfalen",
-    "Rheinland-Pfalz",
-    "Saarland",
-    "Sachsen",
-    "Sachsen-Anhalt",
-    "Schleswig-Holstein",
-    "Thüringen"];
+  state = ['Baden-Württemberg',
+    'Bayern',
+    'Berlin',
+    'Brandenburg',
+    'Bremen',
+    'Hamburg',
+    'Hessen',
+    'Mecklenburg-Vorpommern',
+    'Niedersachsen',
+    'Nordrhein-Westfalen',
+    'Rheinland-Pfalz',
+    'Saarland',
+    'Sachsen',
+    'Sachsen-Anhalt',
+    'Schleswig-Holstein',
+    'Thüringen'];
 
   // Validierung der User-Form
   emailFormControl = new FormControl('', [
