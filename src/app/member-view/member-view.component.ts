@@ -50,7 +50,7 @@ export class MemberViewComponent implements OnInit {
   }
 
   public saveMember(): void {
-    console.log('Moin');
+    console.log(this.member);
   }
 
 }

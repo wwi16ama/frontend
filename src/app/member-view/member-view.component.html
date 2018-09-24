@@ -11,13 +11,13 @@
     <mat-list-item>
       <h4 mat-line>
         <span class="spacing">Vorname:</span>
-        <span [contentEditable]="editMode" [ngClass]="{'edit-me': editMode}">{{ member.firstName }}</span>
+        <span [contentEditable]="editMode" (input)="member.firstName=$event.target.textContent" [textContent]="member.firstName" [ngClass]="{'edit-me': editMode}"></span>
       </h4>
     </mat-list-item>
     <mat-list-item>
       <h4 mat-line>
         <span class="spacing">Nachname:</span>
-        <span [contentEditable]="editMode" [ngClass]="{'edit-me': editMode}">{{ member.lastName }}</span>
+        <span [contentEditable]="editMode" (input)="member.lastName=$event.target.textContent" [textContent]="member.lastName" [ngClass]="{'edit-me': editMode}"></span>
       </h4>
     </mat-list-item>
     <mat-list-item>
@@ -67,7 +67,7 @@
     <mat-list-item>
       <h4 mat-line>
         <span class="spacing">Email:</span>
-        <span [contentEditable]="editMode" [ngClass]="{'edit-me': editMode}">{{ member.email }}</span>
+        <span [contentEditable]="editMode" (input)="member.email=$event.target.textContent" [textContent]="member.email" [ngClass]="{'edit-me': editMode}"></span>
       </h4>
     </mat-list-item>
     <mat-divider></mat-divider>
@@ -75,19 +75,19 @@
     <mat-list-item>
       <h4 mat-line>
         <span class="spacing">Postleitzahl:</span>
-        <span [contentEditable]="editMode" [ngClass]="{'edit-me': editMode}">{{ member.address.postalCode }}</span>
+        <span [contentEditable]="editMode" (input)="member.address.postalCodef=$event.target.textContent" [textContent]="member.address.postalCode" [ngClass]="{'edit-me': editMode}"></span>
       </h4>
     </mat-list-item>
     <mat-list-item>
       <h4 mat-line>
         <span class="spacing">Straße:</span>
-        <span [contentEditable]="editMode" [ngClass]="{'edit-me': editMode}">{{ member.address.streetAddress }}</span>
+        <span [contentEditable]="editMode" (input)="member.address.streetAddress=$event.target.textContent" [textContent]="member.address.streetAddress" [ngClass]="{'edit-me': editMode}"></span>
       </h4>
     </mat-list-item>
     <mat-list-item>
       <h4 mat-line>
         <span class="spacing">Stadt:</span>
-        <span [contentEditable]="editMode" [ngClass]="{'edit-me': editMode}">{{ member.address.city }}</span>
+        <span [contentEditable]="editMode" (input)="member.address.city=$event.target.textContent" [textContent]="member.address.city" [ngClass]="{'edit-me': editMode}"></span>
       </h4>
     </mat-list-item>
     <mat-divider></mat-divider>
@@ -95,13 +95,13 @@
     <mat-list-item>
       <h4 mat-line>
         <span class="spacing">Bankkonto:</span>
-        <span [contentEditable]="editMode" [ngClass]="{'edit-me': editMode}">{{ member.bankingAccount }}</span>
+        <span [contentEditable]="editMode" (input)="member.bankingAccount=$event.target.textContent" [textContent]="member.bankingAccount" [ngClass]="{'edit-me': editMode}"></span>
       </h4>
     </mat-list-item>
     <mat-list-item>
       <h4 mat-line>
         <span class="spacing">Mitgliedskontonummer:</span>
-        <span [contentEditable]="editMode" [ngClass]="{'edit-me': editMode}">{{ member.memberBankingAccount }}</span>
+        <span [contentEditable]="editMode" (input)="member.memberBankingAccount=$event.target.textContent" [textContent]="member.memberBankingAccount" [ngClass]="{'edit-me': editMode}"></span>
       </h4>
     </mat-list-item>
     <mat-divider></mat-divider>
