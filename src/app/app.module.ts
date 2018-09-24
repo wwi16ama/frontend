@@ -36,6 +36,12 @@ import { CreditListModule } from './credit-list/credit-list.module';
   ],
   bootstrap: [AppComponent],
   entryComponents: [
+    AddUserFormComponent
+  ],
+  providers: [
+    { provide: localeDe, useValue: 'de' },
+    { provide: MAT_DATE_LOCALE, useValue: 'ger' }
+  ],
     EditMemberDialogComponent,
     EditPlaneDialogComponent
   ]
