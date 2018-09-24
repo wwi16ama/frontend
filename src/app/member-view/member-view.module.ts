@@ -8,9 +8,11 @@ import {
   } from '@angular/material';
 
 import { MemberService } from './../services/member.service';
+import { EditMemberDialogModule } from './edit-member-dialog/edit-member-dialog.module';
 
 @NgModule({
   imports: [
+    EditMemberDialogModule,
     CommonModule,
     MatDividerModule,
     MatListModule,
