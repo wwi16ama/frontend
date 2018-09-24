@@ -73,7 +73,7 @@
           <div class="user-div">
             <mat-form-field>
               <input type="text" matInput placeholder="Name" id="name" minlength="3" 
-              pattern="[a-zA-Z]+" ng-pattern-restrict [formControl]="nameFormControl" required>
+              pattern="[a-zA-Z_äÄöÖüÜß]+" ng-pattern-restrict [formControl]="nameFormControl" required>
               <mat-error *ngIf="nameFormControl.hasError('required')">
                 Der Name ist <strong>erforderlich</strong>
               </mat-error>
@@ -89,7 +89,7 @@
           <div class="user-div">
             <mat-form-field>
               <input type="text" matInput placeholder="Vorname" id="firstName" minlength="3"
-              pattern="[a-zA-Z]+" ng-pattern-restrict [formControl]="firstNameFormControl" required>
+              pattern="[a-zA-Z_äÄöÖüÜß]+" ng-pattern-restrict [formControl]="firstNameFormControl" required>
               <mat-error *ngIf="firstNameFormControl.hasError('required')">
                 Der Vorname ist <strong>erforderlich</strong>
               </mat-error>
