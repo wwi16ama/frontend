@@ -45,6 +45,7 @@ import { DeletePlaneDialogComponent } from './plane-list/delete-plane-dialog/del
   bootstrap: [AppComponent],
   entryComponents: [
     AddPlaneDialogComponent,
+    AddUserFormComponent
     EditMemberDialogComponent,
     EditPlaneDialogComponent,
     DeleteMemberDialogComponent,
