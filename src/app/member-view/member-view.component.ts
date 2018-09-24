@@ -3,6 +3,9 @@ import { Member, Status, Gender, OfficeEnum, AuthorizationEnum } from './../mode
 import { MemberService } from './../services/member.service';
 import { ActivatedRoute } from '@angular/router';
 
+import { MatDialog } from '@angular/material';
+import { EditMemberDialogComponent } from './edit-member-dialog/edit-member-dialog.component';
+
 
 @Component({
   selector: 'app-member-view',
@@ -14,7 +17,7 @@ export class MemberViewComponent implements OnInit {
   editMode: boolean;
   editButtonText: string;
 
-  constructor(public memberService: MemberService, public activatedRoute: ActivatedRoute) {
+  constructor(public memberService: MemberService, public activatedRoute: ActivatedRoute, public editMemberDialog: MatDialog) {
     this.editMode = false;
     this.editButtonText = 'Ändern';
   }
@@ -52,5 +55,18 @@ export class MemberViewComponent implements OnInit {
   public saveMember(): void {
     console.log(this.member);
   }
+
+  public openEditMemberDialog(): void {
+    const dialogRef = this.editMemberDialog.open(EditMemberDialogComponent, {
+        maxWidth: '100vw',
+        data: this.member
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+        if (result != null) {
+          console.log(result);
+        }
+    });
+}
 
 }
