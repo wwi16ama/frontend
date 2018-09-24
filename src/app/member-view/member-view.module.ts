@@ -2,7 +2,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MemberViewComponent } from './member-view.component';
 
-import { MatDividerModule, MatListModule, MatCheckboxModule } from '@angular/material';
+import {
+  MatDividerModule, MatListModule, MatCheckboxModule,
+   MatButtonModule, MatSelectModule
+  } from '@angular/material';
+
 import { MemberService } from './../services/member.service';
 
 @NgModule({
@@ -10,7 +14,9 @@ import { MemberService } from './../services/member.service';
     CommonModule,
     MatDividerModule,
     MatListModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatButtonModule,
+    MatSelectModule
   ],
   declarations: [
     MemberViewComponent

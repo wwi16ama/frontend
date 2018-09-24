@@ -11,8 +11,13 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class MemberViewComponent implements OnInit {
   member: Member;
+  editMode: boolean;
+  editButtonText: string;
 
-  constructor(public memberService: MemberService, public activatedRoute: ActivatedRoute) { }
+  constructor(public memberService: MemberService, public activatedRoute: ActivatedRoute) {
+    this.editMode = false;
+    this.editButtonText = 'Ändern';
+  }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(
@@ -32,6 +37,20 @@ export class MemberViewComponent implements OnInit {
         );
       }
     );
+  }
+
+  public toggleEditMode(): void {
+    if (this.editMode) {
+      this.saveMember();
+      this.editButtonText = 'Ändern';
+    } else {
+      this.editButtonText = 'Speichern';
+    }
+    this.editMode = !this.editMode;
+  }
+
+  public saveMember(): void {
+    console.log('Moin');
   }
 
 }

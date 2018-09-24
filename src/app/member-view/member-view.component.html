@@ -1,4 +1,5 @@
 <div class="member-view-wrapper">
+  <button mat-raised-button color="primary" class="edit-button" (click)="toggleEditMode()">{{ editButtonText }}</button>
   <mat-list *ngIf="member != null">
     <h3 mat-subheader>Übersicht</h3>
     <mat-list-item>
@@ -10,13 +11,13 @@
     <mat-list-item>
       <h4 mat-line>
         <span class="spacing">Vorname:</span>
-        <span>{{ member.firstName }}</span>
+        <span [contentEditable]="editMode" [ngClass]="{'edit-me': editMode}">{{ member.firstName }}</span>
       </h4>
     </mat-list-item>
     <mat-list-item>
       <h4 mat-line>
         <span class="spacing">Nachname:</span>
-        <span>{{ member.lastName }}</span>
+        <span [contentEditable]="editMode" [ngClass]="{'edit-me': editMode}">{{ member.lastName }}</span>
       </h4>
     </mat-list-item>
     <mat-list-item>
@@ -26,21 +27,47 @@
       </h4>
     </mat-list-item>
     <mat-list-item>
-      <h4 mat-line>
+      <h4 mat-line *ngIf="!editMode">
         <span class="spacing">Geschlecht:</span>
         <span>{{ member.gender }}</span>
       </h4>
+      <mat-form-field *ngIf="editMode" class="form-field">
+        <mat-select placeholder="Geschlecht" [(value)]="member.gender">
+          <mat-option value="Männlich">
+            Männlich
+          </mat-option>
+          <mat-option value="Weiblich">
+            Weiblich
+          </mat-option>
+          <mat-option value="Divers">
+            Divers
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
     </mat-list-item>
     <mat-list-item>
-      <h4 mat-line>
+      <h4 mat-line *ngIf="!editMode">
         <span class="spacing">Status:</span>
         <span>{{ member.status }}</span>
       </h4>
+      <mat-form-field *ngIf="editMode" class="form-field">
+          <mat-select placeholder="Status" [(value)]="member.status">
+            <mat-option value="Aktiv">
+              Aktiv
+            </mat-option>
+            <mat-option value="Passiv">
+              Passiv
+            </mat-option>
+            <mat-option value="Ehrenmitglied">
+              Ehrenmitglied
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
     </mat-list-item>
     <mat-list-item>
       <h4 mat-line>
         <span class="spacing">Email:</span>
-        <span>{{ member.email }}</span>
+        <span [contentEditable]="editMode" [ngClass]="{'edit-me': editMode}">{{ member.email }}</span>
       </h4>
     </mat-list-item>
     <mat-divider></mat-divider>
@@ -48,19 +75,19 @@
     <mat-list-item>
       <h4 mat-line>
         <span class="spacing">Postleitzahl:</span>
-        <span>{{ member.address.postalCode }}</span>
+        <span [contentEditable]="editMode" [ngClass]="{'edit-me': editMode}">{{ member.address.postalCode }}</span>
       </h4>
     </mat-list-item>
     <mat-list-item>
       <h4 mat-line>
         <span class="spacing">Straße:</span>
-        <span>{{ member.address.streetAddress }}</span>
+        <span [contentEditable]="editMode" [ngClass]="{'edit-me': editMode}">{{ member.address.streetAddress }}</span>
       </h4>
     </mat-list-item>
     <mat-list-item>
       <h4 mat-line>
         <span class="spacing">Stadt:</span>
-        <span>{{ member.address.city }}</span>
+        <span [contentEditable]="editMode" [ngClass]="{'edit-me': editMode}">{{ member.address.city }}</span>
       </h4>
     </mat-list-item>
     <mat-divider></mat-divider>
@@ -68,13 +95,13 @@
     <mat-list-item>
       <h4 mat-line>
         <span class="spacing">Bankkonto:</span>
-        <span>{{ member.bankingAccount }}</span>
+        <span [contentEditable]="editMode" [ngClass]="{'edit-me': editMode}">{{ member.bankingAccount }}</span>
       </h4>
     </mat-list-item>
     <mat-list-item>
       <h4 mat-line>
         <span class="spacing">Mitgliedskontonummer:</span>
-        <span>{{ member.memberBankingAccount }}</span>
+        <span [contentEditable]="editMode" [ngClass]="{'edit-me': editMode}">{{ member.memberBankingAccount }}</span>
       </h4>
     </mat-list-item>
     <mat-divider></mat-divider>
@@ -85,13 +112,14 @@
     <mat-divider></mat-divider>
     <h3 mat-subheader class="subheader-margin">Flugberechtigungen</h3>
     <mat-list-item *ngFor="let authorization of member.flightAuthorization">
-      <h4 mat-line>{{ authorization.authorization }}</h4>
+      <h4 mat-line [contentEditable]="editMode" [ngClass]="{'edit-me': editMode}">{{ authorization.authorization }}</h4>
       <p mat-line>Gültig bis: {{ authorization.expires | date: 'dd.MM.yyyy' }}</p>
     </mat-list-item>
     <mat-divider></mat-divider>
     <mat-list-item>
       <h4 mat-line>
-        <mat-checkbox [checked]="member.admissioned" disabled="disabled" labelPosition="before" MatCheckboxClickAction="noop">
+        <mat-checkbox [checked]="member.admissioned" [disabled]="!editMode" labelPosition="before"
+          MatCheckboxClickAction="noop">
           <span class="color-admissioned">Mustereinweisung:</span>
         </mat-checkbox>
       </h4>
