@@ -27,11 +27,11 @@ registerLocaleData(localeDe);
 
 @NgModule({
   declarations: [
-    AppComponent,
-    AddUserFormComponent,
-    NumberOnlyDirective
+    AppComponent
   ],
   imports: [
+    BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     MemberListModule,
     MemberViewModule,
@@ -54,6 +54,8 @@ registerLocaleData(localeDe);
     DeleteMemberDialogComponent,
     DeletePlaneDialogComponent
   ]
+  providers: [{ provide: localeDe, useValue: 'de' }],
+  bootstrap: [AppComponent]
 })
 export class AppModule {
 }
