@@ -6,7 +6,7 @@ import { MemberService } from './../services/member.service';
 import { MatDividerModule, MatListModule, MatCheckboxModule } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
-import { Member, Address, Authorization, Status } from './../models/member.model';
+import { Member, Gender, Address, Authorization, Status } from './../models/member.model';
 
 describe('MemberViewComponent', () => {
   let component: MemberViewComponent;
@@ -51,7 +51,7 @@ describe('MemberViewComponent', () => {
 
     it('should define ', () => {
       const testMember = new Member(
-        0, 'Peter', 'Zwegat', '2018-09-10T13:15:19.927+0000', 'Männlich',
+        0, 'Peter', 'Zwegat', '2018-09-10T13:15:19.927+0000', Gender.male,
         Status.active, 'peter.zwegat@gmx.de',
         new Address(
           12345, 'Dorfstraße 2', 'Mannheim',

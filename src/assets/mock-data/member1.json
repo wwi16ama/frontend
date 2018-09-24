@@ -3,7 +3,7 @@
     "firstName": "Max",
     "lastName": "Mustermann",
     "dateOfBirth": "2018-09-10T13:15:19.927+0000",
-    "sex": "Männlich",
+    "gender": "male",
     "status": "active",
     "email": "peter.zwegat@gmx.de",
     "address": {

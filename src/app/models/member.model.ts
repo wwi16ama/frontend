@@ -4,7 +4,7 @@ export class Member {
         public firstName: string,
         public lastName: string,
         public dateOfBirth: string,
-        public sex: string,
+        public gender: Gender,
         public status: Status,
         public email: string,
         public address: Address,
@@ -14,6 +14,12 @@ export class Member {
         public offices: string[],
         public flightAuthorization: Authorization[]
     ) {}
+}
+
+export enum Gender {
+    male = 'Männlich',
+    female = 'Weiblich',
+    other = 'Divers'
 }
 
 export enum Status {
