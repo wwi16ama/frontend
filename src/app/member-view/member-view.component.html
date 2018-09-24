@@ -1,6 +1,6 @@
 <div class="member-view-wrapper">
   <button mat-raised-button color="primary" class="edit-button" (click)="toggleEditMode()">{{ editButtonText }}</button>
-  <mat-list *ngIf="member != null">
+  <mat-list *ngIf="member != null && !editMode">
     <h3 mat-subheader>Übersicht</h3>
     <mat-list-item>
       <h4 mat-line>
@@ -11,13 +11,13 @@
     <mat-list-item>
       <h4 mat-line>
         <span class="spacing">Vorname:</span>
-        <span [contentEditable]="editMode" (input)="member.firstName=$event.target.textContent" [textContent]="member.firstName" [ngClass]="{'edit-me': editMode}"></span>
+        <span>{{ member.firstName }}</span>
       </h4>
     </mat-list-item>
     <mat-list-item>
       <h4 mat-line>
         <span class="spacing">Nachname:</span>
-        <span [contentEditable]="editMode" (input)="member.lastName=$event.target.textContent" [textContent]="member.lastName" [ngClass]="{'edit-me': editMode}"></span>
+        <span>{{ member.lastName }}</span>
       </h4>
     </mat-list-item>
     <mat-list-item>
@@ -26,7 +26,7 @@
         <span>{{ member.dateOfBirth | date: 'dd.MM.yyyy' }}</span>
       </h4>
     </mat-list-item>
-    <mat-list-item>
+    <mat-list-item [ngClass]="{'input-margin': editMode}">
       <h4 mat-line *ngIf="!editMode">
         <span class="spacing">Geschlecht:</span>
         <span>{{ member.gender }}</span>
@@ -45,29 +45,29 @@
         </mat-select>
       </mat-form-field>
     </mat-list-item>
-    <mat-list-item>
+    <mat-list-item [ngClass]="{'input-margin': editMode}">
       <h4 mat-line *ngIf="!editMode">
         <span class="spacing">Status:</span>
         <span>{{ member.status }}</span>
       </h4>
       <mat-form-field *ngIf="editMode" class="form-field">
-          <mat-select placeholder="Status" [(value)]="member.status">
-            <mat-option value="Aktiv">
-              Aktiv
-            </mat-option>
-            <mat-option value="Passiv">
-              Passiv
-            </mat-option>
-            <mat-option value="Ehrenmitglied">
-              Ehrenmitglied
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
+        <mat-select placeholder="Status" [(value)]="member.status">
+          <mat-option value="Aktiv">
+            Aktiv
+          </mat-option>
+          <mat-option value="Passiv">
+            Passiv
+          </mat-option>
+          <mat-option value="Ehrenmitglied">
+            Ehrenmitglied
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
     </mat-list-item>
     <mat-list-item>
       <h4 mat-line>
         <span class="spacing">Email:</span>
-        <span [contentEditable]="editMode" (input)="member.email=$event.target.textContent" [textContent]="member.email" [ngClass]="{'edit-me': editMode}"></span>
+        <span>{{ member.email }}</span>
       </h4>
     </mat-list-item>
     <mat-divider></mat-divider>
@@ -75,19 +75,19 @@
     <mat-list-item>
       <h4 mat-line>
         <span class="spacing">Postleitzahl:</span>
-        <span [contentEditable]="editMode" (input)="member.address.postalCodef=$event.target.textContent" [textContent]="member.address.postalCode" [ngClass]="{'edit-me': editMode}"></span>
+        <span>{{ member.address.postalCode }}</span>
       </h4>
     </mat-list-item>
     <mat-list-item>
       <h4 mat-line>
         <span class="spacing">Straße:</span>
-        <span [contentEditable]="editMode" (input)="member.address.streetAddress=$event.target.textContent" [textContent]="member.address.streetAddress" [ngClass]="{'edit-me': editMode}"></span>
+        <span>{{ member.address.streetAddress }}</span>
       </h4>
     </mat-list-item>
     <mat-list-item>
       <h4 mat-line>
         <span class="spacing">Stadt:</span>
-        <span [contentEditable]="editMode" (input)="member.address.city=$event.target.textContent" [textContent]="member.address.city" [ngClass]="{'edit-me': editMode}"></span>
+        <span>{{ member.address.city }}</span>
       </h4>
     </mat-list-item>
     <mat-divider></mat-divider>
@@ -95,13 +95,13 @@
     <mat-list-item>
       <h4 mat-line>
         <span class="spacing">Bankkonto:</span>
-        <span [contentEditable]="editMode" (input)="member.bankingAccount=$event.target.textContent" [textContent]="member.bankingAccount" [ngClass]="{'edit-me': editMode}"></span>
+        <span>{{ member.bankingAccount }}</span>
       </h4>
     </mat-list-item>
     <mat-list-item>
       <h4 mat-line>
         <span class="spacing">Mitgliedskontonummer:</span>
-        <span [contentEditable]="editMode" (input)="member.memberBankingAccount=$event.target.textContent" [textContent]="member.memberBankingAccount" [ngClass]="{'edit-me': editMode}"></span>
+        <span>{{ member.memberBankingAccount }}</span>
       </h4>
     </mat-list-item>
     <mat-divider></mat-divider>
@@ -112,7 +112,7 @@
     <mat-divider></mat-divider>
     <h3 mat-subheader class="subheader-margin">Flugberechtigungen</h3>
     <mat-list-item *ngFor="let authorization of member.flightAuthorization">
-      <h4 mat-line [contentEditable]="editMode" [ngClass]="{'edit-me': editMode}">{{ authorization.authorization }}</h4>
+      <h4 mat-line>{{ authorization.authorization }}</h4>
       <p mat-line>Gültig bis: {{ authorization.expires | date: 'dd.MM.yyyy' }}</p>
     </mat-list-item>
     <mat-divider></mat-divider>
