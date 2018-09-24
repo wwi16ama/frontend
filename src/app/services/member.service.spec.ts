@@ -3,7 +3,7 @@ import { TestBed, getTestBed } from '@angular/core/testing';
 import { MemberService } from './member.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 
-import { Member, Gender, Address, Status, Authorization } from './../models/member.model';
+import { Member, Gender, Address, Status, Authorization, AuthorizationEnum, Office, OfficeEnum } from './../models/member.model';
 
 describe('MemberService', () => {
 
@@ -40,13 +40,13 @@ describe('MemberService', () => {
 
     it('should trigger get request with correct url', () => {
       const testMemberData = new Member(
-        0, 'Peter', 'Zwegat', '2018-09-10T13:15:19.927+0000', Gender.male , Status.active,
+        0, 'Peter', 'Zwegat', '2018-09-10T13:15:19.927+0000', Gender.MALE , Status.ACTIVE,
         'peter.zwegat@gmx.de', new Address(
           12345, 'Dorfstraße 2', 'Mannheim'
-        ), 'DE9876543210', true, '56789', ['Vorstand', 'Nicer Dude'],
+        ), 'DE9876543210', true, '56789', [new Office(OfficeEnum.FLUGWART), new Office(OfficeEnum.IMBETRIEBSKONTROLLTURMARBEITEND)],
         [
-          new Authorization('PPL-A', '2018-09-10T13:15:19.927+0000', '2018-09-10T13:15:19.927+0000'),
-          new Authorization('PPL-A', '2018-09-10T13:15:19.927+0000', '2018-09-10T13:15:19.927+0000')
+          new Authorization(AuthorizationEnum.PPLA, '2018-09-10T13:15:19.927+0000', '2018-09-10T13:15:19.927+0000'),
+          new Authorization(AuthorizationEnum.PPLB, '2018-09-10T13:15:19.927+0000', '2018-09-10T13:15:19.927+0000')
         ]
       );
       const id = '0';

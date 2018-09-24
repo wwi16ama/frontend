@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Member, Status, Gender } from './../models/member.model';
+import { Member, Status, Gender, OfficeEnum, AuthorizationEnum } from './../models/member.model';
 import { MemberService } from './../services/member.service';
 import { ActivatedRoute } from '@angular/router';
 
@@ -22,6 +22,12 @@ export class MemberViewComponent implements OnInit {
             this.member = data;
             this.member.gender = Gender[this.member.gender];
             this.member.status = Status[this.member.status];
+            for (let i = 0; i < this.member.offices.length; i++) {
+              this.member.offices[i].title = OfficeEnum[this.member.offices[i].title];
+            }
+            for (let i = 0; i < this.member.flightAuthorization.length; i++) {
+              this.member.flightAuthorization[i].authorization = AuthorizationEnum[this.member.flightAuthorization[i].authorization];
+            }
           }
         );
       }

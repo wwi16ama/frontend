@@ -11,21 +11,21 @@ export class Member {
         public bankingAccount: string,
         public admissioned: boolean,
         public memberBankingAccount: string,
-        public offices: string[],
+        public offices: Office[],
         public flightAuthorization: Authorization[]
     ) {}
 }
 
 export enum Gender {
-    male = 'Männlich',
-    female = 'Weiblich',
-    other = 'Divers'
+    MALE = 'Männlich',
+    FEMALE = 'Weiblich',
+    OTHER = 'Divers'
 }
 
 export enum Status {
-    active = 'Aktiv',
-    passive = 'Passiv',
-    honoraryMember = 'Ehrenmitglied'
+    ACTIVE = 'Aktiv',
+    PASSIVE = 'Passiv',
+    HONORARYMEMBER = 'Ehrenmitglied'
 }
 
 export class Address {
@@ -36,10 +36,32 @@ export class Address {
     ) {}
 }
 
+export class Office {
+    constructor(
+        public title: OfficeEnum
+    ) {}
+}
+
+export enum OfficeEnum {
+    VORSTANDSVORSITZENDER = 'Vorstandsvorsitzender',
+    SYSTEMADMINISTRATOR = 'Systemadministrator',
+    KASSIERER = 'Kassierer',
+    FLUGWART = 'Flugwart',
+    IMBETRIEBSKONTROLLTURMARBEITEND = 'Dullie'
+}
+
 export class Authorization {
     constructor(
-        public authorization: string,
+        public authorization: AuthorizationEnum,
         public dateOfIssue: string,
         public expires: string
     ) {}
+}
+
+export enum AuthorizationEnum {
+    PPLA = 'PPL-A',
+    PPLB = 'PPL-B',
+    BZFI = 'BZFI',
+    BZFII = 'BZFII',
+    LEHRBEFUGNIS = 'Lehrbefugnis'
 }
