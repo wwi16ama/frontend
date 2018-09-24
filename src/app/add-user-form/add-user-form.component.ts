@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {FormControl, FormGroupDirective, NgForm} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
@@ -16,7 +16,7 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   templateUrl: './add-user-form.component.html',
   styleUrls: ['./add-user-form.component.css']
 })
-export class AddUserFormComponent {
+export class AddUserFormComponent implements OnInit {
 
   allgmeinPersoInfo: FormGroup;
   adresse: FormGroup;
