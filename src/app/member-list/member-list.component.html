@@ -1,4 +1,6 @@
-<button mat-raised-button (click)="openAddUserDialog()">Add User</button>
+<button mat-mini-fab color="primary" (click)="openAddUserDialog()" class="tool">
+    <mat-icon>add</mat-icon>
+</button>
 <table *ngIf="dataSource" mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
   <!-- ID Column -->
