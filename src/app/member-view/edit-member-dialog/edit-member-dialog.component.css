@@ -1,5 +1,5 @@
 .dialog-wrapper {
-    width: 30vw;
+    width: 40vw;
     margin-top: -24px;
 }
 
@@ -16,6 +16,13 @@
     max-width: 500px;
     width: 100%;
     display: block;
+}
+
+.half-input-width {
+    min-width: 75px;
+    max-width: 250px;
+    width: 100%;
+    display: block; 
 }
 
 .authorization-title {

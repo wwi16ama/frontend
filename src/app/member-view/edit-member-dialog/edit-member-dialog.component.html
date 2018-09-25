@@ -11,7 +11,7 @@
             <input matInput placeholder="Nachname" [(ngModel)]="member.lastName">
           </mat-form-field>
           <mat-form-field class="input-width">
-            <input [value]="dateOfBirth" matInput [matDatepicker]="dateOfBirthPicker" placeholder="Geburtstag">
+            <input [formControl]="dateOfBirth" matInput [matDatepicker]="dateOfBirthPicker" placeholder="Geburtstag">
             <mat-datepicker-toggle matSuffix [for]="dateOfBirthPicker"></mat-datepicker-toggle>
             <mat-datepicker #dateOfBirthPicker></mat-datepicker>
           </mat-form-field>
@@ -83,20 +83,20 @@
           <ng-container *ngFor="let authorization of flightAuthorizations">
             <p class="authorization-title">{{ authorization.authorization }}</p>
             <mat-form-field>
-                <input [value]="authorization.expires" matInput [matDatepicker]="flightAuthorizationsDate" placeholder="Gültig bis">
+                <input [formControl]="authorization.expires" matInput [matDatepicker]="flightAuthorizationsDate" placeholder="Gültig bis">
                 <mat-datepicker-toggle matSuffix [for]="flightAuthorizationsDate"></mat-datepicker-toggle>
                 <mat-datepicker #flightAuthorizationsDate></mat-datepicker>
               </mat-form-field>
               <br>
           </ng-container>
-          <mat-form-field *ngIf="addAuthorization" class="input-width">
+          <mat-form-field *ngIf="addAuthorization" class="half-input-width">
             <mat-select placeholder="Flugberechtigung" [(value)]="newAuthorization">
               <mat-option *ngFor="let authorization of availableAuthorizations" [value]="authorization.authorization">
                 {{ authorization.authorization }}
               </mat-option>
             </mat-select>
           </mat-form-field>
-          <button class="add-button" mat-raised-button (click)="addNewAuthorization()">Hinzufügen</button>
+          <button class="add-button" mat-raised-button (click)="toggleAddNewAuthorization()">Hinzufügen</button>
         </div>
       </mat-tab>
     </mat-tab-group>
