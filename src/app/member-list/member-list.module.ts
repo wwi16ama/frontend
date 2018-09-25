@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MemberListComponent } from './member-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MatTableModule, MatSortModule, MatButtonModule } from '@angular/material';
+import { MatTableModule, MatSortModule, MatButtonModule, MatIconModule } from '@angular/material';
 import { MemberListService } from './../services/memberlist.service';
 import { AddUserFormModule } from './../add-user-form/add-user-form.module';
 
@@ -16,6 +16,7 @@ import { AddUserFormModule } from './../add-user-form/add-user-form.module';
     MatTableModule,
     MatSortModule,
     MatButtonModule,
+    MatIconModule,
     AddUserFormModule
   ],
   declarations: [
