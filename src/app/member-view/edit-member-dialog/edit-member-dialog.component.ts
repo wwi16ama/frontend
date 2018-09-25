@@ -45,14 +45,14 @@ export class EditMemberDialogComponent {
   }
 
   public saveMemberData(): void {
-    this.member.dateOfBirth = this.dateOfBirth.value.toString();
+    this.member.dateOfBirth = this.formatDate(this.dateOfBirth.value.toString());
     this.member.flightAuthorization = [];
     for (let i = 0; i < this.flightAuthorizations.length; i++) {
       this.member.flightAuthorization.push(
         new Authorization(
           this.flightAuthorizations[i].authorization,
           this.flightAuthorizations[i].dateOfIssue,
-          this.flightAuthorizations[i].expires.value.toString()
+          this.formatDate(this.flightAuthorizations[i].expires.value.toString())
         )
       );
     }
@@ -69,5 +69,9 @@ export class EditMemberDialogComponent {
 
   public updatePossibleAuthorizations(): void {
 
+  }
+
+  public formatDate(date: string): string {
+    return new Date(date).toISOString().slice(0, 10);
   }
 }
