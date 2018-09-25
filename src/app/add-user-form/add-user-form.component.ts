@@ -23,7 +23,7 @@ export class AddUserFormComponent implements OnInit {
   interneInfos: FormGroup;
 
   // Initialisierungsarrays für Selecter
-  sex = ['männlich', 'weiblich'];
+  sex = ['männlich', 'weiblich', 'divers'];
   status = ['Aktiv', 'Passiv', 'Ehrenmitglied'];
   aemter = ['Vorstandvorsitzender', 'Fluglehrer', 'Flugwart',
   'Systemadministrator', 'Kassierer', 'Betriebsdienst Kontrollturm'];
