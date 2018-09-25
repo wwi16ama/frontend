@@ -1,9 +1,9 @@
 <div class="example-container">
   <h1 mat-dialog-title>User anlegen</h1>
 
-      <!--allgemeine Personeninfos-->
-  <mat-tab-group>
-    <mat-tab label="Personeninformationen">
+  <!--allgemeine Personeninfos-->
+  <mat-tab-group backgroundColor="primary" color="accent" [dynamicHeight]="true">
+    <mat-tab label="Übersicht">
       <form [formGroup]="allgmeinPersoInfo">
 
         <div class="wrapper">
