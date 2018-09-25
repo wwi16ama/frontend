@@ -1,14 +1,10 @@
 <div class="example-container">
   <h1 mat-dialog-title>User anlegen</h1>
-  <mat-horizontal-stepper class="user-stepper" [linear]="isLinear" #stepper>
-    <mat-step [stepControl]="allgmeinPersoInfo">
+
       <!--allgemeine Personeninfos-->
-      <mat-card class="user-card">
-      <mat-card-header>
-        <mat-card-title class="user-card-title">Personenbezogenen Daten angeben.</mat-card-title>
-      </mat-card-header>
+  <mat-tab-group>
+    <mat-tab label="Personeninformationen">
       <form [formGroup]="allgmeinPersoInfo">
-        <ng-template matStepLabel>Allgemeine Personeninformationen</ng-template>
 
         <div class="wrapper">
 
@@ -79,22 +75,11 @@
             </mat-form-field>
           </div>
         </div>
-        <mat-card-actions>
-          <button mat-raised-button mat-button matStepperNext color="primary" class="mat-btn-user">Weiter</button>
-        </mat-card-actions>
       </form>
-      </mat-card>
-    </mat-step>
+    </mat-tab>
 
-    
-
-    <mat-step [stepControl]="adresse">
-      <mat-card class="user-card">
-        <mat-card-header>
-          <mat-card-title class="user-card-title">Adressinformationen angeben.</mat-card-title>
-        </mat-card-header>
+    <mat-tab label="Adresse">
       <form [formGroup]="adresse">
-        <ng-template matStepLabel>Adressinformationen</ng-template>
         <!--Adresse-->
 
         <div class="wrapper">
@@ -149,22 +134,12 @@
           </div>
           
       </div>
-      <mat-card-actions>
-        <button mat-raised-button mat-button matStepperNext color="primary" class="mat-btn-user">Weiter</button>
-        <button mat-raised-button mat-button matStepperPrevious color="primary" class="mat-btn-user">Zurück</button>
-      </mat-card-actions>
 
       </form>
-      </mat-card>
-    </mat-step>
+    </mat-tab>
 
-    <mat-step [stepControl]="interneInfos">
-      <mat-card class="user-card">
-        <mat-card-header>
-          <mat-card-title class="user-card-title">Internen Informationen angeben.</mat-card-title>
-      </mat-card-header>
+    <mat-tab label="Interne Infos">
       <form [formGroup]="interneInfos">
-        <ng-template matStepLabel>Interne Informationen</ng-template>
         <!--interne Infos-->
 
         <div class="wrapper">
@@ -201,21 +176,12 @@
           </div>
 
         </div>
-        <mat-card-actions>
-            <button mat-raised-button mat-button matStepperNext color="primary" class="mat-btn-user">Weiter</button>
-          <button mat-raised-button mat-button matStepperPrevious color="primary" class="mat-btn-user">Zurück</button>
-        </mat-card-actions>
 
       </form>
-      </mat-card>
-    </mat-step>
-    <mat-step [stepControl]="Flugberechtigung">
-      <mat-card class="user-card">
-        <mat-card-header>
-            <mat-card-title class="user-card-title">Flugberechtigung angeben.</mat-card-title>
-        </mat-card-header>
+    </mat-tab>
+
+    <mat-tab label="Flugberechtigung">
         <form [formGroup]="interneInfos">
-        <ng-template matStepLabel>Flugberechtigung</ng-template>
 
           <div class="wrapper">
 
@@ -237,12 +203,7 @@
             </div>-->
 
           </div>
-          <mat-card-actions>
-              <button mat-raised-button mat-button color="primary" class="mat-btn-user">Anlegen</button>
-              <button mat-raised-button mat-button matStepperPrevious color="primary" class="mat-btn-user">Zurück</button>
-          </mat-card-actions>
         </form>
-      </mat-card>
-    </mat-step>
-  </mat-horizontal-stepper>
+      </mat-tab>
+    </mat-tab-group>
 </div>
