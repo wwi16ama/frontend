@@ -1,41 +1,28 @@
-.user-card {
-    width: 370px;
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 40px;
+.dialog-wrapper {
+    width: 30vw;
+    margin-top: -24px;
 }
 
-.wrapper {
-    margin-left: 20px;
-    margin-right: 20px;
+.mat-dialog-content {
+    padding: 0 0;
 }
 
-/* Form Felder auf volle Größe */
-.mat-form-field {
+.tab-content {
+    padding: 24px 24px;
+}
+
+.input-width {
+    min-width: 150px;
+    max-width: 500px;
     width: 100%;
+    display: block;
 }
 
-.mat-card-header {
-    justify-content: center;
+.authorization-title {
+    display: inline-block;
+    margin-right: 15px;
 }
 
-.user-card-title {
-    margin-top: 20px;
-    font-size: 20px;
-}
-
-.user-div {
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.mat-btn-user {
-    float: right;
-    font-weight: bold;
-}
-
-/* Anpassung Button margin-right */
-
-.mat-card-actions .mat-button:first-child, .mat-card-actions .mat-raised-button:first-child {
-    margin-right: 35px;
+.add-button {
+    margin-top: 10px;
 }
