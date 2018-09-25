@@ -47,7 +47,7 @@ export enum OfficeEnum {
     SYSTEMADMINISTRATOR = 'Systemadministrator',
     KASSIERER = 'Kassierer',
     FLUGWART = 'Flugwart',
-    IMBETRIEBSKONTROLLTURMARBEITEND = 'Dullie'
+    IMBETRIEBSKONTROLLTURMARBEITEND = 'Kontrollturmwächter'
 }
 
 export class Authorization {
