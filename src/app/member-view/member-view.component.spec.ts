@@ -51,7 +51,7 @@ describe('MemberViewComponent', () => {
 
     it('should define ', () => {
       const testMember = new Member(
-        0, 'Peter', 'Zwegat', '2018-09-10T13:15:19.927+0000', Gender.MALE,
+        0, 'Peter', 'Zwegat', '1998-10-10', Gender.MALE,
         Status.ACTIVE, 'peter.zwegat@gmx.de',
         new Address(
           12345, 'Dorfstraße 2', 'Mannheim',
@@ -59,8 +59,8 @@ describe('MemberViewComponent', () => {
         'DE9876543210',
         true, '56789', [new Office(OfficeEnum.FLUGWART), new Office(OfficeEnum.IMBETRIEBSKONTROLLTURMARBEITEND)],
         [
-          new Authorization(AuthorizationEnum.PPLA, '2018-09-10T13:15:19.927+0000', '2018-09-10T13:15:19.927+0000'),
-          new Authorization(AuthorizationEnum.PPLA, '2018-09-10T13:15:19.927+0000', '2018-09-10T13:15:19.927+0000')
+          new Authorization(AuthorizationEnum.PPLA, '1998-10-10', '1998-10-10'),
+          new Authorization(AuthorizationEnum.PPLA, '1998-10-10', '1998-10-10')
         ]
       );
       spyOn(component.memberService, 'getMemberData').and.returnValue(of(testMember));

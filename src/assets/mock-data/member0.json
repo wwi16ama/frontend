@@ -2,7 +2,7 @@
     "id": 0,
     "firstName": "Peter",
     "lastName": "Zwegat",
-    "dateOfBirth": "2018-09-10T13:15:19.927+0000",
+    "dateOfBirth": "1998-10-10",
     "gender": "MALE",
     "status": "HONORARYMEMBER",
     "email": "peter.zwegat@gmx.de",
@@ -25,13 +25,13 @@
     "flightAuthorization": [
         {
             "authorization": "PPLA",
-            "dateOfIssue": "2018-09-10T13:15:19.927+0000",
-            "expires": "2018-09-10T13:15:19.927+0000"
+            "dateOfIssue": "1998-10-10",
+            "expires": "1998-10-10"
         },
         {
             "authorization": "PPLB",
-            "dateOfIssue": "2018-09-10T13:15:19.927+0000",
-            "expires": "2018-09-10T13:15:19.927+0000"
+            "dateOfIssue": "1998-10-10",
+            "expires": "1998-10-10"
         }
     ]
 }
