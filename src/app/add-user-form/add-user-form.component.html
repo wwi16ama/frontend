@@ -3,69 +3,6 @@
   <mat-tab-group backgroundColor="primary" color="accent" [dynamicHeight]="true">
     <mat-tab label="Übersicht">
       <form [formGroup]="allgmeinPersoInfo">
-<<<<<<< HEAD
-        <div class="tab-content">
-          <mat-form-field class="input-width">
-            <input type="text" matInput placeholder="Name" id="name" minlength="3" 
-            pattern="[a-zA-Z_äÄöÖüÜß]+" ng-pattern-restrict [formControl]="nameFormControl" required>
-            <mat-error *ngIf="nameFormControl.hasError('required')">
-              Der Name ist <strong>erforderlich</strong>
-            </mat-error>
-            <mat-error *ngIf="nameFormControl.hasError('minlength')">
-              Der Name muss mindestens 3 Zeichen lang sein
-            </mat-error>
-            <mat-error *ngIf="nameFormControl.hasError('pattern')">
-              Der Name darf keine Zahlen enthalten
-            </mat-error>
-          </mat-form-field>
-          <mat-form-field class="input-width">
-            <input type="text" matInput placeholder="Vorname" id="firstName" minlength="3"
-            pattern="[a-zA-Z_äÄöÖüÜß]+" ng-pattern-restrict [formControl]="firstNameFormControl" required>
-            <mat-error *ngIf="firstNameFormControl.hasError('required')">
-              Der Vorname ist <strong>erforderlich</strong>
-            </mat-error>
-            <mat-error *ngIf="firstNameFormControl.hasError('minlength')">
-              Der Vorname muss mindestens 3 Zeichen lang sein
-            </mat-error>
-            <mat-error *ngIf="firstNameFormControl.hasError('pattern')">
-              Der Vorname darf keine Zahlen enthalten
-            </mat-error>
-          </mat-form-field>
-          <mat-form-field class="input-width">
-            <input matInput [matDatepicker]="birthday" placeholder="Geburtstag" [formControl]="birthdayFormControl" required>
-            <mat-datepicker-toggle matSuffix [for]="birthday"></mat-datepicker-toggle>
-            <mat-datepicker #birthday></mat-datepicker>
-            <mat-error *ngIf="birthdayFormControl.hasError('required')">
-              Der Geburtstag ist <strong>erforderlich</strong>
-            </mat-error>
-          </mat-form-field>                
-          <mat-form-field class="input-width">
-            <mat-select placeholder="Geschlecht" id="sex" [formControl]="sexFormControl" required>
-              <mat-option *ngFor="let sex of sex" [value]="sex">{{sex}}</mat-option>
-            </mat-select>
-            <mat-error *ngIf="sexFormControl.hasError('required')">
-              Das Geschlecht ist <strong>erforderlich</strong>
-            </mat-error>
-          </mat-form-field>
-          <mat-form-field class="input-width">
-            <mat-select placeholder="Status" id="status" required [formControl]="statusFormControl">
-              <mat-option *ngFor="let sta of status" [value]="sta">{{sta}}</mat-option>
-            </mat-select>
-            <mat-error *ngIf="statusFormControl.hasError('required')">
-              Der Status ist <strong>erforderlich</strong>
-            </mat-error>
-          </mat-form-field>
-          <mat-form-field class="input-width">
-            <input type="email" matInput placeholder="Email" id="email" [formControl]="emailFormControl"
-            [errorStateMatcher]="matcher" required>
-            <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-              Bitte geben Sie eine gültige Emailadresse ein.
-            </mat-error>
-            <mat-error *ngIf="emailFormControl.hasError('required')">
-              Die Emailadresse ist <strong>erforderlich</strong>
-            </mat-error>
-          </mat-form-field>
-=======
         <ng-template matStepLabel>Allgemeine Personeninformationen</ng-template>
 
         <div class="wrapper">
@@ -139,11 +76,24 @@
 >>>>>>> Validierung-Anpassung Namensfeld
         </div>
       </form>
-    </mat-tab>
-    <mat-tab label="Adresse">
+      </mat-card>
+    </mat-step>
+
+    
+
+    <mat-step [stepControl]="adresse">
+      <mat-card class="user-card">
+        <mat-card-header>
+          <mat-card-title class="user-card-title">Adressinformationen angeben.</mat-card-title>
+        </mat-card-header>
       <form [formGroup]="adresse">
-        <div class="tab-content">
-            <mat-form-field class="input-width">
+        <ng-template matStepLabel>Adressinformationen</ng-template>
+        <!--Adresse-->
+
+        <div class="wrapper">
+
+          <div class="user-div">
+            <mat-form-field>
               <mat-select placeholder="Bundesland" id="state" [formControl]="stateFormControl" required>
                 <mat-option *ngFor="let sta of state" [value]="sta">{{sta}}</mat-option>
               </mat-select>
@@ -181,33 +131,78 @@
               </mat-error>
             </mat-form-field>
           </div>
-      </form>
-    </mat-tab>
-    <mat-tab label="Kundenkonto">
-      <form [formGroup]="interneInfos">
-        <div class="tab-content">
-          <mat-form-field class="input-width">
-            <input type="text" matInput placeholder="Bankkonto" ng-model="iban" id="bankingAccount" required [formControl]="bankingAccountFormControl">
-            <mat-hint>DE19 1234 1234 1234 1234 12</mat-hint>
-            <mat-error *ngIf="bankingAccountFormControl.hasError('required')">
-              Das Bankkonto ist <strong>erforderlich</strong>
-            </mat-error>
-          </mat-form-field>
-        </div>
-      </form>
-    </mat-tab>
-    <mat-tab label="Ämter">
-      <div class="tab-content">
-        <mat-form-field class="input-width">
-          <mat-select placeholder="Amt" id="office" multiple>
-            <mat-option *ngFor="let aem of aemter" [value]="aem">{{aem}}</mat-option>
-          </mat-select>
-        </mat-form-field>
+          
       </div>
-    </mat-tab>
-    <mat-tab label="Flugberechtigung">
+      <mat-card-actions>
+        <button mat-raised-button mat-button matStepperNext color="primary" class="mat-btn-user">Weiter</button>
+        <button mat-raised-button mat-button matStepperPrevious color="primary" class="mat-btn-user">Zurück</button>
+      </mat-card-actions>
+
+      </form>
+      </mat-card>
+    </mat-step>
+
+    <mat-step [stepControl]="interneInfos">
+      <mat-card class="user-card">
+        <mat-card-header>
+          <mat-card-title class="user-card-title">Internen Informationen angeben.</mat-card-title>
+      </mat-card-header>
+      <form [formGroup]="interneInfos">
+        <ng-template matStepLabel>Interne Informationen</ng-template>
+        <!--interne Infos-->
+
+        <div class="wrapper">
+
+          <div class="user-div">
+            <mat-form-field>
+              <mat-select placeholder="Amt" id="office" multiple>
+                <mat-option *ngFor="let aem of aemter" [value]="aem">{{aem}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="user-div">
+            <mat-form-field>
+              <mat-select placeholder="Status" id="status" required [formControl]="statusFormControl">
+                <mat-option *ngFor="let sta of status" [value]="sta">{{sta}}</mat-option>
+              </mat-select>
+              <mat-error *ngIf="statusFormControl.hasError('required')">
+                Der Status ist <strong>erforderlich</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+          <mat-checkbox id="mustereinweisung">Mustereinweisung wurde durchgeführt</mat-checkbox>
+
+          <div class="user-div">
+            <mat-form-field>
+              <input type="text" matInput placeholder="Bankkonto" ng-model="iban" id="bankingAccount" required [formControl]="bankingAccountFormControl">
+              <mat-hint>DE19 1234 1234 1234 1234 12</mat-hint>
+              <mat-error *ngIf="bankingAccountFormControl.hasError('required')">
+                Das Bankkonto ist <strong>erforderlich</strong>
+              </mat-error>
+            </mat-form-field>
+          </div>
+
+        </div>
+        <mat-card-actions>
+            <button mat-raised-button mat-button matStepperNext color="primary" class="mat-btn-user">Weiter</button>
+          <button mat-raised-button mat-button matStepperPrevious color="primary" class="mat-btn-user">Zurück</button>
+        </mat-card-actions>
+
+      </form>
+      </mat-card>
+    </mat-step>
+    <mat-step [stepControl]="Flugberechtigung">
+      <mat-card class="user-card">
+        <mat-card-header>
+            <mat-card-title class="user-card-title">Flugberechtigung angeben.</mat-card-title>
+        </mat-card-header>
         <form [formGroup]="interneInfos">
-          <div class="tab-content">
+        <ng-template matStepLabel>Flugberechtigung</ng-template>
+
+          <div class="wrapper">
+
             <div class="user-div">
               <mat-form-field class="input-width">
                 <mat-select placeholder="Flugberechtigung" id="flugberechtigung" multiple>
@@ -226,11 +221,7 @@
             </div>-->
           </div>
         </form>
-      </mat-tab>
-    </mat-tab-group>
-  </mat-dialog-content>
-  <div mat-dialog-actions>
-    <button mat-button (click)="onNoClick()">Abbrechen</button>
-    <button mat-raised-button (click)="saveMemberData()" color="primary">Speichern</button>
-  </div>
+      </mat-card>
+    </mat-step>
+  </mat-horizontal-stepper>
 </div>
