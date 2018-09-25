@@ -14,7 +14,9 @@ export class EditMemberDialogComponent {
   possibleOffices: Office[];
   flightAuthorizations: any[];
   addAuthorization: boolean;
-  possibleFlightAuthorizationNames: AuthorizationEnum[];
+  possibleFlightAuthorizationNames: any[];
+  newAuthorization: any;
+  addNewAuthorizationPossible: boolean;
 
   constructor(
     public editMemberDialogRef: MatDialogRef<EditMemberDialogComponent>,
@@ -34,10 +36,19 @@ export class EditMemberDialogComponent {
     }
     this.addAuthorization = false;
     this.possibleFlightAuthorizationNames = [
-      AuthorizationEnum.PPLA, AuthorizationEnum.PPLB, AuthorizationEnum.BZFI,
-      AuthorizationEnum.BZFII, AuthorizationEnum.LEHRBEFUGNIS
+      { authorization: AuthorizationEnum.PPLA , showNew: false},
+      { authorization: AuthorizationEnum.PPLB , showNew: false},
+      { authorization: AuthorizationEnum.BZFI , showNew: false},
+      { authorization: AuthorizationEnum.BZFII, showNew: false},
+      { authorization: AuthorizationEnum.LEHRBEFUGNIS, showNew: false}
     ];
     this.updatePossibleAuthorizations();
+    this.newAuthorization = {
+      authorization: '',
+      expires: new FormControl(new Date()),
+      dateOfIssue: new Date().toISOString().slice(0, 10)
+    };
+    this.addNewAuthorizationPossible = true;
   }
 
   public onNoClick(): void {
@@ -63,12 +74,44 @@ export class EditMemberDialogComponent {
     return a.title === b.title;
   }
 
-  public toggleAddNewAuthorization(): void {
+  public toggleAddNewAuthorizationButton(): void {
+    if (this.addAuthorization) {
+      const pushObject = {
+        authorization: this.newAuthorization.authorization,
+        expires: this.newAuthorization.expires,
+        dateOfIssue: this.newAuthorization.dateOfIssue
+      };
+      this.flightAuthorizations.push(pushObject);
+      this.newAuthorization.authorization = '';
+      this.newAuthorization.expires = new FormControl(new Date());
+      this.newAuthorization.dateOfIssue = new Date().toISOString().slice(0, 10);
+      this.updatePossibleAuthorizations();
+    }
     this.addAuthorization = !this.addAuthorization;
   }
 
   public updatePossibleAuthorizations(): void {
+    const allDoneArray = [];
+    for (let i = 0; i < this.possibleFlightAuthorizationNames.length; i++) {
+      if (this.findInAuthorizationsArray(this.possibleFlightAuthorizationNames[i].authorization)) {
+        this.possibleFlightAuthorizationNames[i].showNew = false;
+      } else {
+        this.possibleFlightAuthorizationNames[i].showNew = true;
+        allDoneArray.push('found');
+      }
+    }
+    if (allDoneArray.length > 0 ) {
+      this.addNewAuthorizationPossible = true;
+    } else {
+      this.addNewAuthorizationPossible = false;
+    }
+  }
 
+  public findInAuthorizationsArray(toFind): boolean {
+    const found = this.flightAuthorizations.find(function(element) {
+      return element.authorization === toFind;
+    });
+    return found;
   }
 
   public formatDate(date: string): string {

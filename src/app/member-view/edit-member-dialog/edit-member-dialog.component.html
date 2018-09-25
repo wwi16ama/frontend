@@ -83,20 +83,31 @@
           <ng-container *ngFor="let authorization of flightAuthorizations">
             <p class="authorization-title">{{ authorization.authorization }}</p>
             <mat-form-field>
-                <input [formControl]="authorization.expires" matInput [matDatepicker]="flightAuthorizationsDate" placeholder="Gültig bis">
-                <mat-datepicker-toggle matSuffix [for]="flightAuthorizationsDate"></mat-datepicker-toggle>
-                <mat-datepicker #flightAuthorizationsDate></mat-datepicker>
-              </mat-form-field>
-              <br>
+              <input [formControl]="authorization.expires" matInput [matDatepicker]="flightAuthorizationsDate"
+                placeholder="Gültig bis">
+              <mat-datepicker-toggle matSuffix [for]="flightAuthorizationsDate"></mat-datepicker-toggle>
+              <mat-datepicker #flightAuthorizationsDate></mat-datepicker>
+            </mat-form-field>
+            <br>
           </ng-container>
-          <mat-form-field *ngIf="addAuthorization" class="half-input-width">
-            <mat-select placeholder="Flugberechtigung" [(value)]="newAuthorization">
-              <mat-option *ngFor="let authorization of availableAuthorizations" [value]="authorization.authorization">
-                {{ authorization.authorization }}
-              </mat-option>
-            </mat-select>
-          </mat-form-field>
-          <button class="add-button" mat-raised-button (click)="toggleAddNewAuthorization()">Hinzufügen</button>
+          <ng-container *ngIf="addAuthorization">
+            <mat-form-field class="half-input-width new-authorization-input spacing-right">
+              <mat-select placeholder="Flugberechtigung" [(value)]="newAuthorization.authorization">
+                <ng-container *ngFor="let authorization of possibleFlightAuthorizationNames">
+                  <mat-option *ngIf="authorization.showNew" [value]="authorization.authorization">
+                    {{ authorization.authorization }}
+                  </mat-option>
+                </ng-container>
+              </mat-select>
+            </mat-form-field>
+            <mat-form-field class="half-input-width new-authorization-input spacing-right">
+              <input [formControl]="newAuthorization.expires" matInput [matDatepicker]="newFlightAuthorizationsDate"
+                placeholder="Gültig bis">
+              <mat-datepicker-toggle matSuffix [for]="newFlightAuthorizationsDate"></mat-datepicker-toggle>
+              <mat-datepicker #newFlightAuthorizationsDate></mat-datepicker>
+            </mat-form-field>
+          </ng-container>
+          <button *ngIf="addNewAuthorizationPossible" class="add-button" mat-raised-button (click)="toggleAddNewAuthorizationButton()">Hinzufügen</button>
         </div>
       </mat-tab>
     </mat-tab-group>
