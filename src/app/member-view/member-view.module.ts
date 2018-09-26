@@ -8,6 +8,7 @@ import {
   } from '@angular/material';
 
 import { MemberService } from './../services/member.service';
+import { MemberUpdateService } from './../services/member-update.service';
 import { EditMemberDialogModule } from './edit-member-dialog/edit-member-dialog.module';
 
 @NgModule({
@@ -28,7 +29,8 @@ import { EditMemberDialogModule } from './edit-member-dialog/edit-member-dialog.
     MemberViewComponent
   ],
   providers: [
-    MemberService
+    MemberService,
+    MemberUpdateService
   ]
 })
 export class MemberViewModule { }
