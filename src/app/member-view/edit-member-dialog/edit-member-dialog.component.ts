@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { Member, Office, OfficeEnum, Authorization, AuthorizationEnum } from './../../models/member.model';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -20,7 +20,8 @@ export class EditMemberDialogComponent {
 
   constructor(
     public editMemberDialogRef: MatDialogRef<EditMemberDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public member: Member
+    @Inject(MAT_DIALOG_DATA) public member: Member,
+    public snackBar: MatSnackBar  
   ) {
     this.dateOfBirth = new FormControl(new Date(member.dateOfBirth));
     this.possibleOffices = [
@@ -48,14 +49,14 @@ export class EditMemberDialogComponent {
       expires: new FormControl(new Date()),
       dateOfIssue: new Date().toISOString().slice(0, 10)
     };
-    this.addNewAuthorizationPossible = true;
+    this.addNewAuthorizationPossible = true;   
   }
 
   public onNoClick(): void {
     this.editMemberDialogRef.close();
   }
 
-  public saveMemberData(): void {
+  public saveMemberData(): void {    
     this.member.dateOfBirth = this.formatDate(this.dateOfBirth.value.toString());
     this.member.flightAuthorization = [];
     for (let i = 0; i < this.flightAuthorizations.length; i++) {
@@ -67,7 +68,8 @@ export class EditMemberDialogComponent {
         )
       );
     }
-    this.editMemberDialogRef.close(this.member);
+    this.openSnackBar('Änderungen erfolgreich gespeichert');
+    this.editMemberDialogRef.close(this.member);    
   }
 
   public compareOffices(a, b): boolean {
@@ -116,5 +118,9 @@ export class EditMemberDialogComponent {
 
   public formatDate(date: string): string {
     return new Date(date).toISOString().slice(0, 10);
+  }
+
+  openSnackBar(message: string){
+    this.snackBar.open(message);
   }
 }
