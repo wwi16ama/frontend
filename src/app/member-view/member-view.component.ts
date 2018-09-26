@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Member, Status, Gender, OfficeEnum, AuthorizationEnum } from './../models/member.model';
 import { MemberService } from './../services/member.service';
+import { MemberUpdateService } from './../services/member-update.service';
+
 import { ActivatedRoute } from '@angular/router';
 
 import { MatDialog } from '@angular/material';
@@ -17,7 +19,10 @@ export class MemberViewComponent implements OnInit {
   editMode: boolean;
   editButtonText: string;
 
-  constructor(public memberService: MemberService, public activatedRoute: ActivatedRoute, public editMemberDialog: MatDialog) {
+  constructor(
+    public memberService: MemberService, public memberUpdateService: MemberUpdateService,
+    public activatedRoute: ActivatedRoute, public editMemberDialog: MatDialog
+  ) {
     this.editMode = false;
     this.editButtonText = 'Ändern';
   }
@@ -44,7 +49,7 @@ export class MemberViewComponent implements OnInit {
 
   public toggleEditMode(): void {
     if (this.editMode) {
-      this.saveMember();
+      // this.saveMember();
       this.editButtonText = 'Ändern';
     } else {
       this.editButtonText = 'Speichern';
@@ -52,21 +57,26 @@ export class MemberViewComponent implements OnInit {
     this.editMode = !this.editMode;
   }
 
-  public saveMember(): void {
-    console.log(this.member);
+  public saveMember(member: Member): void {
+    this.memberUpdateService.updateMemberData(member).subscribe(
+      (response) => {
+        this.saveMember(response);
+      }
+    );
   }
 
   public openEditMemberDialog(): void {
     const dialogRef = this.editMemberDialog.open(EditMemberDialogComponent, {
-        maxWidth: '100vw',
-        data: this.member
+      maxWidth: '100vw',
+      disableClose: true,
+      data: this.member
     });
 
     dialogRef.afterClosed().subscribe(result => {
-        if (result != null) {
-          console.log(result);
-        }
+      if (result != null) {
+        this.saveMember(result);
+      }
     });
-}
+  }
 
 }
