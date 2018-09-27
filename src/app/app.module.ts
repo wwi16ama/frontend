@@ -12,13 +12,13 @@ import { PlaneListComponent } from './plane-list/plane-list.component';
 @NgModule({
   declarations: [
     AppComponent,
-    PlaneListComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MemberListModule,
-    MemberViewModule
+    MemberViewModule,
+    PlaneListModule
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'ger' }
