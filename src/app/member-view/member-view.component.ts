@@ -59,16 +59,17 @@ export class MemberViewComponent implements OnInit {
   }
 
   public saveMember(member: Member): void {
-    member = this.formatEnums(member);
+    const newMemberData = JSON.parse(JSON.stringify(member));
+    member = this.formatStringToEnum(member);
     this.memberUpdateService.updateMemberData(member).subscribe(
       (response) => {
-        console.log(response);
         if (response.status === 204) {
           this.snackBar.open('Änderungen erfolgreich gespeichert.', 'Schließen',
             {
               duration: 3000,
             }
           );
+          this.member = newMemberData;
         }
       },
       error => {
@@ -93,7 +94,7 @@ export class MemberViewComponent implements OnInit {
     const dialogRef = this.editMemberDialog.open(EditMemberDialogComponent, {
       maxWidth: '100vw',
       disableClose: true,
-      data: this.member
+      data: JSON.parse(JSON.stringify(this.member))
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -103,7 +104,7 @@ export class MemberViewComponent implements OnInit {
     });
   }
 
-  public formatEnums(member: any): any {
+  public formatStringToEnum(member: any): any {
     member.gender = Gender.getEnumString(member.gender);
     member.status = Status.getEnumString(member.status);
     for (let i = 0; i < member.offices.length; i++) {
@@ -114,6 +115,5 @@ export class MemberViewComponent implements OnInit {
     }
     return member;
   }
-
 
 }
