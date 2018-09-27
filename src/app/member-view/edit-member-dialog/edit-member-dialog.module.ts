@@ -6,7 +6,7 @@ import { EditMemberDialogComponent } from './edit-member-dialog.component';
 import {
   MatDialogModule, MatInputModule, MatButtonModule,
   MatExpansionModule, MatTabsModule, MatDatepickerModule,
-  MatNativeDateModule, MatSelectModule, MatSnackBarModule
+  MatNativeDateModule, MatSelectModule
 } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -23,8 +23,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatNativeDateModule,
     MatSelectModule,
     FormsModule,
-    ReactiveFormsModule,
-    MatSnackBarModule
+    ReactiveFormsModule
   ],
   declarations: [
     EditMemberDialogComponent

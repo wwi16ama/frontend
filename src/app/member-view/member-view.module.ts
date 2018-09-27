@@ -4,7 +4,7 @@ import { MemberViewComponent } from './member-view.component';
 
 import {
   MatDividerModule, MatListModule, MatCheckboxModule,
-   MatButtonModule, MatSelectModule, MatInputModule
+   MatButtonModule, MatSelectModule, MatInputModule, MatSnackBarModule
   } from '@angular/material';
 
 import { MemberService } from './../services/member.service';
@@ -20,7 +20,8 @@ import { EditMemberDialogModule } from './edit-member-dialog/edit-member-dialog.
     MatCheckboxModule,
     MatButtonModule,
     MatSelectModule,
-    MatInputModule
+    MatInputModule,
+    MatSnackBarModule
   ],
   declarations: [
     MemberViewComponent

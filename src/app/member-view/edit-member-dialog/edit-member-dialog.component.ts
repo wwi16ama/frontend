@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { Member, Office, OfficeEnum, Authorization, AuthorizationEnum } from './../../models/member.model';
-import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { FormControl } from '@angular/forms';
 
 @Component({
@@ -20,8 +20,7 @@ export class EditMemberDialogComponent {
 
   constructor(
     public editMemberDialogRef: MatDialogRef<EditMemberDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public member: Member,
-    public snackBar: MatSnackBar
+    @Inject(MAT_DIALOG_DATA) public member: Member
   ) {
     this.dateOfBirth = new FormControl(new Date(member.dateOfBirth));
     this.possibleOffices = [
@@ -68,7 +67,6 @@ export class EditMemberDialogComponent {
         )
       );
     }
-    this.openSnackBar('Änderungen erfolgreich gespeichert');
     this.editMemberDialogRef.close(this.member);
   }
 
@@ -118,9 +116,5 @@ export class EditMemberDialogComponent {
 
   public formatDate(date: string): string {
     return new Date(date).toISOString().slice(0, 10);
-  }
-
-  openSnackBar(message: string) {
-    this.snackBar.open(message);
   }
 }

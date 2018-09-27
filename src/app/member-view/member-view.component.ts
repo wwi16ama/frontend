@@ -5,7 +5,7 @@ import { MemberUpdateService } from './../services/member-update.service';
 
 import { ActivatedRoute } from '@angular/router';
 
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSnackBar } from '@angular/material';
 import { EditMemberDialogComponent } from './edit-member-dialog/edit-member-dialog.component';
 
 
@@ -21,7 +21,8 @@ export class MemberViewComponent implements OnInit {
 
   constructor(
     public memberService: MemberService, public memberUpdateService: MemberUpdateService,
-    public activatedRoute: ActivatedRoute, public editMemberDialog: MatDialog
+    public activatedRoute: ActivatedRoute, public editMemberDialog: MatDialog,
+    public snackBar: MatSnackBar
   ) {
     this.editMode = false;
     this.editButtonText = 'Ändern';
@@ -60,7 +61,11 @@ export class MemberViewComponent implements OnInit {
   public saveMember(member: Member): void {
     this.memberUpdateService.updateMemberData(member).subscribe(
       (response) => {
-        this.saveMember(response);
+        this.snackBar.open('Änderungen erfolgreich gespeichert.', 'Schließen',
+        {
+          duration: 3000,
+        }
+        );
       }
     );
   }
@@ -78,5 +83,6 @@ export class MemberViewComponent implements OnInit {
       }
     });
   }
+
 
 }
