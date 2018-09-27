@@ -59,12 +59,14 @@ export class MemberViewComponent implements OnInit {
   }
 
   public saveMember(member: Member): void {
+    member = this.formatEnums(member);
     this.memberUpdateService.updateMemberData(member).subscribe(
       (response) => {
+        console.log(response);
         this.snackBar.open('Änderungen erfolgreich gespeichert.', 'Schließen',
-        {
-          duration: 3000,
-        }
+          {
+            duration: 3000,
+          }
         );
       }
     );
@@ -82,6 +84,18 @@ export class MemberViewComponent implements OnInit {
         this.saveMember(result);
       }
     });
+  }
+
+  public formatEnums(member: any): any {
+    member.gender = Gender.getEnumString(member.gender);
+    member.status = Status.getEnumString(member.status);
+    for (let i = 0; i < member.offices.length; i++) {
+      member.offices[i].title = OfficeEnum.getEnumString(member.offices[i].title);
+    }
+    for (let i = 0; i < member.flightAuthorization.length; i++) {
+      member.flightAuthorization[i].authorization = AuthorizationEnum.getEnumString(member.flightAuthorization[i].authorization);
+    }
+    return member;
   }
 
 
