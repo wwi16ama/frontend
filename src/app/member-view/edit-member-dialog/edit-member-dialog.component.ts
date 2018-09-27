@@ -21,7 +21,7 @@ export class EditMemberDialogComponent {
   constructor(
     public editMemberDialogRef: MatDialogRef<EditMemberDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public member: Member,
-    public snackBar: MatSnackBar  
+    public snackBar: MatSnackBar
   ) {
     this.dateOfBirth = new FormControl(new Date(member.dateOfBirth));
     this.possibleOffices = [
@@ -37,11 +37,11 @@ export class EditMemberDialogComponent {
     }
     this.addAuthorization = false;
     this.possibleFlightAuthorizationNames = [
-      { authorization: AuthorizationEnum.PPLA , showNew: false},
-      { authorization: AuthorizationEnum.PPLB , showNew: false},
-      { authorization: AuthorizationEnum.BZFI , showNew: false},
-      { authorization: AuthorizationEnum.BZFII, showNew: false},
-      { authorization: AuthorizationEnum.LEHRBEFUGNIS, showNew: false}
+      { authorization: AuthorizationEnum.PPLA, showNew: false },
+      { authorization: AuthorizationEnum.PPLB, showNew: false },
+      { authorization: AuthorizationEnum.BZFI, showNew: false },
+      { authorization: AuthorizationEnum.BZFII, showNew: false },
+      { authorization: AuthorizationEnum.LEHRBEFUGNIS, showNew: false }
     ];
     this.updatePossibleAuthorizations();
     this.newAuthorization = {
@@ -49,14 +49,14 @@ export class EditMemberDialogComponent {
       expires: new FormControl(new Date()),
       dateOfIssue: new Date().toISOString().slice(0, 10)
     };
-    this.addNewAuthorizationPossible = true;   
+    this.addNewAuthorizationPossible = true;
   }
 
   public onNoClick(): void {
     this.editMemberDialogRef.close();
   }
 
-  public saveMemberData(): void {    
+  public saveMemberData(): void {
     this.member.dateOfBirth = this.formatDate(this.dateOfBirth.value.toString());
     this.member.flightAuthorization = [];
     for (let i = 0; i < this.flightAuthorizations.length; i++) {
@@ -69,7 +69,7 @@ export class EditMemberDialogComponent {
       );
     }
     this.openSnackBar('Änderungen erfolgreich gespeichert');
-    this.editMemberDialogRef.close(this.member);    
+    this.editMemberDialogRef.close(this.member);
   }
 
   public compareOffices(a, b): boolean {
@@ -102,7 +102,7 @@ export class EditMemberDialogComponent {
         allDoneArray.push('found');
       }
     }
-    if (allDoneArray.length > 0 ) {
+    if (allDoneArray.length > 0) {
       this.addNewAuthorizationPossible = true;
     } else {
       this.addNewAuthorizationPossible = false;
@@ -110,7 +110,7 @@ export class EditMemberDialogComponent {
   }
 
   public findInAuthorizationsArray(toFind): boolean {
-    const found = this.flightAuthorizations.find(function(element) {
+    const found = this.flightAuthorizations.find(function (element) {
       return element.authorization === toFind;
     });
     return found;
@@ -120,7 +120,7 @@ export class EditMemberDialogComponent {
     return new Date(date).toISOString().slice(0, 10);
   }
 
-  openSnackBar(message: string){
+  openSnackBar(message: string) {
     this.snackBar.open(message);
   }
 }
