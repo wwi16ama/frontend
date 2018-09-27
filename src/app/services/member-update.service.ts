@@ -8,11 +8,18 @@ export class MemberUpdateService {
 
   constructor(public httpClient: HttpClient) { }
 
-  public updateMemberData(memberData: Member): Observable<any>  {
+  public updateMemberData(memberData: Member): Observable<{}> {
     const id = memberData.id;
     const url = 'http://localhost:3000/test';
     delete memberData['id'];
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return this.httpClient.put<any>(url, memberData, {headers});
+    return this.httpClient.put<any>(
+      url,
+      memberData,
+      {
+        headers: headers,
+        observe: 'response'
+      }
+    );
   }
 }
