@@ -8,7 +8,7 @@ export class MemberUpdateService {
 
   constructor(public httpClient: HttpClient) { }
 
-  public updateMemberData(memberData: Member): Observable<{}> {
+  public updateMemberData(memberData: Member): Observable<any> {
     const id = memberData.id;
     const url = 'http://localhost:3000/test';
     delete memberData['id'];

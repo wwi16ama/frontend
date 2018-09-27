@@ -63,11 +63,28 @@ export class MemberViewComponent implements OnInit {
     this.memberUpdateService.updateMemberData(member).subscribe(
       (response) => {
         console.log(response);
-        this.snackBar.open('Änderungen erfolgreich gespeichert.', 'Schließen',
-          {
-            duration: 3000,
-          }
-        );
+        if (response.status === 204) {
+          this.snackBar.open('Änderungen erfolgreich gespeichert.', 'Schließen',
+            {
+              duration: 3000,
+            }
+          );
+        }
+      },
+      error => {
+        if (error.status === 400) {
+          this.snackBar.open('Pflichtfelder nicht ausgefüllt', 'Schließen',
+            {
+              duration: 4000,
+            }
+          );
+        } else if (error.status === 404) {
+          this.snackBar.open('Mitglied nicht gefunden.', 'Schließen',
+            {
+              duration: 4000,
+            }
+          );
+        }
       }
     );
   }
