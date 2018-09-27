@@ -7,10 +7,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { MemberListModule } from './member-list/member-list.module';
 import { MemberViewModule } from './member-view/member-view.module';
 import { EditMemberDialogComponent } from './member-view/edit-member-dialog/edit-member-dialog.component';
+import { PlaneListComponent } from './plane-list/plane-list.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PlaneListComponent
   ],
   imports: [
     BrowserModule,
