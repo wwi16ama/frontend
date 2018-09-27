@@ -3,12 +3,32 @@
     margin-top: -24px;
 }
 
+@media (max-width: 1000px) {
+    .dialog-wrapper {
+        width: 80vw;
+        margin-top: -24px;
+    }
+}
+
+@media (max-width: 768px) {
+    .dialog-wrapper {
+        width: 100%;
+        margin-top: -24px;
+    }
+}
+
 .mat-dialog-content {
     padding: 0 0;
+    /* overflow-y: hidden; */
+    /* height: auto; */
 }
 
 .tab-content {
     padding: 24px 24px;
+    max-height: calc(100% - 213px);
+    overflow-y: auto;
+    /* height: calc(100% - 156px);
+    overflow: auto; */
 }
 
 .input-width {
@@ -41,4 +61,9 @@
 
 .spacing-right {
     margin-right: 15px;
+}
+
+.checkbox {
+    display: block;
+    margin-top: 15px;
 }

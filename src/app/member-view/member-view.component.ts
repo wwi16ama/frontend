@@ -93,6 +93,8 @@ export class MemberViewComponent implements OnInit {
   public openEditMemberDialog(): void {
     const dialogRef = this.editMemberDialog.open(EditMemberDialogComponent, {
       maxWidth: '100vw',
+      minWidth: '0px',
+      maxHeight: '90vh',
       disableClose: true,
       data: JSON.parse(JSON.stringify(this.member))
     });
