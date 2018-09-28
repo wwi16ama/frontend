@@ -10,7 +10,7 @@ export class MemberUpdateService {
 
   public updateMemberData(memberData: Member): Observable<any> {
     const id = memberData.id;
-    const url = 'http://localhost:3000/test';
+    const url = 'http://localhost:3000/members' + id;
     delete memberData['id'];
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     return this.httpClient.put<any>(
