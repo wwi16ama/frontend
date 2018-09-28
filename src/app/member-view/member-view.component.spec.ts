@@ -51,7 +51,7 @@ describe('MemberViewComponent', () => {
 
     it('should define ', () => {
       const testMember = new Member(
-        0, 'Peter', 'Zwegat', '1998-10-10', Gender.MALE,
+        'Peter', 'Zwegat', '1998-10-10', Gender.MALE,
         Status.ACTIVE, 'peter.zwegat@gmx.de',
         new Address(
           12345, 'Dorfstraße 2', 'Mannheim',
@@ -61,7 +61,7 @@ describe('MemberViewComponent', () => {
         [
           new Authorization(AuthorizationEnum.PPLA, '1998-10-10', '1998-10-10'),
           new Authorization(AuthorizationEnum.PPLA, '1998-10-10', '1998-10-10')
-        ]
+        ], 0
       );
       spyOn(component.memberService, 'getMemberData').and.returnValue(of(testMember));
       component.ngOnInit();
