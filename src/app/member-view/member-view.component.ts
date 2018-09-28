@@ -85,6 +85,12 @@ export class MemberViewComponent implements OnInit {
               duration: 4000,
             }
           );
+        } else if (error.status === 0) {
+          this.snackBar.open('Es konnte keine Verbindung zum Server aufgebaut werden', 'Schließen',
+            {
+              duration: 4000,
+            }
+          );
         }
       }
     );
