@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Member } from './../../models/member.model';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {FormControl, FormGroupDirective, NgForm} from '@angular/forms';
 import {ErrorStateMatcher} from '@angular/material/core';
