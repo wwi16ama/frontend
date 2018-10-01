@@ -5,7 +5,7 @@
       <form [formGroup]="allgmeinPersoInfo">
         <div class="tab-content">
           <mat-form-field class="input-width">
-            <input type="text" matInput [(ngModel)]="member.lastName" placeholder="Name" id="name" minlength="3" 
+            <input type="text" matInput [ngModel]="member?.lastName" placeholder="Name" id="name" minlength="3" 
             pattern="[a-zA-Z_äÄöÖüÜß]+" ng-pattern-restrict [formControl]="nameFormControl" required>
             <mat-error *ngIf="nameFormControl.hasError('required')">
               Der Name ist <strong>erforderlich</strong>
@@ -18,7 +18,7 @@
             </mat-error>
           </mat-form-field>
           <mat-form-field class="input-width">
-            <input type="text" matInput [(ngModel)]="member.firstName" placeholder="Vorname" id="firstName" minlength="3"
+            <input type="text" matInput [ngModel]="member?.firstName" placeholder="Vorname" id="firstName" minlength="3"
             pattern="[a-zA-Z_äÄöÖüÜß]+" ng-pattern-restrict [formControl]="firstNameFormControl" required>
             <mat-error *ngIf="firstNameFormControl.hasError('required')">
               Der Vorname ist <strong>erforderlich</strong>
@@ -31,7 +31,7 @@
             </mat-error>
           </mat-form-field>
           <mat-form-field class="input-width">
-            <input matInput [matDatepicker]="birthday" [(ngModel)]="member.dateOfBirth" placeholder="Geburtstag" [formControl]="birthdayFormControl" required>
+            <input matInput [matDatepicker]="birthday" [ngModel]="member?.dateOfBirth" placeholder="Geburtstag" [formControl]="birthdayFormControl" required>
             <mat-datepicker-toggle matSuffix [for]="birthday"></mat-datepicker-toggle>
             <mat-datepicker #birthday></mat-datepicker>
             <mat-error *ngIf="birthdayFormControl.hasError('required')">
@@ -39,7 +39,7 @@
             </mat-error>
           </mat-form-field>                
           <mat-form-field class="input-width">
-            <mat-select placeholder="Geschlecht" [(ngModel)]="member.gender" id="sex" [formControl]="sexFormControl" required>
+            <mat-select placeholder="Geschlecht" [ngModel]="member?.gender" id="sex" [formControl]="sexFormControl" required>
               <mat-option *ngFor="let sex of sex" [value]="sex">{{sex}}</mat-option>
             </mat-select>
             <mat-error *ngIf="sexFormControl.hasError('required')">
@@ -47,7 +47,7 @@
             </mat-error>
           </mat-form-field>
           <mat-form-field class="input-width">
-            <mat-select placeholder="Status" [(ngModel)]="member.status" id="status" required [formControl]="statusFormControl">
+            <mat-select placeholder="Status" [ngModel]="member?.status" id="status" required [formControl]="statusFormControl">
               <mat-option *ngFor="let sta of status" [value]="sta">{{sta}}</mat-option>
             </mat-select>
             <mat-error *ngIf="statusFormControl.hasError('required')">
@@ -55,7 +55,7 @@
             </mat-error>
           </mat-form-field>
           <mat-form-field class="input-width">
-            <input type="email" matInput [(ngModel)]="member.email" placeholder="Email" id="email" [formControl]="emailFormControl"
+            <input type="email" matInput [ngModel]="member?.email" placeholder="Email" id="email" [formControl]="emailFormControl"
             [errorStateMatcher]="matcher" required>
             <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
               Bitte geben Sie eine gültige Emailadresse ein.
@@ -80,14 +80,14 @@
               </mat-error>
             </mat-form-field>
             <mat-form-field class="input-width">
-              <input type="text" matInput [(ngModel)]="member.addresse.postalCode" placeholder="PLZ" id="postalCode" myNumberOnly #postalCode maxlength="5" [formControl]="postalCodeFormControl" required>
+              <input type="text" matInput [ngModel]="member?.addresse.postalCode" placeholder="PLZ" id="postalCode" myNumberOnly #postalCode maxlength="5" [formControl]="postalCodeFormControl" required>
               <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
               <mat-error *ngIf="postalCodeFormControl.hasError('required')">
                 Die Postleitzahl ist <strong>erforderlich</strong>
               </mat-error>
             </mat-form-field>
             <mat-form-field class="input-width">
-              <input type="text" [(ngModel)]="member.addresse.city" pattern="[a-zA-Z_äÄöÖüÜß]+" ng-pattern-restrict
+              <input type="text" [ngModel]="member?.addresse.city" pattern="[a-zA-Z_äÄöÖüÜß]+" ng-pattern-restrict
               matInput placeholder="Ort" id="city" [formControl]="cityFormControl" minlength="3" required>
               <mat-error *ngIf="cityFormControl.hasError('required')">
                 Der Ort ist <strong>erforderlich</strong>
@@ -100,7 +100,7 @@
               </mat-error>
             </mat-form-field>
             <mat-form-field class="input-width">
-              <input type="text" [(ngModel)]="member.addresse.streetAddresse" matInput placeholder="Straße" id="street" minlength="3" [formControl]="streetFormControl" required>
+              <input type="text" [ngModel]="member?.addresse.streetAddresse" matInput placeholder="Straße" id="street" minlength="3" [formControl]="streetFormControl" required>
               <mat-error *ngIf="streetFormControl.hasError('required')">
                 Die Straße ist <strong>erforderlich</strong>
               </mat-error>
@@ -115,7 +115,7 @@
       <form [formGroup]="interneInfos">
         <div class="tab-content">
           <mat-form-field class="input-width">
-            <input type="text" [(ngModel)]="member.bankingAccount" matInput placeholder="Bankkonto" ng-model="iban" id="bankingAccount" required [formControl]="bankingAccountFormControl">
+            <input type="text" [ngModel]="member?.bankingAccount" matInput placeholder="Bankkonto" ng-model="iban" id="bankingAccount" required [formControl]="bankingAccountFormControl">
             <mat-hint>DE19 1234 1234 1234 1234 12</mat-hint>
             <mat-error *ngIf="bankingAccountFormControl.hasError('required')">
               Das Bankkonto ist <strong>erforderlich</strong>
@@ -127,7 +127,7 @@
     <mat-tab label="Ämter">
       <div class="tab-content">
         <mat-form-field class="input-width">
-          <mat-select placeholder="Amt" [(ngModel)]="member.offices" id="office" multiple>
+          <mat-select placeholder="Amt" [ngModel]="member?.offices" id="office" multiple>
             <mat-option *ngFor="let aem of aemter" [value]="aem">{{aem}}</mat-option>
           </mat-select>
         </mat-form-field>
@@ -138,7 +138,7 @@
           <div class="tab-content">
             <div class="user-div">
               <mat-form-field class="input-width">
-                <mat-select placeholder="Flugberechtigung" [(ngModel)]="member.flightAuthorization" id="flugberechtigung" multiple>
+                <mat-select placeholder="Flugberechtigung" [ngModel]="member?.flightAuthorization" id="flugberechtigung" multiple>
                   <mat-option *ngFor="let flu of flugberechtigung" [value]="flu">{{flu}}</mat-option>
                 </mat-select>
               </mat-form-field>
