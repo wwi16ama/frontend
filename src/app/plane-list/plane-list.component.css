@@ -1,12 +1,14 @@
-.example-card {
+.card {
     max-width: 400px;
     margin: 20px;
     float: left;
-  }
+   }
   
-  .example-header-image {
+.header-image {
     background-size: cover;
     position: relative;
     top: 50%;
     transform: translateY(-4px);
   }
+
+

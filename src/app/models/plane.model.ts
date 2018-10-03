@@ -10,5 +10,7 @@ export class Plane {
 
 export enum neededAuthorization {
     PPLA = 'PPL-A',
-    PPLB = 'PPL-B'
+    PPLB = 'PPL-B',
+    BZFI = 'BZF-I',
+    BZFII = 'BZF-II',
 }
