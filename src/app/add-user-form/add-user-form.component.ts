@@ -18,8 +18,9 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 })
 export class AddUserFormComponent implements OnInit {
 
-  allgmeinPersoInfo: FormGroup;
+  uebersicht: FormGroup;
   adresse: FormGroup;
+  kundenkonto: FormGroup;
   interneInfos: FormGroup;
 
   // Initialisierungsarrays für Selecter
@@ -104,10 +105,13 @@ export class AddUserFormComponent implements OnInit {
   constructor(private _formBuilder: FormBuilder) {}
 
   ngOnInit() {
-    this.allgmeinPersoInfo = this._formBuilder.group({
+    this.uebersicht = this._formBuilder.group({
       firstCtrl: ['', Validators.required]
     });
     this.adresse = this._formBuilder.group({
+      secondCtrl: ['', Validators.required]
+    });
+    this.kundenkonto = this._formBuilder.group({
       secondCtrl: ['', Validators.required]
     });
     this.interneInfos = this._formBuilder.group({

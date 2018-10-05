@@ -2,7 +2,7 @@
   <mat-dialog-content>
   <mat-tab-group backgroundColor="primary" color="accent" [dynamicHeight]="true">
     <mat-tab label="Übersicht">
-      <form [formGroup]="allgmeinPersoInfo">
+      <form [formGroup]="uebersicht">
         <div class="tab-content">
           <mat-form-field class="input-width">
             <input type="text" matInput [ngModel]="member?.lastName" placeholder="Name" id="name" minlength="3" 
@@ -112,7 +112,7 @@
       </form>
     </mat-tab>
     <mat-tab label="Kundenkonto">
-      <form [formGroup]="interneInfos">
+      <form [formGroup]="kundenkonto">
         <div class="tab-content">
           <mat-form-field class="input-width">
             <input type="text" [ngModel]="member?.bankingAccount" matInput placeholder="Bankkonto" ng-model="iban" id="bankingAccount" required [formControl]="bankingAccountFormControl">
@@ -159,6 +159,6 @@
   </mat-dialog-content>
   <div mat-dialog-actions>
     <button mat-button (click)="onNoClick()">Abbrechen</button>
-    <button mat-raised-button (click)="saveMemberData()" color="primary">Speichern</button>
+    <button mat-raised-button color="primary">Anlegen</button>
   </div>
 </div>
