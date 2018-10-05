@@ -1,7 +1,8 @@
 import { Component, Inject } from '@angular/core';
 import { Member, Office, OfficeEnum, Authorization, AuthorizationEnum } from './../../models/member.model';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { FormControl } from '@angular/forms';
+import { FormControl, Validators, NgForm} from '@angular/forms';
+
 
 @Component({
   selector: 'app-edit-member-dialog',
@@ -9,6 +10,50 @@ import { FormControl } from '@angular/forms';
   styleUrls: ['./edit-member-dialog.component.css']
 })
 export class EditMemberDialogComponent {
+
+  nameFormControl = new FormControl('', [
+    Validators.required,
+  ]);
+
+  firstNameFormControl = new FormControl('', [
+    Validators.required,
+  ]);
+
+  birthdayFormControl = new FormControl('', [
+    Validators.required,
+  ]);
+
+  sexFormControl = new FormControl('', [
+    Validators.required,
+  ]);
+
+  statusFormControl = new FormControl('', [
+    Validators.required,
+  ]);
+
+  emailFormControl = new FormControl('', [
+    Validators.required,
+  ]);
+
+  postalCodeFormControl = new FormControl('', [
+    Validators.required,
+  ]);
+
+  cityFormControl = new FormControl('', [
+    Validators.required,
+  ]);
+
+  streetFormControl = new FormControl('', [
+    Validators.required,
+  ]);
+
+  bankingAccountFormControl = new FormControl('', [
+    Validators.required,
+  ]);
+  memberBankingAccountFormControl = new FormControl('', [
+    Validators.required,
+  ]);
+
 
   dateOfBirth: FormControl;
   possibleOffices: Office[];
