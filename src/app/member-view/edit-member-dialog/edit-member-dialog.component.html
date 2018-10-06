@@ -17,10 +17,10 @@
             <mat-error *ngIf="lastNameFormControl.hasError('pattern')">Der Name darf keine Zahlen enthalten</mat-error>
           </mat-form-field>
           <mat-form-field class="input-width">
-            <input [formControl]="dateOfBirth" matInput [matDatepicker]="dateOfBirthPicker" placeholder="Geburtstag" [formControl]="birthdayFormControl" required>
+            <input matInput [matDatepicker]="dateOfBirthPicker" placeholder="Geburtstag" [formControl]="dateOfBirthFormControl" required>
             <mat-datepicker-toggle matSuffix [for]="dateOfBirthPicker"></mat-datepicker-toggle>
             <mat-datepicker #dateOfBirthPicker></mat-datepicker>
-            <mat-error *ngIf="birthdayFormControl.hasError('required')">Der Geburtstag ist erforderlich</mat-error>
+            <mat-error *ngIf="dateOfBirthFormControl.hasError('required')">Der Geburtstag ist erforderlich</mat-error>
           </mat-form-field>
           <mat-form-field class="input-width">
             <mat-select placeholder="Geschlecht" [formControl]="sexFormControl" required>

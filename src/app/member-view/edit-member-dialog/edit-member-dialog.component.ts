@@ -11,7 +11,6 @@ import { FormControl, Validators } from '@angular/forms';
 })
 export class EditMemberDialogComponent {
 
-  dateOfBirth: FormControl;
   possibleOffices: Office[];
   flightAuthorizations: any[];
   addAuthorization: boolean;
@@ -22,7 +21,7 @@ export class EditMemberDialogComponent {
   // FormControls for input validation
   firstNameFormControl: FormControl;
   lastNameFormControl: FormControl;
-  birthdayFormControl: FormControl;
+  dateOfBirthFormControl: FormControl;
   sexFormControl: FormControl;
   statusFormControl: FormControl;
   emailFormControl: FormControl;
@@ -36,7 +35,6 @@ export class EditMemberDialogComponent {
     public editMemberDialogRef: MatDialogRef<EditMemberDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public member: Member
   ) {
-    this.dateOfBirth = new FormControl(new Date(member.dateOfBirth));
     this.possibleOffices = [
       new Office(OfficeEnum.FLUGWART),
       new Office(OfficeEnum.IMBETRIEBSKONTROLLTURMARBEITEND),
@@ -73,7 +71,7 @@ export class EditMemberDialogComponent {
   public saveMemberData(): void {
     this.member.firstName = this.firstNameFormControl.value;
     this.member.lastName = this.lastNameFormControl.value;
-    this.member.dateOfBirth = this.formatDate(this.dateOfBirth.value.toString());
+    this.member.dateOfBirth = this.formatDate(this.dateOfBirthFormControl.value.toString());
     this.member.gender = this.sexFormControl.value;
     this.member.status = this.statusFormControl.value;
     this.member.email = this.emailFormControl.value;
@@ -153,7 +151,7 @@ export class EditMemberDialogComponent {
       Validators.required,
     ]);
 
-    this.birthdayFormControl = new FormControl('', [
+    this.dateOfBirthFormControl = new FormControl(new Date(this.member.dateOfBirth), [
       Validators.required,
     ]);
 
