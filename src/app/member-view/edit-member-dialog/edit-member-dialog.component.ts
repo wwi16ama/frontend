@@ -143,48 +143,48 @@ export class EditMemberDialogComponent {
 
   public initializeFormControls(): void {
     this.firstNameFormControl = new FormControl(this.member.firstName, [
-      Validators.required,
+      Validators.required
     ]);
 
     this.lastNameFormControl = new FormControl(this.member.lastName, [
-      Validators.required,
+      Validators.required
     ]);
 
     this.dateOfBirthFormControl = new FormControl(new Date(this.member.dateOfBirth), [
-      Validators.required,
+      Validators.required
     ]);
 
     this.sexFormControl = new FormControl(this.member.gender, [
-      Validators.required,
+      Validators.required
     ]);
 
     this.statusFormControl = new FormControl(this.member.status, [
-      Validators.required,
+      Validators.required
     ]);
 
     this.emailFormControl = new FormControl(this.member.email, [
       Validators.email,
-      Validators.required,
+      Validators.required
     ]);
 
     this.postalCodeFormControl = new FormControl(this.member.address.postalCode, [
-      Validators.required,
+      Validators.required
     ]);
 
     this.streetFormControl = new FormControl(this.member.address.streetAddress, [
-      Validators.required,
+      Validators.required
     ]);
 
     this.cityFormControl = new FormControl(this.member.address.city, [
-      Validators.required,
+      Validators.required
     ]);
 
     this.bankingAccountFormControl = new FormControl(this.member.bankingAccount, [
-      Validators.required,
+      Validators.required
     ]);
 
     this.memberBankingAccountFormControl = new FormControl(this.member.memberBankingAccount, [
-      Validators.required,
+      Validators.required
     ]);
   }
 }
