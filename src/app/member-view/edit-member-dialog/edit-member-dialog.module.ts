@@ -6,9 +6,11 @@ import { EditMemberDialogComponent } from './edit-member-dialog.component';
 import {
   MatDialogModule, MatInputModule, MatButtonModule,
   MatExpansionModule, MatTabsModule, MatDatepickerModule,
-  MatNativeDateModule, MatSelectModule, MatCheckboxModule
+  MatNativeDateModule, MatSelectModule, MatCheckboxModule, DateAdapter
 } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
+import { DateAdapterService } from './../../services/date-adapter.service';
 
 
 @NgModule({
@@ -31,6 +33,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   ],
   exports: [
     EditMemberDialogComponent
+  ],
+  providers: [
+    { provide: DateAdapter, useClass: DateAdapterService },
   ]
 })
 export class EditMemberDialogModule { }
