@@ -138,7 +138,8 @@ export class EditMemberDialogComponent {
   }
 
   public formatDate(date: string): string {
-    return new Date(date).toISOString().slice(0, 10);
+    const parseDate = new Date(date);
+    return new Date(parseDate.getTime() - parseDate.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
   }
 
   public initializeFormControls(): void {
