@@ -19,16 +19,10 @@
 
 .mat-dialog-content {
     padding: 0 0;
-    /* overflow-y: hidden; */
-    /* height: auto; */
 }
 
 .tab-content {
     padding: 24px 24px;
-    max-height: calc(100% - 213px);
-    overflow-y: auto;
-    /* height: calc(100% - 156px);
-    overflow: auto; */
 }
 
 .input-width {
