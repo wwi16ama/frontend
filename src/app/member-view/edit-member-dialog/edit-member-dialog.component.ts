@@ -80,7 +80,6 @@ export class EditMemberDialogComponent {
     this.member.address.city = this.cityFormControl.value;
     this.member.bankingAccount = this.bankingAccountFormControl.value;
     this.member.memberBankingAccount = this.memberBankingAccountFormControl.value;
-
     this.member.flightAuthorization = [];
     for (let i = 0; i < this.flightAuthorizations.length; i++) {
       this.member.flightAuthorization.push(
@@ -164,6 +163,7 @@ export class EditMemberDialogComponent {
     ]);
 
     this.emailFormControl = new FormControl(this.member.email, [
+      Validators.email,
       Validators.required,
     ]);
 

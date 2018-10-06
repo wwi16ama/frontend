@@ -38,8 +38,8 @@
             <mat-error *ngIf="statusFormControl.hasError('required')">Der Status ist erforderlich</mat-error>
           </mat-form-field>
           <mat-form-field class="input-width">
-            <input matInput placeholder="Email" pattern="/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/" ng-pattern-restrict [formControl]="emailFormControl" required>
-            <mat-error *ngIf="emailFormControl.hasError('pattern')">Bitte geben Sie eine gültige Emailadresse ein</mat-error>
+            <input matInput placeholder="Email" ng-pattern-restrict [formControl]="emailFormControl" required>
+            <mat-error *ngIf="emailFormControl.hasError('email')">Bitte geben Sie eine gültige Emailadresse ein</mat-error>
             <mat-error *ngIf="emailFormControl.hasError('required')">Die Emailadresse ist erforderlich</mat-error>
           </mat-form-field>
         </div>
