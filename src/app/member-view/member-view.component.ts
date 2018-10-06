@@ -16,16 +16,12 @@ import { EditMemberDialogComponent } from './edit-member-dialog/edit-member-dial
 })
 export class MemberViewComponent implements OnInit {
   member: Member;
-  editMode: boolean;
-  editButtonText: string;
 
   constructor(
     public memberService: MemberService, public memberUpdateService: MemberUpdateService,
     public activatedRoute: ActivatedRoute, public editMemberDialog: MatDialog,
     public snackBar: MatSnackBar
   ) {
-    this.editMode = false;
-    this.editButtonText = 'Ändern';
   }
 
   ngOnInit() {
@@ -48,17 +44,8 @@ export class MemberViewComponent implements OnInit {
     );
   }
 
-  public toggleEditMode(): void {
-    if (this.editMode) {
-      // this.saveMember();
-      this.editButtonText = 'Ändern';
-    } else {
-      this.editButtonText = 'Speichern';
-    }
-    this.editMode = !this.editMode;
-  }
-
   public saveMember(member: Member): void {
+    console.log(member);
     const newMemberData = JSON.parse(JSON.stringify(member));
     member = this.formatStringToEnum(member);
     this.memberUpdateService.updateMemberData(member).subscribe(
