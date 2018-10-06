@@ -27,7 +27,7 @@ export class MemberListComponent implements OnInit {
     );
   }
 
-  public navigateTo(rowId) {
+  public navigateTo(rowId): void {
     this.router.navigate(['/member', rowId]);
   }
 
