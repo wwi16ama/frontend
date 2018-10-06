@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { Member, Office, OfficeEnum, Authorization, AuthorizationEnum } from './../../models/member.model';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { FormControl, Validators} from '@angular/forms';
+import { FormControl, Validators } from '@angular/forms';
 
 
 @Component({
@@ -11,50 +11,6 @@ import { FormControl, Validators} from '@angular/forms';
 })
 export class EditMemberDialogComponent {
 
-  nameFormControl = new FormControl('', [
-    Validators.required,
-  ]);
-
-  firstNameFormControl = new FormControl('', [
-    Validators.required,
-  ]);
-
-  birthdayFormControl = new FormControl('', [
-    Validators.required,
-  ]);
-
-  sexFormControl = new FormControl('', [
-    Validators.required,
-  ]);
-
-  statusFormControl = new FormControl('', [
-    Validators.required,
-  ]);
-
-  emailFormControl = new FormControl('', [
-    Validators.required,
-  ]);
-
-  postalCodeFormControl = new FormControl('', [
-    Validators.required,
-  ]);
-
-  cityFormControl = new FormControl('', [
-    Validators.required,
-  ]);
-
-  streetFormControl = new FormControl('', [
-    Validators.required,
-  ]);
-
-  bankingAccountFormControl = new FormControl('', [
-    Validators.required,
-  ]);
-  memberBankingAccountFormControl = new FormControl('', [
-    Validators.required,
-  ]);
-
-
   dateOfBirth: FormControl;
   possibleOffices: Office[];
   flightAuthorizations: any[];
@@ -62,6 +18,19 @@ export class EditMemberDialogComponent {
   possibleFlightAuthorizationNames: any[];
   newAuthorization: any;
   addNewAuthorizationPossible: boolean;
+
+  // FormControls for input validation
+  nameFormControl: FormControl;
+  firstNameFormControl: FormControl;
+  birthdayFormControl: FormControl;
+  sexFormControl: FormControl;
+  statusFormControl: FormControl;
+  emailFormControl: FormControl;
+  postalCodeFormControl: FormControl;
+  cityFormControl: FormControl;
+  streetFormControl: FormControl;
+  bankingAccountFormControl: FormControl;
+  memberBankingAccountFormControl: FormControl;
 
   constructor(
     public editMemberDialogRef: MatDialogRef<EditMemberDialogComponent>,
@@ -94,6 +63,7 @@ export class EditMemberDialogComponent {
       dateOfIssue: new Date().toISOString().slice(0, 10)
     };
     this.addNewAuthorizationPossible = true;
+    this.initializeFormControls();
   }
 
   public onNoClick(): void {
@@ -101,7 +71,18 @@ export class EditMemberDialogComponent {
   }
 
   public saveMemberData(): void {
+    this.member.firstName = this.firstNameFormControl.value;
+    this.member.lastName = this.nameFormControl.value;
     this.member.dateOfBirth = this.formatDate(this.dateOfBirth.value.toString());
+    this.member.gender = this.sexFormControl.value;
+    this.member.status = this.statusFormControl.value;
+    this.member.email = this.emailFormControl.value;
+    this.member.address.postalCode = this.postalCodeFormControl.value;
+    this.member.address.streetAddress = this.streetFormControl.value;
+    this.member.address.city = this.cityFormControl.value;
+    this.member.bankingAccount = this.bankingAccountFormControl.value;
+    this.member.memberBankingAccount = this.memberBankingAccountFormControl.value;
+
     this.member.flightAuthorization = [];
     for (let i = 0; i < this.flightAuthorizations.length; i++) {
       this.member.flightAuthorization.push(
@@ -161,5 +142,51 @@ export class EditMemberDialogComponent {
 
   public formatDate(date: string): string {
     return new Date(date).toISOString().slice(0, 10);
+  }
+
+  public initializeFormControls(): void {
+    this.firstNameFormControl = new FormControl(this.member.firstName, [
+      Validators.required,
+    ]);
+
+    this.nameFormControl = new FormControl(this.member.lastName, [
+      Validators.required,
+    ]);
+
+    this.birthdayFormControl = new FormControl('', [
+      Validators.required,
+    ]);
+
+    this.sexFormControl = new FormControl(this.member.gender, [
+      Validators.required,
+    ]);
+
+    this.statusFormControl = new FormControl(this.member.status, [
+      Validators.required,
+    ]);
+
+    this.emailFormControl = new FormControl(this.member.email, [
+      Validators.required,
+    ]);
+
+    this.postalCodeFormControl = new FormControl(this.member.address.postalCode, [
+      Validators.required,
+    ]);
+
+    this.streetFormControl = new FormControl(this.member.address.streetAddress, [
+      Validators.required,
+    ]);
+
+    this.cityFormControl = new FormControl(this.member.address.city, [
+      Validators.required,
+    ]);
+
+    this.bankingAccountFormControl = new FormControl(this.member.bankingAccount, [
+      Validators.required,
+    ]);
+
+    this.memberBankingAccountFormControl = new FormControl(this.member.memberBankingAccount, [
+      Validators.required,
+    ]);
   }
 }
