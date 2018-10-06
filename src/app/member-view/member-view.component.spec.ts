@@ -13,6 +13,7 @@ import { MatDialog, MatSnackBar } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 import { ActivatedRoute } from '@angular/router';
 import { Member, Gender, Address, Authorization, AuthorizationEnum, Status, Office, OfficeEnum } from './../models/member.model';
+
 describe('MemberViewComponent', () => {
   let component: MemberViewComponent;
   let fixture: ComponentFixture<MemberViewComponent>;
