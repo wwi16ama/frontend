@@ -6,7 +6,8 @@ import { EditMemberDialogComponent } from './edit-member-dialog.component';
 import {
   MatDialogModule, MatInputModule, MatButtonModule,
   MatExpansionModule, MatTabsModule, MatDatepickerModule,
-  MatNativeDateModule, MatSelectModule, MatCheckboxModule, DateAdapter
+  MatNativeDateModule, MatSelectModule, MatCheckboxModule,
+  DateAdapter, MatSnackBarModule
 } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -25,6 +26,7 @@ import { DateAdapterService } from './../../services/date-adapter.service';
     MatNativeDateModule,
     MatSelectModule,
     MatCheckboxModule,
+    MatSnackBarModule,
     FormsModule,
     ReactiveFormsModule
   ],

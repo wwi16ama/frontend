@@ -1,6 +1,6 @@
 import { Component, Inject } from '@angular/core';
 import { Member, Office, OfficeEnum, Authorization, AuthorizationEnum } from './../../models/member.model';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import { FormControl, Validators } from '@angular/forms';
 
 
@@ -27,12 +27,12 @@ export class EditMemberDialogComponent {
   emailFormControl: FormControl;
   postalCodeFormControl: FormControl;
   cityFormControl: FormControl;
-  streetFormControl: FormControl;
+  streetAddressFormControl: FormControl;
   bankingAccountFormControl: FormControl;
   memberBankingAccountFormControl: FormControl;
 
   constructor(
-    public editMemberDialogRef: MatDialogRef<EditMemberDialogComponent>,
+    public editMemberDialogRef: MatDialogRef<EditMemberDialogComponent>, public snackBar: MatSnackBar
     @Inject(MAT_DIALOG_DATA) public member: Member
   ) {
     this.possibleOffices = [
@@ -69,28 +69,30 @@ export class EditMemberDialogComponent {
   }
 
   public saveMemberData(): void {
-    this.member.firstName = this.firstNameFormControl.value;
-    this.member.lastName = this.lastNameFormControl.value;
-    this.member.dateOfBirth = this.formatDate(this.dateOfBirthFormControl.value.toString());
-    this.member.gender = this.sexFormControl.value;
-    this.member.status = this.statusFormControl.value;
-    this.member.email = this.emailFormControl.value;
-    this.member.address.postalCode = this.postalCodeFormControl.value;
-    this.member.address.streetAddress = this.streetFormControl.value;
-    this.member.address.city = this.cityFormControl.value;
-    this.member.bankingAccount = this.bankingAccountFormControl.value;
-    this.member.memberBankingAccount = this.memberBankingAccountFormControl.value;
-    this.member.flightAuthorization = [];
-    for (let i = 0; i < this.flightAuthorizations.length; i++) {
-      this.member.flightAuthorization.push(
-        new Authorization(
-          this.flightAuthorizations[i].authorization,
-          this.flightAuthorizations[i].dateOfIssue,
-          this.formatDate(this.flightAuthorizations[i].expires.value.toString())
-        )
-      );
+    if (this.checkRequiredFields()) {
+      this.member.firstName = this.firstNameFormControl.value;
+      this.member.lastName = this.lastNameFormControl.value;
+      this.member.dateOfBirth = this.formatDate(this.dateOfBirthFormControl.value.toString());
+      this.member.gender = this.sexFormControl.value;
+      this.member.status = this.statusFormControl.value;
+      this.member.email = this.emailFormControl.value;
+      this.member.address.postalCode = this.postalCodeFormControl.value;
+      this.member.address.streetAddress = this.streetAddressFormControl.value;
+      this.member.address.city = this.cityFormControl.value;
+      this.member.bankingAccount = this.bankingAccountFormControl.value;
+      this.member.memberBankingAccount = this.memberBankingAccountFormControl.value;
+      this.member.flightAuthorization = [];
+      for (let i = 0; i < this.flightAuthorizations.length; i++) {
+        this.member.flightAuthorization.push(
+          new Authorization(
+            this.flightAuthorizations[i].authorization,
+            this.flightAuthorizations[i].dateOfIssue,
+            this.formatDate(this.flightAuthorizations[i].expires.value.toString())
+          )
+        );
+      }
+      this.editMemberDialogRef.close(this.member);
     }
-    this.editMemberDialogRef.close(this.member);
   }
 
   public compareOffices(a, b): boolean {
@@ -172,7 +174,7 @@ export class EditMemberDialogComponent {
       Validators.required
     ]);
 
-    this.streetFormControl = new FormControl(this.member.address.streetAddress, [
+    this.streetAddressFormControl = new FormControl(this.member.address.streetAddress, [
       Validators.required
     ]);
 
@@ -188,4 +190,74 @@ export class EditMemberDialogComponent {
       Validators.required
     ]);
   }
+
+  public checkRequiredFields(): boolean {
+    if (this.firstNameFormControl.invalid) {
+      this.snackBar.open('Kein korrekter Vorname.', 'Schließen',
+        {
+          duration: 3000,
+        }
+      );
+      return false;
+    } else if (this.lastNameFormControl.invalid) {
+      this.snackBar.open('Kein korrekter Nachname.', 'Schließen',
+        {
+          duration: 3000,
+        }
+      );
+      return false;
+    } else if (this.dateOfBirthFormControl.invalid) {
+      this.snackBar.open('Kein korrektes Geburtsdatum.', 'Schließen',
+        {
+          duration: 3000,
+        }
+      );
+      return false;
+    } else if (this.emailFormControl.invalid) {
+      this.snackBar.open('Keine korrekte Email.', 'Schließen',
+        {
+          duration: 3000,
+        }
+      );
+      return false;
+    } else if (this.postalCodeFormControl.invalid) {
+      this.snackBar.open('Keine korrekte Postleitzahl.', 'Schließen',
+        {
+          duration: 3000,
+        }
+      );
+      return false;
+    } else if (this.streetAddressFormControl.invalid) {
+      this.snackBar.open('Keinee korrekte Straße.', 'Schließen',
+        {
+          duration: 3000,
+        }
+      );
+      return false;
+    } else if (this.cityFormControl.invalid) {
+      this.snackBar.open('Keine korrekte Stadt.', 'Schließen',
+        {
+          duration: 3000,
+        }
+      );
+      return false;
+    } else if (this.bankingAccountFormControl.invalid) {
+      this.snackBar.open('Kein korrektes Bankkonto.', 'Schließen',
+        {
+          duration: 3000,
+        }
+      );
+      return false;
+    } else if (this.memberBankingAccountFormControl.invalid) {
+      this.snackBar.open('Kein korrektes Mitgliedskonto.', 'Schließen',
+        {
+          duration: 3000,
+        }
+      );
+      return false;
+    }
+    return true;
+  }
+
+
 }
