@@ -32,7 +32,7 @@ export class EditMemberDialogComponent {
   memberBankingAccountFormControl: FormControl;
 
   constructor(
-    public editMemberDialogRef: MatDialogRef<EditMemberDialogComponent>, public snackBar: MatSnackBar
+    public editMemberDialogRef: MatDialogRef<EditMemberDialogComponent>, public snackBar: MatSnackBar,
     @Inject(MAT_DIALOG_DATA) public member: Member
   ) {
     this.possibleOffices = [
