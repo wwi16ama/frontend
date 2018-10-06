@@ -40,14 +40,14 @@ describe('MemberService', () => {
 
     it('should trigger get request with correct url', () => {
       const testMemberData = new Member(
-        0, 'Peter', 'Zwegat', '1998-10-10', Gender.MALE , Status.ACTIVE,
+        'Peter', 'Zwegat', '1998-10-10', Gender.MALE , Status.ACTIVE,
         'peter.zwegat@gmx.de', new Address(
           12345, 'Dorfstraße 2', 'Mannheim'
         ), 'DE9876543210', true, '56789', [new Office(OfficeEnum.FLUGWART), new Office(OfficeEnum.IMBETRIEBSKONTROLLTURMARBEITEND)],
         [
           new Authorization(AuthorizationEnum.PPLA, '1998-10-10', '1998-10-10'),
           new Authorization(AuthorizationEnum.PPLB, '1998-10-10', '1998-10-10')
-        ]
+        ], 0
       );
       const id = '0';
       service.getMemberData(id).subscribe(memberData => {

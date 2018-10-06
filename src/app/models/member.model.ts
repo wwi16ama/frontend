@@ -1,6 +1,5 @@
 export class Member {
     constructor(
-        public id: number,
         public firstName: string,
         public lastName: string,
         public dateOfBirth: string,
@@ -12,20 +11,39 @@ export class Member {
         public admissioned: boolean,
         public memberBankingAccount: string,
         public offices: Office[],
-        public flightAuthorization: Authorization[]
+        public flightAuthorization: Authorization[],
+        public id?: number
     ) {}
 }
 
 export enum Gender {
     MALE = 'Männlich',
-    FEMALE = 'Weiblich',
-    OTHER = 'Divers'
+    FEMALE = 'Weiblich'
+}
+
+export namespace Gender {
+    export function getEnumString(enteredString: string): string {
+        switch (enteredString) {
+            case Gender.MALE: return 'MALE';
+            case Gender.FEMALE: return 'FEMALE';
+        }
+    }
 }
 
 export enum Status {
     ACTIVE = 'Aktiv',
     PASSIVE = 'Passiv',
     HONORARYMEMBER = 'Ehrenmitglied'
+}
+
+export namespace Status {
+    export function getEnumString(enteredString: string): string {
+        switch (enteredString) {
+            case Status.ACTIVE: return 'ACTIVE';
+            case Status.PASSIVE: return 'PASSIVE';
+            case Status.HONORARYMEMBER: return 'HONORARYMEMBER';
+        }
+    }
 }
 
 export class Address {
@@ -50,6 +68,18 @@ export enum OfficeEnum {
     IMBETRIEBSKONTROLLTURMARBEITEND = 'Kontrollturmwächter'
 }
 
+export namespace OfficeEnum {
+    export function getEnumString(enteredString: string): string {
+        switch (enteredString) {
+            case OfficeEnum.VORSTANDSVORSITZENDER: return 'VORSTANDSVORSITZENDER';
+            case OfficeEnum.SYSTEMADMINISTRATOR: return 'SYSTEMADMINISTRATOR';
+            case OfficeEnum.KASSIERER: return 'KASSIERER';
+            case OfficeEnum.FLUGWART: return 'FLUGWART';
+            case OfficeEnum.IMBETRIEBSKONTROLLTURMARBEITEND: return 'IMBETRIEBSKONTROLLTURMARBEITEND';
+        }
+    }
+}
+
 export class Authorization {
     constructor(
         public authorization: AuthorizationEnum,
@@ -64,4 +94,16 @@ export enum AuthorizationEnum {
     BZFI = 'BZFI',
     BZFII = 'BZFII',
     LEHRBEFUGNIS = 'Lehrbefugnis'
+}
+
+export namespace AuthorizationEnum {
+    export function getEnumString(enteredString: string): string {
+        switch (enteredString) {
+            case AuthorizationEnum.PPLA: return 'PPLA';
+            case AuthorizationEnum.PPLB: return 'PPLB';
+            case AuthorizationEnum.BZFI: return 'BFZI';
+            case AuthorizationEnum.BZFII: return 'BFZII';
+            case AuthorizationEnum.LEHRBEFUGNIS: return 'LEHRBEFUGNIS';
+        }
+    }
 }

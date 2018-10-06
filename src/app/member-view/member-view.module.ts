@@ -2,15 +2,26 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MemberViewComponent } from './member-view.component';
 
-import { MatDividerModule, MatListModule, MatCheckboxModule } from '@angular/material';
+import {
+  MatDividerModule, MatListModule, MatCheckboxModule,
+   MatButtonModule, MatSelectModule, MatInputModule, MatSnackBarModule
+  } from '@angular/material';
+
 import { MemberService } from './../services/member.service';
+import { MemberUpdateService } from './../services/member-update.service';
+import { EditMemberDialogModule } from './edit-member-dialog/edit-member-dialog.module';
 
 @NgModule({
   imports: [
+    EditMemberDialogModule,
     CommonModule,
     MatDividerModule,
     MatListModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    MatButtonModule,
+    MatSelectModule,
+    MatInputModule,
+    MatSnackBarModule
   ],
   declarations: [
     MemberViewComponent
@@ -19,7 +30,8 @@ import { MemberService } from './../services/member.service';
     MemberViewComponent
   ],
   providers: [
-    MemberService
+    MemberService,
+    MemberUpdateService
   ]
 })
 export class MemberViewModule { }

@@ -1,4 +1,5 @@
 <div class="member-view-wrapper">
+  <button mat-raised-button color="primary" class="edit-button" (click)="openEditMemberDialog()">Ändern</button>
   <mat-list *ngIf="member != null">
     <h3 mat-subheader>Übersicht</h3>
     <mat-list-item>
@@ -25,17 +26,43 @@
         <span>{{ member.dateOfBirth | date: 'dd.MM.yyyy' }}</span>
       </h4>
     </mat-list-item>
-    <mat-list-item>
-      <h4 mat-line>
+    <mat-list-item [ngClass]="{'input-margin': editMode}">
+      <h4 mat-line *ngIf="!editMode">
         <span class="spacing">Geschlecht:</span>
         <span>{{ member.gender }}</span>
       </h4>
+      <mat-form-field *ngIf="editMode" class="form-field">
+        <mat-select placeholder="Geschlecht" [(value)]="member.gender">
+          <mat-option value="Männlich">
+            Männlich
+          </mat-option>
+          <mat-option value="Weiblich">
+            Weiblich
+          </mat-option>
+          <mat-option value="Divers">
+            Divers
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
     </mat-list-item>
-    <mat-list-item>
-      <h4 mat-line>
+    <mat-list-item [ngClass]="{'input-margin': editMode}">
+      <h4 mat-line *ngIf="!editMode">
         <span class="spacing">Status:</span>
         <span>{{ member.status }}</span>
       </h4>
+      <mat-form-field *ngIf="editMode" class="form-field">
+        <mat-select placeholder="Status" [(value)]="member.status">
+          <mat-option value="Aktiv">
+            Aktiv
+          </mat-option>
+          <mat-option value="Passiv">
+            Passiv
+          </mat-option>
+          <mat-option value="Ehrenmitglied">
+            Ehrenmitglied
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
     </mat-list-item>
     <mat-list-item>
       <h4 mat-line>
@@ -91,7 +118,8 @@
     <mat-divider></mat-divider>
     <mat-list-item>
       <h4 mat-line>
-        <mat-checkbox [checked]="member.admissioned" disabled="disabled" labelPosition="before" MatCheckboxClickAction="noop">
+        <mat-checkbox [checked]="member.admissioned" [disabled]="!editMode" labelPosition="before"
+          MatCheckboxClickAction="noop">
           <span class="color-admissioned">Mustereinweisung:</span>
         </mat-checkbox>
       </h4>

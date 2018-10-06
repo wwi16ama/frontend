@@ -17,7 +17,7 @@ describe('MemberListComponent', () => {
   let component: MemberListComponent;
   let fixture: ComponentFixture<MemberListComponent>;
 
-  beforeEach(async(() => {
+  beforeEach((() => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule.withRoutes([
