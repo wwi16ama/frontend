@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { Member, Office, OfficeEnum, Authorization, AuthorizationEnum } from './../../models/member.model';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import { FormControl, Validators, NgForm} from '@angular/forms';
+import { FormControl, Validators} from '@angular/forms';
 
 
 @Component({
