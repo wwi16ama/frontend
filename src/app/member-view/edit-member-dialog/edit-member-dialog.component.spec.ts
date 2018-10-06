@@ -3,12 +3,11 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { EditMemberDialogComponent } from './edit-member-dialog.component';
 import { Member, Office, OfficeEnum, Authorization, AuthorizationEnum, Gender, Status, Address } from './../../models/member.model';
 
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-
-import {
+import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar,
   MatDialogModule, MatInputModule, MatButtonModule,
   MatExpansionModule, MatTabsModule, MatDatepickerModule,
-  MatNativeDateModule, MatSelectModule, MatCheckboxModule
+  MatNativeDateModule, MatSelectModule, MatCheckboxModule,
+  MatSnackBarModule
 } from '@angular/material';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -44,6 +43,7 @@ describe('EditMemberDialogComponent', () => {
         MatNativeDateModule,
         MatSelectModule,
         MatCheckboxModule,
+        MatSnackBarModule,
         FormsModule,
         ReactiveFormsModule,
         BrowserAnimationsModule
@@ -51,7 +51,8 @@ describe('EditMemberDialogComponent', () => {
       declarations: [EditMemberDialogComponent],
       providers: [
         { provide: MatDialogRef, useValue: {} },
-        { provide: MAT_DIALOG_DATA, useValue: member }
+        { provide: MAT_DIALOG_DATA, useValue: member },
+        { provide: MatSnackBar, useValue: {} },
       ]
 
     })
