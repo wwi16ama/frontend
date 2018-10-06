@@ -20,8 +20,8 @@ export class EditMemberDialogComponent {
   addNewAuthorizationPossible: boolean;
 
   // FormControls for input validation
-  nameFormControl: FormControl;
   firstNameFormControl: FormControl;
+  lastNameFormControl: FormControl;
   birthdayFormControl: FormControl;
   sexFormControl: FormControl;
   statusFormControl: FormControl;
@@ -72,7 +72,7 @@ export class EditMemberDialogComponent {
 
   public saveMemberData(): void {
     this.member.firstName = this.firstNameFormControl.value;
-    this.member.lastName = this.nameFormControl.value;
+    this.member.lastName = this.lastNameFormControl.value;
     this.member.dateOfBirth = this.formatDate(this.dateOfBirth.value.toString());
     this.member.gender = this.sexFormControl.value;
     this.member.status = this.statusFormControl.value;
@@ -149,7 +149,7 @@ export class EditMemberDialogComponent {
       Validators.required,
     ]);
 
-    this.nameFormControl = new FormControl(this.member.lastName, [
+    this.lastNameFormControl = new FormControl(this.member.lastName, [
       Validators.required,
     ]);
 

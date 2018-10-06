@@ -11,10 +11,10 @@
             <mat-error *ngIf="firstNameFormControl.hasError('pattern')">Der Vorname darf keine Zahlen enthalten</mat-error>
           </mat-form-field>
           <mat-form-field class="input-width">
-            <input matInput placeholder="Nachname" minlength="3" pattern="[a-zA-Z_äÄöÖüÜß]+" ng-pattern-restrict [formControl]="nameFormControl" required>
-            <mat-error *ngIf="nameFormControl.hasError('required')">Der Name ist erforderlich</mat-error>
-            <mat-error *ngIf="nameFormControl.hasError('minlength')">Der Name muss mindestens 3 Zeichen lang sein</mat-error>
-            <mat-error *ngIf="nameFormControl.hasError('pattern')">Der Name darf keine Zahlen enthalten</mat-error>
+            <input matInput placeholder="Nachname" minlength="3" pattern="[a-zA-Z_äÄöÖüÜß]+" ng-pattern-restrict [formControl]="lastNameFormControl" required>
+            <mat-error *ngIf="lastNameFormControl.hasError('required')">Der Name ist erforderlich</mat-error>
+            <mat-error *ngIf="lastNameFormControl.hasError('minlength')">Der Name muss mindestens 3 Zeichen lang sein</mat-error>
+            <mat-error *ngIf="lastNameFormControl.hasError('pattern')">Der Name darf keine Zahlen enthalten</mat-error>
           </mat-form-field>
           <mat-form-field class="input-width">
             <input [formControl]="dateOfBirth" matInput [matDatepicker]="dateOfBirthPicker" placeholder="Geburtstag" [formControl]="birthdayFormControl" required>
