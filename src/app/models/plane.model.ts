@@ -1,10 +1,10 @@
 export class Plane {
     constructor(
-        public id: number,
         public number: string,
         public name: string,
         public position: string,
-        public neededAuthorization: neededAuthorizationEnum
+        public neededAuthorization: neededAuthorizationEnum,
+        public id?: number
     ) { }
 }
 
