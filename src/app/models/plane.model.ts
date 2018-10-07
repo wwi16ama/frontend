@@ -5,11 +5,10 @@ export class Plane {
         public name: string,
         public position: string,
         public neededAuthorization: neededAuthorizationEnum
-    ) {}
+    ) { }
 }
 
 export enum neededAuthorizationEnum {
-    PPLB = 'PPL-B',
     PPLA = 'PPL-A',
     PPLB = 'PPL-B',
     BZFI = 'BZF-I',
