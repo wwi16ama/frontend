@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 
-import { AppRoutingModule } from './app-routing.module'
+import { AppRoutingModule } from './app-routing.module';
 import { MemberListModule } from './member-list/member-list.module';
 import { MemberViewModule } from './member-view/member-view.module';
 import { PlaneListModule } from './plane-list/plane-list.module';
