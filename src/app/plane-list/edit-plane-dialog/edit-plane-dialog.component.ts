@@ -77,5 +77,4 @@ export class EditPlaneDialogComponent {
     return true;
   }
 
-
 }

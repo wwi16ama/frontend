@@ -2,20 +2,14 @@
     <h1 mat-dialog-title>{{plane.name}} bearbeiten.</h1>
     <div mat-dialog-content>
         <mat-form-field class="input-width">
-            <input matInput placeholder="Kennung" minlength="3" pattern="[a-zA-Z_äÄöÖüÜß]+" ng-pattern-restrict
+            <input matInput placeholder="Kennung"
                 [formControl]="numberFormControl" required>
-            <mat-error *ngIf="numberFormControl.hasError('required')">Der Vorname ist erforderlich</mat-error>
-            <mat-error *ngIf="numberFormControl.hasError('minlength')">Der Vorname muss mindestens 3 Zeichen lang
-                sein</mat-error>
-            <mat-error *ngIf="numberFormControl.hasError('pattern')">Der Vorname darf keine Zahlen enthalten</mat-error>
+            <mat-error *ngIf="numberFormControl.hasError('required')">Die Kennung ist erforderlich</mat-error>
         </mat-form-field>
         <mat-form-field class="input-width">
-            <input matInput placeholder="Name" minlength="3" pattern="[a-zA-Z_äÄöÖüÜß]+" ng-pattern-restrict
+            <input matInput placeholder="Name"
                 [formControl]="nameFormControl" required>
-            <mat-error *ngIf="nameFormControl.hasError('required')">Der Vorname ist erforderlich</mat-error>
-            <mat-error *ngIf="nameFormControl.hasError('minlength')">Der Vorname muss mindestens 3 Zeichen lang
-                sein</mat-error>
-            <mat-error *ngIf="nameFormControl.hasError('pattern')">Der Vorname darf keine Zahlen enthalten</mat-error>
+            <mat-error *ngIf="nameFormControl.hasError('required')">Der Name ist erforderlich</mat-error>
         </mat-form-field>
         <mat-form-field class="input-width">
                 <mat-select placeholder="Position" [formControl]="positionFormControl" required>
