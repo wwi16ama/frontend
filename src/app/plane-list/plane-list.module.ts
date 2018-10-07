@@ -1,14 +1,15 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatCardModule, MatButtonModule} from '@angular/material';
 import { PlaneListComponent } from './plane-list.component';
 import { PlaneListService } from './../services/planelist.service';
-import { MatIconModule } from '@angular/material/icon';
+import { EditPlaneDialogModule } from './edit-plane-dialog/edit-plane-dialog.module';
 
+import { MatCardModule, MatButtonModule, MatIconModule} from '@angular/material';
 
 @NgModule({
   imports: [
     CommonModule,
+    EditPlaneDialogModule,
     MatCardModule,
     MatButtonModule,
     MatIconModule
