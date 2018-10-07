@@ -29,7 +29,12 @@ export class EditPlaneDialogComponent {
   }
 
   public saveMemberData(): void {
+    if (this.checkRequiredFields) {
+      this.plane.number = this.numberFormControl.value;
+      this.plane.name = this.nameFormControl.value;
+      this.plane.position = this.positionFormControl.value;
       this.editPlaneDialogRef.close(this.plane);
+    }
   }
 
   public initializeFormControls(): void {
@@ -44,6 +49,32 @@ export class EditPlaneDialogComponent {
     this.positionFormControl = new FormControl(this.plane.position, [
       Validators.required
     ]);
+  }
+
+  public checkRequiredFields(): boolean {
+    if (this.numberFormControl.invalid) {
+      this.snackBar.open('Keine korrekte Kennung.', 'Schließen',
+        {
+          duration: 3000,
+        }
+      );
+      return false;
+    } else if (this.nameFormControl.invalid) {
+      this.snackBar.open('Kein korrekter Name.', 'Schließen',
+        {
+          duration: 3000,
+        }
+      );
+      return false;
+    } else if (this.positionFormControl.invalid) {
+      this.snackBar.open('Keine Position angegeben.', 'Schließen',
+        {
+          duration: 3000,
+        }
+      );
+      return false;
+    }
+    return true;
   }
 
 
