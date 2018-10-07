@@ -22,7 +22,6 @@ export class PlaneListComponent implements OnInit {
         for (let i = 0; i < this.planes.length; i++) {
           this.planes[i].neededAuthorization = neededAuthorizationEnum[this.planes[i].neededAuthorization];
         }
-        console.log(this.planes);
       }
     );
   }
