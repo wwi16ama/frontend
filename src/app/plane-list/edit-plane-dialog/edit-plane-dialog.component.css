@@ -1,0 +1,20 @@
+@media (max-width: 1000px) {
+    .dialog-wrapper {
+        width: 80vw;
+        margin-top: -24px;
+    }
+}
+
+@media (max-width: 768px) {
+    .dialog-wrapper {
+        width: 100%;
+        margin-top: -24px;
+    }
+}
+
+.input-width {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+    display: block;
+}

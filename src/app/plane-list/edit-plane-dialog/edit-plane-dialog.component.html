@@ -1,8 +1,32 @@
 <div class="dialog-wrapper">
-    <div mat-dialog-content>  
+    <h1 mat-dialog-title>{{plane.name}} bearbeiten.</h1>
+    <div mat-dialog-content>
+        <mat-form-field class="input-width">
+            <input matInput placeholder="Kennung" minlength="3" pattern="[a-zA-Z_äÄöÖüÜß]+" ng-pattern-restrict
+                [formControl]="numberFormControl" required>
+            <mat-error *ngIf="numberFormControl.hasError('required')">Der Vorname ist erforderlich</mat-error>
+            <mat-error *ngIf="numberFormControl.hasError('minlength')">Der Vorname muss mindestens 3 Zeichen lang
+                sein</mat-error>
+            <mat-error *ngIf="numberFormControl.hasError('pattern')">Der Vorname darf keine Zahlen enthalten</mat-error>
+        </mat-form-field>
+        <mat-form-field class="input-width">
+            <input matInput placeholder="Name" minlength="3" pattern="[a-zA-Z_äÄöÖüÜß]+" ng-pattern-restrict
+                [formControl]="nameFormControl" required>
+            <mat-error *ngIf="nameFormControl.hasError('required')">Der Vorname ist erforderlich</mat-error>
+            <mat-error *ngIf="nameFormControl.hasError('minlength')">Der Vorname muss mindestens 3 Zeichen lang
+                sein</mat-error>
+            <mat-error *ngIf="nameFormControl.hasError('pattern')">Der Vorname darf keine Zahlen enthalten</mat-error>
+        </mat-form-field>
+        <mat-form-field class="input-width">
+                <mat-select placeholder="Position" [formControl]="positionFormControl" required>
+                  <mat-option value="Halle 1">Halle 1</mat-option>
+                  <mat-option value="Halle 2">Halle 2</mat-option>
+                </mat-select>
+                <mat-error *ngIf="positionFormControl.hasError('required')">Die Position ist erforderlich</mat-error>
+              </mat-form-field>
     </div>
     <div mat-dialog-actions>
-      <button mat-button (click)="onNoClick()">Abbrechen</button>
-      <button mat-raised-button (click)="savePlaneData()" color="primary">Speichern</button>
+        <button mat-button (click)="onNoClick()">Abbrechen</button>
+        <button mat-raised-button (click)="savePlaneData()" color="primary">Speichern</button>
     </div>
-  </div>
+</div>
