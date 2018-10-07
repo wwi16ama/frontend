@@ -2,11 +2,11 @@
 <mat-card class="card" *ngFor="let plane of planes" [ngSwitch]="plane.number">
   <mat-card-header>
     <div mat-card-avatar class="header-image">
-        <mat-icon>flight</mat-icon>
+      <mat-icon>flight</mat-icon>
     </div>
     <mat-card-title>{{plane.name}}</mat-card-title>
   </mat-card-header>
-  
+
   <img mat-card-image *ngSwitchCase="'D-ERFI'" src="./../../assets/Flugzeuge/Motorflugzeug1.jpg" alt="Photo of {{plane.name}}">
   <img mat-card-image *ngSwitchCase="'D-EJEK'" src="./../../assets/Flugzeuge/Motorflugzeug3.jpg" alt="Photo of {{plane.name}}">
   <img mat-card-image *ngSwitchCase="'D-KNIF'" src="./../../assets/Flugzeuge/Segelflugzeug2.jpg" alt="Photo of {{plane.name}}">
@@ -18,7 +18,7 @@
       Kennung: {{plane.number}}
     </p>
     <p>
-        Ort: {{plane.position}}
+      Ort: {{plane.position}}
     </p>
     <p>
       Lizenz: {{plane.neededAuthorization}}
