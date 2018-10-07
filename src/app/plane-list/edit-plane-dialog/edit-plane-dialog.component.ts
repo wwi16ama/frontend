@@ -29,7 +29,7 @@ export class EditPlaneDialogComponent {
   }
 
   public savePlaneData(): void {
-    if (this.checkRequiredFields) {
+    if (this.checkRequiredFields()) {
       this.plane.number = this.numberFormControl.value;
       this.plane.name = this.nameFormControl.value;
       this.plane.position = this.positionFormControl.value;
