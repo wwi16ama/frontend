@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PlaneListComponent } from './plane-list.component';
+import { MatCardModule, MatButtonModule, MatIconModule} from '@angular/material';
 
 describe('PlaneListComponent', () => {
   let component: PlaneListComponent;
@@ -8,7 +9,8 @@ describe('PlaneListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PlaneListComponent ]
+      declarations: [ PlaneListComponent ],
+      imports: [ MatIconModule, MatCardModule, MatButtonModule ]
     })
     .compileComponents();
   }));
