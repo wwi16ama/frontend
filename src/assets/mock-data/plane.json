@@ -26,5 +26,12 @@
         "name": "Diamond HK36 Dimona",
         "position": "Halle 2",
         "neededAuthorization": "PPLB"
+    },
+    {
+        "id": 4,
+        "number": "D-MAHD",
+        "name": "Northrop B-2",
+        "position": "Halle 1",
+        "neededAuthorization": "BFZ-II"
     }
 ]
