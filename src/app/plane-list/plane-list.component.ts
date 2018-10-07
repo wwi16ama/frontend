@@ -4,6 +4,7 @@ import { Plane, neededAuthorizationEnum } from './../models/plane.model';
 
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { EditPlaneDialogComponent } from './edit-plane-dialog/edit-plane-dialog.component';
+import { PlaneUpdateService } from '../services/plane-update.service';
 
 @Component({
   selector: 'app-plane-list',
@@ -14,7 +15,8 @@ export class PlaneListComponent implements OnInit {
 
   planes: Plane[];
 
-  constructor(public planelistService: PlaneListService, public editPlaneDialog: MatDialog) {
+  constructor(public planelistService: PlaneListService, public editPlaneDialog: MatDialog,
+    public planeUpdateService: PlaneUpdateService, public snackBar: MatSnackBar) {
     this.planes = [];
   }
 
@@ -46,7 +48,47 @@ export class PlaneListComponent implements OnInit {
   }
 
   public savePlane(plane: Plane): void {
+    const newPlaneData = JSON.parse(JSON.stringify(plane));
+    plane = this.formatStringToEnum(plane);
+    this.planeUpdateService.updatePlaneData(plane).subscribe(
+      (response) => {
+        if (response.status === 204) {
+          this.snackBar.open('Änderungen erfolgreich gespeichert.', 'Schließen',
+            {
+              duration: 3000,
+            }
+          );
+          // this.planes[this.planes.findIndex(newPlaneData)] = newPlaneData;
+        }
+      },
+      error => {
+        if (error.status === 400) {
+          this.snackBar.open('Pflichtfelder nicht ausgefüllt', 'Schließen',
+            {
+              duration: 4000,
+            }
+          );
+        } else if (error.status === 404) {
+          this.snackBar.open('FLugzeug nicht gefunden.', 'Schließen',
+            {
+              duration: 4000,
+            }
+          );
+        } else if (error.status === 0) {
+          this.snackBar.open('Es konnte keine Verbindung zum Server aufgebaut werden', 'Schließen',
+            {
+              duration: 4000,
+            }
+          );
+        }
+      }
+    );
 
+  }
+
+  public formatStringToEnum(plane: any): Plane {
+    plane.neededAuthorizationEnum = neededAuthorizationEnum.getEnumString(plane.neededAuthorizationEnum);
+    return plane;
   }
 
 }
