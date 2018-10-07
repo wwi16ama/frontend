@@ -49,6 +49,7 @@ export class PlaneListComponent implements OnInit {
 
   public savePlane(plane: Plane): void {
     const newPlaneData = JSON.parse(JSON.stringify(plane));
+    const planeId = plane.id;
     plane = this.formatStringToEnum(plane);
     this.planeUpdateService.updatePlaneData(plane).subscribe(
       (response) => {
@@ -58,7 +59,10 @@ export class PlaneListComponent implements OnInit {
               duration: 3000,
             }
           );
-          this.planes[this.planes.findIndex(newPlaneData)] = newPlaneData;
+          const planeIndex = this.findPlaneIndex(planeId);
+          if (planeIndex !== -1) {
+            this.planes[planeIndex] = newPlaneData;
+          }
         }
       },
       error => {
@@ -89,6 +93,15 @@ export class PlaneListComponent implements OnInit {
   public formatStringToEnum(plane: any): Plane {
     plane.neededAuthorizationEnum = neededAuthorizationEnum.getEnumString(plane.neededAuthorizationEnum);
     return plane;
+  }
+
+  public findPlaneIndex(planeId: number): number {
+    for (let i = 0; i < this.planes.length; i++) {
+      if (this.planes[i].id === planeId) {
+        return i;
+      }
+    }
+    return -1;
   }
 
 }
