@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { MemberListModule } from './member-list/member-list.module';
 import { MemberViewModule } from './member-view/member-view.module';
+import { PlaneListModule } from './plane-list/plane-list.module';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -12,7 +13,8 @@ describe('AppComponent', () => {
       imports: [
         AppRoutingModule,
         MemberListModule,
-        MemberViewModule
+        MemberViewModule,
+        PlaneListModule
       ],
       declarations: [
         AppComponent

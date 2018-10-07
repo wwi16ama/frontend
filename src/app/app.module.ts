@@ -7,16 +7,18 @@ import { AppRoutingModule } from './app-routing.module';
 import { MemberListModule } from './member-list/member-list.module';
 import { MemberViewModule } from './member-view/member-view.module';
 import { EditMemberDialogComponent } from './member-view/edit-member-dialog/edit-member-dialog.component';
+import { PlaneListModule } from './plane-list/plane-list.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MemberListModule,
-    MemberViewModule
+    MemberViewModule,
+    PlaneListModule
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'ger' }
