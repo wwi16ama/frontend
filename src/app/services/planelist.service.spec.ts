@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { PlanelistService } from './planelist.service';
+import { PlaneListService } from './planelist.service';
 
 describe('PlanelistService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: PlanelistService = TestBed.get(PlanelistService);
+    const service: PlaneListService = TestBed.get(PlaneListService);
     expect(service).toBeTruthy();
   });
 });
