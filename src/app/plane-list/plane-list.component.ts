@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PlaneListService } from './../services/planelist.service';
-import { Plane, neededAuthorization } from './../models/plane.model';
+import { Plane, neededAuthorizationEnum } from './../models/plane.model';
 
 @Component({
   selector: 'app-plane-list',
@@ -20,7 +20,7 @@ export class PlaneListComponent implements OnInit {
       (planedata: Plane[]) => {
         this.planes = planedata;
         for (let i = 0; i < this.planes.length; i++) {
-          this.planes[i].neededAuthorization = neededAuthorization[this.planes[i].neededAuthorization];
+          this.planes[i].neededAuthorization = neededAuthorizationEnum[this.planes[i].neededAuthorization];
         }
         console.log(this.planes);
       }
