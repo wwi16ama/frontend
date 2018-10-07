@@ -10,7 +10,7 @@ export class PlaneUpdateService {
 
   public updatePlaneData(planeData: Plane): Observable<any> {
     const id = planeData.id;
-    const url = 'http://localhost:3000/planes' + id;
+    const url = 'http://localhost:3000/plane' + id;
     delete planeData['id'];
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     return this.httpClient.put<any>(
