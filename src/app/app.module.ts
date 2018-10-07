@@ -8,6 +8,7 @@ import { MemberListModule } from './member-list/member-list.module';
 import { MemberViewModule } from './member-view/member-view.module';
 import { EditMemberDialogComponent } from './member-view/edit-member-dialog/edit-member-dialog.component';
 import { PlaneListModule } from './plane-list/plane-list.module';
+import { EditPlaneDialogComponent } from './plane-list/edit-plane-dialog/edit-plane-dialog.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,8 @@ import { PlaneListModule } from './plane-list/plane-list.module';
   ],
   bootstrap: [AppComponent],
   entryComponents: [
-    EditMemberDialogComponent
+    EditMemberDialogComponent,
+    EditPlaneDialogComponent
   ]
 })
 export class AppModule { }
