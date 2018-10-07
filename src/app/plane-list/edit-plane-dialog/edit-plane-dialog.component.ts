@@ -16,4 +16,8 @@ export class EditPlaneDialogComponent {
     @Inject(MAT_DIALOG_DATA) public plane: Plane
   ) {  }
 
+  public saveMemberData(): void {
+      this.editPlaneDialogRef.close(this.plane);
+  }
+
 }
