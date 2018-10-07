@@ -58,7 +58,7 @@ export class PlaneListComponent implements OnInit {
               duration: 3000,
             }
           );
-          // this.planes[this.planes.findIndex(newPlaneData)] = newPlaneData;
+          this.planes[this.planes.findIndex(newPlaneData)] = newPlaneData;
         }
       },
       error => {
@@ -69,7 +69,7 @@ export class PlaneListComponent implements OnInit {
             }
           );
         } else if (error.status === 404) {
-          this.snackBar.open('FLugzeug nicht gefunden.', 'Schließen',
+          this.snackBar.open('Flugzeug nicht gefunden.', 'Schließen',
             {
               duration: 4000,
             }
