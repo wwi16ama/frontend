@@ -45,7 +45,6 @@ export class MemberViewComponent implements OnInit {
   }
 
   public saveMember(member: Member): void {
-    console.log(member);
     const newMemberData = JSON.parse(JSON.stringify(member));
     member = this.formatStringToEnum(member);
     this.memberUpdateService.updateMemberData(member).subscribe(
