@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
-import { MatTableDataSource } from '@angular/material';
+import { MatTableDataSource, MatSort } from '@angular/material';
 import { ListMember } from './../models/list-member.model';
 import { MemberListService } from './../services/memberlist.service';
 import { Router } from '@angular/router';
@@ -11,6 +11,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./member-list.component.css']
 })
 export class MemberListComponent implements OnInit {
+
+  @ViewChild(MatSort) sort: MatSort;
 
   displayedColumns: string[];
   dataSource: any;
@@ -23,6 +25,7 @@ export class MemberListComponent implements OnInit {
     this.memberListService.getMemberListData().subscribe(
       (data: ListMember[]) => {
         this.dataSource = new MatTableDataSource(data);
+        this.dataSource.sort = this.sort;
       }
     );
   }
