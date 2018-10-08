@@ -2,18 +2,17 @@
   <mat-dialog-content>
   <mat-tab-group backgroundColor="primary" color="accent" [dynamicHeight]="true">
     <mat-tab label="Übersicht">
-      <form [formGroup]="uebersicht">
         <div class="tab-content">
           <mat-form-field class="input-width">
             <input type="text" matInput [ngModel]="member?.lastName" placeholder="Name" id="name" minlength="3" 
-            pattern="[a-zA-Z_äÄöÖüÜß]+" ng-pattern-restrict [formControl]="nameFormControl" required>
-            <mat-error *ngIf="nameFormControl.hasError('required')">
+            pattern="[a-zA-Z_äÄöÖüÜß]+" ng-pattern-restrict [formControl]="lastNameFormControl" required>
+            <mat-error *ngIf="lastNameFormControl.hasError('required')">
               Der Name ist <strong>erforderlich</strong>
             </mat-error>
-            <mat-error *ngIf="nameFormControl.hasError('minlength')">
+            <mat-error *ngIf="lastNameFormControl.hasError('minlength')">
               Der Name muss mindestens 3 Zeichen lang sein
             </mat-error>
-            <mat-error *ngIf="nameFormControl.hasError('pattern')">
+            <mat-error *ngIf="lastNameFormControl.hasError('pattern')">
               Der Name darf keine Zahlen enthalten
             </mat-error>
           </mat-form-field>
@@ -31,10 +30,10 @@
             </mat-error>
           </mat-form-field>
           <mat-form-field class="input-width">
-            <input matInput [matDatepicker]="birthday" [ngModel]="member?.dateOfBirth" placeholder="Geburtstag" [formControl]="birthdayFormControl" required>
+            <input matInput [matDatepicker]="birthday" [ngModel]="member?.dateOfBirth" placeholder="Geburtstag" [formControl]="dateOfBirthFormControl" required>
             <mat-datepicker-toggle matSuffix [for]="birthday"></mat-datepicker-toggle>
             <mat-datepicker #birthday></mat-datepicker>
-            <mat-error *ngIf="birthdayFormControl.hasError('required')">
+            <mat-error *ngIf="dateOfBirthFormControl.hasError('required')">
               Der Geburtstag ist <strong>erforderlich</strong>
             </mat-error>
           </mat-form-field>                
@@ -65,20 +64,9 @@
             </mat-error>
           </mat-form-field>
         </div>
-      </form>
     </mat-tab>
     <mat-tab label="Adresse">
-      <form [formGroup]="adresse">
         <div class="tab-content">
-            <mat-form-field class="input-width">
-              <!---muss noch gemappt werden-->
-              <mat-select placeholder="Bundesland" id="state" [formControl]="stateFormControl" required>
-                <mat-option *ngFor="let sta of state" [value]="sta">{{sta}}</mat-option>
-              </mat-select>
-              <mat-error *ngIf="stateFormControl.hasError('required')">
-                  Das Bundesland ist <strong>erforderlich</strong>
-              </mat-error>
-            </mat-form-field>
             <mat-form-field class="input-width">
               <input type="text" matInput [ngModel]="member?.addresse.postalCode" placeholder="PLZ" id="postalCode" myNumberOnly #postalCode maxlength="5" [formControl]="postalCodeFormControl" required>
               <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
@@ -100,19 +88,17 @@
               </mat-error>
             </mat-form-field>
             <mat-form-field class="input-width">
-              <input type="text" [ngModel]="member?.addresse.streetAddresse" matInput placeholder="Straße" id="street" minlength="3" [formControl]="streetFormControl" required>
-              <mat-error *ngIf="streetFormControl.hasError('required')">
+              <input type="text" [ngModel]="member?.addresse.streetAddresse" matInput placeholder="Straße" id="street" minlength="3" [formControl]="streetAddressFormControl" required>
+              <mat-error *ngIf="streetAddressFormControl.hasError('required')">
                 Die Straße ist <strong>erforderlich</strong>
               </mat-error>
-              <mat-error *ngIf="streetFormControl.hasError('minlength')">
+              <mat-error *ngIf="streetAddressFormControl.hasError('minlength')">
                   Die Straße muss mindestens 3 Zeichen lang sein
               </mat-error>
             </mat-form-field>
           </div>
-      </form>
     </mat-tab>
     <mat-tab label="Kundenkonto">
-      <form [formGroup]="kundenkonto">
         <div class="tab-content">
           <mat-form-field class="input-width">
             <input type="text" [ngModel]="member?.bankingAccount" matInput placeholder="Bankkonto" ng-model="iban" id="bankingAccount" required [formControl]="bankingAccountFormControl">
@@ -122,7 +108,6 @@
             </mat-error>
           </mat-form-field>
         </div>
-      </form>
     </mat-tab>
     <mat-tab label="Ämter">
       <div class="tab-content">
@@ -134,26 +119,31 @@
       </div>
     </mat-tab>
     <mat-tab label="Flugberechtigung">
-        <form [formGroup]="interneInfos">
           <div class="tab-content">
             <div class="user-div">
-              <mat-form-field class="input-width">
-                <mat-select placeholder="Flugberechtigung" [ngModel]="member?.flightAuthorization" id="flugberechtigung" multiple>
-                  <mat-option *ngFor="let flu of flugberechtigung" [value]="flu">{{flu}}</mat-option>
-                </mat-select>
-              </mat-form-field>
-            </div>
-            <mat-checkbox id="mustereinweisung">Mustereinweisung wurde durchgeführt</mat-checkbox>
-            <!--<div class="user-div">
+              <ng-container *ngIf="addAuthorization">
                 <mat-form-field>
-                  <input matInput [matDatepicker]="gueltigkeit" placeholder="Gültigkeit"
-                  matTooltip="Gültigkeit der Flugberechtigung" required>
-                  <mat-datepicker-toggle matSuffix [for]="gueltigkeit"></mat-datepicker-toggle>
-                  <mat-datepicker #gueltigkeit></mat-datepicker>
-              </mat-form-field>
-            </div>-->
+                  <mat-select placeholder="Flugberechtigung">
+                    <ng-container *ngFor="let authorization of possibleFlightAuthorizationNames">
+                      <mat-option *ngIf="authorization.showNew">
+                        {{ authorization.authorization }}
+                      </mat-option>
+                    </ng-container>
+                  </mat-select>
+                </mat-form-field>
+                <mat-form-field class="half-input-width new-authorization-input spacing-right">
+                  <input [formControl]="newAuthorization.expires" matInput [matDatepicker]="newFlightAuthorizationsDate"
+                    placeholder="Gültig bis">
+                  <mat-datepicker-toggle matSuffix [for]="newFlightAuthorizationsDate"></mat-datepicker-toggle>
+                  <mat-datepicker #newFlightAuthorizationsDate></mat-datepicker>
+                </mat-form-field>
+              </ng-container>
+            </div>
+            <button *ngIf="addNewAuthorizationPossible" class="add-button" mat-raised-button (click)="toggleAddNewAuthorizationButton()">Hinzufügen</button>
+            <!-- <mat-checkbox [(ngModel)]="member.admissioned" labelPosition="after">
+              <span class="color-admissioned">Mustereinweisung</span>
+            </mat-checkbox> -->
           </div>
-        </form>
       </mat-tab>
     </mat-tab-group>
   </mat-dialog-content>
