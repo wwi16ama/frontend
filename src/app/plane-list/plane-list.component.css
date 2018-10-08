@@ -1,14 +1,19 @@
 .card {
     max-width: 400px;
     margin: 20px;
-    float: left;
-   }
+}
   
 .header-image {
     background-size: cover;
     position: relative;
     top: 50%;
     transform: translateY(-4px);
-  }
+}
 
-
+.cards-wrapper {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+}
