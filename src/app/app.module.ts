@@ -10,6 +10,8 @@ import { EditMemberDialogComponent } from './member-view/edit-member-dialog/edit
 import { PlaneListModule } from './plane-list/plane-list.module';
 import { EditPlaneDialogComponent } from './plane-list/edit-plane-dialog/edit-plane-dialog.component';
 import { CreditListModule } from './credit-list/credit-list.module';
+import { SidebarModule } from './sidebar/sidebar.module';
+
 
 @NgModule({
   declarations: [
@@ -22,6 +24,7 @@ import { CreditListModule } from './credit-list/credit-list.module';
     MemberViewModule,
     PlaneListModule,
     CreditListModule
+    SidebarModule
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'ger' }

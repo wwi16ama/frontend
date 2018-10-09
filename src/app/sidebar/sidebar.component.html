@@ -1,3 +1,12 @@
-<p>
-  sidebar works!
-</p>
+<mat-sidenav-container>
+  <mat-sidenav #sidenav mode="side" >
+      <button routerLink='memberlist'>Mitgliederliste</button> <br>
+      <button routerLink='planelist'>Flugzeugliste</button> <br>
+      <button>Preisliste</button> <br>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <button mat-button (click)="sidenav.toggle()" id='menubutton'>
+      <i class="material-icons">menu</i>
+    </button>
+  </mat-sidenav-content>
+</mat-sidenav-container>
