@@ -9,6 +9,7 @@ import { MemberViewModule } from './member-view/member-view.module';
 import { EditMemberDialogComponent } from './member-view/edit-member-dialog/edit-member-dialog.component';
 import { PlaneListModule } from './plane-list/plane-list.module';
 import { EditPlaneDialogComponent } from './plane-list/edit-plane-dialog/edit-plane-dialog.component';
+import { ExpensingBillListModule } from './expensing-bill-list/expensing-bill-list.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { EditPlaneDialogComponent } from './plane-list/edit-plane-dialog/edit-pl
     AppRoutingModule,
     MemberListModule,
     MemberViewModule,
-    PlaneListModule
+    PlaneListModule,
+    ExpensingBillListModule
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'ger' }
