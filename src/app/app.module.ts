@@ -14,6 +14,7 @@ import { SiteNavigationModule } from './site-navigation/site-navigation.module';
 import { CreditListModule } from './credit-list/credit-list.module';
 import { AccountModule } from './account/account.module';
 import { DeletePlaneDialogComponent } from './plane-list/delete-plane-dialog/delete-plane-dialog.component';
+import { ExpensingBillListModule } from './expensing-bill-list/expensing-bill-list.module';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { DeletePlaneDialogComponent } from './plane-list/delete-plane-dialog/del
     SiteNavigationModule,
     CreditListModule,
     AccountModule
+    ExpensingBillListModule
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'ger' }
