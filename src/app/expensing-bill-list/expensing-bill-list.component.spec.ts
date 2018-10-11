@@ -1,7 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ExpensingBillListComponent } from './expensing-bill-list.component';
-import {MatTableModule, MatButtonModule } from '@angular/material';
+import {MatTableModule, MatButtonModule, MatSortModule } from '@angular/material';
+import {ExpensingbillService} from './../services/expensingbill.service';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('ExpensingBillListComponent', () => {
   let component: ExpensingBillListComponent;
@@ -10,7 +13,10 @@ describe('ExpensingBillListComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ExpensingBillListComponent ],
-      imports: [MatTableModule, MatButtonModule]
+      imports: [MatTableModule, MatButtonModule, MatSortModule, BrowserAnimationsModule, HttpClientModule],
+      providers: [
+        ExpensingbillService
+      ]
     })
     .compileComponents();
   }));
