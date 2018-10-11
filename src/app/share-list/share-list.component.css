@@ -1,0 +1,17 @@
+ table {
+  width: calc(100% - 16px);
+  margin: 8px;
+  box-align: center;
+}
+
+.buttons {
+  position: relative;  
+  margin-top: 20px;
+  margin-left: 10px;
+
+}
+
+.h1 {
+  position: relative;
+  margin-left: 10px;
+}

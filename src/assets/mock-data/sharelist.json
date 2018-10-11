@@ -1,0 +1,15 @@
+[
+    {
+        "memberStatus": "Aktives Mitglied",
+        "memberShare": "220€"
+    },
+    {
+        "memberStatus": "Aktives Mitglied unter 20 Jahren",
+        "memberShare": "150€"
+    },
+
+    {
+        "memberStatus": "Passives Mitglied",
+        "memberShare": "80€"
+    }
+]
