@@ -11,6 +11,7 @@ import { PlaneListModule } from './plane-list/plane-list.module';
 import { EditPlaneDialogComponent } from './plane-list/edit-plane-dialog/edit-plane-dialog.component';
 import { SiteNavigationModule } from './site-navigation/site-navigation.module';
 import { CreditListModule } from './credit-list/credit-list.module';
+import { ShareListModule } from './share-list/share-list.module';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { CreditListModule } from './credit-list/credit-list.module';
     PlaneListModule,
     SiteNavigationModule,
     CreditListModule
+    ShareListModule
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'ger' }
