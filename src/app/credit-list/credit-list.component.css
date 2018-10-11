@@ -1,0 +1,15 @@
+table {
+    width: calc(100% - 16px);
+    margin: 8px;
+  }
+  
+button {
+    margin-top: 20px;
+    margin-left: 10px;
+    position: relative;
+}
+h1 {
+    margin-left: 10px;
+    position: relative;    
+}
+  
