@@ -2,12 +2,12 @@
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
    
   <ng-container matColumnDef="memberStatus">
-    <th mat-header-cell *matHeaderCellDef>Mitgliedsstatus</th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Mitgliedsstatus</th>
     <td mat-cell *matCellDef="let element"> {{element.memberStatus}} </td>
   </ng-container>
   
   <ng-container matColumnDef="memberShare">
-    <th mat-header-cell *matHeaderCellDef>Beitrag</th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header>Beitrag</th>
     <td mat-cell *matCellDef="let element"> {{element.memberShare}} </td>
   </ng-container>
 
