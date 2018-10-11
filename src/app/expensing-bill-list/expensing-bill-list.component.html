@@ -1,21 +1,21 @@
 <h1>Aufwandsverrechnungsliste</h1>
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
    <!-- planename Column -->
   <ng-container matColumnDef="planename">
-    <th mat-header-cell *matHeaderCellDef> Flugzeug </th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Flugzeug </th>
     <td mat-cell *matCellDef="let element"> {{element.planename}} </td>
   </ng-container>
 
   <!-- duration Column -->
   <ng-container matColumnDef="duration">
-    <th mat-header-cell *matHeaderCellDef> Nutzungsdauer </th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Nutzungsdauer </th>
     <td mat-cell *matCellDef="let element"> {{element.duration}} €/Std. </td>
   </ng-container>
 
   <!-- flighttime Column -->
   <ng-container matColumnDef="flighttime">
-    <th mat-header-cell *matHeaderCellDef> Flugzeit </th>
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Flugzeit </th>
     <td mat-cell *matCellDef="let element"> {{element.flighttime}} €/Min. </td>
   </ng-container>
 
