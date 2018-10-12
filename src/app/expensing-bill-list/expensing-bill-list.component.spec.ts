@@ -13,7 +13,13 @@ describe('ExpensingBillListComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ ExpensingBillListComponent ],
-      imports: [MatTableModule, MatButtonModule, MatSortModule, BrowserAnimationsModule, HttpClientModule],
+      imports: [
+        MatTableModule, 
+        MatButtonModule, 
+        MatSortModule, 
+        BrowserAnimationsModule, 
+        HttpClientModule
+      ],
       providers: [
         ExpensingbillService
       ]
