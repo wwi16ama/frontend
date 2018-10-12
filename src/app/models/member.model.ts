@@ -101,8 +101,8 @@ export namespace AuthorizationEnum {
         switch (enteredString) {
             case AuthorizationEnum.PPLA: return 'PPLA';
             case AuthorizationEnum.PPLB: return 'PPLB';
-            case AuthorizationEnum.BZFI: return 'BFZI';
-            case AuthorizationEnum.BZFII: return 'BFZII';
+            case AuthorizationEnum.BZFI: return 'BZFI';
+            case AuthorizationEnum.BZFII: return 'BZFII';
             case AuthorizationEnum.LEHRBEFUGNIS: return 'LEHRBEFUGNIS';
         }
     }
