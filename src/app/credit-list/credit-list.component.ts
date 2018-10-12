@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatTableDataSource, MatSortModule } from '@angular/material';
+import { MatTableDataSource } from '@angular/material';
 import { ListCredit } from './../models/list-credit.model';
 import { CreditListService } from './../services/creditlist.service';
 import { Router } from '@angular/router';
@@ -10,8 +10,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./credit-list.component.css']
 })
 export class CreditListComponent implements OnInit {
-
-  @ViewChild(MatSortModule) sort: MatSortModule;
 
   displayedColumns: string[];
   dataSource: any;
@@ -24,7 +22,6 @@ export class CreditListComponent implements OnInit {
     this.creditListService.getCreditListData().subscribe(
       (data: ListCredit[]) => {
         this.dataSource = new MatTableDataSource(data);
-        this.dataSource.sort = this.sort;
       }
     );
   }
