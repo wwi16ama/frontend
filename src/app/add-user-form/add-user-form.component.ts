@@ -42,7 +42,7 @@ export class AddUserFormComponent {
   memberBankingAccountFormControl: FormControl;
 
   constructor(
-    public AddUser: MatDialogRef<AddUserFormComponent>,
+    public AddUser: MatDialogRef<AddUserFormComponent>, public snackBar: MatSnackBar,
     @Inject(MAT_DIALOG_DATA) public member: Member
   ) {
     this.flightAuthorizations = ['PPL-A', 'PPL-e', 'eZF-I', 'eZF-II', 'Lehrbefugnis'];
@@ -87,32 +87,33 @@ export class AddUserFormComponent {
 
   matcher = new MyErrorStateMatcher();
 
-  // public saveMemberData(): void {
-  //   if (this.checkRequiredFields()) {
-  //     this.member.firstName = this.firstNameFormControl.value;
-  //     this.member.lastName = this.lastNameFormControl.value;
-  //     this.member.dateOfBirth = this.formatDate(this.dateOfBirthFormControl.value.toString());
-  //     this.member.gender = this.sexFormControl.value;
-  //     this.member.status = this.statusFormControl.value;
-  //     this.member.email = this.emailFormControl.value;
-  //     this.member.address.postalCode = this.postalCodeFormControl.value;
-  //     this.member.address.streetAddress = this.streetAddressFormControl.value;
-  //     this.member.address.city = this.cityFormControl.value;
-  //     this.member.bankingAccount = this.bankingAccountFormControl.value;
-  //     this.member.memberBankingAccount = this.memberBankingAccountFormControl.value;
-  //     this.member.flightAuthorization = [];
-  //     for (let i = 0; i < this.flightAuthorizations.length; i++) {
-  //       this.member.flightAuthorization.push(
-  //         new Authorization(
-  //           this.flightAuthorizations[i].authorization,
-  //           this.flightAuthorizations[i].dateOfIssue,
-  //           this.formatDate(this.flightAuthorizations[i].expires.value.toString())
-  //         )
-  //       );
-  //     }
-  //     this.editMemberDialogRef.close(this.member);
-  //   }
-  // }
+  public saveMemberData(): void {
+    if (this.checkRequiredFields()) {
+      this.member.lastName = this.lastNameFormControl.value;
+      this.member.firstName = this.firstNameFormControl.value;
+      this.member.dateOfBirth = this.formatDate(this.dateOfBirthFormControl.value.toString());
+      this.member.gender = this.sexFormControl.value;
+      this.member.status = this.statusFormControl.value;
+      this.member.email = this.emailFormControl.value;
+      this.member.address.postalCode = this.postalCodeFormControl.value;
+      this.member.address.streetAddress = this.streetAddressFormControl.value;
+      this.member.address.city = this.cityFormControl.value;
+      this.member.bankingAccount = this.bankingAccountFormControl.value;
+      this.member.memberBankingAccount = this.memberBankingAccountFormControl.value;
+      this.member.flightAuthorization = [];
+      for (let i = 0; i < this.flightAuthorizations.length; i++) {
+        this.member.flightAuthorization.push(
+          new Authorization(
+            this.flightAuthorizations[i].authorization,
+            this.flightAuthorizations[i].dateOfIssue,
+            this.formatDate(this.flightAuthorizations[i].expires.value.toString())
+          )
+        );
+      }
+      // this.addUserDialogRef.close(this.member);
+      console.log(this.member);
+    }
+  }
 
   public compareOffices(a, b): boolean {
     return a.title === b.title;
@@ -158,17 +159,17 @@ export class AddUserFormComponent {
     return found;
   }
 
-  // public formatDate(date: string): string {
-  //   const parseDate = new Date(date);
-  //   return new Date(parseDate.getTime() - parseDate.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
-  // }
+  public formatDate(date: string): string {
+    const parseDate = new Date(date);
+    return new Date(parseDate.getTime() - parseDate.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+  }
 
   public initializeFormControls(): void {
-    this.firstNameFormControl = new FormControl( [
+    this.lastNameFormControl = new FormControl( [
       Validators.required
     ]);
 
-    this.lastNameFormControl = new FormControl( [
+    this.firstNameFormControl = new FormControl( [
       Validators.required
     ]);
 
@@ -207,73 +208,66 @@ export class AddUserFormComponent {
 
   }
 
-  // public checkRequiredFields(): boolean {
-  //   if (this.firstNameFormControl.invalid) {
-  //     this.snackBar.open('Kein korrekter Vorname.', 'Schließen',
-  //       {
-  //         duration: 3000,
-  //       }
-  //     );
-  //     return false;
-  //   } else if (this.lastNameFormControl.invalid) {
-  //     this.snackBar.open('Kein korrekter Nachname.', 'Schließen',
-  //       {
-  //         duration: 3000,
-  //       }
-  //     );
-  //     return false;
-  //   } else if (this.dateOfBirthFormControl.invalid) {
-  //     this.snackBar.open('Kein korrektes Geburtsdatum.', 'Schließen',
-  //       {
-  //         duration: 3000,
-  //       }
-  //     );
-  //     return false;
-  //   } else if (this.emailFormControl.invalid) {
-  //     this.snackBar.open('Keine korrekte Email.', 'Schließen',
-  //       {
-  //         duration: 3000,
-  //       }
-  //     );
-  //     return false;
-  //   } else if (this.postalCodeFormControl.invalid) {
-  //     this.snackBar.open('Keine korrekte Postleitzahl.', 'Schließen',
-  //       {
-  //         duration: 3000,
-  //       }
-  //     );
-  //     return false;
-  //   } else if (this.streetAddressFormControl.invalid) {
-  //     this.snackBar.open('Keinee korrekte Straße.', 'Schließen',
-  //       {
-  //         duration: 3000,
-  //       }
-  //     );
-  //     return false;
-  //   } else if (this.cityFormControl.invalid) {
-  //     this.snackBar.open('Keine korrekte Stadt.', 'Schließen',
-  //       {
-  //         duration: 3000,
-  //       }
-  //     );
-  //     return false;
-  //   } else if (this.bankingAccountFormControl.invalid) {
-  //     this.snackBar.open('Kein korrektes Bankkonto.', 'Schließen',
-  //       {
-  //         duration: 3000,
-  //       }
-  //     );
-  //     return false;
-  //   } else if (this.memberBankingAccountFormControl.invalid) {
-  //     this.snackBar.open('Kein korrektes Mitgliedskonto.', 'Schließen',
-  //       {
-  //         duration: 3000,
-  //       }
-  //     );
-  //     return false;
-  //   }
-  //   return true;
-  // }
+  public checkRequiredFields(): boolean {
+    if (this.firstNameFormControl.invalid) {
+      this.snackBar.open('Kein korrekter Vorname.', 'Schließen',
+        {
+          duration: 3000,
+        }
+      );
+      return false;
+    } else if (this.lastNameFormControl.invalid) {
+      this.snackBar.open('Kein korrekter Nachname.', 'Schließen',
+        {
+          duration: 3000,
+        }
+      );
+      return false;
+    } else if (this.dateOfBirthFormControl.invalid) {
+      this.snackBar.open('Kein korrektes Geburtsdatum.', 'Schließen',
+        {
+          duration: 3000,
+        }
+      );
+      return false;
+    } else if (this.emailFormControl.invalid) {
+      this.snackBar.open('Keine korrekte Email.', 'Schließen',
+        {
+          duration: 3000,
+        }
+      );
+      return false;
+    } else if (this.postalCodeFormControl.invalid) {
+      this.snackBar.open('Keine korrekte Postleitzahl.', 'Schließen',
+        {
+          duration: 3000,
+        }
+      );
+      return false;
+    } else if (this.streetAddressFormControl.invalid) {
+      this.snackBar.open('Keine korrekte Straße.', 'Schließen',
+        {
+          duration: 3000,
+        }
+      );
+      return false;
+    } else if (this.cityFormControl.invalid) {
+      this.snackBar.open('Keine korrekte Stadt.', 'Schließen',
+        {
+          duration: 3000,
+        }
+      );
+      return false;
+    } else if (this.bankingAccountFormControl.invalid) {
+      this.snackBar.open('Kein korrektes Bankkonto.', 'Schließen',
+        {
+          duration: 3000,
+        }
+      );
+      return false;
+    }
+    return true;
+  }
 
 
 }
