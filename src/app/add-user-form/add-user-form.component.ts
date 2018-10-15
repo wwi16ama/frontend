@@ -41,28 +41,41 @@ export class AddUserFormComponent {
   bankingAccountFormControl: FormControl;
   memberBankingAccountFormControl: FormControl;
 
+  constructor(
+    public AddUser: MatDialogRef<AddUserFormComponent>,
+    @Inject(MAT_DIALOG_DATA) public member: Member
+  ) {
+    this.flightAuthorizations = ['PPL-A', 'PPL-e', 'eZF-I', 'eZF-II', 'Lehrbefugnis'];
+    this.possibleOffices = [
+      new Office(OfficeEnum.FLUGWART),
+      new Office(OfficeEnum.IMBETRIEBSKONTROLLTURMARBEITEND),
+      new Office(OfficeEnum.KASSIERER),
+      new Office(OfficeEnum.SYSTEMADMINISTRATOR),
+      new Office(OfficeEnum.VORSTANDSVORSITZENDER)
+    ];
+    this.addAuthorization = false;
+    this.possibleFlightAuthorizationNames = [
+      { authorization: AuthorizationEnum.PPLA, showNew: false },
+      { authorization: AuthorizationEnum.PPLB, showNew: false },
+      { authorization: AuthorizationEnum.BZFI, showNew: false },
+      { authorization: AuthorizationEnum.BZFII, showNew: false },
+      { authorization: AuthorizationEnum.LEHRBEFUGNIS, showNew: false }
+    ];
+    this.updatePossibleAuthorizations();
+    this.newAuthorization = {
+      authorization: '',
+      expires: new FormControl(new Date()),
+      dateOfIssue: new Date().toISOString().slice(0, 10)
+    };
+    this.addNewAuthorizationPossible = true;
+    this.initializeFormControls();
+  }
+
   // Initialisierungsarrays für Selecter
   sex = ['männlich', 'weiblich', 'divers'];
   status = ['Aktiv', 'Passiv', 'Ehrenmitglied'];
   aemter = ['Vorstandvorsitzender', 'Fluglehrer', 'Flugwart',
   'Systemadministrator', 'Kassierer', 'Betriebsdienst Kontrollturm'];
-  flugberechtigung = ['PPL-A', 'PPL-e', 'eZF-I', 'eZF-II', 'Lehrbefugnis'];
-  state = ['Baden-Württemberg',
-    'Bayern',
-    'Berlin',
-    'Brandenburg',
-    'Bremen',
-    'Hamburg',
-    'Hessen',
-    'Mecklenburg-Vorpommern',
-    'Niedersachsen',
-    'Nordrhein-Westfalen',
-    'Rheinland-Pfalz',
-    'Saarland',
-    'Sachsen',
-    'Sachsen-Anhalt',
-    'Schleswig-Holstein',
-    'Thüringen'];
 
 
   matcher = new MyErrorStateMatcher();
@@ -105,35 +118,6 @@ export class AddUserFormComponent {
       return element.authorization === toFind;
     });
     return found;
-  }
-
-  constructor(
-    public AddUser: MatDialogRef<AddUserFormComponent>,
-    @Inject(MAT_DIALOG_DATA) public member: Member
-  ) {
-    this.possibleOffices = [
-      new Office(OfficeEnum.FLUGWART),
-      new Office(OfficeEnum.IMBETRIEBSKONTROLLTURMARBEITEND),
-      new Office(OfficeEnum.KASSIERER),
-      new Office(OfficeEnum.SYSTEMADMINISTRATOR),
-      new Office(OfficeEnum.VORSTANDSVORSITZENDER)
-    ];
-    this.addAuthorization = false;
-    this.possibleFlightAuthorizationNames = [
-      { authorization: AuthorizationEnum.PPLA, showNew: false },
-      { authorization: AuthorizationEnum.PPLB, showNew: false },
-      { authorization: AuthorizationEnum.BZFI, showNew: false },
-      { authorization: AuthorizationEnum.BZFII, showNew: false },
-      { authorization: AuthorizationEnum.LEHRBEFUGNIS, showNew: false }
-    ];
-    this.updatePossibleAuthorizations();
-    this.newAuthorization = {
-      authorization: '',
-      expires: new FormControl(new Date()),
-      dateOfIssue: new Date().toISOString().slice(0, 10)
-    };
-    this.addNewAuthorizationPossible = true;
-    this.initializeFormControls();
   }
 
 
