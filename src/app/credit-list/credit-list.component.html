@@ -1,0 +1,23 @@
+<h1>Gutschriftenliste</h1>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <!-- Amt Column -->
+  <ng-container matColumnDef="office">
+    <th mat-header-cell *matHeaderCellDef> Ämter oder Leistungen </th>
+    <td mat-cell *matCellDef="let element"> {{element.office}} </td>
+  </ng-container>
+
+  <!-- Leistungen Column -->
+  <ng-container matColumnDef="credit">
+    <th mat-header-cell *matHeaderCellDef> Gutschrift </th>
+    <td mat-cell *matCellDef="let element"> {{element.credit}} </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+<div>
+  <button mat-raised-button color="primary">Ändern</button>
+  <button mat-raised-button color="warn">Löschen</button>
+  <button mat-raised-button color="basic">Hinzufügen</button>
+</div>

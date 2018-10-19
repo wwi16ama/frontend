@@ -73,11 +73,6 @@
             <mat-error *ngIf="bankingAccountFormControl.hasError('minlength')">Das Bankkonto muss 22 Zeichen lang sein</mat-error>
             <mat-error *ngIf="bankingAccountFormControl.hasError('pattern')">Bitte geben Sie ein gültiges Bankkonto an</mat-error>
           </mat-form-field>
-          <br>
-          <mat-form-field class="input-width">
-            <input matInput placeholder="Mitgliedskonto" [formControl]="memberBankingAccountFormControl" required>
-            <mat-error *ngIf="memberBankingAccountFormControl.hasError('required')">Die Mitgliedskontonummer ist erforderlich</mat-error>
-          </mat-form-field>
         </div>
       </mat-tab>
       <mat-tab label="Ämter">

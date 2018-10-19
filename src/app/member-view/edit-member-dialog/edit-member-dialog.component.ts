@@ -29,7 +29,6 @@ export class EditMemberDialogComponent {
   cityFormControl: FormControl;
   streetAddressFormControl: FormControl;
   bankingAccountFormControl: FormControl;
-  memberBankingAccountFormControl: FormControl;
 
   constructor(
     public editMemberDialogRef: MatDialogRef<EditMemberDialogComponent>, public snackBar: MatSnackBar,
@@ -80,7 +79,6 @@ export class EditMemberDialogComponent {
       this.member.address.streetAddress = this.streetAddressFormControl.value;
       this.member.address.city = this.cityFormControl.value;
       this.member.bankingAccount = this.bankingAccountFormControl.value;
-      this.member.memberBankingAccount = this.memberBankingAccountFormControl.value;
       this.member.flightAuthorization = [];
       for (let i = 0; i < this.flightAuthorizations.length; i++) {
         this.member.flightAuthorization.push(
@@ -185,10 +183,6 @@ export class EditMemberDialogComponent {
     this.bankingAccountFormControl = new FormControl(this.member.bankingAccount, [
       Validators.required
     ]);
-
-    this.memberBankingAccountFormControl = new FormControl(this.member.memberBankingAccount, [
-      Validators.required
-    ]);
   }
 
   public checkRequiredFields(): boolean {
@@ -228,7 +222,7 @@ export class EditMemberDialogComponent {
       );
       return false;
     } else if (this.streetAddressFormControl.invalid) {
-      this.snackBar.open('Keinee korrekte Straße.', 'Schließen',
+      this.snackBar.open('Keine korrekte Straße.', 'Schließen',
         {
           duration: 3000,
         }
@@ -243,13 +237,6 @@ export class EditMemberDialogComponent {
       return false;
     } else if (this.bankingAccountFormControl.invalid) {
       this.snackBar.open('Kein korrektes Bankkonto.', 'Schließen',
-        {
-          duration: 3000,
-        }
-      );
-      return false;
-    } else if (this.memberBankingAccountFormControl.invalid) {
-      this.snackBar.open('Kein korrektes Mitgliedskonto.', 'Schließen',
         {
           duration: 3000,
         }

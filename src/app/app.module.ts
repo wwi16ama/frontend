@@ -9,17 +9,19 @@ import { MemberViewModule } from './member-view/member-view.module';
 import { EditMemberDialogComponent } from './member-view/edit-member-dialog/edit-member-dialog.component';
 import { PlaneListModule } from './plane-list/plane-list.module';
 import { EditPlaneDialogComponent } from './plane-list/edit-plane-dialog/edit-plane-dialog.component';
+import { CreditListModule } from './credit-list/credit-list.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     MemberListModule,
     MemberViewModule,
-    PlaneListModule
+    PlaneListModule,
+    CreditListModule
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'ger' }
