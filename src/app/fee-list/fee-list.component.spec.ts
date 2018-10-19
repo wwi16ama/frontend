@@ -1,7 +1,7 @@
 import { of } from 'rxjs';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ShareListComponent } from './share-list.component';
+import { FeeListComponent } from './fee-list.component';
 
 import { MatTableModule, MatSortModule } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
@@ -10,34 +10,34 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { ShareListService } from './../services/sharelist.service';
-import { ListShare } from './../models/list-share.model';
+import { FeeListService } from './../services/feelist.service';
+import { ListFee } from '../models/list-fee.model';
 
 describe('ShareListComponent', () => {
-  let component: ShareListComponent;
-  let fixture: ComponentFixture<ShareListComponent>;
+  let component: FeeListComponent;
+  let fixture: ComponentFixture<FeeListComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         RouterTestingModule.withRoutes([
-          {component: ShareListComponent },
+          {component: FeeListComponent },
       ]),
         MatTableModule,
         MatSortModule,
         HttpClientModule,
         BrowserAnimationsModule
       ],
-      declarations: [ShareListComponent],
+      declarations: [FeeListComponent],
       providers: [
-        ShareListService
+        FeeListService
       ]
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ShareListComponent);
+    fixture = TestBed.createComponent(FeeListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
@@ -65,22 +65,22 @@ describe('ShareListComponent', () => {
 
     it('should call getMemberListData from memberListService', () => {
       const dumyGetShareListData = [
-        new ListShare('Aktives Mitglied', 220),
-        new ListShare('Aktives Mitglied unter 20 Jahren', 150),
-        new ListShare('Passives itglied', 80)
+        new ListFee('Aktives Mitglied', 220),
+        new ListFee('Aktives Mitglied unter 20 Jahren', 150),
+        new ListFee('Passives itglied', 80)
       ];
-      spyOn(component.shareListService, 'getShareListData').and.returnValue(of(dumyGetShareListData));
+      spyOn(component.shareListService, 'getFeeListData').and.returnValue(of(dumyGetShareListData));
       component.ngOnInit();
-      expect(component.shareListService.getShareListData).toHaveBeenCalledTimes(1);
+      expect(component.shareListService.getFeeListData).toHaveBeenCalledTimes(1);
     });
 
     it('should set dataSource', () => {
       const dumyGetShareListData = [
-        new ListShare('Aktives Mitglied', 220),
-        new ListShare('Aktives Mitglied unter 20 Jahren', 150),
-        new ListShare('Passives itglied', 80)
+        new ListFee('Aktives Mitglied', 220),
+        new ListFee('Aktives Mitglied unter 20 Jahren', 150),
+        new ListFee('Passives itglied', 80)
       ];
-      spyOn(component.shareListService, 'getShareListData').and.returnValue(of(dumyGetShareListData));
+      spyOn(component.shareListService, 'getFeeListData').and.returnValue(of(dumyGetShareListData));
       component.ngOnInit();
     });
   });

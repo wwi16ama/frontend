@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClientModule } from '@angular/common/http';
-import { ShareListComponent } from './share-list.component';
+import { FeeListComponent } from './fee-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatTableModule, MatButtonModule } from '@angular/material';
-import { ShareListService } from './../services/sharelist.service';
+import { FeeListService } from '../services/feelist.service';
 
 @NgModule({
   imports: [
@@ -16,13 +16,13 @@ import { ShareListService } from './../services/sharelist.service';
     MatButtonModule
   ],
   declarations: [
-    ShareListComponent
+    FeeListComponent
   ],
   exports: [
-    ShareListComponent
+    FeeListComponent
   ],
   providers: [
-    ShareListService
+    FeeListService
   ]
 })
-export class ShareListModule { }
+export class FeeListModule { }

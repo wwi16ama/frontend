@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ShareListService } from './sharelist.service';
+import { FeeListService } from './feelist.service';
 
-describe('ShareListService', () => {
+describe('FeeListService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: ShareListService = TestBed.get(ShareListService);
+    const service: FeeListService = TestBed.get(FeeListService);
     expect(service).toBeTruthy();
   });
 });
