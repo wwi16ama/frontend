@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 
-import { MatTableDataSource, MatDialog, MatSnackBar } from '@angular/material';
+import { MatTableDataSource, MatDialog, MatSnackBar, MatSort } from '@angular/material';
 import { ListMember } from './../models/list-member.model';
 import { MemberListService } from './../services/memberlist.service';
 import { Router } from '@angular/router';
