@@ -47,15 +47,11 @@ export class MemberListComponent implements OnInit {
 
     dialogRef.afterClosed().subscribe(newMember => {
       this.saveMember(newMember);
-      console.log('The dialog was closed');
     });
   }
 
   public saveMember(member: Member): void {
-    console.log(member);
-    const newMemberData = JSON.parse(JSON.stringify(member));
     member = this.formatStringToEnum(member);
-    console.log(member);
     this.memberAddService.addMemberData(member).subscribe(
       (response) => {
         if (response.status === 200) {
@@ -64,7 +60,7 @@ export class MemberListComponent implements OnInit {
               duration: 3000,
             }
           );
-          this.dataSource.data.push(newMemberData);
+          this.dataSource.data.push(response.body);
         }
       },
       error => {
