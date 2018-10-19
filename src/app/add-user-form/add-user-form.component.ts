@@ -1,9 +1,9 @@
 import { Component, Inject } from '@angular/core';
-import {Validators} from '@angular/forms';
-import {FormControl, FormGroupDirective, NgForm} from '@angular/forms';
+import { Validators } from '@angular/forms';
+import { FormControl, FormGroupDirective, NgForm } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
-import {ErrorStateMatcher} from '@angular/material/core';
-import { Member, Office, OfficeEnum, Authorization, AuthorizationEnum } from './../models/member.model';
+import { ErrorStateMatcher } from '@angular/material/core';
+import { Member, Office, OfficeEnum, Authorization, AuthorizationEnum, Address } from './../models/member.model';
 
 
 /** Error when invalid control is dirty, touched, or submitted. */
@@ -22,13 +22,12 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
 export class AddUserFormComponent {
 
   possibleOffices: Office[];
-  flightAuthorizations: any [];
+  flightAuthorizations: any[];
   addAuthorization: boolean;
   possibleFlightAuthorizationNames: any[];
   newAuthorization: any;
   addNewAuthorizationPossible: boolean;
 
-  // FormControls for input validation
   firstNameFormControl: FormControl;
   lastNameFormControl: FormControl;
   dateOfBirthFormControl: FormControl;
@@ -40,12 +39,19 @@ export class AddUserFormComponent {
   streetAddressFormControl: FormControl;
   bankingAccountFormControl: FormControl;
   memberBankingAccountFormControl: FormControl;
+  admissionedFormControl: FormControl;
+  officesFormControl: FormControl;
+
+
+  sex = ['männlich', 'weiblich'];
+  status = ['Aktiv', 'Passiv', 'Ehrenmitglied'];
+
+  matcher = new MyErrorStateMatcher();
 
   constructor(
-    public AddUser: MatDialogRef<AddUserFormComponent>, public snackBar: MatSnackBar,
-    @Inject(MAT_DIALOG_DATA) public member: Member
+    public addUserDialogRef: MatDialogRef<AddUserFormComponent>, public snackBar: MatSnackBar
   ) {
-    this.flightAuthorizations = ['PPL-A', 'PPL-e', 'eZF-I', 'eZF-II', 'Lehrbefugnis'];
+    this.flightAuthorizations = [];
     this.possibleOffices = [
       new Office(OfficeEnum.FLUGWART),
       new Office(OfficeEnum.IMBETRIEBSKONTROLLTURMARBEITEND),
@@ -53,10 +59,6 @@ export class AddUserFormComponent {
       new Office(OfficeEnum.SYSTEMADMINISTRATOR),
       new Office(OfficeEnum.VORSTANDSVORSITZENDER)
     ];
-    // this.flightAuthorizations = this.member.flightAuthorization.splice(0);
-    // for (let i = 0; i < this.flightAuthorizations.length; i++) {
-    //   this.flightAuthorizations[i].expires = new FormControl(new Date(this.flightAuthorizations[i].expires));
-    // }
     this.addAuthorization = false;
     this.possibleFlightAuthorizationNames = [
       { authorization: AuthorizationEnum.PPLA, showNew: false },
@@ -75,34 +77,32 @@ export class AddUserFormComponent {
     this.initializeFormControls();
   }
 
-  // public onNoClick(): void {
-  //   this.editMemberDialogRef.close();
-  // }
-
-  // Initialisierungsarrays für Selecter
-  sex = ['männlich', 'weiblich', 'divers'];
-  status = ['Aktiv', 'Passiv', 'Ehrenmitglied'];
-  aemter = ['Vorstandvorsitzender', 'Fluglehrer', 'Flugwart',
-  'Systemadministrator', 'Kassierer', 'Betriebsdienst Kontrollturm'];
-
-  matcher = new MyErrorStateMatcher();
+  public onNoClick(): void {
+    this.addUserDialogRef.close();
+  }
 
   public saveMemberData(): void {
     if (this.checkRequiredFields()) {
-      this.member.lastName = this.lastNameFormControl.value;
-      this.member.firstName = this.firstNameFormControl.value;
-      this.member.dateOfBirth = this.formatDate(this.dateOfBirthFormControl.value.toString());
-      this.member.gender = this.sexFormControl.value;
-      this.member.status = this.statusFormControl.value;
-      this.member.email = this.emailFormControl.value;
-      this.member.address.postalCode = this.postalCodeFormControl.value;
-      this.member.address.streetAddress = this.streetAddressFormControl.value;
-      this.member.address.city = this.cityFormControl.value;
-      this.member.bankingAccount = this.bankingAccountFormControl.value;
-      this.member.memberBankingAccount = this.memberBankingAccountFormControl.value;
-      this.member.flightAuthorization = [];
+      const newAddress = new Address(
+        this.postalCodeFormControl.value,
+        this.streetAddressFormControl.value,
+        this.cityFormControl.value );
+      const newOffices = new Office (this.officesFormControl.value);
+      const newMember = new Member(
+        this.firstNameFormControl.value,
+        this.lastNameFormControl.value,
+        this.formatDate(this.dateOfBirthFormControl.value.toString()),
+        this.sexFormControl.value,
+        this.statusFormControl.value,
+        this.emailFormControl.value,
+        newAddress,
+        this.bankingAccountFormControl.value,
+        this.admissionedFormControl.value,
+        newOffices,
+        []
+      );
       for (let i = 0; i < this.flightAuthorizations.length; i++) {
-        this.member.flightAuthorization.push(
+        newMember.flightAuthorization.push(
           new Authorization(
             this.flightAuthorizations[i].authorization,
             this.flightAuthorizations[i].dateOfIssue,
@@ -110,8 +110,8 @@ export class AddUserFormComponent {
           )
         );
       }
-      // this.addUserDialogRef.close(this.member);
-      console.log(this.member);
+      console.log(newMember);
+      this.addUserDialogRef.close(newMember);
     }
   }
 
@@ -165,44 +165,52 @@ export class AddUserFormComponent {
   }
 
   public initializeFormControls(): void {
-    this.lastNameFormControl = new FormControl( [
+    this.lastNameFormControl = new FormControl('', [
       Validators.required
     ]);
 
-    this.firstNameFormControl = new FormControl( [
+    this.firstNameFormControl = new FormControl('', [
       Validators.required
     ]);
 
-    this.dateOfBirthFormControl = new FormControl( [
+    this.dateOfBirthFormControl = new FormControl('', [
       Validators.required
     ]);
 
-    this.sexFormControl = new FormControl( [
+    this.sexFormControl = new FormControl('', [
       Validators.required
     ]);
 
-    this.statusFormControl = new FormControl( [
+    this.statusFormControl = new FormControl('', [
       Validators.required
     ]);
 
-    this.emailFormControl = new FormControl( [
+    this.emailFormControl = new FormControl('', [
       Validators.email,
       Validators.required
     ]);
 
-    this.postalCodeFormControl = new FormControl( [
+    this.postalCodeFormControl = new FormControl('', [
       Validators.required
     ]);
 
-    this.streetAddressFormControl = new FormControl( [
+    this.streetAddressFormControl = new FormControl('', [
       Validators.required
     ]);
 
-    this.cityFormControl = new FormControl( [
+    this.cityFormControl = new FormControl('', [
       Validators.required
     ]);
 
-    this.bankingAccountFormControl = new FormControl( [
+    this.bankingAccountFormControl = new FormControl('', [
+      Validators.required
+    ]);
+
+    this.admissionedFormControl = new FormControl('', [
+      Validators.required
+    ]);
+
+    this.officesFormControl = new FormControl('', [
       Validators.required
     ]);
 
