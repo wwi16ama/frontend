@@ -5,22 +5,24 @@
     cursor:pointer;
     overflow: hidden;
     outline:none;
-    height:500px;
+    height: 500px;
 }
 
 mat-sidenav {
     background-color: black;
-    font-weight: bolder;
-    color: white;
-    font-family: 'Tahoma';
-    height: 100%;
+    width:  300px;
 }
 
-#navbutton {
+.navbutton {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
     background-color: Transparent;
     background-repeat:no-repeat;
-    border: none;
     cursor:pointer;
+    border: none;
+    border-color: white;
     overflow: hidden;
     outline:none;
     color: white;
