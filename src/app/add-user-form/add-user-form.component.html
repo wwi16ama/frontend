@@ -149,9 +149,11 @@
               </ng-container>
             </div>
             <button *ngIf="addNewAuthorizationPossible" class="add-button" mat-raised-button (click)="toggleAddNewAuthorizationButton()">Hinzufügen</button>
-            <mat-checkbox labelPosition="after" [(ngModel)]="admissioned">
+            <div class="admissioned-div">
+            <mat-checkbox labelPosition="after" [formControl]="admissionedFormControl">
               <span class="color-admissioned">Mustereinweisung</span>
             </mat-checkbox>
+            </div>
           </div>
       </mat-tab>
     </mat-tab-group>
