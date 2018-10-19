@@ -1,9 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { MAT_DATE_LOCALE } from '@angular/material';
-import { NgModule } from '@angular/core';
 import localeDe from '@angular/common/locales/de';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 import { AppComponent } from './app.component';
@@ -19,8 +17,7 @@ import { CreditListModule } from './credit-list/credit-list.module';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    AddUserFormComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -29,24 +26,17 @@ import { CreditListModule } from './credit-list/credit-list.module';
     MemberViewModule,
     PlaneListModule,
     CreditListModule
-    MemberViewModule
-  ],
-  providers: [
-    { provide: MAT_DATE_LOCALE, useValue: 'ger' }
-  ],
-  bootstrap: [AppComponent],
-  entryComponents: [
-    AddUserFormComponent
   ],
   providers: [
     { provide: localeDe, useValue: 'de' },
     { provide: MAT_DATE_LOCALE, useValue: 'ger' }
   ],
+  bootstrap: [AppComponent],
+  entryComponents: [
+    AddUserFormComponent,
     EditMemberDialogComponent,
     EditPlaneDialogComponent
   ]
-  providers: [{ provide: localeDe, useValue: 'de' }],
-  bootstrap: [AppComponent]
 })
 export class AppModule {
 }
