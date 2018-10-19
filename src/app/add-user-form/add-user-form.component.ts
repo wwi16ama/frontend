@@ -39,7 +39,7 @@ export class AddUserFormComponent {
   streetAddressFormControl: FormControl;
   bankingAccountFormControl: FormControl;
   memberBankingAccountFormControl: FormControl;
-  admissionedFormControl: FormControl;
+  admissioned: boolean;
   officesFormControl: FormControl;
 
 
@@ -75,6 +75,7 @@ export class AddUserFormComponent {
     };
     this.addNewAuthorizationPossible = true;
     this.initializeFormControls();
+    this.admissioned = false;
   }
 
   public onNoClick(): void {
@@ -97,7 +98,7 @@ export class AddUserFormComponent {
         email: this.emailFormControl.value,
         address: newAddress,
         bankingAccount: this.bankingAccountFormControl.value,
-        admissioned: this.admissionedFormControl.value,
+        admissioned: this.admissioned,
         offices: newOffices,
         flightAuthorization: []
       };
@@ -202,10 +203,6 @@ export class AddUserFormComponent {
     ]);
 
     this.bankingAccountFormControl = new FormControl('', [
-      Validators.required
-    ]);
-
-    this.admissionedFormControl = new FormControl('', [
       Validators.required
     ]);
 
