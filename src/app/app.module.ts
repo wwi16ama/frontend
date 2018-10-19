@@ -1,9 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { MAT_DATE_LOCALE } from '@angular/material';
-import { NgModule } from '@angular/core';
 import localeDe from '@angular/common/locales/de';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 import { AppComponent } from './app.component';
@@ -23,8 +21,7 @@ import { DeletePlaneDialogComponent } from './plane-list/delete-plane-dialog/del
 
 @NgModule({
   declarations: [
-    AppComponent,
-    AddUserFormComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -38,22 +35,16 @@ import { DeletePlaneDialogComponent } from './plane-list/delete-plane-dialog/del
     AccountModule
   ],
   providers: [
+    { provide: localeDe, useValue: 'de' },
     { provide: MAT_DATE_LOCALE, useValue: 'ger' }
   ],
   bootstrap: [AppComponent],
   entryComponents: [
-    AddUserFormComponent
-  ],
-  providers: [
-    { provide: localeDe, useValue: 'de' },
-    { provide: MAT_DATE_LOCALE, useValue: 'ger' }
-  ],
+    AddUserFormComponent,
     EditMemberDialogComponent,
     EditPlaneDialogComponent,
     DeletePlaneDialogComponent
   ]
-  providers: [{ provide: localeDe, useValue: 'de' }],
-  bootstrap: [AppComponent]
 })
 export class AppModule {
 }
