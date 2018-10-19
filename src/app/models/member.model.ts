@@ -9,10 +9,10 @@ export class Member {
         public address: Address,
         public bankingAccount: string,
         public admissioned: boolean,
-        public memberBankingAccount: string,
         public offices: Office[],
         public flightAuthorization: Authorization[],
-        public id: number
+        public id?: number,
+        public memberBankingAccount?: string
     ) {}
 }
 
