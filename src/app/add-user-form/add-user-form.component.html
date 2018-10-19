@@ -112,7 +112,7 @@
     <mat-tab label="Ämter">
       <div class="tab-content">
         <mat-form-field class="input-width">
-          <mat-select placeholder="Amt" id="office" multiple [formControl]="officesFormControl">
+          <mat-select placeholder="Amt" id="office" multiple [(ngModel)]="office">
             <mat-option *ngFor="let office of possibleOffices" [value]="office">{{office.title}}</mat-option>
           </mat-select>
         </mat-form-field>
