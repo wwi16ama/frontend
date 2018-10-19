@@ -88,19 +88,19 @@ export class AddUserFormComponent {
         this.streetAddressFormControl.value,
         this.cityFormControl.value );
       const newOffices = new Office (this.officesFormControl.value);
-      const newMember = new Member(
-        this.firstNameFormControl.value,
-        this.lastNameFormControl.value,
-        this.formatDate(this.dateOfBirthFormControl.value.toString()),
-        this.sexFormControl.value,
-        this.statusFormControl.value,
-        this.emailFormControl.value,
-        newAddress,
-        this.bankingAccountFormControl.value,
-        this.admissionedFormControl.value,
-        newOffices,
-        []
-      );
+      const newMember = {
+        firstName: this.firstNameFormControl.value,
+        lastName: this.lastNameFormControl.value,
+        dateOfBirth: this.formatDate(this.dateOfBirthFormControl.value.toString()),
+        gender: this.sexFormControl.value,
+        status: this.statusFormControl.value,
+        email: this.emailFormControl.value,
+        address: newAddress,
+        bankingAccount: this.bankingAccountFormControl.value,
+        admissioned: this.admissionedFormControl.value,
+        offices: newOffices,
+        flightAuthorization: []
+      };
       for (let i = 0; i < this.flightAuthorizations.length; i++) {
         newMember.flightAuthorization.push(
           new Authorization(
