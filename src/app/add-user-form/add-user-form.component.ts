@@ -43,7 +43,7 @@ export class AddUserFormComponent {
   officesFormControl: FormControl;
 
 
-  sex = ['männlich', 'weiblich'];
+  sex = ['Männlich', 'Weiblich'];
   status = ['Aktiv', 'Passiv', 'Ehrenmitglied'];
 
   matcher = new MyErrorStateMatcher();
@@ -110,7 +110,6 @@ export class AddUserFormComponent {
           )
         );
       }
-      console.log(newMember);
       this.addUserDialogRef.close(newMember);
     }
   }
