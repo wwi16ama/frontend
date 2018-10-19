@@ -40,7 +40,7 @@ export class AddUserFormComponent {
   bankingAccountFormControl: FormControl;
   memberBankingAccountFormControl: FormControl;
   admissioned: boolean;
-  officesFormControl: FormControl;
+  office: String;
 
 
   sex = ['Männlich', 'Weiblich'];
@@ -51,6 +51,7 @@ export class AddUserFormComponent {
   constructor(
     public addUserDialogRef: MatDialogRef<AddUserFormComponent>, public snackBar: MatSnackBar
   ) {
+    this.office = '';
     this.flightAuthorizations = [];
     this.possibleOffices = [
       new Office(OfficeEnum.FLUGWART),
@@ -88,7 +89,7 @@ export class AddUserFormComponent {
         this.postalCodeFormControl.value,
         this.streetAddressFormControl.value,
         this.cityFormControl.value );
-      const newOffices = new Office (this.officesFormControl.value);
+      const office = {title: this.office};
       const newMember = {
         firstName: this.firstNameFormControl.value,
         lastName: this.lastNameFormControl.value,
@@ -99,7 +100,7 @@ export class AddUserFormComponent {
         address: newAddress,
         bankingAccount: this.bankingAccountFormControl.value,
         admissioned: this.admissioned,
-        offices: newOffices,
+        offices: office,
         flightAuthorization: []
       };
       for (let i = 0; i < this.flightAuthorizations.length; i++) {
@@ -203,10 +204,6 @@ export class AddUserFormComponent {
     ]);
 
     this.bankingAccountFormControl = new FormControl('', [
-      Validators.required
-    ]);
-
-    this.officesFormControl = new FormControl('', [
       Validators.required
     ]);
 
