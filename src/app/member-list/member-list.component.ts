@@ -67,6 +67,7 @@ export class MemberListComponent implements OnInit {
             }
           );
           this.dataSource.data.push(response.body);
+          this.dataSource.sort = this.sort;
         }
       },
       error => {
