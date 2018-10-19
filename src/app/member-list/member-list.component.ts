@@ -32,7 +32,7 @@ export class MemberListComponent implements OnInit {
     this.memberListService.getMemberListData().subscribe(
       (data: ListMember[]) => {
         this.dataSource = new MatTableDataSource(data);
-        this.dataSource = this;
+        this.dataSource.sort = this.sort;
       }
     );
   }
@@ -52,7 +52,6 @@ export class MemberListComponent implements OnInit {
 
   public saveMember(member: Member): void {
     member = this.formatStringToEnum(member);
-    console.log(member);
     this.memberAddService.addMemberData(member).subscribe(
       (response) => {
         if (response.status === 200) {
@@ -62,7 +61,7 @@ export class MemberListComponent implements OnInit {
             }
           );
           this.dataSource.data.push(response.body);
-          this.dataSource = this.sort;
+          this.dataSource.sort = this.sort;
         }
       },
       error => {
