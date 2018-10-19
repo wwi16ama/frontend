@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
-import { MatTableDataSource, MatDialog, MatSnackBar } from '@angular/material';
+import { MatTableDataSource, MatDialog, MatSnackBar, MatSort } from '@angular/material';
 import { ListMember } from './../models/list-member.model';
 import { MemberListService } from './../services/memberlist.service';
 import { Router } from '@angular/router';
@@ -38,11 +38,12 @@ export class MemberListComponent implements OnInit {
     this.memberListService.getMemberListData().subscribe(
       (data: ListMember[]) => {
         this.dataSource = new MatTableDataSource(data);
+        this.dataSource = this;
       }
     );
   }
 
-  public navigateTo(rowId) {
+  public navigateTo(rowId): void {
     this.router.navigate(['/member', rowId]);
   }
 
@@ -69,6 +70,7 @@ export class MemberListComponent implements OnInit {
             }
           );
           this.dataSource.data.push(response.body);
+          this.dataSource = this.sort;
         }
       },
       error => {
