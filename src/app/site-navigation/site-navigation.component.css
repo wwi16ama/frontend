@@ -2,11 +2,31 @@
     .sidebar-container {
         height: calc(100vh - 64px);
     }
+
+    .logo {
+        height: 60px;
+        width: auto;
+        margin: 2px 0;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        cursor: pointer;
+    }
 }
 
 @media only screen and (max-width: 599px) {
     .sidebar-container {
         height: calc(100vh - 56px);
+    }
+
+    .logo {
+        height: 50px;
+        width: auto;
+        margin: 3px 0;
+        position: absolute;
+        left: 50%;
+        transform: translateX(-50%);
+        cursor: pointer;
     }
 }
 
