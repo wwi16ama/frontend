@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
 import { ListCredit } from './../models/list-credit.model';
 import { CreditListService } from './../services/creditlist.service';
