@@ -1,9 +1,13 @@
-<mat-toolbar color="primary">
+<mat-toolbar color="primary" class="header">
   <button mat-icon-button (click)="toggleOpened()">
     <mat-icon>menu</mat-icon>
   </button>
-  <span>Flugverein Reilingen</span>
-  <img src="./../../assets/logo/logo.png" class="logo" (click)="navigateTo('')" alt="Flugverein Reilingen">
+  <span class="toolbar-text">Flugverein Reilingen</span>
+  <img src="./../../assets/logo/logo2.png" class="logo" (click)="navigateTo('')" alt="Flugverein Reilingen">
+  <button mat-button class="logout-button">
+    <span>Logout</span>
+    <mat-icon class="logout-icon">cancel</mat-icon>
+  </button>
 </mat-toolbar>
 <mat-sidenav-container class="sidebar-container" (backdropClick)="toggleOpened()">
   <mat-sidenav class="sidebar" mode="over" [opened]="opened">

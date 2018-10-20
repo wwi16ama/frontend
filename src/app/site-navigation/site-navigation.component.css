@@ -6,11 +6,15 @@
     .logo {
         height: 60px;
         width: auto;
-        margin: 2px 0;
         position: absolute;
         left: 50%;
-        transform: translateX(-50%);
+        top: 50%;
+        transform: translate(-50%, -50%);
         cursor: pointer;
+    }
+
+    .toolbar-text {
+        margin-left: 15px;
     }
 }
 
@@ -22,12 +26,29 @@
     .logo {
         height: 50px;
         width: auto;
-        margin: 3px 0;
         position: absolute;
         left: 50%;
-        transform: translateX(-50%);
+        top: 50%;
+        transform: translate(-50%, -50%);
         cursor: pointer;
     }
+
+    .toolbar-text {
+        display: none;
+    }
+}
+
+.header {
+    position: relative;
+}
+
+.logout-button {
+    position: absolute;
+    right: 16px;
+}
+
+.logout-icon {
+    margin-left: 10px;
 }
 
 .sidebar {
