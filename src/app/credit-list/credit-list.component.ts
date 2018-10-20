@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
 import { ListCredit } from './../models/list-credit.model';
 import { CreditListService } from './../services/creditlist.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-credit-list',
@@ -14,7 +13,7 @@ export class CreditListComponent implements OnInit {
   displayedColumns: string[];
   dataSource: any;
 
-  constructor(public creditListService: CreditListService, public router: Router) {
+  constructor(public creditListService: CreditListService) {
     this.displayedColumns = ['office', 'credit'];
   }
 
