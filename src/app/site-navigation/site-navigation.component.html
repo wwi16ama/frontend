@@ -2,14 +2,62 @@
   <button mat-icon-button (click)="toggleOpened()">
     <mat-icon>menu</mat-icon>
   </button>
-  <span>Flugverein</span>
+  <span class="">Flugverein Reilingen</span>
 </mat-toolbar>
 <mat-sidenav-container>
-  <mat-sidenav mode="over" [opened]="opened">
-    <button routerLink='' class='navbutton'><i class="material-icons">home</i></button><br>
-    <button routerLink='memberlist' class='navbutton'>Mitgliederliste</button> <br>
-    <button routerLink='planelist' class='navbutton'> Flugzeugliste</button> <br>
-    <button routerLink='' class='navbutton'>Preisliste</button> <br>
+  <mat-sidenav class="sidebar" mode="over" [opened]="opened">
+    <mat-list>
+      <h3 mat-subheader>Mein Profil</h3>
+      <mat-list-item>
+        <h4 mat-line>Übersicht</h4>
+      </mat-list-item>
+      <div class="menu-button-wrapper">
+        <mat-list-item class="menu-button">
+          <h4 mat-line>Reservierung</h4>
+        </mat-list-item>
+      </div>
+      <mat-divider></mat-divider>
+      <div class="menu-button-wrapper">
+        <mat-list-item class="menu-button">
+          <h4 mat-line>Mitgliedsliste</h4>
+        </mat-list-item>
+      </div>
+      <mat-divider></mat-divider>
+      <div class="menu-button-wrapper">
+        <mat-list-item class="menu-button">
+          <h4 mat-line>Reservierungen verwalten</h4>
+        </mat-list-item>
+      </div>
+      <mat-divider></mat-divider>
+      <h3 mat-subheader>Finzanzen</h3>
+        <div class="menu-button-wrapper">
+          <mat-list-item class="menu-button">
+            <h4 mat-line>Finanzen verwalten</h4>
+          </mat-list-item>
+        </div>
+        <mat-divider></mat-divider>
+      <h3 mat-subheader>Allgemeines</h3>
+        <div class="menu-button-wrapper">
+          <mat-list-item class="menu-button">
+            <h4 mat-line>Aufwandsverrechnungsliste</h4>
+          </mat-list-item>
+        </div>
+        <div class="menu-button-wrapper">
+          <mat-list-item class="menu-button">
+            <h4 mat-line>Beitragsliste</h4>
+          </mat-list-item>
+        </div>
+        <div class="menu-button-wrapper">
+          <mat-list-item class="menu-button">
+            <h4 mat-line>Gutschriftenliste</h4>
+          </mat-list-item>
+        </div>
+        <div class="menu-button-wrapper">
+          <mat-list-item class="menu-button">
+            <h4 mat-line>Flugzeuge</h4>
+          </mat-list-item>
+        </div>
+    </mat-list>
   </mat-sidenav>
   <mat-sidenav-content>
     <ng-content></ng-content>

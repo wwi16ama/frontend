@@ -1,0 +1,17 @@
+.sidebar {
+    width: 300px;
+}
+
+.menu-button-wrapper {
+    padding: 0 16px;
+    cursor: pointer;
+    transition: 0.5s;
+}
+.menu-button-wrapper:hover {
+    background-color: #0081C9;
+    transition: 0.5s;
+}
+
+.menu-button-wrapper:hover .menu-button {
+    color: white;
+}
