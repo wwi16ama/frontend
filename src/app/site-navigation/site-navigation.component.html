@@ -7,56 +7,56 @@
 <mat-sidenav-container class="sidebar-container" (backdropClick)="toggleOpened()">
   <mat-sidenav class="sidebar" mode="over" [opened]="opened">
     <mat-list>
-      <h3 mat-subheader>Mein Profil</h3>
-      <mat-list-item>
-        <h4 mat-line>Übersicht</h4>
-      </mat-list-item>
+      <h3 mat-subheader class="underline">Mein Profil</h3>
       <div class="menu-button-wrapper">
-        <mat-list-item class="menu-button">
+        <mat-list-item class="menu-button not-included">
+          <h4 mat-line>Übersicht</h4>
+        </mat-list-item>
+      </div>
+      <div class="menu-button-wrapper">
+        <mat-list-item class="menu-button not-included">
           <h4 mat-line>Reservierung</h4>
         </mat-list-item>
       </div>
       <mat-divider></mat-divider>
+      <h3 mat-subheader class="underline">Verwaltung</h3>
+      <div class="menu-button-wrapper">
+        <mat-list-item class="menu-button not-included">
+          <h4 mat-line>Finanzen verwalten</h4>
+        </mat-list-item>
+      </div>
       <div class="menu-button-wrapper" (click)="navigateTo('memberlist')">
         <mat-list-item class="menu-button">
           <h4 mat-line>Mitgliedsliste</h4>
         </mat-list-item>
       </div>
-      <mat-divider></mat-divider>
       <div class="menu-button-wrapper">
-        <mat-list-item class="menu-button">
+        <mat-list-item class="menu-button not-included">
           <h4 mat-line>Reservierungen verwalten</h4>
         </mat-list-item>
       </div>
       <mat-divider></mat-divider>
-      <h3 mat-subheader>Finzanzen</h3>
-        <div class="menu-button-wrapper">
-          <mat-list-item class="menu-button">
-            <h4 mat-line>Finanzen verwalten</h4>
-          </mat-list-item>
-        </div>
-        <mat-divider></mat-divider>
-      <h3 mat-subheader>Allgemeines</h3>
-        <div class="menu-button-wrapper">
-          <mat-list-item class="menu-button">
-            <h4 mat-line>Aufwandsverrechnungsliste</h4>
-          </mat-list-item>
-        </div>
-        <div class="menu-button-wrapper">
-          <mat-list-item class="menu-button">
-            <h4 mat-line>Beitragsliste</h4>
-          </mat-list-item>
-        </div>
-        <div class="menu-button-wrapper">
-          <mat-list-item class="menu-button">
-            <h4 mat-line>Gutschriftenliste</h4>
-          </mat-list-item>
-        </div>
-        <div class="menu-button-wrapper" (click)="navigateTo('planelist')">
-          <mat-list-item class="menu-button">
-            <h4 mat-line>Flugzeuge</h4>
-          </mat-list-item>
-        </div>
+      <h3 mat-subheader class="underline">Allgemeines</h3>
+      <div class="menu-button-wrapper" (click)="navigateTo('planelist')">
+        <mat-list-item class="menu-button">
+          <h4 mat-line>Flugzeuge</h4>
+        </mat-list-item>
+      </div>
+      <div class="menu-button-wrapper">
+        <mat-list-item class="menu-button not-included">
+          <h4 mat-line>Aufwandsverrechnungsliste</h4>
+        </mat-list-item>
+      </div>
+      <div class="menu-button-wrapper">
+        <mat-list-item class="menu-button not-included">
+          <h4 mat-line>Beitragsliste</h4>
+        </mat-list-item>
+      </div>
+      <div class="menu-button-wrapper">
+        <mat-list-item class="menu-button not-included">
+          <h4 mat-line>Gutschriftenliste</h4>
+        </mat-list-item>
+      </div>
     </mat-list>
   </mat-sidenav>
   <mat-sidenav-content>

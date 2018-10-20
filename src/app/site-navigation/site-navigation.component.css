@@ -15,9 +15,16 @@
 }
 
 .menu-button-wrapper {
-    padding: 0 16px;
     cursor: pointer;
     transition: 0.5s;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+.sub-button {
+    margin: 0 16px;
 }
 .menu-button-wrapper:hover {
     background-color: #0081C9;
@@ -26,4 +33,10 @@
 
 .menu-button-wrapper:hover .menu-button {
     color: white;
+}
+
+
+/* remove when all links done please!!!!!!!!!!!!!!!!!einseineself */
+.not-included {
+    text-decoration: line-through;
 }

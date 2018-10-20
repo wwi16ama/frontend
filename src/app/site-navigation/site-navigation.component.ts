@@ -11,7 +11,7 @@ export class SiteNavigationComponent implements OnInit {
   opened: boolean;
 
   constructor(public router: Router) {
-    this.opened = false;
+    this.opened = true;
   }
 
   ngOnInit() {
