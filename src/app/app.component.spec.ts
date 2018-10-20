@@ -6,6 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { MemberListModule } from './member-list/member-list.module';
 import { MemberViewModule } from './member-view/member-view.module';
 import { PlaneListModule } from './plane-list/plane-list.module';
+import { SiteNavigationModule } from './site-navigation/site-navigation.module';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -14,7 +15,8 @@ describe('AppComponent', () => {
         AppRoutingModule,
         MemberListModule,
         MemberViewModule,
-        PlaneListModule
+        PlaneListModule,
+        SiteNavigationModule
       ],
       declarations: [
         AppComponent
