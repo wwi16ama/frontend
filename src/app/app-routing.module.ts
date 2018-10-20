@@ -7,7 +7,7 @@ import { PlaneListComponent } from './plane-list/plane-list.component';
 import { CreditListComponent } from './credit-list/credit-list.component';
 
 export const appRoutes: Routes = [
-  { path: '', redirectTo: '/sidebar', pathMatch: 'full' },
+  { path: '', redirectTo: '/memberlist', pathMatch: 'full' },
   { path: 'memberlist', component: MemberListComponent },
   { path: 'member/:id', component: MemberViewComponent },
   { path: 'planelist', component: PlaneListComponent },

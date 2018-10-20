@@ -8,6 +8,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     CommonModule,
     MatSidenavModule
   ],
-  declarations: [SidebarComponent]
+  declarations: [
+    SidebarComponent
+  ]
 })
 export class SidebarModule { }
