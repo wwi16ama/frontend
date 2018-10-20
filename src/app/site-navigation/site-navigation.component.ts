@@ -7,9 +7,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SiteNavigationComponent implements OnInit {
 
-  constructor() { }
+  opened: boolean;
+
+  constructor() {
+    this.opened = true;
+  }
 
   ngOnInit() {
+  }
+
+  public toggleOpened(): void {
+    this.opened = !this.opened;
   }
 
 }

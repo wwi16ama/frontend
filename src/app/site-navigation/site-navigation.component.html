@@ -1,11 +1,11 @@
 <mat-toolbar color="primary">
-  <button mat-button (click)="sidenav.toggle()" id='menubutton'>
-    <i class="material-icons">menu</i>
+  <button mat-icon-button (click)="toggleOpened()">
+    <mat-icon>menu</mat-icon>
   </button>
   <span>Flugverein</span>
 </mat-toolbar>
 <mat-sidenav-container>
-  <mat-sidenav mode="over">
+  <mat-sidenav mode="over" [opened]="opened">
     <button routerLink='' class='navbutton'><i class="material-icons">home</i></button><br>
     <button routerLink='memberlist' class='navbutton'>Mitgliederliste</button> <br>
     <button routerLink='planelist' class='navbutton'> Flugzeugliste</button> <br>
