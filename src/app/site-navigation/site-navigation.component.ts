@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-site-navigation',
@@ -9,8 +10,8 @@ export class SiteNavigationComponent implements OnInit {
 
   opened: boolean;
 
-  constructor() {
-    this.opened = true;
+  constructor(public router: Router) {
+    this.opened = false;
   }
 
   ngOnInit() {
@@ -18,6 +19,11 @@ export class SiteNavigationComponent implements OnInit {
 
   public toggleOpened(): void {
     this.opened = !this.opened;
+  }
+
+  public navigateTo(link: string): void {
+    this.router.navigateByUrl(link);
+    this.opened = false;
   }
 
 }
