@@ -1,13 +1,17 @@
+<mat-toolbar color="primary">
+  <button mat-button (click)="sidenav.toggle()" id='menubutton'>
+    <i class="material-icons">menu</i>
+  </button>
+  <span>Flugverein</span>
+</mat-toolbar>
 <mat-sidenav-container>
-  <mat-sidenav #sidenav mode="side">
+  <mat-sidenav mode="over">
     <button routerLink='' class='navbutton'><i class="material-icons">home</i></button><br>
     <button routerLink='memberlist' class='navbutton'>Mitgliederliste</button> <br>
     <button routerLink='planelist' class='navbutton'> Flugzeugliste</button> <br>
     <button routerLink='' class='navbutton'>Preisliste</button> <br>
   </mat-sidenav>
   <mat-sidenav-content>
-    <!-- <button mat-button (click)="sidenav.toggle()" id='menubutton'>
-      <i class="material-icons">menu</i>
-    </button> -->
+    <ng-content></ng-content>
   </mat-sidenav-content>
 </mat-sidenav-container>
