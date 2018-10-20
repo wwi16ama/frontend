@@ -6,23 +6,18 @@ import { FeeListComponent } from './fee-list.component';
 import { MatTableModule, MatSortModule } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 
-import { RouterTestingModule } from '@angular/router/testing';
-
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { FeeListService } from './../services/feelist.service';
 import { ListFee } from '../models/list-fee.model';
 
-describe('ShareListComponent', () => {
+describe('FeeListComponent', () => {
   let component: FeeListComponent;
   let fixture: ComponentFixture<FeeListComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        RouterTestingModule.withRoutes([
-          {component: FeeListComponent },
-      ]),
         MatTableModule,
         MatSortModule,
         HttpClientModule,
@@ -64,23 +59,23 @@ describe('ShareListComponent', () => {
     });
 
     it('should call getMemberListData from memberListService', () => {
-      const dumyGetShareListData = [
+      const dumyGetFeeListData = [
         new ListFee('Aktives Mitglied', 220),
         new ListFee('Aktives Mitglied unter 20 Jahren', 150),
         new ListFee('Passives itglied', 80)
       ];
-      spyOn(component.shareListService, 'getFeeListData').and.returnValue(of(dumyGetShareListData));
+      spyOn(component.feeListService, 'getFeeListData').and.returnValue(of(dumyGetFeeListData));
       component.ngOnInit();
-      expect(component.shareListService.getFeeListData).toHaveBeenCalledTimes(1);
+      expect(component.feeListService.getFeeListData).toHaveBeenCalledTimes(1);
     });
 
     it('should set dataSource', () => {
-      const dumyGetShareListData = [
+      const dumyGetFeeListData = [
         new ListFee('Aktives Mitglied', 220),
         new ListFee('Aktives Mitglied unter 20 Jahren', 150),
         new ListFee('Passives itglied', 80)
       ];
-      spyOn(component.shareListService, 'getFeeListData').and.returnValue(of(dumyGetShareListData));
+      spyOn(component.feeListService, 'getFeeListData').and.returnValue(of(dumyGetFeeListData));
       component.ngOnInit();
     });
   });

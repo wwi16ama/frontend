@@ -3,7 +3,6 @@ import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
 import { ListFee } from '../models/list-fee.model';
 import { FeeListService } from './../services/feelist.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-fee-list',
@@ -15,7 +14,7 @@ export class FeeListComponent implements OnInit {
   displayedColumns: string[];
   dataSource: any;
 
-  constructor(public feeListService: FeeListService, public router: Router) {
+  constructor(public feeListService: FeeListService) {
     this.displayedColumns = ['memberCategory', 'memberFee'];
   }
 
