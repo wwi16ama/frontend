@@ -57,6 +57,7 @@
 
 
 /* remove when all links done please!!!!!!!!!!!!!!!!!einseineself */
+/* also dont forget to remove the class in the html */
 .not-included {
     text-decoration: line-through;
 }
