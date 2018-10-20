@@ -1,0 +1,84 @@
+@media only screen and (min-width: 600px) {
+    .sidebar-container {
+        height: calc(100vh - 64px);
+    }
+
+    .logo {
+        height: 60px;
+        width: auto;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        cursor: pointer;
+    }
+
+    .toolbar-text {
+        margin-left: 15px;
+    }
+}
+
+@media only screen and (max-width: 599px) {
+    .sidebar-container {
+        height: calc(100vh - 56px);
+    }
+
+    .logo {
+        height: 50px;
+        width: auto;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        cursor: pointer;
+    }
+
+    .toolbar-text {
+        display: none;
+    }
+}
+
+.header {
+    position: relative;
+}
+
+.logout-button {
+    position: absolute;
+    right: 16px;
+}
+
+.logout-icon {
+    margin-left: 10px;
+}
+
+.sidebar {
+    width: 300px;
+}
+
+.menu-button-wrapper {
+    cursor: pointer;
+    transition: 0.5s;
+}
+
+.underline {
+    text-decoration: underline;
+}
+
+.sub-button {
+    margin: 0 16px;
+}
+.menu-button-wrapper:hover {
+    background-color: #0081C9;
+    transition: 0.5s;
+}
+
+.menu-button-wrapper:hover .menu-button {
+    color: white;
+}
+
+
+/* remove when all links done please!!!!!!!!!!!!!!!!!einseineself */
+/* also dont forget to remove the class in the html */
+.not-included {
+    text-decoration: line-through;
+}

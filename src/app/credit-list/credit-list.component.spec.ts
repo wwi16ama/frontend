@@ -1,6 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { MatTableModule, MatSortModule, MatButtonModule } from '@angular/material';
+import { HttpClientModule } from '@angular/common/http';
+
 import { CreditListComponent } from './credit-list.component';
+
+import { CreditListService } from './../services/creditlist.service';
 
 describe('CreditListComponent', () => {
   let component: CreditListComponent;
@@ -8,7 +13,15 @@ describe('CreditListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CreditListComponent ]
+      imports: [
+        MatTableModule,
+        MatSortModule,
+        MatButtonModule,
+        HttpClientModule      ],
+      declarations: [ CreditListComponent ],
+      providers: [
+        CreditListService
+      ]
     })
     .compileComponents();
   }));
