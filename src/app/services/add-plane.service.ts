@@ -11,8 +11,7 @@ export class AddPlaneService {
   constructor(public httpClient: HttpClient) { }
 
     public addPlaneData(planes: Plane): Observable<any> {
-    const id = planes.id;
-    const url = 'http://localhost:3000/planes/' + id;
+    const url = 'http://localhost:3000/planes/';
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     return this.httpClient.post<Plane>(
       url,
