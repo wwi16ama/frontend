@@ -21,6 +21,9 @@ export class PlaneListComponent implements OnInit {
 
   planes: Plane[];
 
+  constructor(public planelistService: PlaneListService, public editPlaneDialog: MatDialog, public addPlaneDialog: MatDialog,
+    public planeUpdateService: PlaneUpdateService, public snackBar: MatSnackBar,
+    public addPlaneService: AddPlaneService, public activatedRoute: ActivatedRoute) {
   constructor(public planelistService: PlaneListService, public editPlaneDialog: MatDialog,
     public deletePlaneDialog: MatDialog, public planeUpdateService: PlaneUpdateService, public planeDeleteService: PlaneDeleteService,
     public snackBar: MatSnackBar, public addPlaneService: AddPlaneService, public activatedRoute: ActivatedRoute,
@@ -152,6 +155,13 @@ export class PlaneListComponent implements OnInit {
   openAddPlaneDialog(): void {
     const dialogRef = this.addPlaneDialog.open(AddPlaneDialogComponent, {
     });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result != null) {
+        this.savePlaneData(result);
+      }
+    });
+  }
+
     dialogRef.afterClosed().subscribe(result => {
       if (result != null) {
         this.savePlaneData(result);
