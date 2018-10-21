@@ -58,7 +58,9 @@ export class AddPlaneDialogComponent {
 
     this.matcher = new MyErrorStateMatcher();
   }
-
+  public onNoClick(): void {
+    this.addPlaneDialogRef.close();
+  }
   public onSubmit(): void {
     this.submitted = true;
   }
