@@ -29,6 +29,7 @@ app.post('/planes', cors(), function (req, res) {
   trennlinie();
   console.log('post /planes hat erhalten:');
   console.log(req.body);
+  trennlinie();
   req.body.id = 9001;
   res.status(200).send(req.body);
 });
@@ -38,6 +39,7 @@ app.put('/planes/:id', cors(), function (req, res) {
   trennlinie();
   console.log('put /planes/:id hat erhalten:');
   console.log(req.body);
+  trennlinie();
   res.statusCode = 204;
   res.send();
 });
