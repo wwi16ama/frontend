@@ -202,6 +202,13 @@ export class PlaneListComponent implements OnInit {
     );
   }
 
+    dialogRef.afterClosed().subscribe(result => {
+      if (result != null) {
+        this.savePlaneData(result);
+      }
+    });
+  }
+
   public formatStringToEnum(plane: any): Plane {
     plane.neededAuthorization = neededAuthorizationEnum.getEnumString(plane.neededAuthorization);
     return plane;
