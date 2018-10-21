@@ -13,7 +13,7 @@ app.use(cors());
 // Planes
 // List of all planes
 app.get('/planes', cors(), function (req, res) {
-  fs.readFile('./mock-data/plane.json', function (err, data) {
+  fs.readFile(__dirname + '/mock-data/plane.json', function (err, data) {
     if (err) {
       const errorMessage = { error: 'Nichts gefunden' };
       res.status(400).json(errorMessage);
@@ -26,12 +26,18 @@ app.get('/planes', cors(), function (req, res) {
 
 // Create a Plane
 app.post('/planes', cors(), function (req, res) {
+  trennlinie();
+  console.log('post /planes hat erhalten:');
+  console.log(req.body);
   req.body.id = 9001;
   res.status(200).send(req.body);
 });
 
 // Update a specific Plane
 app.put('/planes/:id', cors(), function (req, res) {
+  trennlinie();
+  console.log('put /planes/:id hat erhalten:');
+  console.log(req.body);
   res.statusCode = 204;
   res.send();
 });
@@ -40,7 +46,7 @@ app.put('/planes/:id', cors(), function (req, res) {
 // Member
 // List of all members
 app.get('/members', cors(), function (req, res) {
-  fs.readFile('./mock-data/memberlist.json', function (err, data) {
+  fs.readFile(__dirname + '/mock-data/memberlist.json', function (err, data) {
     if (err) {
       const errorMessage = { error: 'Nichts gefunden' };
       res.status(400).json(errorMessage);
@@ -53,7 +59,7 @@ app.get('/members', cors(), function (req, res) {
 
 // Info for a specific Member
 app.get('/members/:id', cors(), function (req, res) {
-  fs.readFile('./mock-data/member' + req.params.id + '.json', function (err, data) {
+  fs.readFile(__dirname + '/mock-data/member' + req.params.id + '.json', function (err, data) {
     if (err) {
       const errorMessage = { error: 'Nichts gefunden' };
       res.status(400).json(errorMessage);
@@ -66,6 +72,10 @@ app.get('/members/:id', cors(), function (req, res) {
 
 // Update a specific Member
 app.put('/members/:id', cors(), function (req, res) {
+  trennlinie();
+  console.log('put /members/:id hat erhalten:');
+  console.log(req.body);
+  trennlinie();
   res.statusCode = 204;
   res.send();
 });
@@ -73,7 +83,7 @@ app.put('/members/:id', cors(), function (req, res) {
 
 // Creditlist
 app.get('/creditlist', cors(), function (req, res) {
-  fs.readFile('./mock-data/creditlist.json', function (err, data) {
+  fs.readFile(__dirname + '/mock-data/creditlist.json', function (err, data) {
     if (err) {
       const errorMessage = { error: 'Nichts gefunden' };
       res.status(400).json(errorMessage);
@@ -83,6 +93,11 @@ app.get('/creditlist', cors(), function (req, res) {
     }
   });
 });
+
+
+function trennlinie() {
+  console.log('--------------------------------------------------------------------');
+}
 
 app.listen(3000, function () {
   console.log('Mock Server running on Port: 3000!');
