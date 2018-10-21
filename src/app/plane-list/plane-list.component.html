@@ -1,3 +1,6 @@
+<button mat-mini-fab color="primary" (click)="openAddPlaneDialog()" class="tool">
+  <mat-icon>add</mat-icon>
+</button>
 <h1>Flugzeugliste</h1>
 <div class="cards-wrapper">
   <mat-card class="card" *ngFor="let plane of planes" [ngSwitch]="plane.id">

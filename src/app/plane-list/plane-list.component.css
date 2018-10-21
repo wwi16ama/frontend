@@ -17,3 +17,7 @@
     flex-direction: row;
     justify-content: center;
 }
+.tool {
+    margin: 8px;
+    float: right;
+  }
