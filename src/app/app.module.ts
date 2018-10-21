@@ -10,6 +10,7 @@ import { EditMemberDialogComponent } from './member-view/edit-member-dialog/edit
 import { PlaneListModule } from './plane-list/plane-list.module';
 import { EditPlaneDialogComponent } from './plane-list/edit-plane-dialog/edit-plane-dialog.component';
 import { FeeListModule } from './fee-list/fee-list.module';
+import { AddPlaneDialogComponent } from './plane-list/add-plane-dialog/add-plane-dialog.component';
 import { SiteNavigationModule } from './site-navigation/site-navigation.module';
 import { CreditListModule } from './credit-list/credit-list.module';
 import { AccountModule } from './account/account.module';
@@ -35,6 +36,7 @@ import { DeletePlaneDialogComponent } from './plane-list/delete-plane-dialog/del
   ],
   bootstrap: [AppComponent],
   entryComponents: [
+    AddPlaneDialogComponent,
     EditMemberDialogComponent,
     EditPlaneDialogComponent,
     DeletePlaneDialogComponent

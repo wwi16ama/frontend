@@ -1,0 +1,65 @@
+<div class="dialog-wrapper">
+  <h2 mat-dialog-title>Flugzeug hinzufügen</h2>
+  <mat-dialog-content>
+
+    <form>
+      <div class="tab-content">
+        <div id="plane-header">Flugzeugdaten</div>
+
+        <mat-form-field class="input-width">
+          <input type="text" matInput [ngModel]="number" placeholder="Kennung" pattern="[A-Z]{1}-{1}[A-Z]{4}"
+            ng-pattern-restrict [formControl]="numberFormControl" required>
+          <mat-error *ngIf="numberFormControl.hasError('required')">
+            Die Kennung ist <strong>erforderlich</strong>
+          </mat-error>
+          <mat-error *ngIf="numberFormControl.hasError('pattern')">
+            Bitte eine gültige Kennung eingeben (z.B. D-ERFI)
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="input-width">
+          <input type="text" matInput [ngModel]="name" placeholder="Name" minlength="5" maxlength="25" pattern="[a-zA-Z_äÄöÖüÜß0-9/. \-]+"
+            ng-pattern-restrict [formControl]="nameFormControl" required>
+          <mat-error *ngIf="nameFormControl.hasError('required')">
+            Der Name ist <strong>erforderlich</strong>
+          </mat-error>
+          <mat-error *ngIf="nameFormControl.hasError('minlength')">
+            Der Name muss mindestens 5 Zeichen lang sein
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="input-width">
+          <mat-select placeholder="Lizenz" [ngModel]="neededAuthorization" [formControl]="neededAuthorizationFormControl"
+            required>
+            <mat-option *ngFor="let neededAuthorization of neededAuthorization" [value]="neededAuthorization">{{neededAuthorization}}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="neededAuthorizationFormControl.hasError('required')">
+            Die Lizenz ist <strong>erforderlich</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="input-width">
+          <mat-select placeholder="Abstellort" [ngModel]="position" id="position" [formControl]="positionFormControl"
+            required>
+            <mat-option *ngFor="let position of position" [value]="position">{{position}}</mat-option>
+          </mat-select>
+          <mat-error *ngIf="positionFormControl.hasError('required')">
+            Der Abstellort ist <strong>erforderlich</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <input style="display: none" type="file" (change)="onFileChanged($event)" #fileInput>
+        <div id="upload-header">Bild hochladen</div>
+        <button (click)="fileInput.click()">Durchsuchen</button>
+
+
+      </div>
+    </form>
+
+  </mat-dialog-content>
+
+  <div mat-dialog-actions>
+    <button mat-button mat-dialog-close>Abbrechen</button>
+    <button mat-raised-button (click)="savePlaneData()" color="primary">Speichern</button>
+  </div>
+</div>

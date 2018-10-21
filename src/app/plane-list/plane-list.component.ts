@@ -5,8 +5,12 @@ import { Plane, neededAuthorizationEnum } from './../models/plane.model';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { EditPlaneDialogComponent } from './edit-plane-dialog/edit-plane-dialog.component';
 import { DeletePlaneDialogComponent } from './delete-plane-dialog/delete-plane-dialog.component';
+import { AddPlaneDialogComponent } from './add-plane-dialog/add-plane-dialog.component';
+
 import { PlaneUpdateService } from '../services/plane-update.service';
 import { PlaneDeleteService } from '../services/plane-delete.service';
+import { AddPlaneService } from '../services/add-plane.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-plane-list',
@@ -20,6 +24,9 @@ export class PlaneListComponent implements OnInit {
   constructor(public planelistService: PlaneListService, public editPlaneDialog: MatDialog,
     public deletePlaneDialog: MatDialog, public planeUpdateService: PlaneUpdateService, public planeDeleteService: PlaneDeleteService,
     public snackBar: MatSnackBar) {
+  constructor(public planelistService: PlaneListService, public editPlaneDialog: MatDialog, public addPlaneDialog: MatDialog,
+    public planeUpdateService: PlaneUpdateService, public snackBar: MatSnackBar,
+    public addPlaneService: AddPlaneService, public activatedRoute: ActivatedRoute) {
     this.planes = [];
   }
 
@@ -106,6 +113,47 @@ export class PlaneListComponent implements OnInit {
       }
     });
   }
+  public savePlaneData(plane: Plane): void {
+    plane = this.formatStringToEnum(plane);
+    this.addPlaneService.addPlaneData(plane).subscribe(
+      (response) => {
+        if (response.status === 200) {
+          this.snackBar.open('Änderungen erfolgreich gespeichert.', 'Schließen',
+            {
+              duration: 3000,
+            }
+          );
+          const newPlane = new Plane(
+            response.body.number,
+            response.body.name,
+            response.body.position,
+            response.body.neededAuthorization,
+            response.body.id
+          );
+          newPlane.neededAuthorization = neededAuthorizationEnum[newPlane.neededAuthorization];
+          this.planes.push(newPlane);
+        }
+      },
+      error => {
+        if (error.status === 400) {
+          this.snackBar.open('Pflichtfelder nicht ausgefüllt', 'Schließen',
+            {
+              duration: 4000,
+            }
+          );
+        } else if (error.status === 0) {
+          this.snackBar.open('Es konnte keine Verbindung zum Server aufgebaut werden', 'Schließen',
+            {
+              duration: 4000,
+            }
+          );
+        }
+      }
+    );
+  }
+  openAddPlaneDialog(): void {
+    const dialogRef = this.addPlaneDialog.open(AddPlaneDialogComponent, {
+    });
 
   public deletePlane(planeId: number): void {
     this.planeDeleteService.deletePlaneData(planeId).subscribe(
@@ -138,6 +186,13 @@ export class PlaneListComponent implements OnInit {
         }
       }
     );
+  }
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result != null) {
+        this.savePlaneData(result);
+      }
+    });
   }
 
   public formatStringToEnum(plane: any): Plane {
