@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { AddUserFormComponent } from './add-user-form.component';
-import { NumberOnlyDirective } from './../directives/number.directive';
+import { NumberOnlyDirective } from './../../directives/number.directive';
 
 import {
   MatButtonModule, MatCheckboxModule, MatFormFieldModule,
