@@ -29,7 +29,7 @@
         </mat-form-field>
 
         <mat-form-field class="input-width">
-          <mat-select placeholder="Lizenz" [ngModel]="neededAuthorization" name="authorization"
+          <mat-select placeholder="Lizenz" [ngModel]="neededAuthorization"
             required>
             <mat-option *ngFor="let neededAuthorization of neededAuthorization" [value]="neededAuthorization">{{neededAuthorization}}</mat-option>
           </mat-select>
@@ -39,7 +39,7 @@
         </mat-form-field>
 
         <mat-form-field class="input-width">
-          <mat-select placeholder="Abstellort" [ngModel]="position" name="position" id="position" 
+          <mat-select placeholder="Abstellort" [ngModel]="position" id="position" 
             required>
             <mat-option *ngFor="let position of position" [value]="position">{{position}}</mat-option>
           </mat-select>
