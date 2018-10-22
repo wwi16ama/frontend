@@ -5,7 +5,7 @@ import localeDe from '@angular/common/locales/de';
 
 
 import { AppComponent } from './app.component';
-import { AddUserFormComponent } from './add-user-form/add-user-form.component';
+import { AddUserFormComponent } from './member-list/add-user-form/add-user-form.component';
 
 import { AppRoutingModule } from './app-routing.module';
 import { MemberListModule } from './member-list/member-list.module';

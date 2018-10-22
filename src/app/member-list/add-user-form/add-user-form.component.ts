@@ -1,9 +1,9 @@
-import { Component, Inject } from '@angular/core';
+import { Component } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { FormControl, FormGroupDirective, NgForm } from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
+import { MatDialogRef, MatSnackBar } from '@angular/material';
 import { ErrorStateMatcher } from '@angular/material/core';
-import { Member, Office, OfficeEnum, Authorization, AuthorizationEnum, Address } from './../models/member.model';
+import { Office, OfficeEnum, Authorization, AuthorizationEnum, Address } from './../../models/member.model';
 
 
 /** Error when invalid control is dirty, touched, or submitted. */
