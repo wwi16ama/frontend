@@ -5,6 +5,8 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 
 import { ListCredit } from './../models/list-credit.model';
 
+import { environment } from '../../environments/environment';
+
 describe('CreditlistService', () => {
 
   let injector: TestBed;
@@ -40,7 +42,7 @@ describe('CreditlistService', () => {
     service.getCreditListData().subscribe(creditListData => {
       expect(creditListData).toEqual(testCreditListData);
     });
-    const req = httpMock.expectOne('http://localhost:4200/assets/mock-data/creditlist.json');
+    const req = httpMock.expectOne(environment.baseUrl + '/creditlist');
     expect(req.request.method).toBe('GET');
     req.flush(testCreditListData);
   });

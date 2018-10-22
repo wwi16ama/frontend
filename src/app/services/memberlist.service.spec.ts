@@ -2,6 +2,7 @@ import { TestBed, getTestBed } from '@angular/core/testing';
 
 import { MemberListService } from './memberlist.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { environment } from '../../environments/environment';
 
 import { ListMember } from './../models/list-member.model';
 
@@ -37,7 +38,7 @@ describe('MemberlistService', () => {
     service.getMemberListData().subscribe(memberListData => {
       expect(memberListData).toEqual(testMemberListData);
     });
-    const req = httpMock.expectOne('http://localhost:4200/assets/mock-data/memberlist.json');
+    const req = httpMock.expectOne(environment.baseUrl + '/members');
     expect(req.request.method).toBe('GET');
     req.flush(testMemberListData);
   });
