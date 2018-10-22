@@ -5,7 +5,7 @@ import { ListMember } from './../models/list-member.model';
 import { MemberListService } from './../services/memberlist.service';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
-import { AddUserFormComponent } from './../add-user-form/add-user-form.component';
+import { AddUserFormComponent } from './add-user-form/add-user-form.component';
 import { Member, Status, Gender, OfficeEnum, AuthorizationEnum } from './../models/member.model';
 import { MemberService } from './../services/member.service';
 import { MemberAddService } from './../services/member-add.service';
