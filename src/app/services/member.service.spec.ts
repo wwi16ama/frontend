@@ -2,6 +2,7 @@ import { TestBed, getTestBed } from '@angular/core/testing';
 
 import { MemberService } from './member.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { environment } from '../../environments/environment';
 
 import { Member, Gender, Address, Status, Authorization, AuthorizationEnum, Office, OfficeEnum } from './../models/member.model';
 
@@ -53,7 +54,7 @@ describe('MemberService', () => {
       service.getMemberData(id).subscribe(memberData => {
         expect(memberData).toEqual(testMemberData);
       });
-      const url = 'http://localhost:4200/assets/mock-data/member' + id + '.json';
+      const url = environment.baseUrl + '/members/' + id;
       const req = httpMock.expectOne(url);
       expect(req.request.method).toBe('GET');
       req.flush(testMemberData);
