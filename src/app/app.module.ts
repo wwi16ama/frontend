@@ -12,6 +12,7 @@ import { EditPlaneDialogComponent } from './plane-list/edit-plane-dialog/edit-pl
 import { FeeListModule } from './fee-list/fee-list.module';
 import { SiteNavigationModule } from './site-navigation/site-navigation.module';
 import { CreditListModule } from './credit-list/credit-list.module';
+import { AccountModule } from './account/account.module';
 import { DeletePlaneDialogComponent } from './plane-list/delete-plane-dialog/delete-plane-dialog.component';
 
 @NgModule({
@@ -26,7 +27,8 @@ import { DeletePlaneDialogComponent } from './plane-list/delete-plane-dialog/del
     PlaneListModule,
     FeeListModule,
     SiteNavigationModule,
-    CreditListModule
+    CreditListModule,
+    AccountModule
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'ger' }
