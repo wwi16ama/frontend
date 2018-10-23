@@ -1,0 +1,24 @@
+{
+    "transactions": [
+        {
+            "id": 0,
+            "timestamp": "2018-10-23T08:17:54.532Z",
+            "amount": 200,
+            "type": "GEBÜHR"
+        },
+        {
+            "id": 1,
+            "timestamp": "2018-10-23T08:17:54.532Z",
+            "amount": 200,
+            "type": "AUFWANDSENTSCHÄDIGUNG"
+        },
+        {
+            "id": 2,
+            "timestamp": "2018-10-23T08:17:54.532Z",
+            "amount": 200,
+            "type": "ZAHLUNG"
+        }
+    ],
+    "id":1,
+    "balance":654
+}
