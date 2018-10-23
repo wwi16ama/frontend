@@ -96,6 +96,19 @@ app.get('/creditlist', cors(), function (req, res) {
   });
 });
 
+// Feelist
+app.get('/fees', cors(), function (req, res) {
+  fs.readFile(__dirname + '/mock-data/fees.json', function (err, data) {
+    if (err) {
+      const errorMessage = { error: 'Nichts gefunden' };
+      res.status(400).json(errorMessage);
+    } else {
+      var response = JSON.parse(data);
+      res.status(200).json(response);
+    }
+  });
+});
+
 
 function trennlinie() {
   console.log('--------------------------------------------------------------------');
