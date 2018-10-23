@@ -11,7 +11,7 @@ export class MemberDeleteService {
   constructor(public httpClient: HttpClient) { }
 
   public deleteMemberData (memberId: number): Observable <any> {
-    const url = environment.baseUrl + '/planes/' + memberId;
+    const url = environment.baseUrl + '/members/' + memberId;
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     return this.httpClient.delete<any>(
       url,
