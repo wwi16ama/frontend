@@ -23,7 +23,7 @@ import { CreditListModule } from './credit-list/credit-list.module';
     MemberListModule,
     MemberViewModule,
     PlaneListModule,
-    FeeListModule
+    FeeListModule,
     SiteNavigationModule,
     CreditListModule
   ],
