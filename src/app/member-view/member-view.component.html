@@ -1,5 +1,6 @@
 <div class="member-view-wrapper">
   <button mat-raised-button color="primary" class="edit-button" (click)="openEditMemberDialog()">Ändern</button>
+  <button mat-raised-button color="warn" class ="delete-button" (click)="openDeleteMemberDialog(member)">Löschen</button>
   <mat-list *ngIf="member != null">
     <h3 mat-subheader>Übersicht</h3>
     <mat-list-item>

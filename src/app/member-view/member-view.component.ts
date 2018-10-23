@@ -8,6 +8,9 @@ import { ActivatedRoute } from '@angular/router';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { EditMemberDialogComponent } from './edit-member-dialog/edit-member-dialog.component';
 
+import { MemberDeleteService } from '../services/member-delete.service';
+import { DeleteMemberDialogComponent } from './delete-member-dialog/delete-member-dialog.component'
+
 
 @Component({
   selector: 'app-member-view',
@@ -19,8 +22,8 @@ export class MemberViewComponent implements OnInit {
 
   constructor(
     public memberService: MemberService, public memberUpdateService: MemberUpdateService,
-    public activatedRoute: ActivatedRoute, public editMemberDialog: MatDialog,
-    public snackBar: MatSnackBar
+    public activatedRoute: ActivatedRoute, public editMemberDialog: MatDialog, public deleteMemberDialog: MatDialog,
+    public snackBar: MatSnackBar, public memberDeleteService: MemberDeleteService
   ) {
   }
 
@@ -96,6 +99,51 @@ export class MemberViewComponent implements OnInit {
         this.saveMember(result);
       }
     });
+  }
+
+  public openDeleteMemberDialog(member: Member): void {
+    const dialogRef = this.deleteMemberDialog.open(DeleteMemberDialogComponent, {
+      maxWidth: '100vw',
+      minWidth: '0px',
+      maxHeight: '90vh',
+      disableClose: true,      
+      data: JSON.parse(JSON.stringify(this.member))
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result != null) {
+        this.deleteMember(member.id);
+      }
+    });
+  }
+
+  public deleteMember(memberId: number): void {
+    this.memberDeleteService.deleteMemberData(memberId).subscribe(
+      (response) => {
+        if (response.status === 204) {
+          this.snackBar.open('Löschen erfolgreich', 'Schließen',
+            {
+              duration: 3000,
+            }
+          );
+        }
+      },
+      error => {
+        if (error.status === 404) {
+          this.snackBar.open('Mitglied nicht gefunden.', 'Schließen',
+            {
+              duration: 4000,
+            }
+          );
+        } else if (error.status === 0) {
+          this.snackBar.open('Es konnte keine Verbindung zum Server aufgebaut werden', 'Schließen',
+            {
+              duration: 4000,
+            }
+          );
+        }
+      }
+    );
   }
 
   public formatStringToEnum(member: any): any {

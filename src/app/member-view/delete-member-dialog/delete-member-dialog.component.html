@@ -1,0 +1,11 @@
+<div class="dialog-wrapper">
+  <h1 mat-dialog-title>{{member.firstName}} {{member.lastName}} löschen</h1>
+  <div mat-dialog-content>      
+      <p>Soll dieses Mitglied wirklich gelöscht werden?</p>
+      <br>
+  </div>
+  <div mat-dialog-actions>
+      <button mat-raised-button (click)="onNoClick()">Abbrechen</button>
+      <button mat-raised-button (click)="deleteMemberData()" color="warn">Löschen</button>
+  </div>
+</div>

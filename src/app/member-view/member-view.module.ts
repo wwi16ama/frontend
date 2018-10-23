@@ -10,6 +10,8 @@ import {
 import { MemberService } from './../services/member.service';
 import { MemberUpdateService } from './../services/member-update.service';
 import { EditMemberDialogModule } from './edit-member-dialog/edit-member-dialog.module';
+import { DeleteMemberDialogModule } from './delete-member-dialog/delete-member-dialog.module';
+
 
 @NgModule({
   imports: [
@@ -21,7 +23,8 @@ import { EditMemberDialogModule } from './edit-member-dialog/edit-member-dialog.
     MatButtonModule,
     MatSelectModule,
     MatInputModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    DeleteMemberDialogModule
   ],
   declarations: [
     MemberViewComponent
