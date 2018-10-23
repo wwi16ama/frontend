@@ -9,6 +9,7 @@ import { MemberViewModule } from './member-view/member-view.module';
 import { EditMemberDialogComponent } from './member-view/edit-member-dialog/edit-member-dialog.component';
 import { PlaneListModule } from './plane-list/plane-list.module';
 import { EditPlaneDialogComponent } from './plane-list/edit-plane-dialog/edit-plane-dialog.component';
+import { FeeListModule } from './fee-list/fee-list.module';
 import { SiteNavigationModule } from './site-navigation/site-navigation.module';
 import { CreditListModule } from './credit-list/credit-list.module';
 
@@ -22,6 +23,7 @@ import { CreditListModule } from './credit-list/credit-list.module';
     MemberListModule,
     MemberViewModule,
     PlaneListModule,
+    FeeListModule,
     SiteNavigationModule,
     CreditListModule
   ],

@@ -1,0 +1,15 @@
+[
+    {
+        "memberCategory": "Aktives Mitglied",
+        "memberFee": 220
+    },
+    {
+        "memberCategory": "Aktives Mitglied unter 20 Jahren",
+        "memberFee": 150
+    },
+
+    {
+        "memberCategory": "Passives Mitglied",
+        "memberFee": 80
+    }
+]

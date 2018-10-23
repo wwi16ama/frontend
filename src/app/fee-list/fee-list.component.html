@@ -1,0 +1,22 @@
+<h1>Beitragsliste</h1>
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+   
+  <ng-container matColumnDef="memberCategory">
+    <th mat-header-cell *matHeaderCellDef>Mitgliederkategorie</th>
+    <td mat-cell *matCellDef="let element"> {{element.memberCategory}} </td>
+  </ng-container>
+  
+  <ng-container matColumnDef="memberFee">
+    <th mat-header-cell *matHeaderCellDef>Beitrag</th>
+    <td mat-cell *matCellDef="let element"> {{element.memberFee}} &euro;</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+</table>
+<div>
+  <button mat-raised-button color="primary">Ändern</button>
+  <button mat-raised-button color="warn">Löschen</button>
+  <button mat-raised-button color="basic">Hinzufügen</button>
+</div>
