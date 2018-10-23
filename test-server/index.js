@@ -44,6 +44,15 @@ app.put('/planes/:id', cors(), function (req, res) {
   res.send();
 });
 
+// Delete specific plane
+app.delete('/planes/:id', cors(), function (req, res) {
+  trennlinie();
+  console.log('delete /planes/' + req.params.id + '  erhalten:');
+  trennlinie();
+  res.statusCode = 204;
+  res.send();
+});
+
 
 // Member
 // List of all members
