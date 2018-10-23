@@ -6,6 +6,7 @@ import { MatDialog, MatSnackBar } from '@angular/material';
 import { EditPlaneDialogComponent } from './edit-plane-dialog/edit-plane-dialog.component';
 import { DeletePlaneDialogComponent } from './delete-plane-dialog/delete-plane-dialog.component';
 import { PlaneUpdateService } from '../services/plane-update.service';
+import { PlaneDeleteService } from '../services/plane-delete.service';
 
 @Component({
   selector: 'app-plane-list',
@@ -17,7 +18,7 @@ export class PlaneListComponent implements OnInit {
   planes: Plane[];
 
   constructor(public planelistService: PlaneListService, public editPlaneDialog: MatDialog,
-    public deletePlaneDialog: MatDialog, public planeUpdateService: PlaneUpdateService,
+    public deletePlaneDialog: MatDialog, public planeUpdateService: PlaneUpdateService, public planeDeleteService: PlaneDeleteService,
     public snackBar: MatSnackBar) {
     this.planes = [];
   }
@@ -41,22 +42,6 @@ export class PlaneListComponent implements OnInit {
       disableClose: true,
       data: JSON.parse(JSON.stringify(plane))
     });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result != null) {
-        this.savePlane(result);
-      }
-    });
-  }
-
-  public openDeletePlaneDialog(plane: Plane): void {
-    const dialogRef = this.deletePlaneDialog.open(DeletePlaneDialogComponent, {
-      maxWidth: '100vw',
-      minWidth: '0px',
-      maxHeight: '90vh',
-      disableClose: true,
-      data: JSON.parse(JSON.stringify(plane))
-    });
-
     dialogRef.afterClosed().subscribe(result => {
       if (result != null) {
         this.savePlane(result);
@@ -104,7 +89,55 @@ export class PlaneListComponent implements OnInit {
         }
       }
     );
+  }
 
+  public openDeletePlaneDialog(plane: Plane): void {
+    const dialogRef = this.deletePlaneDialog.open(DeletePlaneDialogComponent, {
+      maxWidth: '100vw',
+      minWidth: '0px',
+      maxHeight: '90vh',
+      disableClose: true,
+      data: JSON.parse(JSON.stringify(plane))
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result != null) {
+        this.deletePlane(plane.id);
+      }
+    });
+  }
+
+  public deletePlane(planeId: number): void {
+    this.planeDeleteService.deletePlaneData(planeId).subscribe(
+      (response) => {
+        if (response.status === 204) {
+          this.snackBar.open('Löschen erfolgreich', 'Schließen',
+            {
+              duration: 3000,
+            }
+          );
+          const planeIndex = this.findPlaneIndex(planeId);
+          if (planeIndex !== -1) {
+            this.planes.splice(planeIndex, 1);
+          }
+        }
+      },
+      error => {
+        if (error.status === 404) {
+          this.snackBar.open('Flugzeug nicht gefunden.', 'Schließen',
+            {
+              duration: 4000,
+            }
+          );
+        } else if (error.status === 0) {
+          this.snackBar.open('Es konnte keine Verbindung zum Server aufgebaut werden', 'Schließen',
+            {
+              duration: 4000,
+            }
+          );
+        }
+      }
+    );
   }
 
   public formatStringToEnum(plane: any): Plane {
