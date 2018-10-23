@@ -12,10 +12,8 @@ export class PlaneDeleteService {
 
   constructor(public httpClient: HttpClient) { }
 
-  public deletePlaneData (planeData: Plane): Observable <any> {
-    const id = planeData.id;
-    const url = environment.baseUrl + '/plane/' + id;
-    delete planeData['id'];
+  public deletePlaneData (planeId: number): Observable <any> {
+    const url = environment.baseUrl + '/planes/' + planeId;
     const headers = new HttpHeaders().set('Content-Type', 'application/json');
     return this.httpClient.delete<any>(
       url,
