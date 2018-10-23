@@ -4,6 +4,7 @@ import { Plane, neededAuthorizationEnum } from './../models/plane.model';
 
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { EditPlaneDialogComponent } from './edit-plane-dialog/edit-plane-dialog.component';
+import { DeletePlaneDialogComponent } from './delete-plane-dialog/delete-plane-dialog.component';
 import { PlaneUpdateService } from '../services/plane-update.service';
 
 @Component({
@@ -16,7 +17,8 @@ export class PlaneListComponent implements OnInit {
   planes: Plane[];
 
   constructor(public planelistService: PlaneListService, public editPlaneDialog: MatDialog,
-    public planeUpdateService: PlaneUpdateService, public snackBar: MatSnackBar) {
+    public deletePlaneDialog: MatDialog, public planeUpdateService: PlaneUpdateService,
+    public snackBar: MatSnackBar) {
     this.planes = [];
   }
 
@@ -33,6 +35,21 @@ export class PlaneListComponent implements OnInit {
 
   public openEditPlaneDialog(plane: Plane): void {
     const dialogRef = this.editPlaneDialog.open(EditPlaneDialogComponent, {
+      maxWidth: '100vw',
+      minWidth: '0px',
+      maxHeight: '90vh',
+      disableClose: true,
+      data: JSON.parse(JSON.stringify(plane))
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result != null) {
+        this.savePlane(result);
+      }
+    });
+  }
+
+  public openDeletePlaneDialog(plane: Plane): void {
+    const dialogRef = this.deletePlaneDialog.open(DeletePlaneDialogComponent, {
       maxWidth: '100vw',
       minWidth: '0px',
       maxHeight: '90vh',

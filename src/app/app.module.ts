@@ -11,6 +11,7 @@ import { PlaneListModule } from './plane-list/plane-list.module';
 import { EditPlaneDialogComponent } from './plane-list/edit-plane-dialog/edit-plane-dialog.component';
 import { SiteNavigationModule } from './site-navigation/site-navigation.module';
 import { CreditListModule } from './credit-list/credit-list.module';
+import { DeletePlaneDialogComponent } from './plane-list/delete-plane-dialog/delete-plane-dialog.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { CreditListModule } from './credit-list/credit-list.module';
   bootstrap: [AppComponent],
   entryComponents: [
     EditMemberDialogComponent,
-    EditPlaneDialogComponent
+    EditPlaneDialogComponent,
+    DeletePlaneDialogComponent
   ]
 })
 export class AppModule { }
