@@ -1,4 +1,4 @@
-export class Account{
+export class Account {
     constructor(
         public transactions: Transaction[],
         public id: number,
@@ -16,8 +16,18 @@ export class Transaction {
 }
 
 export enum Type {
-    GEBÜHR = 'Gebühr',
-    AUFWANDSENTSCHÄDIGUNG = 'Aufwandsentschädigung',
-    ZAHLUNG = 'Zahlung'
+  GEBÜHR = 'Gebühr',
+  AUFWANDSENTSCHÄDIGUNG = 'Aufwandsentschädigung',
+  ZAHLUNG = 'Zahlung',
+}
+
+export namespace Type {
+    export function getEnumString(enteredString: string): string {
+        switch (enteredString) {
+            case Type.GEBÜHR: return 'Gebühr';
+            case Type.AUFWANDSENTSCHÄDIGUNG: return 'Aufwandsentschädigung';
+            case Type.ZAHLUNG: return 'Zahlung';
+        }
+    }
 }
 
