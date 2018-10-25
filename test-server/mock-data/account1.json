@@ -3,22 +3,22 @@
         {
             "id": 0,
             "timestamp": "2018-10-23T08:17:54.532Z",
-            "amount": 200,
+            "amount": 200.00,
             "type": "GEBÜHR"
         },
         {
             "id": 1,
-            "timestamp": "2018-10-23T08:17:54.532Z",
-            "amount": 200,
+            "timestamp": "2018-10-24T08:17:54.532Z",
+            "amount": 200.00,
             "type": "AUFWANDSENTSCHÄDIGUNG"
         },
         {
             "id": 2,
-            "timestamp": "2018-10-23T08:17:54.532Z",
-            "amount": 200,
+            "timestamp": "2018-10-25T08:17:54.532Z",
+            "amount": 200.00,
             "type": "ZAHLUNG"
         }
     ],
     "id":1,
-    "balance":654
+    "balance":190.40
 }
