@@ -23,9 +23,10 @@ export class AddPlaneDialogComponent {
 
   number: string;
   name: string;
-  neededAuthorization: string[];
+  neededAuthorization: string;
   position: string[];
   submitted: boolean;
+  possibleAuthorizations: string[];
 
   numberFormControl: FormControl;
   nameFormControl: FormControl;
@@ -36,7 +37,7 @@ export class AddPlaneDialogComponent {
   constructor(public addPlaneDialogRef: MatDialogRef<AddPlaneDialogComponent>, public snackBar: MatSnackBar) {
     this.number = '';
     this.name = '';
-    this.neededAuthorization = ['PPL-A', 'PPL-B', 'BZF-I', 'BZF-II'];
+    this.possibleAuthorizations = ['PPL-A', 'PPL-B', 'BZF-I', 'BZF-II'];
     this.position = ['Halle 1', 'Halle 2'];
     this.submitted = false;
 
