@@ -102,7 +102,7 @@ export class AddPlaneDialogComponent {
         }
       );
       return false;
-    } else if (this.neededAuthorizationFormControl.invalid) {
+    } else if (this.neededAuthorization === undefined) {
       this.snackBar.open('Keine Lizenz angegeben.', 'Schließen',
         {
           duration: 3000,
