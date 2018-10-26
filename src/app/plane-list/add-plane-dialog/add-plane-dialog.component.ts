@@ -74,7 +74,7 @@ export class AddPlaneDialogComponent {
       number: this.numberFormControl.value,
       name: this.nameFormControl.value,
       position: this.positionFormControl.value,
-      neededAuthorization: this.neededAuthorizationFormControl.value
+      neededAuthorization: this.neededAuthorization
     };
     this.addPlaneDialogRef.close(newPlane);
   }
