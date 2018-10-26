@@ -1,8 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { MAT_DATE_LOCALE } from '@angular/material';
-import localeDe from '@angular/common/locales/de';
-
 
 import { AppComponent } from './app.component';
 import { AddUserFormComponent } from './member-list/add-user-form/add-user-form.component';
@@ -18,6 +16,12 @@ import { SiteNavigationModule } from './site-navigation/site-navigation.module';
 import { CreditListModule } from './credit-list/credit-list.module';
 import { AccountModule } from './account/account.module';
 import { DeletePlaneDialogComponent } from './plane-list/delete-plane-dialog/delete-plane-dialog.component';
+
+// Spracheinstellung
+import { LOCALE_ID } from '@angular/core';
+import localeDe from '@angular/common/locales/de';
+import { registerLocaleData } from '@angular/common';
+registerLocaleData(localeDe);
 
 @NgModule({
   declarations: [
@@ -35,8 +39,8 @@ import { DeletePlaneDialogComponent } from './plane-list/delete-plane-dialog/del
     AccountModule
   ],
   providers: [
-    { provide: localeDe, useValue: 'de' },
-    { provide: MAT_DATE_LOCALE, useValue: 'ger' }
+    { provide: MAT_DATE_LOCALE, useValue: 'ger' },
+    { provide: LOCALE_ID, useValue: 'de' }
   ],
   bootstrap: [AppComponent],
   entryComponents: [
