@@ -1,24 +1,24 @@
 <h1>Mitgliedskonto</h1>
 <div class="account">
-  <mat-list *ngIf="account != null">
+  <mat-list *ngIf="account != null && member != null">
     <h3 mat-subheader>Mitgliedsnummer</h3>
     <mat-list-item>
       <h4 mat-line>
-        <span class="spacing">{{account.id}} </span>
+        <span class="spacing">{{account.id}} </span> <!-- oder {{member.id}} keine Ahnung was stimmt-->
       </h4>
     </mat-list-item>
     <mat-divider></mat-divider>
     <h3 mat-subheader>Mitgliedskontonummer</h3>
     <mat-list-item>
       <h4 mat-line>
-        <span class="spacing">12345</span>
+        <span class="spacing">{{member.memberBankingAccount}}</span>
       </h4>
     </mat-list-item>
     <mat-divider></mat-divider>
     <h3 mat-subheader>Kontonummer</h3>
     <mat-list-item>
       <h4 mat-line>
-        <span class="spacing">12345</span>
+        <span class="spacing">{{ member.bankingAccount }}</span>
       </h4>
     </mat-list-item>
     <mat-divider></mat-divider>
