@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { Account, Type } from './../models/account.model';
 import { AccountService } from './../services/account.service';
-
-import { ActivatedRoute } from '@angular/router';
+import { Member } from './../models/member.model';
+import { MemberService } from './../services/member.service';
 
 @Component({
   selector: 'app-account',
@@ -13,25 +13,28 @@ import { ActivatedRoute } from '@angular/router';
 export class AccountComponent implements OnInit {
 
   account: Account;
+  member: Member;
 
   constructor(
-    public accountService: AccountService, public activatedRoute: ActivatedRoute
+    public accountService: AccountService, public memberService: MemberService
     ) {}
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe(
-      params => {
-        // Zeile 25: funktioniert noch nicht richtig. Aktuell nur Zwischenlsöung, weil ich zu faul war
-        this.accountService.getAccountData(1).subscribe(
-          (data: Account) => {
-            this.account = data;
-            for (let i = 0; i < this.account.transactions.length; i++) {
+      // Zeile 26: funktioniert noch nicht richtig. Aktuell nur Zwischenlsöung, weil ich zu faul war
+      this.accountService.getAccountData(0).subscribe(
+        (data: Account) => {
+          this.account = data;
+          for (let i = 0; i < this.account.transactions.length; i++) {
               this.account.transactions[i].type = Type[this.account.transactions[i].type];
-            }
           }
-        );
-      }
-    );
+        }
+      );
+      // siehe Zeile 25
+      this.memberService.getMemberData(0).subscribe(
+        (memberdata: Member) => {
+          this.member = memberdata;
+        }
+      );
   }
 
   public formatStringToEnum(account: any): any {
