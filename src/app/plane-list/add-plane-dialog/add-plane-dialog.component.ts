@@ -71,6 +71,7 @@ export class AddPlaneDialogComponent {
   }
 
   public savePlaneData(): void {
+    if (this.checkRequiredFields()) {
     const newPlane = {
       number: this.numberFormControl.value,
       name: this.nameFormControl.value,
@@ -78,6 +79,38 @@ export class AddPlaneDialogComponent {
       neededAuthorization: this.neededAuthorization
     };
     this.addPlaneDialogRef.close(newPlane);
+  }}
+  public checkRequiredFields(): boolean {
+    if (this.numberFormControl.invalid) {
+      this.snackBar.open('Keine korrekte Kennung.', 'Schließen',
+        {
+          duration: 3000,
+        }
+      );
+      return false;
+    } else if (this.nameFormControl.invalid) {
+      this.snackBar.open('Kein korrekter Name.', 'Schließen',
+        {
+          duration: 3000,
+        }
+      );
+      return false;
+    } else if (this.positionFormControl.invalid) {
+      this.snackBar.open('Keine Position angegeben.', 'Schließen',
+        {
+          duration: 3000,
+        }
+      );
+      return false;
+    } else if (this.neededAuthorizationFormControl.invalid) {
+      this.snackBar.open('Keine Lizenz angegeben.', 'Schließen',
+        {
+          duration: 3000,
+        }
+      );
+      return false;
+    }
+    return true;
   }
 
 }
