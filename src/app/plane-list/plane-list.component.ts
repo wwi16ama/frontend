@@ -23,10 +23,8 @@ export class PlaneListComponent implements OnInit {
 
   constructor(public planelistService: PlaneListService, public editPlaneDialog: MatDialog,
     public deletePlaneDialog: MatDialog, public planeUpdateService: PlaneUpdateService, public planeDeleteService: PlaneDeleteService,
-    public snackBar: MatSnackBar) {
-  constructor(public planelistService: PlaneListService, public editPlaneDialog: MatDialog, public addPlaneDialog: MatDialog,
-    public planeUpdateService: PlaneUpdateService, public snackBar: MatSnackBar,
-    public addPlaneService: AddPlaneService, public activatedRoute: ActivatedRoute) {
+    public snackBar: MatSnackBar, public addPlaneService: AddPlaneService, public activatedRoute: ActivatedRoute,
+    public addPlaneDialog: MatDialog) {
     this.planes = [];
   }
 
@@ -154,6 +152,12 @@ export class PlaneListComponent implements OnInit {
   openAddPlaneDialog(): void {
     const dialogRef = this.addPlaneDialog.open(AddPlaneDialogComponent, {
     });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result != null) {
+        this.savePlaneData(result);
+      }
+    });
+  }
 
   public deletePlane(planeId: number): void {
     this.planeDeleteService.deletePlaneData(planeId).subscribe(
@@ -188,13 +192,6 @@ export class PlaneListComponent implements OnInit {
     );
   }
 
-    dialogRef.afterClosed().subscribe(result => {
-      if (result != null) {
-        this.savePlaneData(result);
-      }
-    });
-  }
-
   public formatStringToEnum(plane: any): Plane {
     plane.neededAuthorization = neededAuthorizationEnum.getEnumString(plane.neededAuthorization);
     return plane;
@@ -210,3 +207,4 @@ export class PlaneListComponent implements OnInit {
   }
 
 }
+
