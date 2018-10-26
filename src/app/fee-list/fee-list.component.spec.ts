@@ -9,7 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { FeeListService } from './../services/feelist.service';
-import { ListFee } from '../models/list-fee.model';
+import { ListFee, memberCategoryEnum } from '../models/list-fee.model';
 
 describe('FeeListComponent', () => {
   let component: FeeListComponent;
@@ -48,7 +48,7 @@ describe('FeeListComponent', () => {
     });
 
     it('should define the default values', () => {
-      const testDisplayedColumnsArray: string[] = ['id', 'firstName', 'lastName'];
+      const testDisplayedColumnsArray: string[] = ['memberCategory', 'memberFee'];
       expect(component.displayedColumns).toEqual(testDisplayedColumnsArray);
     });
   });
@@ -58,11 +58,11 @@ describe('FeeListComponent', () => {
       expect(component.ngOnInit).toBeDefined();
     });
 
-    it('should call getMemberListData from memberListService', () => {
+    it('should call getFeeListData from feeListService', () => {
       const dumyGetFeeListData = [
-        new ListFee('Aktives Mitglied', 220),
-        new ListFee('Aktives Mitglied unter 20 Jahren', 150),
-        new ListFee('Passives itglied', 80)
+        new ListFee(memberCategoryEnum.ACTIVE, 220),
+        new ListFee(memberCategoryEnum.U20ACTIVE, 150),
+        new ListFee(memberCategoryEnum.PASSIVE, 80)
       ];
       spyOn(component.feeListService, 'getFeeListData').and.returnValue(of(dumyGetFeeListData));
       component.ngOnInit();
@@ -71,9 +71,9 @@ describe('FeeListComponent', () => {
 
     it('should set dataSource', () => {
       const dumyGetFeeListData = [
-        new ListFee('Aktives Mitglied', 220),
-        new ListFee('Aktives Mitglied unter 20 Jahren', 150),
-        new ListFee('Passives itglied', 80)
+        new ListFee(memberCategoryEnum.ACTIVE, 220),
+        new ListFee(memberCategoryEnum.U20ACTIVE, 150),
+        new ListFee(memberCategoryEnum.PASSIVE, 80)
       ];
       spyOn(component.feeListService, 'getFeeListData').and.returnValue(of(dumyGetFeeListData));
       component.ngOnInit();
