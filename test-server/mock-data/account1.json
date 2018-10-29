@@ -15,10 +15,10 @@
         {
             "id": 2,
             "timestamp": "2018-10-25T08:17:54.532Z",
-            "amount": 200.00,
+            "amount": -200.00,
             "type": "ZAHLUNG"
         }
     ],
     "id":1,
-    "balance":190.40
+    "balance":-190.40
 }
