@@ -4,7 +4,7 @@ import { Account, Type } from './../models/account.model';
 import { AccountService } from './../services/account.service';
 import { Member } from './../models/member.model';
 import { MemberService } from './../services/member.service';
-import { MatTableDataSource, MatSort } from '@angular/material';
+import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 
 @Component({
   selector: 'app-account',
@@ -19,11 +19,12 @@ export class AccountComponent implements OnInit {
   displayedColumns: string[];
   dataSource: any;
 
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) set content(sort: ElementRef) {
     this.sort = sort;
-    if (this.sort){
-       this.dataSource.sort = this.sort;
-  
+    if (this.sort) {
+      this.dataSource.paginator = this.paginator;
+      this.dataSource.sort = this.sort;
     }
   }
 

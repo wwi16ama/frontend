@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AccountComponent } from './account.component';
 
-import {MatListModule, MatDividerModule, MatTableModule, MatSortModule} from '@angular/material';
+import {MatListModule, MatDividerModule, MatTableModule, MatSortModule, MatPaginatorModule} from '@angular/material';
 
 @NgModule({
   imports: [
@@ -10,7 +10,8 @@ import {MatListModule, MatDividerModule, MatTableModule, MatSortModule} from '@a
     MatListModule,
     MatDividerModule,
     MatTableModule,
-    MatSortModule
+    MatSortModule,
+    MatPaginatorModule
   ],
   declarations: [AccountComponent]
 })

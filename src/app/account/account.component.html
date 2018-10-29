@@ -24,29 +24,32 @@
     </mat-list-item>
     <mat-divider></mat-divider>
     <h3 mat-subheader>Transaktionen</h3>
-    <table mat-table [dataSource]="dataSource" matSortActive="timestamp" matSortDirection="desc" matSort class="mat-elevation-z8">
-
-        <!-- Timestamp -->
-        <ng-container matColumnDef="timestamp">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Datum </th>
-          <td mat-cell *matCellDef="let element"> {{element.timestamp | date : 'dd.MM.yyyy'}} </td>
-        </ng-container>
+    <div class="tablestuff">
+    <table mat-table [dataSource]="dataSource" matSortActive="timestamp" matSortDirection="desc" matSort>
+      <!-- Timestamp -->
+      <ng-container matColumnDef="timestamp">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Datum </th>
+        <td mat-cell *matCellDef="let element">{{element.timestamp | date : 'dd.MM.yyyy'}}</td>
+      </ng-container>
+    
+      <!--Amount -->
+      <ng-container matColumnDef="amount">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Betrag </th>
+        <td mat-cell *matCellDef="let element" [ngClass]="{'color-red': element.type != 'Aufwandsentschädigung', 'color-green': element.type === 'Aufwandsentschädigung'}"> {{element.amount | currency:"€"}} </td>
+      </ng-container>
+    
+      <!--Type -->
+      <ng-container matColumnDef="type">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Typ </th>
+        <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+      </ng-container>
+          
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
       
-        <!--Amount -->
-        <ng-container matColumnDef="amount">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Betrag </th>
-          <td mat-cell *matCellDef="let element" [ngClass]="{'color-red': element.type != 'Aufwandsentschädigung', 'color-green': element.type === 'Aufwandsentschädigung'}"> {{element.amount | currency:"€"}} </td>
-        </ng-container>
-      
-        <!--Type -->
-        <ng-container matColumnDef="type">
-          <th mat-header-cell *matHeaderCellDef mat-sort-header> Typ </th>
-          <td mat-cell *matCellDef="let element"> {{element.type}} </td>
-        </ng-container>
-            
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-      </table>
+    </table>
+    <mat-paginator class="matpaginator" [pageSizeOptions]="[5, 10, 25]"></mat-paginator>
+    </div>
     <mat-divider></mat-divider>
     <h3 mat-subheader>Guthaben</h3>
     <mat-list-item>
