@@ -95,13 +95,6 @@ export class AddPlaneDialogComponent {
         }
       );
       return false;
-    } else if (this.positionFormControl.invalid) {
-      this.snackBar.open('Keine Position angegeben.', 'Schließen',
-        {
-          duration: 3000,
-        }
-      );
-      return false;
     } else if (this.neededAuthorization === undefined) {
       this.snackBar.open('Keine Lizenz angegeben.', 'Schließen',
         {
@@ -109,6 +102,14 @@ export class AddPlaneDialogComponent {
         }
       );
       return false;
+    } else if (this.positionFormControl.invalid) {
+      this.snackBar.open('Keine Position angegeben.', 'Schließen',
+        {
+          duration: 3000,
+        }
+      );
+      return false;
+
     }
     return true;
   }

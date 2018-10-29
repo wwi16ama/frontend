@@ -10,7 +10,7 @@ import { AddPlaneDialogComponent } from './add-plane-dialog/add-plane-dialog.com
 import { PlaneUpdateService } from '../services/plane-update.service';
 import { PlaneDeleteService } from '../services/plane-delete.service';
 import { AddPlaneService } from '../services/add-plane.service';
-import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-plane-list',
@@ -23,7 +23,7 @@ export class PlaneListComponent implements OnInit {
 
   constructor(public planelistService: PlaneListService, public editPlaneDialog: MatDialog, public addPlaneDialog: MatDialog,
     public deletePlaneDialog: MatDialog, public planeUpdateService: PlaneUpdateService, public snackBar: MatSnackBar,
-    public planeDeleteService: PlaneDeleteService, public addPlaneService: AddPlaneService, public activatedRoute: ActivatedRoute) {
+    public planeDeleteService: PlaneDeleteService, public addPlaneService: AddPlaneService) {
 
     this.planes = [];
   }
