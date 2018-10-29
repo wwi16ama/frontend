@@ -44,6 +44,7 @@ export class AccountComponent implements OnInit {
           this.account.transactions[i].type = Type[this.account.transactions[i].type];
         }
         this.dataSource = new MatTableDataSource(this.account.transactions);
+        this.dataSource.sort = this.sort;
       }
 
     );
@@ -51,8 +52,6 @@ export class AccountComponent implements OnInit {
     this.memberService.getMemberData(0).subscribe(
       (memberdata: Member) => {
         this.member = memberdata;
-        this.dataSource.sort = this.sort;
-
       }
     );
   }
