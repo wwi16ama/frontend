@@ -202,6 +202,7 @@ export class PlaneListComponent implements OnInit {
     );
   }
 
+
   public formatStringToEnum(plane: any): Plane {
     plane.neededAuthorization = neededAuthorizationEnum.getEnumString(plane.neededAuthorization);
     return plane;
