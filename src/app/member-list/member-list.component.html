@@ -1,4 +1,4 @@
-<table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+<table *ngIf="dataSource" mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
   <!-- ID Column -->
   <ng-container matColumnDef="id">
