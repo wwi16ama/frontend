@@ -6,7 +6,7 @@ import { PlaneListService } from './../services/planelist.service';
 import { PlaneUpdateService } from './../services/plane-update.service';
 import { HttpClientModule } from '@angular/common/http';
 import { AddPlaneService } from '../services/add-plane.service';
-import { ActivatedRoute } from '@angular/router';
+
 
 describe('PlaneListComponent', () => {
   let component: PlaneListComponent;
@@ -15,7 +15,7 @@ describe('PlaneListComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ PlaneListComponent ],
-      imports: [ MatIconModule, MatCardModule, MatButtonModule, HttpClientModule, ActivatedRoute ],
+      imports: [ MatIconModule, MatCardModule, MatButtonModule, HttpClientModule ],
       providers: [
         PlaneListService,
         PlaneUpdateService,

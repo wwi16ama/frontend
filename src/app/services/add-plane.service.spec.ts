@@ -1,14 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
 import { AddPlaneService } from './add-plane.service';
-import { Injectable } from '@angular/core';
-import {Plane} from '../models/plane.model';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { Observable } from 'rxjs/internal/Observable';
+import { environment } from '../../environments/environment';
 
 describe('AddPlaneService', () => {
   beforeEach(() => TestBed.configureTestingModule({
-    imports: [Injectable, Plane, HttpClient, HttpHeaders, Observable]
+    imports: [HttpClientTestingModule, HttpTestingController, Observable, environment]
   }));
 
   it('should be created', () => {
