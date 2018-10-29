@@ -22,12 +22,9 @@ export class PlaneListComponent implements OnInit {
   planes: Plane[];
 
   constructor(public planelistService: PlaneListService, public editPlaneDialog: MatDialog, public addPlaneDialog: MatDialog,
-    public planeUpdateService: PlaneUpdateService, public snackBar: MatSnackBar,
-    public addPlaneService: AddPlaneService, public activatedRoute: ActivatedRoute) {
-  constructor(public planelistService: PlaneListService, public editPlaneDialog: MatDialog,
-    public deletePlaneDialog: MatDialog, public planeUpdateService: PlaneUpdateService, public planeDeleteService: PlaneDeleteService,
-    public snackBar: MatSnackBar, public addPlaneService: AddPlaneService, public activatedRoute: ActivatedRoute,
-    public addPlaneDialog: MatDialog) {
+    public deletePlaneDialog: MatDialog, public planeUpdateService: PlaneUpdateService, public snackBar: MatSnackBar,
+    public planeDeleteService: PlaneDeleteService, public addPlaneService: AddPlaneService, public activatedRoute: ActivatedRoute) {
+
     this.planes = [];
   }
 
@@ -40,6 +37,11 @@ export class PlaneListComponent implements OnInit {
         }
       }
     );
+  }
+
+  public formatStringToEnum(plane: any): Plane {
+    plane.neededAuthorization = neededAuthorizationEnum.getEnumString(plane.neededAuthorization);
+    return plane;
   }
 
   public openEditPlaneDialog(plane: Plane): void {
@@ -114,6 +116,57 @@ export class PlaneListComponent implements OnInit {
       }
     });
   }
+  public findPlaneIndex(planeId: number): number {
+    for (let i = 0; i < this.planes.length; i++) {
+      if (this.planes[i].id === planeId) {
+        return i;
+      }
+    }
+    return -1;
+  }
+  public deletePlane(planeId: number): void {
+    this.planeDeleteService.deletePlaneData(planeId).subscribe(
+      (response) => {
+        if (response.status === 204) {
+          this.snackBar.open('Löschen erfolgreich', 'Schließen',
+            {
+              duration: 3000,
+            }
+          );
+          const planeIndex = this.findPlaneIndex(planeId);
+          if (planeIndex !== -1) {
+            this.planes.splice(planeIndex, 1);
+          }
+        }
+      },
+      error => {
+        if (error.status === 404) {
+          this.snackBar.open('Flugzeug nicht gefunden.', 'Schließen',
+            {
+              duration: 4000,
+            }
+          );
+        } else if (error.status === 0) {
+          this.snackBar.open('Es konnte keine Verbindung zum Server aufgebaut werden', 'Schließen',
+            {
+              duration: 4000,
+            }
+          );
+        }
+      }
+    );
+  }
+
+  openAddPlaneDialog(): void {
+    const dialogRef = this.addPlaneDialog.open(AddPlaneDialogComponent, {
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result != null) {
+        this.savePlaneData(result);
+      }
+    });
+  }
+
   public savePlaneData(plane: Plane): void {
     plane = this.formatStringToEnum(plane);
     this.addPlaneService.addPlaneData(plane).subscribe(
@@ -152,68 +205,10 @@ export class PlaneListComponent implements OnInit {
       }
     );
   }
-  openAddPlaneDialog(): void {
-    const dialogRef = this.addPlaneDialog.open(AddPlaneDialogComponent, {
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result != null) {
-        this.savePlaneData(result);
-      }
-    });
-  }
-
-    dialogRef.afterClosed().subscribe(result => {
-      if (result != null) {
-        this.savePlaneData(result);
-      }
-    });
-  }
-
-  public deletePlane(planeId: number): void {
-    this.planeDeleteService.deletePlaneData(planeId).subscribe(
-      (response) => {
-        if (response.status === 204) {
-          this.snackBar.open('Löschen erfolgreich', 'Schließen',
-            {
-              duration: 3000,
-            }
-          );
-          const planeIndex = this.findPlaneIndex(planeId);
-          if (planeIndex !== -1) {
-            this.planes.splice(planeIndex, 1);
-          }
-        }
-      },
-      error => {
-        if (error.status === 404) {
-          this.snackBar.open('Flugzeug nicht gefunden.', 'Schließen',
-            {
-              duration: 4000,
-            }
-          );
-        } else if (error.status === 0) {
-          this.snackBar.open('Es konnte keine Verbindung zum Server aufgebaut werden', 'Schließen',
-            {
-              duration: 4000,
-            }
-          );
-        }
-      }
-    );
-  }
 
   public formatStringToEnum(plane: any): Plane {
     plane.neededAuthorization = neededAuthorizationEnum.getEnumString(plane.neededAuthorization);
     return plane;
-  }
-
-  public findPlaneIndex(planeId: number): number {
-    for (let i = 0; i < this.planes.length; i++) {
-      if (this.planes[i].id === planeId) {
-        return i;
-      }
-    }
-    return -1;
   }
 
 }
