@@ -9,12 +9,36 @@
         {
             "id": 1,
             "timestamp": "2018-10-23T08:17:54.532Z",
-            "amount": 150.99,
+            "amount": -150.99,
             "type": "GEBÜHR"
         },
         {
             "id": 2,
             "timestamp": "2018-10-24T08:17:54.532Z",
+            "amount": 100.00,
+            "type": "AUFWANDSENTSCHÄDIGUNG"
+        },
+        {
+            "id": 3,
+            "timestamp": "2018-10-21T08:17:54.532Z",
+            "amount": -19.99,
+            "type": "GEBÜHR"
+        },
+        {
+            "id": 4,
+            "timestamp": "2018-10-20T08:17:54.532Z",
+            "amount": -10.00,
+            "type": "ZAHLUNG"
+        },
+        {
+            "id": 5,
+            "timestamp": "2018-09-20T08:17:54.532Z",
+            "amount": 40.00,
+            "type": "AUFWANDSENTSCHÄDIGUNG"
+        },
+        {
+            "id": 6,
+            "timestamp": "2018-11-01T08:17:54.532Z",
             "amount": 100.00,
             "type": "AUFWANDSENTSCHÄDIGUNG"
         }
