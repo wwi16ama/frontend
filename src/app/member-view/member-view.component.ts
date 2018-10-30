@@ -3,7 +3,7 @@ import { Member, Status, Gender, OfficeEnum, AuthorizationEnum } from './../mode
 import { MemberService } from './../services/member.service';
 import { MemberUpdateService } from './../services/member-update.service';
 
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { EditMemberDialogComponent } from './edit-member-dialog/edit-member-dialog.component';
@@ -23,7 +23,7 @@ export class MemberViewComponent implements OnInit {
   constructor(
     public memberService: MemberService, public memberUpdateService: MemberUpdateService,
     public activatedRoute: ActivatedRoute, public editMemberDialog: MatDialog, public deleteMemberDialog: MatDialog,
-    public snackBar: MatSnackBar, public memberDeleteService: MemberDeleteService
+    public snackBar: MatSnackBar, public memberDeleteService: MemberDeleteService, public router: Router
   ) {
   }
 
@@ -125,7 +125,8 @@ export class MemberViewComponent implements OnInit {
             {
               duration: 3000,
             }
-          );
+          )
+          this.router.navigate(['/memberlist'])
         }
       },
       error => {
