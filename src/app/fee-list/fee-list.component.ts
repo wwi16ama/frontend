@@ -15,7 +15,7 @@ export class FeeListComponent implements OnInit {
   dataSource: any;
 
   constructor(public feeListService: FeeListService) {
-    this.displayedColumns = ['memberCategory', 'memberFee'];
+    this.displayedColumns = ['category', 'fee'];
   }
 
   ngOnInit() {

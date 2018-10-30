@@ -1,22 +1,24 @@
 export class ListFee {
     constructor(
-        public memberCategory: memberCategoryEnum,
-        public memberFee: number
+        public category: categoryEnum,
+        public fee: number
     ) {}
 }
 
-export enum memberCategoryEnum {
+export enum categoryEnum {
     ACTIVE = 'Aktives Mitglied',
     U20ACTIVE = 'Aktives Mitglied unter 20 Jahren',
-    PASSIVE = 'Passives Mitglied'
+    PASSIVE = 'Passives Mitglied',
+    HONORARYMEMBER = 'Ehrenmitglied'
 }
 
-export namespace memberCategoryEnum {
+export namespace categoryEnum {
     export function getEnumString(enteredString: string): string {
         switch (enteredString) {
-            case memberCategoryEnum.ACTIVE: return 'ACTIVE';
-            case memberCategoryEnum.U20ACTIVE: return 'U20ACTIVE';
-            case memberCategoryEnum.PASSIVE: return 'PASSIVE';
+            case categoryEnum.ACTIVE: return 'ACTIVE';
+            case categoryEnum.U20ACTIVE: return 'U20ACTIVE';
+            case categoryEnum.PASSIVE: return 'PASSIVE';
+            case categoryEnum.HONORARYMEMBER: return 'HONORARYMEMBER';
         }
     }
 }
