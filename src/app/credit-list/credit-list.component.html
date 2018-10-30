@@ -2,15 +2,21 @@
 
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
   <!-- Amt Column -->
-  <ng-container matColumnDef="office">
+  <ng-container matColumnDef="service">
     <th mat-header-cell *matHeaderCellDef> Ämter oder Leistungen </th>
-    <td mat-cell *matCellDef="let element"> {{element.office}} </td>
+    <td mat-cell *matCellDef="let element"> {{element.service}} </td>
+  </ng-container>
+
+  <!-- Amt Column -->
+  <ng-container matColumnDef="amount">
+    <th mat-header-cell *matHeaderCellDef> Betrag </th>
+    <td mat-cell *matCellDef="let element"> {{element.amount}} </td>
   </ng-container>
 
   <!-- Leistungen Column -->
-  <ng-container matColumnDef="credit">
-    <th mat-header-cell *matHeaderCellDef> Gutschrift </th>
-    <td mat-cell *matCellDef="let element"> {{element.credit}} </td>
+  <ng-container matColumnDef="period">
+    <th mat-header-cell *matHeaderCellDef> Periode </th>
+    <td mat-cell *matCellDef="let element"> {{element.period}} </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

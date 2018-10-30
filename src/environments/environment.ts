@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  baseUrl: 'http://localhost:3000'
+  baseUrl: 'https://thomas-cloud.de/uni/api'
 };
 
 /*
