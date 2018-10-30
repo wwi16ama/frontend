@@ -2,75 +2,75 @@
     "transactions": [
         {
             "id": 0,
-            "timestamp": "2018-02-01T08:17:54.532Z",
+            "timestamp": "2019-02-01T08:17:54.532Z",
             "amount": -200.00,
-            "type": "ZAHLUNG"
+            "type": "MITGLIEDSBEITRAG"
         },
         {
             "id": 1,
             "timestamp": "2018-10-23T08:17:54.532Z",
             "amount": -150.99,
-            "type": "GEBÜHR"
+            "type": "GEBÜHRFLUGZEUG"
         },
         {
             "id": 2,
             "timestamp": "2018-10-24T08:17:54.532Z",
             "amount": 100.00,
-            "type": "AUFWANDSENTSCHÄDIGUNG"
+            "type": "GUTSCHRIFTAMT"
         },
         {
             "id": 3,
             "timestamp": "2018-10-21T08:17:54.532Z",
-            "amount": -19.99,
-            "type": "GEBÜHR"
+            "amount": 20.00,
+            "type": "EINZAHLUNG"
         },
         {
             "id": 4,
             "timestamp": "2018-10-20T08:17:54.532Z",
             "amount": -10.00,
-            "type": "ZAHLUNG"
+            "type": "GEBÜHRFLUGZEUG"
         },
         {
             "id": 5,
             "timestamp": "2018-09-20T08:17:54.532Z",
             "amount": 40.00,
-            "type": "AUFWANDSENTSCHÄDIGUNG"
+            "type": "GUTSCHRIFTLEISTUNG"
         },
         {
             "id": 6,
             "timestamp": "2018-11-01T08:17:54.532Z",
             "amount": 100.00,
-            "type": "AUFWANDSENTSCHÄDIGUNG"
+            "type": "GUTSCHRIFTAMT"
         },
         {
             "id": 7,
             "timestamp": "2018-11-01T08:17:54.532Z",
             "amount": 100.00,
-            "type": "AUFWANDSENTSCHÄDIGUNG"
+            "type": "GUTSCHRIFTLEISTUNG"
         },
         {
             "id": 8,
             "timestamp": "2018-11-01T08:17:54.532Z",
             "amount": 100.00,
-            "type": "AUFWANDSENTSCHÄDIGUNG"
+            "type": "GUTSCHRIFTAMT"
         },
         {
             "id": 9,
             "timestamp": "2018-07-01T08:17:54.532Z",
             "amount": -100.00,
-            "type": "GEBÜHR"
+            "type": "MITGLIEDSBEITRAG"
         },
         {
             "id": 10,
             "timestamp": "2018-08-01T08:17:54.532Z",
-            "amount": 100.00,
-            "type": "AUFWANDSENTSCHÄDIGUNG"
+            "amount": -100.00,
+            "type": "MITGLIEDSBEITRAG"
         },
         {
             "id": 11,
             "timestamp": "2018-10-01T08:17:54.532Z",
-            "amount": -123.45,
-            "type": "ZAHLUNG"
+            "amount": 123.45,
+            "type": "GUTSCHRIFTAMT"
         }
         
     ],

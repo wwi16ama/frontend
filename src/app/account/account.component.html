@@ -4,7 +4,7 @@
     <h3 mat-subheader>Mitgliedsnummer</h3>
     <mat-list-item>
       <h4 mat-line>
-        <span class="spacing">{{account.id}} </span> <!-- oder {{member.id}} keine Ahnung was stimmt-->
+        <span class="spacing">{{account.id}} </span>
       </h4>
     </mat-list-item>
     <mat-divider></mat-divider>
@@ -24,24 +24,24 @@
     </mat-list-item>
     <mat-divider></mat-divider>
     <h3 mat-subheader>Transaktionen</h3>
-    <div class="tablestuff">
+    <div class="transactiontable">
     <table mat-table [dataSource]="dataSource" matSortActive="timestamp" matSortDirection="desc" matSort>
       <!-- Timestamp -->
       <ng-container matColumnDef="timestamp">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Datum </th>
-        <td mat-cell *matCellDef="let element">{{element.timestamp | date : 'dd.MM.yyyy'}}</td>
+        <th class="datewidth" mat-header-cell *matHeaderCellDef mat-sort-header> Datum </th>
+        <td class="datewidth" mat-cell *matCellDef="let element">{{element.timestamp | date : 'dd.MM.yyyy'}}</td>
       </ng-container>
     
       <!--Amount -->
       <ng-container matColumnDef="amount">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Betrag </th>
-        <td mat-cell *matCellDef="let element" [ngClass]="{'color-red': element.type != 'Aufwandsentschädigung', 'color-green': element.type === 'Aufwandsentschädigung'}"> {{element.amount | currency:"€"}} </td>
+        <th class="amountwidth" mat-header-cell *matHeaderCellDef mat-sort-header> Betrag </th>
+        <td class="amountwidth" mat-cell *matCellDef="let element" [ngClass]="{'color-red': element.amount <= 0, 'color-green': element.amount >=0}"> {{element.amount | currency: "€"}}</td>
       </ng-container>
     
       <!--Type -->
       <ng-container matColumnDef="type">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Typ </th>
-        <td mat-cell *matCellDef="let element"> {{element.type}} </td>
+        <th class="typewidth" mat-header-cell *matHeaderCellDef mat-sort-header> Typ </th>
+        <td class="typewidth" mat-cell *matCellDef="let element"> {{element.type}} </td>
       </ng-container>
           
       <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
@@ -54,7 +54,7 @@
     <h3 mat-subheader>Guthaben</h3>
     <mat-list-item>
       <h4 mat-line>
-        <span class="spacing" [ngClass]="{'color-red': account.balance <= 0, 'color-green': account.balance >=0}"><b>{{account.balance | currency:"€"}}</b></span>
+        <span class="spacing" [ngClass]="{'color-red': account.balance <= 0, 'color-green': account.balance >=0}"><b>{{account.balance | currency: "€"}}</b></span>
       </h4>
     </mat-list-item>
   </mat-list>
