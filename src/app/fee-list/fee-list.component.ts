@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { MatTableDataSource } from '@angular/material';
-import { ListFee } from '../models/list-fee.model';
+import { ListFee, categoryEnum } from '../models/list-fee.model';
 import { FeeListService } from './../services/feelist.service';
 
 @Component({
@@ -21,6 +21,9 @@ export class FeeListComponent implements OnInit {
   ngOnInit() {
     this.feeListService.getFeeListData().subscribe(
       (data: ListFee[]) => {
+        for (let i = 0; i < data.length; i++) {
+          data[i].category = categoryEnum[data[i].category];
+        }
         this.dataSource = new MatTableDataSource(data);
       }
     );
