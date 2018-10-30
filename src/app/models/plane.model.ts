@@ -4,7 +4,9 @@ export class Plane {
         public name: string,
         public position: string,
         public neededAuthorization: neededAuthorizationEnum,
-        public id?: number
+        public pricePerBookedHour: number,
+        public pricePerFlightMinute: number,
+        public id?: number        
     ) { }
 }
 
