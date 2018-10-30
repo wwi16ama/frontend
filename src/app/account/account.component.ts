@@ -13,20 +13,13 @@ import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
 })
 export class AccountComponent implements OnInit {
 
-  sort: any;
   account: Account;
   member: Member;
   displayedColumns: string[];
   dataSource: any;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) set content(sort: ElementRef) {
-    this.sort = sort;
-    if (this.sort) {
-      this.dataSource.paginator = this.paginator;
-      this.dataSource.sort = this.sort;
-    }
-  }
+  @ViewChild(MatSort) sort: ElementRef;
 
   constructor(
     public accountService: AccountService, public memberService: MemberService
@@ -35,24 +28,20 @@ export class AccountComponent implements OnInit {
   }
 
   ngOnInit() {
-    // Zeile 26: funktioniert noch nicht richtig. Aktuell nur Zwischenlsöung, weil ich zu faul war
-    this.accountService.getAccountData(0).subscribe(
-      (data: Account) => {
-
-        this.account = data;
-
-        for (let i = 0; i < this.account.transactions.length; i++) {
-          this.account.transactions[i].type = Type[this.account.transactions[i].type];
-        }
-        this.dataSource = new MatTableDataSource(this.account.transactions);
-        this.dataSource.sort = this.sort;
-      }
-
-    );
-    // siehe Zeile 25
     this.memberService.getMemberData(0).subscribe(
       (memberdata: Member) => {
         this.member = memberdata;
+        this.accountService.getAccountData(0).subscribe(
+          (data: Account) => {
+            this.account = data;
+            for (let i = 0; i < this.account.transactions.length; i++) {
+              this.account.transactions[i].type = Type[this.account.transactions[i].type];
+            }
+            this.dataSource = new MatTableDataSource(this.account.transactions);
+            this.dataSource.sort = this.sort;
+            this.dataSource.paginator = this.paginator;
+          }
+        );
       }
     );
   }
