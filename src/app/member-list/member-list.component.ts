@@ -52,7 +52,9 @@ export class MemberListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(newMember => {
-      this.saveMember(newMember);
+      if (newMember !== undefined) {
+        this.saveMember(newMember);
+      }
     });
   }
 
