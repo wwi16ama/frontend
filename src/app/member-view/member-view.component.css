@@ -41,7 +41,7 @@
 
 .delete-button {
     position: relative;
-    left: calc( 100% - 220px);
+    left: calc( 100% - 210px);
     transform: translateX(-100%);
     margin-top: 20px;
 }
