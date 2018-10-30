@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, ChangeDetectorRef } from '@angular/core';
 
 import { Account, Type } from './../models/account.model';
 import { AccountService } from './../services/account.service';
@@ -18,11 +18,21 @@ export class AccountComponent implements OnInit {
   displayedColumns: string[];
   dataSource: any;
 
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: ElementRef;
+  @ViewChild(MatPaginator) set paginator (paginator: MatPaginator) {
+    if (this.dataSource && paginator) {
+      this.dataSource.paginator = paginator;
+      this.cdr.detectChanges();
+    }
+  }
+  @ViewChild(MatSort) set sort (sort: ElementRef) {
+    if (this.dataSource && sort) {
+      this.dataSource.sort = sort;
+      this.cdr.detectChanges();
+    }
+  }
 
   constructor(
-    public accountService: AccountService, public memberService: MemberService
+    public accountService: AccountService, public memberService: MemberService, public cdr: ChangeDetectorRef
   ) {
     this.displayedColumns = ['timestamp', 'amount', 'type'];
   }
@@ -38,8 +48,6 @@ export class AccountComponent implements OnInit {
               this.account.transactions[i].type = Type[this.account.transactions[i].type];
             }
             this.dataSource = new MatTableDataSource(this.account.transactions);
-            this.dataSource.sort = this.sort;
-            this.dataSource.paginator = this.paginator;
           }
         );
       }

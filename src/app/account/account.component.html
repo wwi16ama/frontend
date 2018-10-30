@@ -25,7 +25,7 @@
     <mat-divider></mat-divider>
     <h3 mat-subheader>Transaktionen</h3>
     <div class="transactiontable">
-    <table mat-table [dataSource]="dataSource" matSortActive="timestamp" matSortDirection="desc" matSort>
+    <table *ngIf="dataSource != null" mat-table [dataSource]="dataSource" matSortActive="timestamp" matSortDirection="desc" matSort>
       <!-- Timestamp -->
       <ng-container matColumnDef="timestamp">
         <th class="datewidth" mat-header-cell *matHeaderCellDef mat-sort-header> Datum </th>
