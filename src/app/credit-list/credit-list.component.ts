@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material';
-import { ListCredit } from './../models/list-credit.model';
+import { ListCredit, ServiceNameEnum, PeriodEnum } from './../models/list-credit.model';
 import { CreditListService } from './../services/creditlist.service';
 
 @Component({
@@ -14,12 +14,16 @@ export class CreditListComponent implements OnInit {
   dataSource: any;
 
   constructor(public creditListService: CreditListService) {
-    this.displayedColumns = ['office', 'credit'];
+    this.displayedColumns = ['service', 'amount', 'period'];
   }
 
   ngOnInit() {
     this.creditListService.getCreditListData().subscribe(
       (data: ListCredit[]) => {
+        for (let i = 0; i < data.length; i++) {
+          data[i].service = ServiceNameEnum[data[i].service];
+          data[i].period = PeriodEnum[data[i].period];
+        }
         this.dataSource = new MatTableDataSource(data);
       }
     );

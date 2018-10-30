@@ -1,22 +1,32 @@
 [
     {
-        "office": "Mitglied des Vorstands",
-        "credit": "200 €/Jahr"
+        "id": 0,
+        "service":"VORSTANDSMITGLIED",
+        "amount": 200,
+        "period": "YEAR"
     },
     {
-        "office": "Fluglehrer",
-        "credit": "200 €/Jahr"
+        "id": 1,
+        "service":"FLUGLEHRER",
+        "amount": 200,
+        "period": "YEAR"
     },
     {
-        "office": "Flugwart",
-        "credit": "100 €/Jahr"
+        "id": 2,
+        "service":"FLUGWART",
+        "amount": 100,
+        "period": "YEAR"
     },
     {
-        "office": "Betriebsdienst Kontrollturm",
-        "credit": "40 €/Tag"
+        "id": 3,
+        "service":"TAGESEINSATZ",
+        "amount": 40,
+        "period": "DAY"
     },
     {
-        "office": "Gastflug",
-        "credit": "40 €/Tag"
+        "id": 4,
+        "service":"PILOT",
+        "amount": 40,
+        "period": "DAY"
     }
 ]
