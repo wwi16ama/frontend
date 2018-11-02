@@ -2,7 +2,20 @@
   <h1 class="rainbow">Eigenes Profil</h1>
   <div class="account">
     <mat-list *ngIf="member != null">
-      <div id='name'>{{ member.firstName }} {{ member.lastName }}</div>
+      <h3 mat-subheader>Vorname</h3>
+      <mat-list-item>
+        <h4 mat-line>
+          <span class="spacing">{{member.firstName}} </span>
+        </h4>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <h3 mat-subheader>Nachname</h3>
+      <mat-list-item>
+        <h4 mat-line>
+          <span class="spacing">{{member.lastName}} </span>
+        </h4>
+      </mat-list-item>
+      <mat-divider></mat-divider>
       <h3 mat-subheader>Mitgliedsnummer</h3>
       <mat-list-item>
         <h4 mat-line>
