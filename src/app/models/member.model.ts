@@ -12,7 +12,7 @@ export class Member {
         public memberBankingAccount: string,
         public offices: Office[],
         public flightAuthorization: Authorization[],
-        public id?: number
+        public id: number
     ) {}
 }
 

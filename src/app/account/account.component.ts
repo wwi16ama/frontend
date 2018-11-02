@@ -2,9 +2,10 @@ import { Component, OnInit, ViewChild, ElementRef, ChangeDetectorRef } from '@an
 
 import { Account, Type } from './../models/account.model';
 import { AccountService } from './../services/account.service';
-import { Member } from './../models/member.model';
+import { Member, Status } from './../models/member.model';
 import { MemberService } from './../services/member.service';
 import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-account',
@@ -41,6 +42,7 @@ export class AccountComponent implements OnInit {
     this.memberService.getMemberData(0).subscribe(
       (memberdata: Member) => {
         this.member = memberdata;
+        this.member.status=Status[this.member.status];
         this.accountService.getAccountData(0).subscribe(
           (data: Account) => {
             this.account = data;
