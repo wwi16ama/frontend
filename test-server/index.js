@@ -91,6 +91,19 @@ app.put('/members/:id', cors(), function (req, res) {
   res.send();
 });
 
+// Info for a specific Accoint
+app.get('/accounts/:id', cors(), function (req, res) {
+  fs.readFile(__dirname + '/mock-data/account' + req.params.id + '.json', function (err, data) {
+    if (err) {
+      const errorMessage = { error: 'Nichts gefunden' };
+      res.status(400).json(errorMessage);
+    } else {
+      var response = JSON.parse(data);
+      res.status(200).json(response);
+    }
+  });
+});
+
 
 // Creditlist
 app.get('/creditlist', cors(), function (req, res) {
