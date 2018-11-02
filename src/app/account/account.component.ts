@@ -5,6 +5,7 @@ import { AccountService } from './../services/account.service';
 import { Member } from './../models/member.model';
 import { MemberService } from './../services/member.service';
 import { MatTableDataSource, MatSort, MatPaginator } from '@angular/material';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-account',
