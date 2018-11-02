@@ -39,14 +39,15 @@
   <h1 class="rainbow"> Mein Mitgliedskonto</h1>
   <div class="account">
     <mat-list *ngIf="account != null && member != null">
-      <h3 mat-subheader>Mitgliedsnummer</h3>
-      <mat-list-item>
-        <h4 mat-line>
-          <span class="spacing">{{account.id}} </span>
-        </h4>
-      </mat-list-item>
-      <mat-divider></mat-divider>
-
+      <!--
+        <h3 mat-subheader>Mitgliedsnummer</h3>
+        <mat-list-item>
+          <h4 mat-line>
+            <span class="spacing">{{account.id}} </span>
+          </h4>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+      -->
       <h3 mat-subheader>Mitgliedskontonummer</h3>
       <mat-list-item>
         <h4 mat-line>
@@ -58,6 +59,14 @@
       <mat-list-item>
         <h4 mat-line>
           <span class="spacing">{{ member.bankingAccount }}</span>
+        </h4>
+      </mat-list-item>
+      <mat-divider></mat-divider>
+      <h3 mat-subheader>Guthaben</h3>
+      <mat-list-item>
+        <h4 mat-line>
+          <span class="spacing" [ngClass]="{'color-red': account.balance <= 0, 'color-green': account.balance >=0}"><b>{{account.balance
+              | currency: "€"}}</b></span>
         </h4>
       </mat-list-item>
       <mat-divider></mat-divider>
@@ -90,14 +99,6 @@
         </table>
         <mat-paginator class="matpaginator" [pageSizeOptions]="[5, 10, 25]"></mat-paginator>
       </div>
-      <mat-divider></mat-divider>
-      <h3 mat-subheader>Guthaben</h3>
-      <mat-list-item>
-        <h4 mat-line>
-          <span class="spacing" [ngClass]="{'color-red': account.balance <= 0, 'color-green': account.balance >=0}"><b>{{account.balance
-              | currency: "€"}}</b></span>
-        </h4>
-      </mat-list-item>
     </mat-list>
   </div>
 </div>
