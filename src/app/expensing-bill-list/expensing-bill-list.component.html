@@ -10,13 +10,13 @@
   <!-- duration Column -->
   <ng-container matColumnDef="pricePerBookedHour">
     <th mat-header-cell *matHeaderCellDef mat-sort-header> Nutzungsdauer </th>
-    <td mat-cell *matCellDef="let element"> {{element.pricePerBookedHour}} €/Std. </td>
+    <td mat-cell *matCellDef="let element"> {{element.pricePerBookedHour | currency:'€'}} /Std. </td>
   </ng-container>
 
   <!-- flighttime Column -->
   <ng-container matColumnDef="pricePerFlightMinute">
     <th mat-header-cell *matHeaderCellDef mat-sort-header> Flugzeit </th>
-    <td mat-cell *matCellDef="let element"> {{element.pricePerFlightMinute}} €/Min. </td>
+    <td mat-cell *matCellDef="let element"> {{element.pricePerFlightMinute | currency:'€'}} /Min. </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
