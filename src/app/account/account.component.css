@@ -27,6 +27,11 @@
     margin-right: 10px;
 }
 
+.divide-wrapper {
+    float: left;
+    width:50%;
+}
+
 table {
     width: calc(100% - 16px);
     margin: 8px;
