@@ -29,7 +29,7 @@ import { ExpensingBillListModule } from './expensing-bill-list/expensing-bill-li
     FeeListModule,
     SiteNavigationModule,
     CreditListModule,
-    AccountModule
+    AccountModule,
     ExpensingBillListModule
   ],
   providers: [
