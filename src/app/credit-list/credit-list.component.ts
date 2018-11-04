@@ -14,14 +14,14 @@ export class CreditListComponent implements OnInit {
   dataSource: any;
 
   constructor(public creditListService: CreditListService) {
-    this.displayedColumns = ['service', 'amount', 'period'];
+    this.displayedColumns = ['service', 'amount'];
   }
 
   ngOnInit() {
     this.creditListService.getCreditListData().subscribe(
       (data: ListCredit[]) => {
         for (let i = 0; i < data.length; i++) {
-          data[i].service = ServiceNameEnum[data[i].service];
+          data[i].serviceName = ServiceNameEnum[data[i].serviceName];
           data[i].period = PeriodEnum[data[i].period];
         }
         this.dataSource = new MatTableDataSource(data);
