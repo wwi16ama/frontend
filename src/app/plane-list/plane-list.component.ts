@@ -186,6 +186,7 @@ export class PlaneListComponent implements OnInit {
           );
           newPlane.neededAuthorization = neededAuthorizationEnum[newPlane.neededAuthorization];
           this.planes.push(newPlane);
+          location.reload();
         }
       },
       error => {
@@ -204,11 +205,6 @@ export class PlaneListComponent implements OnInit {
         }
       }
     );
-  }
-
-  public formatStringToEnum(plane: any): Plane {
-    plane.neededAuthorization = neededAuthorizationEnum.getEnumString(plane.neededAuthorization);
-    return plane;
   }
 
 }

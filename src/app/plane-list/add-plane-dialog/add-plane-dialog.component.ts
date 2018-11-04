@@ -80,6 +80,7 @@ export class AddPlaneDialogComponent {
     };
     this.addPlaneDialogRef.close(newPlane);
   }}
+
   public checkRequiredFields(): boolean {
     if (this.numberFormControl.invalid) {
       this.snackBar.open('Keine korrekte Kennung.', 'Schließen',
