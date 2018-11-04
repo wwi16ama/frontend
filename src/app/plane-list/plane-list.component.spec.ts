@@ -5,6 +5,8 @@ import { MatDialog, MatSnackBar } from '@angular/material';
 import { PlaneListService } from './../services/planelist.service';
 import { PlaneUpdateService } from './../services/plane-update.service';
 import { HttpClientModule } from '@angular/common/http';
+import { AddPlaneService } from '../services/add-plane.service';
+
 
 describe('PlaneListComponent', () => {
   let component: PlaneListComponent;
@@ -17,6 +19,7 @@ describe('PlaneListComponent', () => {
       providers: [
         PlaneListService,
         PlaneUpdateService,
+        AddPlaneService,
         { provide: MatDialog, useValue: {} },
         { provide: MatSnackBar, useValue: {} },
       ]

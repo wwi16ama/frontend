@@ -9,6 +9,7 @@ import { PlaneListModule } from './plane-list/plane-list.module';
 import { SiteNavigationModule } from './site-navigation/site-navigation.module';
 import { CreditListModule } from './credit-list/credit-list.module';
 import { AccountModule } from './account/account.module';
+import { AddPlaneDialogModule } from './plane-list/add-plane-dialog/add-plane-dialog.module';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -21,6 +22,8 @@ describe('AppComponent', () => {
         SiteNavigationModule,
         CreditListModule,
         AccountModule
+        CreditListModule,
+        AddPlaneDialogModule
       ],
       declarations: [
         AppComponent
