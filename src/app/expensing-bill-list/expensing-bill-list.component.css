@@ -6,3 +6,13 @@ table {
 button {
   margin: 8px;
 }
+
+
+.expensing-bill-list-wrapper {
+  padding: 0 10px;
+}
+
+.title-text {
+  font-weight: 400;
+  font-size: 32px;
+}
