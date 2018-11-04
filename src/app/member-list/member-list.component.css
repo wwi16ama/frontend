@@ -6,3 +6,7 @@
 .pointer {
   cursor: pointer;
 }
+.tool {
+  margin: 8px;
+  float: right;
+}

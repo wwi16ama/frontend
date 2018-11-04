@@ -1,7 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { MAT_DATE_LOCALE } from '@angular/material';
+
 import { AppComponent } from './app.component';
+import { AddUserFormComponent } from './member-list/add-user-form/add-user-form.component';
 
 import { AppRoutingModule } from './app-routing.module';
 import { MemberListModule } from './member-list/member-list.module';
@@ -16,6 +18,12 @@ import { CreditListModule } from './credit-list/credit-list.module';
 import { DeleteMemberDialogComponent } from './member-view/delete-member-dialog/delete-member-dialog.component';
 import { AccountModule } from './account/account.module';
 import { DeletePlaneDialogComponent } from './plane-list/delete-plane-dialog/delete-plane-dialog.component';
+
+// Spracheinstellung
+import { LOCALE_ID } from '@angular/core';
+import localeDe from '@angular/common/locales/de';
+import { registerLocaleData } from '@angular/common';
+registerLocaleData(localeDe);
 
 @NgModule({
   declarations: [
@@ -33,15 +41,18 @@ import { DeletePlaneDialogComponent } from './plane-list/delete-plane-dialog/del
     AccountModule
   ],
   providers: [
-    { provide: MAT_DATE_LOCALE, useValue: 'ger' }
+    { provide: MAT_DATE_LOCALE, useValue: 'ger' },
+    { provide: LOCALE_ID, useValue: 'de' }
   ],
   bootstrap: [AppComponent],
   entryComponents: [
     AddPlaneDialogComponent,
+    AddUserFormComponent,
     EditMemberDialogComponent,
     EditPlaneDialogComponent,
     DeleteMemberDialogComponent,
     DeletePlaneDialogComponent
   ]
 })
-export class AppModule { }
+export class AppModule {
+}
