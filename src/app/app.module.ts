@@ -23,12 +23,6 @@ import localeDe from '@angular/common/locales/de';
 import { registerLocaleData } from '@angular/common';
 registerLocaleData(localeDe);
 
-// Spracheinstellung
-import { LOCALE_ID } from '@angular/core';
-import localeDe from '@angular/common/locales/de';
-import { registerLocaleData } from '@angular/common';
-registerLocaleData(localeDe);
-
 @NgModule({
   declarations: [
     AppComponent

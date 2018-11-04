@@ -51,6 +51,7 @@ export class AddUserFormComponent {
   constructor(
     public addUserDialogRef: MatDialogRef<AddUserFormComponent>, public snackBar: MatSnackBar
   ) {
+    addUserDialogRef.disableClose = true;
     this.office = [];
     this.flightAuthorizations = [];
     this.possibleOffices = [
