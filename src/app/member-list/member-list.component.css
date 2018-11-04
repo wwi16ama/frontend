@@ -1,3 +1,12 @@
+.member-list-wrapper {
+  padding: 0 10px;
+}
+
+.title-text {
+  font-weight: 400;
+  font-size: 32px;
+}
+ 
  table {
   width: calc(100% - 16px);
   margin: 8px;
@@ -6,7 +15,7 @@
 .pointer {
   cursor: pointer;
 }
-.tool {
-  margin: 8px;
-  float: right;
+
+.spacing-top {
+  margin-top: 15px;
 }
