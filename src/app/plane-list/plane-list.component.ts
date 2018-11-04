@@ -182,6 +182,8 @@ export class PlaneListComponent implements OnInit {
             response.body.name,
             response.body.position,
             response.body.neededAuthorization,
+            response.body.pricePerBookedHour,
+            response.body.pricePerFlightMinute,
             response.body.id
           );
           newPlane.neededAuthorization = neededAuthorizationEnum[newPlane.neededAuthorization];
