@@ -39,11 +39,11 @@ export class AccountComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.memberService.getMemberData(0).subscribe(
+    this.memberService.getMemberData(1).subscribe(
       (memberdata: Member) => {
         this.member = memberdata;
         this.member.status = Status[this.member.status];
-        this.accountService.getAccountData(0).subscribe(
+        this.accountService.getAccountData(this.member.memberBankingAccount).subscribe(
           (data: Account) => {
             this.account = data;
             for (let i = 0; i < this.account.transactions.length; i++) {

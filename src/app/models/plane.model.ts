@@ -6,7 +6,7 @@ export class Plane {
         public neededAuthorization: neededAuthorizationEnum,
         public pricePerBookedHour: number,
         public pricePerFlightMinute: number,
-        public id?: number        
+        public id?: number
     ) { }
 }
 
