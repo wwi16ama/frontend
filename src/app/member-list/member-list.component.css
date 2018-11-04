@@ -16,6 +16,18 @@
   cursor: pointer;
 }
 
-.spacing-top {
-  margin-top: 15px;
+@media (min-width: 769px) {
+  .add-member-button {
+      position: fixed;
+      bottom: 20px;
+      right: 30px;
+  }
+}
+
+@media (max-width: 768px) {
+  .add-member-button {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+  }
 }
