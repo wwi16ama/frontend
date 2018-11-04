@@ -12,7 +12,12 @@ import { EditPlaneDialogComponent } from './plane-list/edit-plane-dialog/edit-pl
 import { FeeListModule } from './fee-list/fee-list.module';
 import { SiteNavigationModule } from './site-navigation/site-navigation.module';
 import { CreditListModule } from './credit-list/credit-list.module';
+<<<<<<< HEAD
 import { DeleteMemberDialogComponent } from './member-view/delete-member-dialog/delete-member-dialog.component';
+=======
+import { AccountModule } from './account/account.module';
+import { DeletePlaneDialogComponent } from './plane-list/delete-plane-dialog/delete-plane-dialog.component';
+>>>>>>> d4dd5027c837344240192043c4400b49667d8f8c
 
 @NgModule({
   declarations: [
@@ -26,7 +31,8 @@ import { DeleteMemberDialogComponent } from './member-view/delete-member-dialog/
     PlaneListModule,
     FeeListModule,
     SiteNavigationModule,
-    CreditListModule
+    CreditListModule,
+    AccountModule
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'ger' }
@@ -35,7 +41,11 @@ import { DeleteMemberDialogComponent } from './member-view/delete-member-dialog/
   entryComponents: [
     EditMemberDialogComponent,
     EditPlaneDialogComponent,
+<<<<<<< HEAD
     DeleteMemberDialogComponent,
+=======
+    DeletePlaneDialogComponent
+>>>>>>> d4dd5027c837344240192043c4400b49667d8f8c
   ]
 })
 export class AppModule { }

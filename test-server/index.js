@@ -44,6 +44,15 @@ app.put('/planes/:id', cors(), function (req, res) {
   res.send();
 });
 
+// Delete specific plane
+app.delete('/planes/:id', cors(), function (req, res) {
+  trennlinie();
+  console.log('delete /planes/' + req.params.id + '  erhalten:');
+  trennlinie();
+  res.statusCode = 204;
+  res.send();
+});
+
 
 // Member
 // List of all members
@@ -82,10 +91,36 @@ app.put('/members/:id', cors(), function (req, res) {
   res.send();
 });
 
+// Info for a specific Accoint
+app.get('/accounts/:id', cors(), function (req, res) {
+  fs.readFile(__dirname + '/mock-data/account' + req.params.id + '.json', function (err, data) {
+    if (err) {
+      const errorMessage = { error: 'Nichts gefunden' };
+      res.status(400).json(errorMessage);
+    } else {
+      var response = JSON.parse(data);
+      res.status(200).json(response);
+    }
+  });
+});
+
 
 // Creditlist
 app.get('/creditlist', cors(), function (req, res) {
   fs.readFile(__dirname + '/mock-data/creditlist.json', function (err, data) {
+    if (err) {
+      const errorMessage = { error: 'Nichts gefunden' };
+      res.status(400).json(errorMessage);
+    } else {
+      var response = JSON.parse(data);
+      res.status(200).json(response);
+    }
+  });
+});
+
+// Feelist
+app.get('/fees', cors(), function (req, res) {
+  fs.readFile(__dirname + '/mock-data/fees.json', function (err, data) {
     if (err) {
       const errorMessage = { error: 'Nichts gefunden' };
       res.status(400).json(errorMessage);

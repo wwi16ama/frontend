@@ -1,0 +1,11 @@
+<div class="dialog-wrapper">
+  <h1 mat-dialog-title>{{plane.name}} löschen</h1>
+  <div mat-dialog-content>      
+      <p>Soll dieses Flugzeug wirklich gelöscht werden?</p>
+      <br>
+  </div>
+  <div mat-dialog-actions>
+      <button mat-raised-button (click)="onNoClick()">Abbrechen</button>
+      <button mat-raised-button (click)="deletePlaneData()" color="warn">Löschen</button>
+  </div>
+</div>

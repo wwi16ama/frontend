@@ -1,49 +1,18 @@
-import { TestBed, getTestBed } from '@angular/core/testing';
-
-import { CreditListService } from './creditlist.service';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
-
-import { ListCredit } from './../models/list-credit.model';
-
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs/internal/Observable';
+import { ListCredit } from '../models/list-credit.model';
 import { environment } from '../../environments/environment';
 
-describe('CreditlistService', () => {
 
-  let injector: TestBed;
-  let service: CreditListService;
-  let httpMock: HttpTestingController;
+@Injectable({
+  providedIn: 'root'
+})
+export class CreditListService {
 
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      imports: [
-        HttpClientTestingModule
-      ],
-      providers: [
-        CreditListService
-      ]
-    });
-    injector = getTestBed();
-    service = injector.get(CreditListService);
-    httpMock = injector.get(HttpTestingController);
-  });
+  constructor(public httpClient: HttpClient) { }
 
-  it('should be created', () => {
-    expect(service).toBeTruthy();
-  });
-
-  it('should trigger get request', () => {
-    const testCreditListData = [
-      new ListCredit('Mitglied des Vorstands', '200 €/Jahr'),
-      new ListCredit('Fluglehrer', '200 €/Jahr'),
-      new ListCredit('Flugwart', '100 €/Jahr'),
-      new ListCredit('Betriebsdienst Kontrollturm', '40 €/Tag'),
-      new ListCredit('Gastflug', '40 €/Tag')
-    ];
-    service.getCreditListData().subscribe(creditListData => {
-      expect(creditListData).toEqual(testCreditListData);
-    });
-    const req = httpMock.expectOne(environment.baseUrl + '/creditlist');
-    expect(req.request.method).toBe('GET');
-    req.flush(testCreditListData);
-  });
-});
+  public getCreditListData(): Observable<ListCredit[]>  {
+    return this.httpClient.get<ListCredit[]>(environment.baseUrl + '/credits');
+  }
+}

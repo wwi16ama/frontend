@@ -6,6 +6,7 @@ import { MemberViewComponent } from './member-view/member-view.component';
 import { PlaneListComponent } from './plane-list/plane-list.component';
 import { FeeListComponent } from './fee-list/fee-list.component';
 import { CreditListComponent } from './credit-list/credit-list.component';
+import { AccountComponent } from './account/account.component';
 
 export const appRoutes: Routes = [
   { path: '', redirectTo: '/memberlist', pathMatch: 'full' },
@@ -13,7 +14,8 @@ export const appRoutes: Routes = [
   { path: 'member/:id', component: MemberViewComponent },
   { path: 'planelist', component: PlaneListComponent },
   { path: 'feelist', component: FeeListComponent},
-  { path: 'creditlist', component: CreditListComponent}
+  { path: 'creditlist', component: CreditListComponent},
+  { path: 'account' , component: AccountComponent}
 ];
 
 
