@@ -41,8 +41,11 @@ import { DeletePlaneDialogComponent } from './plane-list/delete-plane-dialog/del
   entryComponents: [
     EditMemberDialogComponent,
     EditPlaneDialogComponent,
+<<<<<<< HEAD
     DeleteMemberDialogComponent,
+=======
     DeletePlaneDialogComponent
+>>>>>>> d4dd5027c837344240192043c4400b49667d8f8c
   ]
 })
 export class AppModule { }
