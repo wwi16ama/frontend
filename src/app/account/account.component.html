@@ -1,108 +1,110 @@
-<div class="divide-wrapper">
-  <h1 class="title-text">Eigenes Profil</h1>
-  <div class="account">
-    <mat-list *ngIf="member != null">
-      <h3 mat-subheader>Vorname</h3>
-      <mat-list-item>
-        <h4 mat-line>
-          <span class="spacing">{{member.firstName}} </span>
-        </h4>
-      </mat-list-item>
-      <mat-divider></mat-divider>
-      <h3 mat-subheader>Nachname</h3>
-      <mat-list-item>
-        <h4 mat-line>
-          <span class="spacing">{{member.lastName}} </span>
-        </h4>
-      </mat-list-item>
-      <mat-divider></mat-divider>
-      <h3 mat-subheader>Mitgliedsnummer</h3>
-      <mat-list-item>
-        <h4 mat-line>
-          <span class="spacing">{{member.id}} </span>
-        </h4>
-      </mat-list-item>
-      <mat-divider></mat-divider>
-      <h3 mat-subheader>Status</h3>
-      <mat-list-item>
-        <h4 mat-line>
-          <span class="spacing">{{member.status}}</span>
-        </h4>
-      </mat-list-item>
-      <mat-divider></mat-divider>
-      <h3 mat-subheader>E-Mail</h3>
-      <mat-list-item>
-        <h4 mat-line>
-          <span class="spacing">{{member.email}}</span>
-        </h4>
-      </mat-list-item>
-      <mat-divider></mat-divider>
-      <h3 mat-subheader>Adresse</h3>
-      <mat-list-item>
-        <h4 mat-line>
-          <span class="spacing">{{member.address.streetAddress}}<br>{{member.address.postalCode}}
-            {{member.address.city}}</span>
-        </h4>
-      </mat-list-item>
-      <button mat-raised-button color="primary" style=" margin: 20px;">Ändern</button>
-    </mat-list>
+<div class="account-view-wrapper">
+  <div class="divide-wrapper">
+    <h1 class="title-text">Eigenes Profil</h1>
+    <div class="account">
+      <mat-list *ngIf="member != null">
+        <h3 mat-subheader>Vorname</h3>
+        <mat-list-item>
+          <h4 mat-line>
+            <span class="spacing">{{member.firstName}} </span>
+          </h4>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <h3 mat-subheader>Nachname</h3>
+        <mat-list-item>
+          <h4 mat-line>
+            <span class="spacing">{{member.lastName}} </span>
+          </h4>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <h3 mat-subheader>Mitgliedsnummer</h3>
+        <mat-list-item>
+          <h4 mat-line>
+            <span class="spacing">{{member.id}} </span>
+          </h4>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <h3 mat-subheader>Status</h3>
+        <mat-list-item>
+          <h4 mat-line>
+            <span class="spacing">{{member.status}}</span>
+          </h4>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <h3 mat-subheader>E-Mail</h3>
+        <mat-list-item>
+          <h4 mat-line>
+            <span class="spacing">{{member.email}}</span>
+          </h4>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <h3 mat-subheader>Adresse</h3>
+        <mat-list-item>
+          <h4 mat-line>
+            <span class="spacing">{{member.address.streetAddress}}<br>{{member.address.postalCode}}
+              {{member.address.city}}</span>
+          </h4>
+        </mat-list-item>
+        <button mat-raised-button color="primary" style=" margin: 20px;">Ändern</button>
+      </mat-list>
+    </div>
   </div>
-</div>
-<div class="divide-wrapper">
-  <h1 class="title-text"> Mein Mitgliedskonto</h1>
-  <div class="account">
-    <mat-list *ngIf="account != null && member != null">
-      <h3 mat-subheader>Mitgliedskontonummer</h3>
-      <mat-list-item>
-        <h4 mat-line>
-          <span class="spacing">{{member.memberBankingAccount.id}}</span>
-        </h4>
-      </mat-list-item>
-      <mat-divider></mat-divider>
-      <h3 mat-subheader>Kontonummer</h3>
-      <mat-list-item>
-        <h4 mat-line>
-          <span class="spacing">{{ member.bankingAccount }}</span>
-        </h4>
-      </mat-list-item>
-      <mat-divider></mat-divider>
-      <h3 mat-subheader>Guthaben</h3>
-      <mat-list-item>
-        <h4 mat-line>
-          <span class="spacing" [ngClass]="{'color-red': account.balance <= 0, 'color-green': account.balance >=0}"><b>{{account.balance
-              | currency: "€"}}</b></span>
-        </h4>
-      </mat-list-item>
-      <mat-divider></mat-divider>
-      <h3 mat-subheader>Transaktionen</h3>
-      <div class="transactiontable">
-        <table *ngIf="dataSource != null" mat-table [dataSource]="dataSource" matSortActive="timestamp"
-          matSortDirection="desc" matSort>
-          <!-- Timestamp -->
-          <ng-container matColumnDef="timestamp">
-            <th class="datewidth" mat-header-cell *matHeaderCellDef mat-sort-header> Datum </th>
-            <td class="datewidth" mat-cell *matCellDef="let element">{{element.timestamp | date : 'dd.MM.yyyy'}}</td>
-          </ng-container>
+  <div class="divide-wrapper">
+    <h1 class="title-text"> Mein Mitgliedskonto</h1>
+    <div class="account">
+      <mat-list *ngIf="account != null && member != null">
+        <h3 mat-subheader>Mitgliedskontonummer</h3>
+        <mat-list-item>
+          <h4 mat-line>
+            <span class="spacing">{{member.memberBankingAccount.id}}</span>
+          </h4>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <h3 mat-subheader>Kontonummer</h3>
+        <mat-list-item>
+          <h4 mat-line>
+            <span class="spacing">{{ member.bankingAccount }}</span>
+          </h4>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <h3 mat-subheader>Guthaben</h3>
+        <mat-list-item>
+          <h4 mat-line>
+            <span class="spacing" [ngClass]="{'color-red': account.balance <= 0, 'color-green': account.balance >=0}"><b>{{account.balance
+                | currency: "€"}}</b></span>
+          </h4>
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <h3 mat-subheader>Transaktionen</h3>
+        <div class="transactiontable">
+          <table *ngIf="dataSource != null" mat-table [dataSource]="dataSource" matSortActive="timestamp"
+            matSortDirection="desc" matSort>
+            <!-- Timestamp -->
+            <ng-container matColumnDef="timestamp">
+              <th class="datewidth" mat-header-cell *matHeaderCellDef mat-sort-header> Datum </th>
+              <td class="datewidth" mat-cell *matCellDef="let element">{{element.timestamp | date : 'dd.MM.yyyy'}}</td>
+            </ng-container>
 
-          <!--Amount -->
-          <ng-container matColumnDef="amount">
-            <th class="amountwidth" mat-header-cell *matHeaderCellDef mat-sort-header> Betrag </th>
-            <td class="amountwidth" mat-cell *matCellDef="let element" [ngClass]="{'color-red': element.amount <= 0, 'color-green': element.amount >=0}">
-              {{element.amount | currency: "€"}}</td>
-          </ng-container>
+            <!--Amount -->
+            <ng-container matColumnDef="amount">
+              <th class="amountwidth" mat-header-cell *matHeaderCellDef mat-sort-header> Betrag </th>
+              <td class="amountwidth" mat-cell *matCellDef="let element" [ngClass]="{'color-red': element.amount <= 0, 'color-green': element.amount >=0}">
+                {{element.amount | currency: "€"}}</td>
+            </ng-container>
 
-          <!--Type -->
-          <ng-container matColumnDef="type">
-            <th class="typewidth" mat-header-cell *matHeaderCellDef mat-sort-header> Typ </th>
-            <td class="typewidth" mat-cell *matCellDef="let element"> {{element.type}} </td>
-          </ng-container>
+            <!--Type -->
+            <ng-container matColumnDef="type">
+              <th class="typewidth" mat-header-cell *matHeaderCellDef mat-sort-header> Typ </th>
+              <td class="typewidth" mat-cell *matCellDef="let element"> {{element.type}} </td>
+            </ng-container>
 
-          <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
-        </table>
-        <mat-paginator class="matpaginator" [pageSizeOptions]="[5, 10, 25]"></mat-paginator>
-      </div>
-    </mat-list>
+          </table>
+          <mat-paginator class="matpaginator" [pageSizeOptions]="[5, 10, 25]"></mat-paginator>
+        </div>
+      </mat-list>
+    </div>
   </div>
 </div>
