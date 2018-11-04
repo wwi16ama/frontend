@@ -19,13 +19,13 @@ export class AccountComponent implements OnInit {
   displayedColumns: string[];
   dataSource: any;
 
-  @ViewChild(MatPaginator) set paginator (paginator: MatPaginator) {
+  @ViewChild(MatPaginator) set paginator(paginator: MatPaginator) {
     if (this.dataSource && paginator) {
       this.dataSource.paginator = paginator;
       this.cdr.detectChanges();
     }
   }
-  @ViewChild(MatSort) set sort (sort: ElementRef) {
+  @ViewChild(MatSort) set sort(sort: ElementRef) {
     if (this.dataSource && sort) {
       this.dataSource.sort = sort;
       this.cdr.detectChanges();
@@ -42,7 +42,7 @@ export class AccountComponent implements OnInit {
     this.memberService.getMemberData(0).subscribe(
       (memberdata: Member) => {
         this.member = memberdata;
-        this.member.status=Status[this.member.status];
+        this.member.status = Status[this.member.status];
         this.accountService.getAccountData(0).subscribe(
           (data: Account) => {
             this.account = data;

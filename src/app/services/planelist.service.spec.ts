@@ -32,8 +32,8 @@ describe('MemberlistService', () => {
 
   it('should trigger get request', () => {
     const testPlaneListData = [
-      new Plane('D-ERFI', 'Diamond DA-40 TDI', 'Halle 1', neededAuthorizationEnum.PPLA, 0),
-      new Plane('D-EJEK', 'DR 400 Remorquereur', 'Halle 2', neededAuthorizationEnum.BZFII, 1),
+      new Plane('D-ERFI', 'Diamond DA-40 TDI', 'Halle 1', neededAuthorizationEnum.PPLA, 4.8, 1.6 ,0),
+      new Plane('D-EJEK', 'DR 400 Remorquereur', 'Halle 2', neededAuthorizationEnum.BZFII, 6.0, 1.8, 1),
     ];
     service.getPlaneListData().subscribe(planeListData => {
       expect(planeListData).toEqual(testPlaneListData);
