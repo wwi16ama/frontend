@@ -186,7 +186,6 @@ export class PlaneListComponent implements OnInit {
           );
           newPlane.neededAuthorization = neededAuthorizationEnum[newPlane.neededAuthorization];
           this.planes.push(newPlane);
-          location.reload();
         }
       },
       error => {
