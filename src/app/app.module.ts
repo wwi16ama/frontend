@@ -47,7 +47,7 @@ registerLocaleData(localeDe);
   bootstrap: [AppComponent],
   entryComponents: [
     AddPlaneDialogComponent,
-    AddUserFormComponent
+    AddUserFormComponent,
     EditMemberDialogComponent,
     EditPlaneDialogComponent,
     DeleteMemberDialogComponent,
