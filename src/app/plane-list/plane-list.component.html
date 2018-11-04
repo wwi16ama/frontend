@@ -1,35 +1,37 @@
-<button mat-mini-fab color="primary" (click)="openAddPlaneDialog()" class="tool">
-  <mat-icon>add</mat-icon>
-</button>
-<h1>Flugzeugliste</h1>
-<div class="cards-wrapper">
-  <mat-card class="card" *ngFor="let plane of planes" [ngSwitch]="plane.id">
-    <mat-card-header>
-      <div mat-card-avatar class="header-image">
-        <mat-icon>flight</mat-icon>
-      </div>
-      <mat-card-title>{{plane.name}}</mat-card-title>
-    </mat-card-header>
-  
-    <img mat-card-image *ngSwitchCase="1" src="./assets/Flugzeuge/Motorflugzeug1.jpg" alt="Photo of {{plane.name}}">
-    <img mat-card-image *ngSwitchCase="2" src="./assets/Flugzeuge/Motorflugzeug3.jpg" alt="Photo of {{plane.name}}">
-    <img mat-card-image *ngSwitchCase="3" src="./assets/Flugzeuge/Segelflugzeug2.jpg" alt="Photo of {{plane.name}}">
-    <img mat-card-image *ngSwitchCase="4" src="./assets/Flugzeuge/Segelflugzeug4.jpg" alt="Photo of {{plane.name}}">
-  
-    <mat-card-content>
-      <p>
-        Kennung: {{plane.number}}
-      </p>
-      <p>
-        Ort: {{plane.position}}
-      </p>
-      <p>
-        Lizenz: {{plane.neededAuthorization}}
-      </p>
-    </mat-card-content>
-    <mat-card-actions>
-      <button mat-raised-button color="primary" (click)="openEditPlaneDialog(plane)">Ändern</button>
-      <button mat-raised-button color="warn" (click)="openDeletePlaneDialog(plane)">Löschen</button>
-    </mat-card-actions>
-  </mat-card>
+<div class="planes-list-wrapper">
+  <h1 class="title-text">Flugzeugliste</h1>
+  <div class="cards-wrapper">
+    <mat-card class="card" *ngFor="let plane of planes" [ngSwitch]="plane.id">
+      <mat-card-header>
+        <div mat-card-avatar class="header-image">
+          <mat-icon>flight</mat-icon>
+        </div>
+        <mat-card-title>{{plane.name}}</mat-card-title>
+      </mat-card-header>
+
+      <img mat-card-image *ngSwitchCase="1" src="./assets/Flugzeuge/Motorflugzeug1.jpg" alt="Photo of {{plane.name}}">
+      <img mat-card-image *ngSwitchCase="2" src="./assets/Flugzeuge/Motorflugzeug3.jpg" alt="Photo of {{plane.name}}">
+      <img mat-card-image *ngSwitchCase="3" src="./assets/Flugzeuge/Segelflugzeug2.jpg" alt="Photo of {{plane.name}}">
+      <img mat-card-image *ngSwitchCase="4" src="./assets/Flugzeuge/Segelflugzeug4.jpg" alt="Photo of {{plane.name}}">
+
+      <mat-card-content>
+        <p>
+          Kennung: {{plane.number}}
+        </p>
+        <p>
+          Ort: {{plane.position}}
+        </p>
+        <p>
+          Lizenz: {{plane.neededAuthorization}}
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="openEditPlaneDialog(plane)">Ändern</button>
+        <button mat-raised-button color="warn" (click)="openDeletePlaneDialog(plane)">Löschen</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  <button mat-fab color="primary" (click)="openAddPlaneDialog()" class="add-plane-button">
+    <mat-icon>add</mat-icon>
+  </button>
 </div>
