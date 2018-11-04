@@ -13,6 +13,7 @@ import { FeeListModule } from './fee-list/fee-list.module';
 import { AddPlaneDialogComponent } from './plane-list/add-plane-dialog/add-plane-dialog.component';
 import { SiteNavigationModule } from './site-navigation/site-navigation.module';
 import { CreditListModule } from './credit-list/credit-list.module';
+import { DeleteMemberDialogComponent } from './member-view/delete-member-dialog/delete-member-dialog.component';
 import { AccountModule } from './account/account.module';
 import { DeletePlaneDialogComponent } from './plane-list/delete-plane-dialog/delete-plane-dialog.component';
 
@@ -39,6 +40,7 @@ import { DeletePlaneDialogComponent } from './plane-list/delete-plane-dialog/del
     AddPlaneDialogComponent,
     EditMemberDialogComponent,
     EditPlaneDialogComponent,
+    DeleteMemberDialogComponent,
     DeletePlaneDialogComponent
   ]
 })
