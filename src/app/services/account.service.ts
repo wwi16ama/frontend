@@ -11,7 +11,7 @@ export class AccountService {
 
   constructor(public httpClient: HttpClient) { }
 
-  public getAccountData(id): Observable<Account> {
-    return this.httpClient.get<Account>(environment.baseUrl + '/accounts/' + id);
+  public getAccountData(memberBankingAccountId: number): Observable<Account> {
+    return this.httpClient.get<Account>(environment.baseUrl + '/accounts/' + memberBankingAccountId);
   }
 }

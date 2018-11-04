@@ -12,7 +12,7 @@ export class Member {
         public offices: Office[],
         public flightAuthorization: Authorization[],
         public id?: number,
-        public memberBankingAccount?: string
+        public memberBankingAccount?: MemberBankingAccount
     ) {}
 }
 
@@ -106,4 +106,10 @@ export namespace AuthorizationEnum {
             case AuthorizationEnum.LEHRBEFUGNIS: return 'LEHRBEFUGNIS';
         }
     }
+}
+
+export class MemberBankingAccount {
+    constructor(
+        public id: number
+    ) {}
 }

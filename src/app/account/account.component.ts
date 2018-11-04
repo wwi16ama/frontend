@@ -43,7 +43,7 @@ export class AccountComponent implements OnInit {
       (memberdata: Member) => {
         this.member = memberdata;
         this.member.status = Status[this.member.status];
-        this.accountService.getAccountData(this.member.memberBankingAccount).subscribe(
+        this.accountService.getAccountData(this.member.memberBankingAccount.id).subscribe(
           (data: Account) => {
             this.account = data;
             for (let i = 0; i < this.account.transactions.length; i++) {
