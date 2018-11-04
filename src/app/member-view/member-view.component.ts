@@ -9,7 +9,7 @@ import { MatDialog, MatSnackBar } from '@angular/material';
 import { EditMemberDialogComponent } from './edit-member-dialog/edit-member-dialog.component';
 
 import { MemberDeleteService } from '../services/member-delete.service';
-import { DeleteMemberDialogComponent } from './delete-member-dialog/delete-member-dialog.component'
+import { DeleteMemberDialogComponent } from './delete-member-dialog/delete-member-dialog.component';
 
 
 @Component({
@@ -106,7 +106,7 @@ export class MemberViewComponent implements OnInit {
       maxWidth: '100vw',
       minWidth: '0px',
       maxHeight: '90vh',
-      disableClose: true,      
+      disableClose: true,
       data: JSON.parse(JSON.stringify(this.member))
     });
 
@@ -125,8 +125,8 @@ export class MemberViewComponent implements OnInit {
             {
               duration: 3000,
             }
-          )
-          this.router.navigate(['/memberlist'])
+          );
+          this.router.navigate(['/memberlist']);
         }
       },
       error => {
