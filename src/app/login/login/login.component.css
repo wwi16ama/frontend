@@ -1,0 +1,21 @@
+.component-wrapper {
+    height: 100%;
+    width: 100%;
+}
+
+.login-wrapper{
+    width: 300px;
+    height: 167px;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.input {
+    flex-basis: 100%;
+}

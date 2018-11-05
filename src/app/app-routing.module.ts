@@ -8,6 +8,7 @@ import { ExpensingBillListComponent } from './expensing-bill-list/expensing-bill
 import { FeeListComponent } from './fee-list/fee-list.component';
 import { CreditListComponent } from './credit-list/credit-list.component';
 import { AccountComponent } from './account/account.component';
+import { LoginComponent } from './login/login/login.component';
 
 export const appRoutes: Routes = [
   { path: '', redirectTo: '/memberlist', pathMatch: 'full' },
@@ -19,7 +20,8 @@ export const appRoutes: Routes = [
   { path: 'feelist', component: FeeListComponent},
   { path: 'creditlist', component: CreditListComponent},
   { path: 'account' , component: AccountComponent},
-  { path: 'expensingbilllist', component: ExpensingBillListComponent }
+  { path: 'expensingbilllist', component: ExpensingBillListComponent },
+  { path: 'login', component: LoginComponent }
 ];
 
 

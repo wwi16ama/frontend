@@ -1,0 +1,11 @@
+<div class="component-wrapper">
+  <div class="login-wrapper">
+    <mat-form-field class="input">
+      <input matInput placeholder="Username" [(ngModel)]="username" (keydown)="checkEnter($event)">
+    </mat-form-field>
+    <mat-form-field class="input">
+      <input type="password" matInput placeholder="Password" [(ngModel)]="pass" (keydown)="checkEnter($event)">
+    </mat-form-field>
+    <button (click)="sendLogin()" mat-raised-button color="primary">Login</button>
+  </div>
+</div>
