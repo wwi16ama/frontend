@@ -1,11 +1,14 @@
 <div class="component-wrapper">
+  <img src="./assets/logo/standardlogo-wlogo_1000x1000.png" class="logo" alt="Flugverein Reilingen">
   <div class="login-wrapper">
+    <h1 class="title-text">Login</h1>
     <mat-form-field class="input">
-      <input matInput placeholder="Username" [(ngModel)]="username" (keydown)="checkEnter($event)">
+      <input matInput placeholder="Mitgliedsnummer" [(ngModel)]="username" (keydown)="checkEnter($event)">
     </mat-form-field>
     <mat-form-field class="input">
-      <input type="password" matInput placeholder="Password" [(ngModel)]="pass" (keydown)="checkEnter($event)">
+      <input type="password" matInput placeholder="Passwort" [(ngModel)]="pass" (keydown)="checkEnter($event)">
     </mat-form-field>
+    <button class="margin-right" mat-raised-button color="primary">Zurück</button>
     <button (click)="sendLogin()" mat-raised-button color="primary">Login</button>
   </div>
 </div>

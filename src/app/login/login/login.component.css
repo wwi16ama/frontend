@@ -1,3 +1,14 @@
+.logo {
+    width: 300px;
+    height: auto;
+    max-width: 90vw;
+    position: relative;
+    left: 50%;
+    top: 5vh;
+    transform: translateX(-50%);
+}
+
+
 .component-wrapper {
     height: 100%;
     width: 100%;
@@ -5,11 +16,12 @@
 
 .login-wrapper{
     width: 300px;
-    height: 167px;
+    max-width: 90vw;
+    height: auto;
     position: relative;
-    top: 50%;
+    top: 5vh;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -18,4 +30,14 @@
 
 .input {
     flex-basis: 100%;
+}
+
+.title-text {
+    font-weight: 400;
+    font-size: 32px;
+    text-align: center;
+}
+
+.margin-right {
+    margin-right: 20px;
 }
