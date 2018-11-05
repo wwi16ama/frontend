@@ -11,7 +11,7 @@ import { AccountComponent } from './account/account.component';
 import { LoginComponent } from './login/login/login.component';
 
 export const appRoutes: Routes = [
-  { path: '', redirectTo: '/memberlist', pathMatch: 'full' },
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'memberlist', component: MemberListComponent },
   { path: 'member/:id', component: MemberViewComponent },
   { path: 'planelist', component: PlaneListComponent },
