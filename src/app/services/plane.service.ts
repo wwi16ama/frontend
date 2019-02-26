@@ -27,4 +27,16 @@ export class PlaneService {
       }
     );
   }
+
+  public deletePlaneData (planeId: number): Observable <any> {
+    const url = environment.baseUrl + '/planes/' + planeId;
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    return this.httpClient.delete<any>(
+      url,
+      {
+        headers: headers,
+        observe: 'response'
+      });
+  }
+
 }
