@@ -7,10 +7,7 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e",
-    "mock-server": "node ./test-server/index.js",
-    "app-mock-server": "node ./test-server/index.js & ng serve",
-    "postinstall": "cd test-server && npm install"
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
