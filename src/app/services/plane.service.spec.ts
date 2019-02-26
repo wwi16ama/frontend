@@ -1,6 +1,6 @@
 import { TestBed, getTestBed } from '@angular/core/testing';
 
-import { PlaneListService } from './planelist.service';
+import { PlaneService } from './plane.service';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { environment } from '../../environments/environment';
 
@@ -9,7 +9,7 @@ import { Plane, neededAuthorizationEnum } from './../models/plane.model';
 describe('MemberlistService', () => {
 
   let injector: TestBed;
-  let service: PlaneListService;
+  let service: PlaneService;
   let httpMock: HttpTestingController;
 
   beforeEach(() => {
@@ -18,11 +18,11 @@ describe('MemberlistService', () => {
         HttpClientTestingModule
       ],
       providers: [
-        PlaneListService
+        PlaneService
       ]
     });
     injector = getTestBed();
-    service = injector.get(PlaneListService);
+    service = injector.get(PlaneService);
     httpMock = injector.get(HttpTestingController);
   });
 

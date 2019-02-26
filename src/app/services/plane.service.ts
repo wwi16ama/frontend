@@ -5,7 +5,7 @@ import { Plane } from './../models/plane.model';
 import { environment } from '../../environments/environment';
 
 @Injectable()
-export class PlaneListService {
+export class PlaneService {
 
   constructor(public httpClient: HttpClient) { }
 
