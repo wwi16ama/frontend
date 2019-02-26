@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
 
 import { Member } from './../models/member.model';
@@ -19,5 +19,16 @@ export class MemberService {
 
   public getMemberListData(): Observable<ListMember[]>  {
     return this.httpClient.get<ListMember[]>(environment.baseUrl + '/members');
+  }
+
+  public deleteMemberData (memberId: number): Observable <any> {
+    const url = environment.baseUrl + '/members/' + memberId;
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    return this.httpClient.delete<any>(
+      url,
+      {
+        headers: headers,
+        observe: 'response'
+      });
   }
 }
