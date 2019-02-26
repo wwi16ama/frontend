@@ -31,4 +31,19 @@ export class MemberService {
         observe: 'response'
       });
   }
+
+  public updateMemberData(memberData: Member): Observable<any> {
+    const id = memberData.id;
+    const url = environment.baseUrl + '/members/' + id;
+    delete memberData['id'];
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    return this.httpClient.put<any>(
+      url,
+      memberData,
+      {
+        headers: headers,
+        observe: 'response'
+      }
+    );
+  }
 }
