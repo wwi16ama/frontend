@@ -39,4 +39,17 @@ export class PlaneService {
       });
   }
 
+  public addPlaneData(planes: Plane): Observable<any> {
+    const url = environment.baseUrl + '/planes/';
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    return this.httpClient.post<Plane>(
+      url,
+      planes,
+      {
+        headers: headers,
+        observe: 'response'
+      }
+    );
+  }
+
 }
