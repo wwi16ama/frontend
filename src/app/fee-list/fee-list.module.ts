@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FeeListComponent } from './fee-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MatTableModule, MatButtonModule } from '@angular/material';
+import { MatTableModule, MatButtonModule,  MatSortModule } from '@angular/material';
 import { FeeListService } from '../services/feelist.service';
 
 @NgModule({
@@ -13,7 +13,8 @@ import { FeeListService } from '../services/feelist.service';
     HttpClientModule,
     BrowserAnimationsModule,
     MatTableModule,
-    MatButtonModule
+    MatButtonModule,
+    MatSortModule
   ],
   declarations: [
     FeeListComponent

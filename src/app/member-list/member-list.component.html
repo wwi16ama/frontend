@@ -1,26 +1,30 @@
-<button mat-mini-fab color="primary" (click)="openAddUserDialog()" class="tool">
+<div class="member-list-wrapper">
+  <h1 class="title-text">Mitgliedsliste</h1>
+  <table *ngIf="dataSource" mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+    <!-- ID Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+
+    <!-- Vorname Column -->
+    <ng-container matColumnDef="firstName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Vorname </th>
+      <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
+    </ng-container>
+
+    <!-- Nachname Column -->
+    <ng-container matColumnDef="lastName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Nachname </th>
+      <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr class="pointer" mat-row *matRowDef="let row; columns: displayedColumns;" (click)="navigateTo(row.id)"></tr>
+  </table>
+
+  <button mat-fab color="primary" (click)="openAddUserDialog()" class="add-member-button">
     <mat-icon>add</mat-icon>
-</button>
-<table *ngIf="dataSource" mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
-
-  <!-- ID Column -->
-  <ng-container matColumnDef="id">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
-    <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-  </ng-container>
-
-  <!-- Vorname Column -->
-  <ng-container matColumnDef="firstName">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> Vorname </th>
-    <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
-  </ng-container>
-
-  <!-- Nachname Column -->
-  <ng-container matColumnDef="lastName">
-    <th mat-header-cell *matHeaderCellDef mat-sort-header> Nachname </th>
-    <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
-  </ng-container>
-
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr class="pointer" mat-row *matRowDef="let row; columns: displayedColumns;" (click)="navigateTo(row.id)"></tr>
-</table>
+  </button>
+</div>

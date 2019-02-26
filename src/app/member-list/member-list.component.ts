@@ -2,13 +2,11 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
 import { MatTableDataSource, MatDialog, MatSnackBar, MatSort } from '@angular/material';
 import { ListMember } from './../models/list-member.model';
-import { MemberListService } from './../services/memberlist.service';
+import { MemberService } from './../services/member.service';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { AddUserFormComponent } from './add-user-form/add-user-form.component';
 import { Member, Status, Gender, OfficeEnum, AuthorizationEnum } from './../models/member.model';
-import { MemberService } from './../services/member.service';
-import { MemberAddService } from './../services/member-add.service';
 
 @Component({
   selector: 'app-member-list',
@@ -19,7 +17,7 @@ export class MemberListComponent implements OnInit {
   sort: any;
   displayedColumns: string[];
   dataSource: any;
-  
+
   @ViewChild(MatSort) set content(sort: ElementRef) {
     this.sort = sort;
     if (this.sort) {
@@ -28,14 +26,13 @@ export class MemberListComponent implements OnInit {
     }
   }
 
-  constructor(public memberListService: MemberListService, public router: Router, public addUserDialog: MatDialog,
-    public memberAddService: MemberAddService, public snackBar: MatSnackBar, public activatedRoute: ActivatedRoute,
+  constructor(public router: Router, public addUserDialog: MatDialog, public snackBar: MatSnackBar, public activatedRoute: ActivatedRoute,
     public memberService: MemberService) {
     this.displayedColumns = ['id', 'firstName', 'lastName'];
   }
 
   ngOnInit() {
-    this.memberListService.getMemberListData().subscribe(
+    this.memberService.getMemberListData().subscribe(
       (data: ListMember[]) => {
         this.dataSource = new MatTableDataSource(data);
         this.dataSource.sort = this.sort;
@@ -60,7 +57,7 @@ export class MemberListComponent implements OnInit {
 
   public saveMember(member: Member): void {
     member = this.formatStringToEnum(member);
-    this.memberAddService.addMemberData(member).subscribe(
+    this.memberService.addMemberData(member).subscribe(
       (response) => {
         if (response.status === 200) {
           this.snackBar.open('Änderungen erfolgreich gespeichert.', 'Schließen',

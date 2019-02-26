@@ -1,15 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Member, Status, Gender, OfficeEnum, AuthorizationEnum } from './../models/member.model';
 import { MemberService } from './../services/member.service';
-import { MemberUpdateService } from './../services/member-update.service';
 
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { EditMemberDialogComponent } from './edit-member-dialog/edit-member-dialog.component';
 
-import { MemberDeleteService } from '../services/member-delete.service';
-import { DeleteMemberDialogComponent } from './delete-member-dialog/delete-member-dialog.component'
+import { DeleteMemberDialogComponent } from './delete-member-dialog/delete-member-dialog.component';
 
 
 @Component({
@@ -21,9 +19,9 @@ export class MemberViewComponent implements OnInit {
   member: Member;
 
   constructor(
-    public memberService: MemberService, public memberUpdateService: MemberUpdateService,
+    public memberService: MemberService,
     public activatedRoute: ActivatedRoute, public editMemberDialog: MatDialog, public deleteMemberDialog: MatDialog,
-    public snackBar: MatSnackBar, public memberDeleteService: MemberDeleteService, public router: Router
+    public snackBar: MatSnackBar, public router: Router
   ) {
   }
 
@@ -50,7 +48,7 @@ export class MemberViewComponent implements OnInit {
   public saveMember(member: Member): void {
     const newMemberData = JSON.parse(JSON.stringify(member));
     member = this.formatStringToEnum(member);
-    this.memberUpdateService.updateMemberData(member).subscribe(
+    this.memberService.updateMemberData(member).subscribe(
       (response) => {
         if (response.status === 204) {
           this.snackBar.open('Änderungen erfolgreich gespeichert.', 'Schließen',
@@ -106,7 +104,7 @@ export class MemberViewComponent implements OnInit {
       maxWidth: '100vw',
       minWidth: '0px',
       maxHeight: '90vh',
-      disableClose: true,      
+      disableClose: true,
       data: JSON.parse(JSON.stringify(this.member))
     });
 
@@ -118,15 +116,15 @@ export class MemberViewComponent implements OnInit {
   }
 
   public deleteMember(memberId: number): void {
-    this.memberDeleteService.deleteMemberData(memberId).subscribe(
+    this.memberService.deleteMemberData(memberId).subscribe(
       (response) => {
         if (response.status === 204) {
           this.snackBar.open('Löschen erfolgreich', 'Schließen',
             {
               duration: 3000,
             }
-          )
-          this.router.navigate(['/memberlist'])
+          );
+          this.router.navigate(['/memberlist']);
         }
       },
       error => {

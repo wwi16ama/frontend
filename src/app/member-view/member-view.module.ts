@@ -8,7 +8,6 @@ import {
   } from '@angular/material';
 
 import { MemberService } from './../services/member.service';
-import { MemberUpdateService } from './../services/member-update.service';
 import { EditMemberDialogModule } from './edit-member-dialog/edit-member-dialog.module';
 import { DeleteMemberDialogModule } from './delete-member-dialog/delete-member-dialog.module';
 
@@ -33,8 +32,7 @@ import { DeleteMemberDialogModule } from './delete-member-dialog/delete-member-d
     MemberViewComponent
   ],
   providers: [
-    MemberService,
-    MemberUpdateService
+    MemberService
   ]
 })
 export class MemberViewModule { }

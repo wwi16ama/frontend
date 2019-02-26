@@ -1,7 +1,7 @@
 export class ListCredit {
     constructor(
         public id: number,
-        public service: ServiceNameEnum,
+        public serviceName: ServiceNameEnum,
         public amount: number,
         public period: PeriodEnum
     ) {}

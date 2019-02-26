@@ -1,18 +1,8 @@
 import { Component } from '@angular/core';
 import { Validators } from '@angular/forms';
-import { FormControl, FormGroupDirective, NgForm } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { MatDialogRef, MatSnackBar } from '@angular/material';
-import { ErrorStateMatcher } from '@angular/material/core';
 import { Office, OfficeEnum, Authorization, AuthorizationEnum, Address } from './../../models/member.model';
-
-
-/** Error when invalid control is dirty, touched, or submitted. */
-export class MyErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
-    const isSubmitted = form && form.submitted;
-    return !!(control && control.invalid && (control.touched || isSubmitted));
-  }
-}
 
 @Component({
   selector: 'app-add-user-form',
@@ -45,8 +35,6 @@ export class AddUserFormComponent {
 
   sex = ['Männlich', 'Weiblich'];
   status = ['Aktiv', 'Passiv', 'Ehrenmitglied'];
-
-  matcher = new MyErrorStateMatcher();
 
   constructor(
     public addUserDialogRef: MatDialogRef<AddUserFormComponent>, public snackBar: MatSnackBar

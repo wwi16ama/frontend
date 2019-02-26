@@ -12,6 +12,6 @@ export class CreditListService {
   constructor(public httpClient: HttpClient) { }
 
   public getCreditListData(): Observable<ListCredit[]> {
-    return this.httpClient.get<ListCredit[]>(environment.baseUrl + '/creditlist');
+    return this.httpClient.get<ListCredit[]>(environment.baseUrl + '/credits');
   }
 }
