@@ -1,15 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { PlaneListService } from './../services/planelist.service';
+import { PlaneService } from './../services/plane.service';
 import { Plane, neededAuthorizationEnum } from './../models/plane.model';
 
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { EditPlaneDialogComponent } from './edit-plane-dialog/edit-plane-dialog.component';
 import { DeletePlaneDialogComponent } from './delete-plane-dialog/delete-plane-dialog.component';
 import { AddPlaneDialogComponent } from './add-plane-dialog/add-plane-dialog.component';
-
-import { PlaneUpdateService } from '../services/plane-update.service';
-import { PlaneDeleteService } from '../services/plane-delete.service';
-import { AddPlaneService } from '../services/add-plane.service';
 
 
 @Component({
@@ -21,15 +17,14 @@ export class PlaneListComponent implements OnInit {
 
   planes: Plane[];
 
-  constructor(public planelistService: PlaneListService, public editPlaneDialog: MatDialog, public addPlaneDialog: MatDialog,
-    public deletePlaneDialog: MatDialog, public planeUpdateService: PlaneUpdateService, public snackBar: MatSnackBar,
-    public planeDeleteService: PlaneDeleteService, public addPlaneService: AddPlaneService) {
+  constructor(public planeService: PlaneService, public editPlaneDialog: MatDialog, public addPlaneDialog: MatDialog,
+    public deletePlaneDialog: MatDialog, public snackBar: MatSnackBar) {
 
     this.planes = [];
   }
 
   ngOnInit() {
-    this.planelistService.getPlaneListData().subscribe(
+    this.planeService.getPlaneListData().subscribe(
       (planedata: Plane[]) => {
         this.planes = planedata;
         for (let i = 0; i < this.planes.length; i++) {
@@ -63,7 +58,7 @@ export class PlaneListComponent implements OnInit {
     const newPlaneData = JSON.parse(JSON.stringify(plane));
     const planeId = plane.id;
     plane = this.formatStringToEnum(plane);
-    this.planeUpdateService.updatePlaneData(plane).subscribe(
+    this.planeService.updatePlaneData(plane).subscribe(
       (response) => {
         if (response.status === 204) {
           this.snackBar.open('Änderungen erfolgreich gespeichert.', 'Schließen',
@@ -125,7 +120,7 @@ export class PlaneListComponent implements OnInit {
     return -1;
   }
   public deletePlane(planeId: number): void {
-    this.planeDeleteService.deletePlaneData(planeId).subscribe(
+    this.planeService.deletePlaneData(planeId).subscribe(
       (response) => {
         if (response.status === 204) {
           this.snackBar.open('Löschen erfolgreich', 'Schließen',
@@ -169,7 +164,7 @@ export class PlaneListComponent implements OnInit {
 
   public savePlaneData(plane: Plane): void {
     plane = this.formatStringToEnum(plane);
-    this.addPlaneService.addPlaneData(plane).subscribe(
+    this.planeService.addPlaneData(plane).subscribe(
       (response) => {
         if (response.status === 200) {
           this.snackBar.open('Änderungen erfolgreich gespeichert.', 'Schließen',

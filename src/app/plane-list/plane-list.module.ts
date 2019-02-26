@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PlaneListComponent } from './plane-list.component';
-import { PlaneListService } from './../services/planelist.service';
-import { PlaneUpdateService } from './../services/plane-update.service';
+import { PlaneService } from './../services/plane.service';
 import { EditPlaneDialogModule } from './edit-plane-dialog/edit-plane-dialog.module';
 import { DeletePlaneDialogModule } from './delete-plane-dialog/delete-plane-dialog.module';
 import { AddPlaneDialogModule } from './add-plane-dialog/add-plane-dialog.module';
@@ -23,8 +22,7 @@ import { MatCardModule, MatButtonModule, MatIconModule} from '@angular/material'
   ],
   declarations: [PlaneListComponent],
   providers: [
-    PlaneListService,
-    PlaneUpdateService
+    PlaneService,
   ]
 })
 export class PlaneListModule { }

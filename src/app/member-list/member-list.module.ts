@@ -5,9 +5,8 @@ import { MemberListComponent } from './member-list.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { MatTableModule, MatSortModule, MatButtonModule, MatIconModule } from '@angular/material';
-import { MemberListService } from './../services/memberlist.service';
+import { MemberService } from './../services/member.service';
 import { AddUserFormModule } from './add-user-form/add-user-form.module';
-import { MemberAddService } from '../services/member-add.service';
 
 @NgModule({
   imports: [
@@ -27,8 +26,7 @@ import { MemberAddService } from '../services/member-add.service';
     MemberListComponent
   ],
   providers: [
-    MemberListService,
-    MemberAddService
+    MemberService
   ]
 })
 export class MemberListModule { }

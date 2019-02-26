@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Plane } from './../models/plane.model';
 import { MatTableDataSource, MatSort } from '@angular/material';
-import { PlaneListService } from '../services/planelist.service';
+import { PlaneService } from '../services/plane.service';
 
 @Component({
   selector: 'app-expensing-bill-list',
@@ -15,12 +15,12 @@ export class ExpensingBillListComponent implements OnInit {
   displayedColumns: string[];
   dataSource: any;
 
-  constructor(public planelistservice: PlaneListService) {
+  constructor(public planeService: PlaneService) {
     this.displayedColumns = ['name', 'pricePerBookedHour', 'pricePerFlightMinute'];
   }
 
   ngOnInit() {
-    this.planelistservice.getPlaneListData().subscribe(
+    this.planeService.getPlaneListData().subscribe(
       (expensingbilldata: Plane[]) => {
         this.dataSource = new MatTableDataSource(expensingbilldata);
         this.dataSource.sort = this.sort;
