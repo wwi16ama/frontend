@@ -1,14 +1,14 @@
 <div class="fee-list-wrapper">
   <h1 class="title-text">Beitragsliste</h1>
-  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
     <ng-container matColumnDef="category">
-      <th mat-header-cell *matHeaderCellDef>Mitgliederkategorie</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Mitgliederkategorie</th>
       <td mat-cell *matCellDef="let element"> {{element.category}} </td>
     </ng-container>
 
     <ng-container matColumnDef="fee">
-      <th mat-header-cell *matHeaderCellDef>Beitrag</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Beitrag</th>
       <td mat-cell *matCellDef="let element"> {{element.fee}} &euro;</td>
     </ng-container>
 

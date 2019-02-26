@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
-import { MatTableDataSource } from '@angular/material';
+import { MatTableDataSource, MatSort } from '@angular/material';
 import { ListFee, categoryEnum } from '../models/list-fee.model';
 import { FeeListService } from './../services/feelist.service';
 
@@ -10,6 +10,8 @@ import { FeeListService } from './../services/feelist.service';
   styleUrls: ['./fee-list.component.css']
 })
 export class FeeListComponent implements OnInit {
+
+  @ViewChild(MatSort) sort: MatSort;
 
   displayedColumns: string[];
   dataSource: any;
@@ -25,6 +27,7 @@ export class FeeListComponent implements OnInit {
           data[i].category = categoryEnum[data[i].category];
         }
         this.dataSource = new MatTableDataSource(data);
+        this.dataSource.sort = this.sort;
       }
     );
   }
