@@ -5,6 +5,8 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { environment } from '../../environments/environment';
 
 import { Member, Gender, Address, Status, Authorization, AuthorizationEnum, Office, OfficeEnum } from './../models/member.model';
+import { ListMember } from './../models/list-member.model';
+
 
 describe('MemberService', () => {
 
@@ -58,6 +60,19 @@ describe('MemberService', () => {
       const req = httpMock.expectOne(url);
       expect(req.request.method).toBe('GET');
       req.flush(testMemberData);
+    });
+
+    it('should trigger get request', () => {
+      const testMemberListData = [
+        new ListMember(0, 'Peter', 'Zwegat'),
+        new ListMember(1, 'Max', 'Mustermann')
+      ];
+      service.getMemberListData().subscribe(memberListData => {
+        expect(memberListData).toEqual(testMemberListData);
+      });
+      const req = httpMock.expectOne(environment.baseUrl + '/members');
+      expect(req.request.method).toBe('GET');
+      req.flush(testMemberListData);
     });
   });
 
