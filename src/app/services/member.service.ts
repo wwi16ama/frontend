@@ -46,4 +46,17 @@ export class MemberService {
       }
     );
   }
+
+  public addMemberData(memberData: Member): Observable<any> {
+    const url = environment.baseUrl + '/members';
+    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    return this.httpClient.post<any>(
+      url,
+      memberData,
+      {
+        headers: headers,
+        observe: 'response'
+      }
+    );
+  }
 }
