@@ -45,9 +45,11 @@
               {{member.address.city}}</span>
           </h4>
         </mat-list-item>
-        <button mat-raised-button color="primary" style=" margin: 20px;">Ändern</button>
+       
       </mat-list>
-    </div>
+      <mat-divider></mat-divider>
+      <button mat-raised-button color="primary" (click)="openEditMemberProfileDialog()" style=" margin: 20px;">Ändern</button>
+    </div>    
   </div>
   <div class="divide-wrapper">
     <h1 class="title-text"> Mein Mitgliedskonto</h1>

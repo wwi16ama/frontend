@@ -24,11 +24,11 @@ describe('EditMemberDialogComponent', () => {
       12345, 'Dorfstraße 2', 'Mannheim',
     ),
     'DE9876543210',
-    true, '56789', [new Office(OfficeEnum.FLUGWART), new Office(OfficeEnum.IMBETRIEBSKONTROLLTURMARBEITEND)],
+    true, [new Office(OfficeEnum.FLUGWART), new Office(OfficeEnum.IMBETRIEBSKONTROLLTURMARBEITEND)],
     [
       new Authorization(AuthorizationEnum.PPLA, '1998-10-10', '1998-10-10'),
       new Authorization(AuthorizationEnum.PPLA, '1998-10-10', '1998-10-10')
-    ], 0
+    ], 56789
   );
 
   beforeEach(async(() => {

@@ -17,7 +17,7 @@ describe('EditMemberDialogComponent', () => {
   let component: EditPlaneDialogComponent;
   let fixture: ComponentFixture<EditPlaneDialogComponent>;
 
-  const plane = new Plane('D-ERFI', 'Diamond DA-40 TDI', 'Halle 1', neededAuthorizationEnum.PPLA, 0);
+  const plane = new Plane('D-ERFI', 'Diamond DA-40 TDI', 'Halle 1', neededAuthorizationEnum.PPLA, 0, 0);
 
 
   beforeEach(async(() => {

@@ -1,0 +1,32 @@
+<div class="dialog-wrapper">  
+  <div mat-dialog-content>
+    <mat-tab-group backgroundColor="primary" color="accent" [dynamicHeight]="true">        
+      <mat-tab label="Übersicht">
+        <mat-form-field class="input-width-plus">
+          <input matInput placeholder="Vorname" [formControl]="firstNameFormControl" required>
+        </mat-form-field>
+        <mat-form-field class="input-width">
+          <input matInput placeholder="Nachname" [formControl]="lastNameFormControl" required>
+        </mat-form-field>
+        <mat-form-field class="input-width">
+          <input matInput placeholder="Email" [formControl]="emailFormControl" required>
+        </mat-form-field>
+      </mat-tab>
+      <mat-tab label="Adresse">
+        <mat-form-field class="input-width-plus">
+          <input class="abstandoben" matInput placeholder="Postleitzahl" maxlength="5" [formControl]="postalCodeFormControl" required>
+        </mat-form-field>
+        <mat-form-field class="input-width">
+          <input matInput placeholder="Straße" [formControl]="streetAddressFormControl" required>
+        </mat-form-field>
+        <mat-form-field class="input-width">
+          <input matInput placeholder="Stadt" [formControl]="cityFormControl" minlength="3" required>
+        </mat-form-field>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Zurück</button>
+    <button mat-raised-button (click)="saveMemberProfileData()" color="primary">Speichern</button>
+  </div>
+</div>

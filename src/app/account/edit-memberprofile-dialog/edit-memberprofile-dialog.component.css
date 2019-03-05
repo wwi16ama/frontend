@@ -1,0 +1,74 @@
+.dialog-wrapper {
+    width: 40vw;
+    margin-top: -24px;
+    
+}
+
+@media (max-width: 1000px) {
+    .dialog-wrapper {
+        width: 80vw;
+        margin-top: -24px;
+    }
+}
+
+@media (max-width: 768px) {
+    .dialog-wrapper {
+        width: 100%;
+        margin-top: -24px;
+    }
+}
+
+.input-width-plus {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+    display: block;
+    margin-left: 15px;
+    margin-top: 15px;
+}
+
+.mat-dialog-content {
+    padding: 0 0;
+}
+
+.tab-content {
+    padding: 24px 24px;
+}
+
+.input-width {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+    display: block;
+    margin-left: 15px;
+}
+
+.half-input-width {
+    min-width: 75px;
+    max-width: 250px;
+    width: 100%;
+    display: block; 
+}
+
+.authorization-title {
+    width: 20%;
+    display: inline-block;
+    margin-right: 15px;
+}
+
+.add-button {
+    margin-top: 10px;
+}
+
+.new-authorization-input {
+    display: inline-block;
+}
+
+.spacing-right {
+    margin-right: 15px;
+}
+
+.checkbox {
+    display: block;
+    margin-top: 15px;
+}
