@@ -9,7 +9,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { FeeListService } from './../services/feelist.service';
-import { ListFee, memberCategoryEnum } from '../models/list-fee.model';
+import { ListFee, categoryEnum } from '../models/list-fee.model';
 
 describe('FeeListComponent', () => {
   let component: FeeListComponent;
@@ -60,9 +60,10 @@ describe('FeeListComponent', () => {
 
     it('should call getFeeListData from feeListService', () => {
       const dumyGetFeeListData = [
-        new ListFee(memberCategoryEnum.ACTIVE, 220),
-        new ListFee(memberCategoryEnum.U20ACTIVE, 150),
-        new ListFee(memberCategoryEnum.PASSIVE, 80)
+        new ListFee(categoryEnum.ACTIVE, 220),
+        new ListFee(categoryEnum.U20ACTIVE, 150),
+        new ListFee(categoryEnum.PASSIVE, 80),
+        new ListFee(categoryEnum.HONORARYMEMBER, 0)
       ];
       spyOn(component.feeListService, 'getFeeListData').and.returnValue(of(dumyGetFeeListData));
       component.ngOnInit();
@@ -71,9 +72,10 @@ describe('FeeListComponent', () => {
 
     it('should set dataSource', () => {
       const dumyGetFeeListData = [
-        new ListFee(memberCategoryEnum.ACTIVE, 220),
-        new ListFee(memberCategoryEnum.U20ACTIVE, 150),
-        new ListFee(memberCategoryEnum.PASSIVE, 80)
+        new ListFee(categoryEnum.ACTIVE, 220),
+        new ListFee(categoryEnum.U20ACTIVE, 150),
+        new ListFee(categoryEnum.PASSIVE, 80),
+        new ListFee(categoryEnum.HONORARYMEMBER, 0)
       ];
       spyOn(component.feeListService, 'getFeeListData').and.returnValue(of(dumyGetFeeListData));
       component.ngOnInit();
