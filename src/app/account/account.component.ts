@@ -41,7 +41,7 @@ export class AccountComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.memberService.getMemberData(0).subscribe(
+    this.memberService.getMemberData(1).subscribe(
       (memberdata: Member) => {
         this.member = memberdata;
         this.member.status = Status[this.member.status];
@@ -81,8 +81,14 @@ export class AccountComponent implements OnInit {
   });
  }
 
- public saveMemberProfile(member: Member): void {
+public formatMemberStatus (member: any): any {
+  member.status = Status.getEnumString(member.status);
+  return member;
+}
+
+public saveMemberProfile(member: Member): void {
   const newMemberData = JSON.parse(JSON.stringify(member));
+  member = this.formatMemberStatus(member);
   this.memberService.updateMemberData(member).subscribe(
     (response) => {
       if (response.status === 204) {
