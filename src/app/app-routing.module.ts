@@ -10,6 +10,7 @@ import { FeeListComponent } from './fee-list/fee-list.component';
 import { CreditListComponent } from './credit-list/credit-list.component';
 import { AccountComponent } from './account/account.component';
 import { LoginComponent } from './login/login.component';
+import { PilotLogbookComponent } from './pilot-logbook/pilot-logbook.component';
 import { PlaneLogComponent } from './plane-log/plane-log.component';
 
 export const appRoutes: Routes = [
@@ -24,6 +25,7 @@ export const appRoutes: Routes = [
   { path: 'account', component: AccountComponent, canActivate: [AuthGuard] },
   { path: 'expensingbilllist', component: ExpensingBillListComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent }
+  { path: 'pilotlogbook', component: PilotLogbookComponent }
 ];
 
 
