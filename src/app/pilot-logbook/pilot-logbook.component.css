@@ -1,0 +1,31 @@
+.pilot-logbook-wrapper {
+    padding: 0 10px;
+  }
+  
+  .title-text {
+    font-weight: 400;
+    font-size: 32px;
+  }
+  
+  table {
+    width: calc(100% - 16px);
+    margin: 8px;
+    box-align: center;
+  }
+  
+  button {
+    position: relative;  
+    margin-top: 20px;
+    margin-left: 10px;
+  
+  }
+  
+  h1 {
+    position: relative;
+    margin-left: 10px;
+  }
+
+  p {
+    position: relative;
+    margin-left: 10px;
+  }
