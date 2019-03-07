@@ -1,6 +1,6 @@
 <div class="pilot-logbook-wrapper">
   <h1 class="title-text">Pilotenlogbuch</h1>
-  <p>Name: {{member.firstName}} {{member.lastName}}</p>
+  <p *ngIf="member != null">Name: {{member.firstName}} {{member.lastName}}</p>
 
   <div>
     <button mat-raised-button color="basic">Hinzufügen</button>
