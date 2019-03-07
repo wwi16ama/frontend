@@ -21,6 +21,7 @@ import { AccountModule } from './account/account.module';
 import { DeletePlaneDialogComponent } from './plane-list/delete-plane-dialog/delete-plane-dialog.component';
 import { ExpensingBillListModule } from './expensing-bill-list/expensing-bill-list.module';
 import { LoginModule } from './login/login.module';
+import { PilotLogbookModule } from './pilot-logbook/pilot-logbook.module';
 
 // Spracheinstellung
 import { LOCALE_ID } from '@angular/core';
@@ -31,7 +32,7 @@ registerLocaleData(localeDe);
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,7 +45,8 @@ registerLocaleData(localeDe);
     CreditListModule,
     AccountModule,
     ExpensingBillListModule,
-    LoginModule
+    LoginModule,
+    PilotLogbookModule
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'ger' },
