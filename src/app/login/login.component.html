@@ -6,10 +6,12 @@
       <input matInput placeholder="Mitgliedsnummer" [(ngModel)]="username" (keydown)="checkEnter($event)">
     </mat-form-field>
     <mat-form-field class="input">
-      <input [type]="showPassword.checked ? 'text' : 'password'" matInput placeholder="Passwort" [(ngModel)]="pass" (keydown)="checkEnter($event)">
+      <input [type]="showPassword.checked ? 'text' : 'password'" matInput placeholder="Passwort" [(ngModel)]="pass"
+        (keydown)="checkEnter($event)">
     </mat-form-field>
     <mat-checkbox class="block" #showPassword>Passwort anzeigen</mat-checkbox>
-    <button class="margin-right" mat-raised-button color="primary">Zurück</button>
+    <!-- TODO: Remove disabled and class button-without-functionality when button functionality is implemented-->
+    <button disabled class="button-without-functionality margin-right" mat-raised-button color="primary">Zurück</button>
     <button (click)="sendLogin()" mat-raised-button color="primary">Login</button>
   </div>
 </div>
