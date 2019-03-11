@@ -5,25 +5,35 @@
         <div class="tab-content">
           <mat-form-field class="input-width">
             <input matInput placeholder="Vorname" [formControl]="firstNameFormControl" required>
+            <mat-error *ngIf="firstNameFormControl.hasError('required')">Der Vorname ist erforderlich</mat-error>
           </mat-form-field>
           <mat-form-field class="input-width">
             <input matInput placeholder="Nachname" [formControl]="lastNameFormControl" required>
+            <mat-error *ngIf="lastNameFormControl.hasError('required')">Der Nachname ist erforderlich</mat-error>
           </mat-form-field>
           <mat-form-field class="input-width">
             <input matInput placeholder="E-Mail" [formControl]="emailFormControl" required>
-          </mat-form-field>
+            <mat-error *ngIf="emailFormControl.hasError('email')">Bitte geben Sie eine gültige Emailadresse ein</mat-error>
+            <mat-error *ngIf="emailFormControl.hasError('required')">Die Emailadresse ist erforderlich</mat-error>          </mat-form-field>
         </div>
       </mat-tab>
       <mat-tab label="Adresse">
         <div class="tab-content">        
           <mat-form-field class="input-width">
-            <input matInput placeholder="Straße & Hausnummer" [formControl]="streetAddressFormControl" required>
+            <input matInput placeholder="Straße & Hausnummer" minlength="3" [formControl]="streetAddressFormControl" required>
+            <mat-error *ngIf="streetAddressFormControl.hasError('required')">Der Straßenname ist erforderlich</mat-error>
+            <mat-error *ngIf="streetAddressFormControl.hasError('minlength')">Der Straßenname muss mindestens 3 Zeichen lang sein</mat-error>
           </mat-form-field>
           <mat-form-field class="input-width">
-            <input dirNumberOnly matInput placeholder="Postleitzahl" maxlength="5" [formControl]="postalCodeFormControl" required>
+            <input dirNumberOnly matInput placeholder="Postleitzahl" minlength="5" maxlength="5" [formControl]="postalCodeFormControl" required>
+            <mat-error *ngIf="postalCodeFormControl.hasError('required')">Die Postleitzahl ist erforderlich</mat-error>
+            <mat-error *ngIf="postalCodeFormControl.hasError('minlength')">Bitte geben Sie eine gültige Postleitzahl ein</mat-error>
           </mat-form-field>
           <mat-form-field class="input-width">
-            <input matInput placeholder="Stadt" [formControl]="cityFormControl" minlength="3" required>
+            <input matInput placeholder="Stadt" pattern="[a-zA-Z_äÄöÖüÜß]+" [formControl]="cityFormControl" minlength="3" required>
+            <mat-error *ngIf="cityFormControl.hasError('required')">Der Ort ist erforderlich</mat-error>
+            <mat-error *ngIf="cityFormControl.hasError('minlength')">Der Ort muss mindestens 3 Zeichen lang sein</mat-error>
+            <mat-error *ngIf="cityFormControl.hasError('pattern')">Der Ort darf keine Zahlen enthalten</mat-error>
           </mat-form-field>
         </div>
       </mat-tab>
