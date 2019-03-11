@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { AddUserFormComponent } from './add-user-form.component';
-import { NumberOnlyDirective } from './../../directives/number.directive';
+import { SharedDirectivesModule } from './../../directives/shared-directives.module';
 
 import {
   MatButtonModule, MatCheckboxModule, MatFormFieldModule,
@@ -16,6 +16,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   imports: [
     CommonModule,
+    SharedDirectivesModule,
     MatButtonModule,
     MatCheckboxModule,
     MatFormFieldModule,
@@ -32,8 +33,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatTabsModule
   ],
   declarations: [
-    AddUserFormComponent,
-    NumberOnlyDirective
+    AddUserFormComponent
   ],
   exports: [
     AddUserFormComponent

@@ -1,8 +1,7 @@
 import { Directive, ElementRef, HostListener } from '@angular/core';
 
 @Directive({
-    // tslint:disable-next-line:directive-selector
-    selector: '[myNumberOnly]'
+    selector: '[dirNumberOnly]'
 })
 export class NumberOnlyDirective {
     // Allow decimal numbers and negative values

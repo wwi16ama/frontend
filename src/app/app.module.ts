@@ -16,6 +16,7 @@ import { AddPlaneDialogComponent } from './plane-list/add-plane-dialog/add-plane
 import { SiteNavigationModule } from './site-navigation/site-navigation.module';
 import { CreditListModule } from './credit-list/credit-list.module';
 import { DeleteMemberDialogComponent } from './member-view/delete-member-dialog/delete-member-dialog.component';
+import { EditMemberProfileDialogComponent } from './account/edit-memberprofile-dialog/edit-memberprofile-dialog.component';
 import { AccountModule } from './account/account.module';
 import { DeletePlaneDialogComponent } from './plane-list/delete-plane-dialog/delete-plane-dialog.component';
 import { ExpensingBillListModule } from './expensing-bill-list/expensing-bill-list.module';
@@ -25,6 +26,7 @@ import { LoginModule } from './login/login/login.module';
 import { LOCALE_ID } from '@angular/core';
 import localeDe from '@angular/common/locales/de';
 import { registerLocaleData } from '@angular/common';
+
 registerLocaleData(localeDe);
 
 @NgModule({
@@ -55,7 +57,8 @@ registerLocaleData(localeDe);
     EditMemberDialogComponent,
     EditPlaneDialogComponent,
     DeleteMemberDialogComponent,
-    DeletePlaneDialogComponent
+    DeletePlaneDialogComponent,
+    EditMemberProfileDialogComponent
   ]
 })
 export class AppModule {

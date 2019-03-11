@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { EditMemberDialogComponent } from './edit-member-dialog.component';
+import { SharedDirectivesModule } from './../../directives/shared-directives.module';
 
 import {
   MatDialogModule, MatInputModule, MatButtonModule,
@@ -17,6 +18,7 @@ import { DateAdapterService } from './../../services/date-adapter.service';
 @NgModule({
   imports: [
     CommonModule,
+    SharedDirectivesModule,
     MatDialogModule,
     MatInputModule,
     MatButtonModule,

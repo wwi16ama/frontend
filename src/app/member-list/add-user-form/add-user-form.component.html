@@ -67,7 +67,16 @@
     <mat-tab label="Adresse">
         <div class="tab-content">
             <mat-form-field class="input-width">
-              <input type="text" matInput placeholder="PLZ" id="postalCode" myNumberOnly #postalCode maxlength="5" [formControl]="postalCodeFormControl" required>
+              <input type="text" matInput placeholder="Straße" id="street" minlength="3" [formControl]="streetAddressFormControl" required>
+              <mat-error *ngIf="streetAddressFormControl.hasError('required')">
+                Die Straße ist <strong>erforderlich</strong>
+              </mat-error>
+              <mat-error *ngIf="streetAddressFormControl.hasError('minlength')">
+                  Die Straße muss mindestens 3 Zeichen lang sein
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="input-width">
+              <input type="text" matInput placeholder="PLZ" id="postalCode" dirNumberOnly #postalCode maxlength="5" [formControl]="postalCodeFormControl" required>
               <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
               <mat-error *ngIf="postalCodeFormControl.hasError('required')">
                 Die Postleitzahl ist <strong>erforderlich</strong>
@@ -84,15 +93,6 @@
               </mat-error>
               <mat-error *ngIf="cityFormControl.hasError('pattern')">
                   Der Ort darf keine Zahlen enthalten
-              </mat-error>
-            </mat-form-field>
-            <mat-form-field class="input-width">
-              <input type="text" matInput placeholder="Straße" id="street" minlength="3" [formControl]="streetAddressFormControl" required>
-              <mat-error *ngIf="streetAddressFormControl.hasError('required')">
-                Die Straße ist <strong>erforderlich</strong>
-              </mat-error>
-              <mat-error *ngIf="streetAddressFormControl.hasError('minlength')">
-                  Die Straße muss mindestens 3 Zeichen lang sein
               </mat-error>
             </mat-form-field>
           </div>

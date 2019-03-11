@@ -24,9 +24,9 @@ export class AddUserFormComponent {
   sexFormControl: FormControl;
   statusFormControl: FormControl;
   emailFormControl: FormControl;
+  streetAddressFormControl: FormControl;
   postalCodeFormControl: FormControl;
   cityFormControl: FormControl;
-  streetAddressFormControl: FormControl;
   bankingAccountFormControl: FormControl;
   memberBankingAccountFormControl: FormControl;
   admissioned: boolean;
@@ -174,16 +174,16 @@ export class AddUserFormComponent {
       Validators.required
     ]);
 
+    this.streetAddressFormControl = new FormControl('', [
+      Validators.required
+    ]);
+
     this.emailFormControl = new FormControl('', [
       Validators.email,
       Validators.required
     ]);
 
     this.postalCodeFormControl = new FormControl('', [
-      Validators.required
-    ]);
-
-    this.streetAddressFormControl = new FormControl('', [
       Validators.required
     ]);
 

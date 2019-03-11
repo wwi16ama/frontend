@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { AccountComponent } from './account.component';
 
 import {MatButtonModule, MatListModule, MatDividerModule, MatTableModule, MatSortModule, MatPaginatorModule} from '@angular/material';
+import {EditMemberProfileDialogModule} from './edit-memberprofile-dialog/edit-memberprofile-dialog.module';
 
 @NgModule({
   imports: [
@@ -12,7 +13,8 @@ import {MatButtonModule, MatListModule, MatDividerModule, MatTableModule, MatSor
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
-    MatButtonModule
+    MatButtonModule,
+    EditMemberProfileDialogModule
   ],
   declarations: [AccountComponent]
 })
