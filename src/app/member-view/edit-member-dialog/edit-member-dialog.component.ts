@@ -25,9 +25,9 @@ export class EditMemberDialogComponent {
   sexFormControl: FormControl;
   statusFormControl: FormControl;
   emailFormControl: FormControl;
+  streetAddressFormControl: FormControl;
   postalCodeFormControl: FormControl;
   cityFormControl: FormControl;
-  streetAddressFormControl: FormControl;
   bankingAccountFormControl: FormControl;
 
   constructor(
@@ -75,8 +75,8 @@ export class EditMemberDialogComponent {
       this.member.gender = this.sexFormControl.value;
       this.member.status = this.statusFormControl.value;
       this.member.email = this.emailFormControl.value;
-      this.member.address.postalCode = this.postalCodeFormControl.value;
       this.member.address.streetAddress = this.streetAddressFormControl.value;
+      this.member.address.postalCode = this.postalCodeFormControl.value;
       this.member.address.city = this.cityFormControl.value;
       this.member.bankingAccount = this.bankingAccountFormControl.value;
       this.member.flightAuthorization = [];
@@ -168,11 +168,11 @@ export class EditMemberDialogComponent {
       Validators.required
     ]);
 
-    this.postalCodeFormControl = new FormControl(this.member.address.postalCode, [
+    this.streetAddressFormControl = new FormControl(this.member.address.streetAddress, [
       Validators.required
     ]);
 
-    this.streetAddressFormControl = new FormControl(this.member.address.streetAddress, [
+    this.postalCodeFormControl = new FormControl(this.member.address.postalCode, [
       Validators.required
     ]);
 

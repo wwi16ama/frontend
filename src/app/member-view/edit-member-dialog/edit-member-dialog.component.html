@@ -47,15 +47,15 @@
       <mat-tab label="Adresse">
         <div class="tab-content">
           <mat-form-field class="input-width">
+            <input matInput placeholder="Straße" minlength="3" [formControl]="streetAddressFormControl" required>
+            <mat-error *ngIf="streetAddressFormControl.hasError('required')">Der Straßenname ist erforderlich</mat-error>
+            <mat-error *ngIf="streetAddressFormControl.hasError('minlength')">Der Straßenname muss mindestens 3 Zeichen lang sein</mat-error>
+          </mat-form-field>
+          <mat-form-field class="input-width">
             <input matInput placeholder="Postleitzahl" minlength="5" maxlength="5" pattern="^[0-9]+$" [formControl]="postalCodeFormControl" required>
             <mat-error *ngIf="postalCodeFormControl.hasError('required')">Die Postleitzahl ist erforderlich</mat-error>
             <mat-error *ngIf="postalCodeFormControl.hasError('minlength')">Bitte geben Sie eine gültige Postleitzahl ein</mat-error>
             <mat-error *ngIf="postalCodeFormControl.hasError('pattern')">Nur Zahlen</mat-error>
-          </mat-form-field>
-          <mat-form-field class="input-width">
-            <input matInput placeholder="Straße" minlength="3" [formControl]="streetAddressFormControl" required>
-            <mat-error *ngIf="streetAddressFormControl.hasError('required')">Der Straßenname ist erforderlich</mat-error>
-            <mat-error *ngIf="streetAddressFormControl.hasError('minlength')">Der Straßenname muss mindestens 3 Zeichen lang sein</mat-error>
           </mat-form-field>
           <mat-form-field class="input-width">
             <input matInput placeholder="Stadt" pattern="[a-zA-Z_äÄöÖüÜß]+" ng-pattern-restrict [formControl]="cityFormControl" minlength="3" required>
