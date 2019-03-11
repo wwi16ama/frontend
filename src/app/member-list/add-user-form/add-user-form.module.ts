@@ -8,7 +8,7 @@ import {
   MatButtonModule, MatCheckboxModule, MatFormFieldModule,
   MatInputModule, MatSelectModule, MatStepperModule,
   MatCardModule, MatTooltipModule, MatDatepickerModule,
-  MatNativeDateModule, MatDialogModule, MatTabsModule
+  MatNativeDateModule, MatDialogModule, MatTabsModule, MatIconModule
 } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -30,7 +30,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatDialogModule,
     FormsModule,
     ReactiveFormsModule,
-    MatTabsModule
+    MatTabsModule,
+    MatIconModule
   ],
   declarations: [
     AddUserFormComponent

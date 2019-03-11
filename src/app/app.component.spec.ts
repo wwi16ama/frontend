@@ -10,6 +10,9 @@ import { SiteNavigationModule } from './site-navigation/site-navigation.module';
 import { CreditListModule } from './credit-list/credit-list.module';
 import { AccountModule } from './account/account.module';
 import { AddPlaneDialogModule } from './plane-list/add-plane-dialog/add-plane-dialog.module';
+import { ExpensingBillListModule } from './expensing-bill-list/expensing-bill-list.module';
+import { FeeListModule } from './fee-list/fee-list.module';
+import { LoginModule } from './login/login/login.module';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -21,9 +24,12 @@ describe('AppComponent', () => {
         PlaneListModule,
         SiteNavigationModule,
         CreditListModule,
-        AccountModule
+        AccountModule,
         CreditListModule,
-        AddPlaneDialogModule
+        AddPlaneDialogModule,
+        ExpensingBillListModule,
+        FeeListModule,
+        LoginModule
       ],
       declarations: [
         AppComponent

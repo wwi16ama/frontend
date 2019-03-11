@@ -1,6 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MatDialogRef, MatSnackBar, MAT_DIALOG_DATA } from '@angular/material';
-import { Plane, neededAuthorizationEnum } from './../../models/plane.model';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Member } from 'src/app/models/member.model';
 
 @Component({
@@ -10,7 +9,7 @@ import { Member } from 'src/app/models/member.model';
 })
 export class DeleteMemberDialogComponent implements OnInit {
 
-  constructor(public deleteMemberDialogRef: MatDialogRef<DeleteMemberDialogComponent>, public snackBar: MatSnackBar,
+  constructor(public deleteMemberDialogRef: MatDialogRef<DeleteMemberDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public member: Member) {
    }
 

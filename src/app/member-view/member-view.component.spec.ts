@@ -1,9 +1,9 @@
 import { of } from 'rxjs';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { Router } from '@angular/router';
+import { AppRoutingModule } from './../app-routing.module';
 import { MemberViewComponent } from './member-view.component';
 import { MemberService } from './../services/member.service';
-import { MemberUpdateService } from './../services/member-update.service';
 import {
   MatDividerModule, MatListModule, MatCheckboxModule,
   MatButtonModule, MatSelectModule, MatInputModule, MatSnackBarModule
@@ -32,6 +32,7 @@ describe('MemberViewComponent', () => {
       ],
       declarations: [MemberViewComponent],
       providers: [
+        { provide: Router, useClass: AppRoutingModule },
         {
           provide: ActivatedRoute,
           useValue: {
@@ -41,7 +42,6 @@ describe('MemberViewComponent', () => {
         { provide: MatDialog, useValue: {} },
         { provide: MatSnackBar, useValue: {} },
         MemberService,
-        MemberUpdateService
       ]
     })
       .compileComponents();
@@ -70,7 +70,7 @@ describe('MemberViewComponent', () => {
           12345, 'Dorfstraße 2', 'Mannheim',
         ),
         'DE9876543210',
-        true, '56789', [new Office(OfficeEnum.FLUGWART), new Office(OfficeEnum.IMBETRIEBSKONTROLLTURMARBEITEND)],
+        true, [new Office(OfficeEnum.FLUGWART), new Office(OfficeEnum.IMBETRIEBSKONTROLLTURMARBEITEND)],
         [
           new Authorization(AuthorizationEnum.PPLA, '1998-10-10', '1998-10-10'),
           new Authorization(AuthorizationEnum.PPLA, '1998-10-10', '1998-10-10')

@@ -5,7 +5,6 @@ import { AccountService } from './../services/account.service';
 import { Member, Status } from './../models/member.model';
 import { MemberService } from './../services/member.service';
 import { MatTableDataSource, MatSort, MatPaginator, MatDialog, MatSnackBar } from '@angular/material';
-import { MatButtonModule } from '@angular/material/button';
 import { EditMemberProfileDialogComponent } from './edit-memberprofile-dialog/edit-memberprofile-dialog.component';
 
 @Component({

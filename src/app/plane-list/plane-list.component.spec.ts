@@ -2,10 +2,8 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { PlaneListComponent } from './plane-list.component';
 import { MatCardModule, MatButtonModule, MatIconModule} from '@angular/material';
 import { MatDialog, MatSnackBar } from '@angular/material';
-import { PlaneListService } from './../services/planelist.service';
-import { PlaneUpdateService } from './../services/plane-update.service';
+import { PlaneService } from './../services/plane.service';
 import { HttpClientModule } from '@angular/common/http';
-import { AddPlaneService } from '../services/add-plane.service';
 
 
 describe('PlaneListComponent', () => {
@@ -17,9 +15,7 @@ describe('PlaneListComponent', () => {
       declarations: [ PlaneListComponent ],
       imports: [ MatIconModule, MatCardModule, MatButtonModule, HttpClientModule ],
       providers: [
-        PlaneListService,
-        PlaneUpdateService,
-        AddPlaneService,
+        PlaneService,
         { provide: MatDialog, useValue: {} },
         { provide: MatSnackBar, useValue: {} },
       ]

@@ -1,11 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { AddPlaneDialogComponent } from './add-plane-dialog.component';
-import { Component } from '@angular/core';
-import { Validators } from '@angular/forms';
-import { FormControl, FormGroupDirective, NgForm } from '@angular/forms';
-import { ErrorStateMatcher } from '@angular/material/core';
-import { MatDialogRef, MatSnackBar } from '@angular/material';
+import { MatDialogRef, MatTabsModule, MatSnackBarModule, MatSnackBar,  MatButtonModule, MatCheckboxModule, MatFormFieldModule,
+  MatInputModule, MatSelectModule, MatStepperModule, MatCardModule, MatTooltipModule,
+  MatDatepickerModule, MatNativeDateModule, MatDialogModule } from '@angular/material';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 describe('AddPlaneDialogComponent', () => {
@@ -15,8 +15,19 @@ describe('AddPlaneDialogComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ AddPlaneDialogComponent ],
-      imports: [Component, Validators, FormControl, FormGroupDirective, NgForm,
-      ErrorStateMatcher, MatDialogRef, MatSnackBar]
+      imports: [
+        MatButtonModule, MatCheckboxModule, MatFormFieldModule,
+        MatInputModule, MatSelectModule, MatStepperModule,
+        MatCardModule, MatTooltipModule, MatDatepickerModule,
+        MatNativeDateModule, MatDialogModule, MatTabsModule,
+        FormsModule, ReactiveFormsModule, MatSnackBarModule,
+        BrowserAnimationsModule
+    ],
+    providers: [
+      { provide: MatDialogRef, useValue: {} },
+      { provide: MatSnackBar, useValue: {} },
+
+    ]
     })
     .compileComponents();
   }));

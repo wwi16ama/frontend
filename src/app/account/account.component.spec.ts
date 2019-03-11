@@ -1,8 +1,14 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { MemberService } from './../services/member.service';
 
 import { AccountComponent } from './account.component';
 
-import {MatButtonModule, MatListModule, MatDividerModule, MatTableModule, MatSortModule} from '@angular/material';
+import {
+  MatDialog, MatSnackBar, MatButtonModule,
+  MatListModule, MatDividerModule, MatTableModule,
+  MatSortModule, MatPaginatorModule
+} from '@angular/material';
 
 describe('AccountComponent', () => {
   let component: AccountComponent;
@@ -11,13 +17,20 @@ describe('AccountComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
-        MatButtonModule,
         MatListModule,
         MatDividerModule,
         MatTableModule,
-        MatSortModule
+        MatSortModule,
+        MatPaginatorModule,
+        MatButtonModule,
+        HttpClientTestingModule
       ],
-      declarations: [ AccountComponent ]
+      declarations: [ AccountComponent ],
+      providers: [
+        MemberService,
+        { provide: MatDialog, useValue: {} },
+        { provide: MatSnackBar, useValue: {} },
+      ]
     })
     .compileComponents();
   }));
