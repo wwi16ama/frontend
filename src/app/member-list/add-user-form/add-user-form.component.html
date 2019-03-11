@@ -67,7 +67,7 @@
     <mat-tab label="Adresse">
         <div class="tab-content">
             <mat-form-field class="input-width">
-              <input type="text" matInput placeholder="PLZ" id="postalCode" myNumberOnly #postalCode maxlength="5" [formControl]="postalCodeFormControl" required>
+              <input type="text" matInput placeholder="PLZ" id="postalCode" dirNumberOnly #postalCode maxlength="5" [formControl]="postalCodeFormControl" required>
               <mat-hint align="end">{{postalCode.value.length}} / 5</mat-hint>
               <mat-error *ngIf="postalCodeFormControl.hasError('required')">
                 Die Postleitzahl ist <strong>erforderlich</strong>
