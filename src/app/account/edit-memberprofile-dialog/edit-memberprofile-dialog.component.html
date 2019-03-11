@@ -20,7 +20,7 @@
             <input matInput placeholder="Straße & Hausnummer" [formControl]="streetAddressFormControl" required>
           </mat-form-field>
           <mat-form-field class="input-width">
-            <input class="abstandoben" matInput placeholder="Postleitzahl" maxlength="5" [formControl]="postalCodeFormControl" required>
+            <input class="abstandoben" dirNumberOnly matInput placeholder="Postleitzahl" maxlength="5" [formControl]="postalCodeFormControl" required>
           </mat-form-field>
           <mat-form-field class="input-width">
             <input matInput placeholder="Stadt" [formControl]="cityFormControl" minlength="3" required>

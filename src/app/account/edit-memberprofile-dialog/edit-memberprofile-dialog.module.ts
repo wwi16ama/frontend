@@ -6,9 +6,15 @@ import { MatDialogModule, MatInputModule, MatButtonModule, MatExpansionModule, M
   MatDatepickerModule, MatNativeDateModule, MatSelectModule, MatCheckboxModule,
   MatSnackBarModule} from '@angular/material';
 
+  import { SharedDirectivesModule } from './../../directives/shared-directives.module';
+
 @NgModule({
-  declarations: [EditMemberProfileDialogComponent],
-  imports: [CommonModule,
+  declarations: [
+    EditMemberProfileDialogComponent
+  ],
+  imports: [
+    CommonModule,
+    SharedDirectivesModule,
     MatDialogModule,
     MatInputModule,
     MatButtonModule,
@@ -20,7 +26,8 @@ import { MatDialogModule, MatInputModule, MatButtonModule, MatExpansionModule, M
     MatCheckboxModule,
     MatSnackBarModule,
     FormsModule,
-    ReactiveFormsModule],
+    ReactiveFormsModule
+  ],
   exports: [EditMemberProfileDialogComponent]
 })
 export class EditMemberProfileDialogModule { }
