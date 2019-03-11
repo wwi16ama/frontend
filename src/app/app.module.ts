@@ -20,7 +20,7 @@ import { EditMemberProfileDialogComponent } from './account/edit-memberprofile-d
 import { AccountModule } from './account/account.module';
 import { DeletePlaneDialogComponent } from './plane-list/delete-plane-dialog/delete-plane-dialog.component';
 import { ExpensingBillListModule } from './expensing-bill-list/expensing-bill-list.module';
-import { LoginModule } from './login/login/login.module';
+import { LoginModule } from './login/login.module';
 
 // Spracheinstellung
 import { LOCALE_ID } from '@angular/core';

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from './../../services/login.service';
+import { LoginService } from './../services/login.service';
 import { MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
 

@@ -2,10 +2,10 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { MatButtonModule, MatSnackBarModule, MatInputModule, MatCheckboxModule } from '@angular/material';
 import { FormsModule } from '@angular/forms';
 import { LoginComponent } from './login.component';
-import { LoginService } from './../../services/login.service';
+import { LoginService } from './../services/login.service';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { Router } from '@angular/router';
-import { AppRoutingModule } from './../../app-routing.module';
+import { AppRoutingModule } from './../app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 describe('LoginComponent', () => {

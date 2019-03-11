@@ -12,7 +12,7 @@ import { AccountModule } from './account/account.module';
 import { AddPlaneDialogModule } from './plane-list/add-plane-dialog/add-plane-dialog.module';
 import { ExpensingBillListModule } from './expensing-bill-list/expensing-bill-list.module';
 import { FeeListModule } from './fee-list/fee-list.module';
-import { LoginModule } from './login/login/login.module';
+import { LoginModule } from './login/login.module';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
