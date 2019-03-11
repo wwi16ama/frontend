@@ -1,16 +1,16 @@
 import { of } from 'rxjs';
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { MemberListComponent } from './member-list.component';
 import { MemberViewModule } from './../member-view/member-view.module';
-import { MatTableModule, MatSortModule } from '@angular/material';
+import { MatTableModule, MatSortModule, MatButtonModule, MatIconModule } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { MemberListService } from './../services/memberlist.service';
+import { MemberService } from './../services/member.service';
 import { ListMember } from './../models/list-member.model';
 
 describe('MemberListComponent', () => {
@@ -22,16 +22,18 @@ describe('MemberListComponent', () => {
       imports: [
         RouterTestingModule.withRoutes([
           { path: 'member/:id', component: MemberListComponent },
-      ]),
+        ]),
         MatTableModule,
         MatSortModule,
+        MatButtonModule,
+        MatIconModule,
         HttpClientModule,
         BrowserAnimationsModule,
         MemberViewModule
       ],
       declarations: [MemberListComponent],
       providers: [
-        MemberListService
+        MemberService
       ]
     })
       .compileComponents();
@@ -65,15 +67,15 @@ describe('MemberListComponent', () => {
     });
 
     it('should call getMemberListData from memberListService', () => {
-      const dumyGetMemberListData = [new ListMember(0, 'Peter', 'Zwegat'), new ListMember(1, 'Max', 'Mustermann')];
-      spyOn(component.memberListService, 'getMemberListData').and.returnValue(of(dumyGetMemberListData));
+      const dumyGetMemberListData = [new ListMember(0, 'Peter', 'Zwegat', 0), new ListMember(1, 'Max', 'Mustermann', 1)];
+      spyOn(component.memberService, 'getMemberListData').and.returnValue(of(dumyGetMemberListData));
       component.ngOnInit();
-      expect(component.memberListService.getMemberListData).toHaveBeenCalledTimes(1);
+      expect(component.memberService.getMemberListData).toHaveBeenCalledTimes(1);
     });
 
     it('should set dataSource', () => {
-      const dumyGetMemberListData = [new ListMember(0, 'Peter', 'Zwegat'), new ListMember(1, 'Max', 'Mustermann')];
-      spyOn(component.memberListService, 'getMemberListData').and.returnValue(of(dumyGetMemberListData));
+      const dumyGetMemberListData = [new ListMember(0, 'Peter', 'Zwegat', 0), new ListMember(1, 'Max', 'Mustermann', 1)];
+      spyOn(component.memberService, 'getMemberListData').and.returnValue(of(dumyGetMemberListData));
       component.ngOnInit();
       // expect(component.dataSource).(new MatTableDataSource(dumyGetMemberListData));
     });

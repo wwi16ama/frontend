@@ -10,6 +10,9 @@ import { MatTableModule, MatButtonModule, MatSortModule } from '@angular/materia
     MatButtonModule,
     MatSortModule
   ],
-  declarations: [ExpensingBillListComponent]
+  declarations: [ExpensingBillListComponent],
+  exports: [
+    ExpensingBillListComponent
+  ]
 })
 export class ExpensingBillListModule { }

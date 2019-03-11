@@ -7,6 +7,8 @@ import { CreditListComponent } from './credit-list.component';
 
 import { CreditListService } from './../services/creditlist.service';
 
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 describe('CreditListComponent', () => {
   let component: CreditListComponent;
   let fixture: ComponentFixture<CreditListComponent>;
@@ -17,13 +19,15 @@ describe('CreditListComponent', () => {
         MatTableModule,
         MatSortModule,
         MatButtonModule,
-        HttpClientModule      ],
-      declarations: [ CreditListComponent ],
+        HttpClientModule,
+        BrowserAnimationsModule
+      ],
+      declarations: [CreditListComponent],
       providers: [
         CreditListService
       ]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

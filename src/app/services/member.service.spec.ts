@@ -46,7 +46,7 @@ describe('MemberService', () => {
         'Peter', 'Zwegat', '1998-10-10', Gender.MALE , Status.ACTIVE,
         'peter.zwegat@gmx.de', new Address(
           12345, 'Dorfstraße 2', 'Mannheim'
-        ), 'DE9876543210', true, '56789', [new Office(OfficeEnum.FLUGWART), new Office(OfficeEnum.IMBETRIEBSKONTROLLTURMARBEITEND)],
+        ), 'DE9876543210', true, [new Office(OfficeEnum.FLUGWART), new Office(OfficeEnum.IMBETRIEBSKONTROLLTURMARBEITEND)],
         [
           new Authorization(AuthorizationEnum.PPLA, '1998-10-10', '1998-10-10'),
           new Authorization(AuthorizationEnum.PPLB, '1998-10-10', '1998-10-10')
@@ -64,8 +64,8 @@ describe('MemberService', () => {
 
     it('should trigger get request', () => {
       const testMemberListData = [
-        new ListMember(0, 'Peter', 'Zwegat'),
-        new ListMember(1, 'Max', 'Mustermann')
+        new ListMember(0, 'Peter', 'Zwegat', 0),
+        new ListMember(1, 'Max', 'Mustermann', 0)
       ];
       service.getMemberListData().subscribe(memberListData => {
         expect(memberListData).toEqual(testMemberListData);

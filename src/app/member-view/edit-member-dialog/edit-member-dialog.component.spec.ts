@@ -54,7 +54,6 @@ describe('EditMemberDialogComponent', () => {
         { provide: MAT_DIALOG_DATA, useValue: member },
         { provide: MatSnackBar, useValue: {} },
       ]
-
     })
       .compileComponents();
   }));

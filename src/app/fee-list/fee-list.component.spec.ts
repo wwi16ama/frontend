@@ -48,7 +48,7 @@ describe('FeeListComponent', () => {
     });
 
     it('should define the default values', () => {
-      const testDisplayedColumnsArray: string[] = ['memberCategory', 'memberFee'];
+      const testDisplayedColumnsArray: string[] = ['category', 'fee'];
       expect(component.displayedColumns).toEqual(testDisplayedColumnsArray);
     });
   });
