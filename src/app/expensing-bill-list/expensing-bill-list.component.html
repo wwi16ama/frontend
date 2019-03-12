@@ -24,8 +24,11 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
   <div>
-    <button mat-raised-button color="primary"> Ändern </button>
-    <button mat-raised-button color="warn"> Löschen </button>
-    <button mat-raised-button color="basic"> Hinzufügen </button>
+    <!-- TODO: Remove disabled and class button-without-functionality when button functionality is implemented-->
+    <button disabled class="button-without-functionality" mat-raised-button color="primary"> Ändern </button>
+    <!-- TODO: Remove disabled and class button-without-functionality when button functionality is implemented-->
+    <button disabled class="button-without-functionality" mat-raised-button color="warn"> Löschen </button>
+    <!-- TODO: Remove disabled and class button-without-functionality when button functionality is implemented-->
+    <button disabled class="button-without-functionality" mat-raised-button color="basic"> Hinzufügen </button>
   </div>
 </div>

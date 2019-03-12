@@ -3,8 +3,10 @@
     <mat-icon>menu</mat-icon>
   </button>
   <span class="toolbar-text">Flugverein Reilingen</span>
-  <img src="./assets/logo/logoheader-wotext_750x750.png" class="logo" (click)="navigateTo('')" alt="Flugverein Reilingen">
-  <button mat-button class="logout-button">
+  <img src="./assets/logo/logoheader-wotext_750x750.png" class="logo" (click)="navigateTo('')"
+    alt="Flugverein Reilingen">
+  <!-- TODO: Remove disabled and class button-without-functionality when button functionality is implemented-->
+  <button disabled mat-button class="button-without-functionality logout-button">
     <span>Logout</span>
     <mat-icon class="logout-icon">cancel</mat-icon>
   </button>
