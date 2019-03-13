@@ -2,19 +2,25 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
 import { environment } from '../../environments/environment';
-import { Subject } from 'rxjs/internal/Subject';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
     providedIn: 'root'
-  })
+})
 
 export class AuthService {
 
-    private loggedInObservable = new Subject<boolean>();
+    private loggedInObservable = new BehaviorSubject<boolean>(null);
     private loggedIn: boolean;
 
     constructor(public httpClient: HttpClient) {
-        this.loggedIn = false;
+        this.checkLoggedInStatus();
+    }
+
+    public checkLoggedInStatus(): void {
+        const memberData = JSON.parse(sessionStorage.getItem('memberData'));
+        this.loggedIn = memberData !== null ? true : false;
+        this.loggedInObservable.next(this.loggedIn);
     }
 
     public loginRequest(username: string, pass: string): Observable<any> {
