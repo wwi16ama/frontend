@@ -35,13 +35,21 @@ export class AccountComponent implements OnInit {
 
   constructor(
     public accountService: AccountService, public memberService: MemberService, public cdr: ChangeDetectorRef,
+<<<<<<<
     public editMemberProfileDialog: MatDialog, public snackBar: MatSnackBar, public authService: AuthService
+=======
+    public editMemberProfileDialog: MatDialog, public snackBar: MatSnackBar, public loginService: LoginService
+>>>>>>>
   ) {
     this.displayedColumns = ['timestamp', 'amount', 'type'];
   }
 
   ngOnInit() {
+<<<<<<<
     this.memberService.getMemberData(this.authService.getMemberID()).subscribe(
+=======
+    this.memberService.getMemberData(this.loginService.getMemberID()).subscribe(
+>>>>>>>
       (memberdata: Member) => {
         this.member = memberdata;
         this.member.status = Status[this.member.status];
