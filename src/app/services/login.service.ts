@@ -4,7 +4,10 @@ import { Observable } from 'rxjs/internal/Observable';
 import { environment } from '../../environments/environment';
 import { Subject } from 'rxjs/internal/Subject';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+  })
+
 export class LoginService {
 
     private loggedInObservable = new Subject<boolean>();
@@ -35,7 +38,7 @@ export class LoginService {
     }
 
     public getMemberID(): number {
-        return JSON.parse(sessionStorage.get('memberData')).memberID;
+        return JSON.parse(sessionStorage.getItem('memberData')).memberID;
     }
 
     public isLoggedIn(): Observable<boolean> {
