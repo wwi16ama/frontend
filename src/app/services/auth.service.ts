@@ -32,9 +32,9 @@ export class AuthService {
 
     public setAuthHeader(headers = new HttpHeaders()): HttpHeaders {
         const memberData = JSON.parse(sessionStorage.getItem('memberData'));
-        headers.set('Content-Type', 'application/json');
+        headers = headers.set('Content-Type', 'application/json');
         if (memberData.auth !== undefined) {
-            headers.set('Authorization', 'Basic ' + memberData.auth);
+            headers = headers.set('Authorization', 'Basic ' + memberData.auth);
         }
         return headers;
     }
