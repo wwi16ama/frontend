@@ -33,6 +33,8 @@ export class LoginComponent implements OnInit {
           this.authService.logIn(this.memberID, this.pass);
           this.router.navigateByUrl('/account');
         }
+        this.loginService.logIn(this.username, this.pass, response.body.memberID);
+        this.router.navigateByUrl('/account');
       },
       (error) => {
         this.snackBar.open('Login fehlgeschlagen', 'Schließen',
