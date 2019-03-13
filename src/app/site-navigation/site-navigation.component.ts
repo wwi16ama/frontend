@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { LoginService } from './../services/login.service';
+import { AuthService } from './../services/auth.service';
 
 @Component({
   selector: 'app-site-navigation',
@@ -12,13 +12,13 @@ export class SiteNavigationComponent implements OnInit {
   opened: boolean;
   loggedIn: boolean;
 
-  constructor(public router: Router, public loginService: LoginService) {
+  constructor(public router: Router, public authService: AuthService) {
     this.opened = false;
     this.loggedIn = false;
   }
 
   ngOnInit() {
-    this.loginService.isLoggedIn().subscribe((loggedIn) => {
+    this.authService.isLoggedIn().subscribe((loggedIn) => {
       this.loggedIn = loggedIn;
     });
   }
@@ -33,7 +33,7 @@ export class SiteNavigationComponent implements OnInit {
   }
 
   public logOut(): void {
-    this.loginService.logOut();
+    this.authService.logOut();
     this.navigateTo('/login');
   }
 

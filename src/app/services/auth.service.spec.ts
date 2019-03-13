@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
-import { LoginService } from './login.service';
+import { AuthService } from './auth.service';
 
 describe('LoginService', () => {
   beforeEach(() => TestBed.configureTestingModule({
@@ -9,12 +9,12 @@ describe('LoginService', () => {
       HttpClientTestingModule
     ],
     providers: [
-      LoginService
+      AuthService
     ]
   }));
 
   it('should be created', () => {
-    const service: LoginService = TestBed.get(LoginService);
+    const service: AuthService = TestBed.get(AuthService);
     expect(service).toBeTruthy();
   });
 });

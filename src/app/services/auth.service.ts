@@ -8,7 +8,7 @@ import { Subject } from 'rxjs/internal/Subject';
     providedIn: 'root'
   })
 
-export class LoginService {
+export class AuthService {
 
     private loggedInObservable = new Subject<boolean>();
     private loggedIn: boolean;

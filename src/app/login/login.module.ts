@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LoginComponent } from './login.component';
-import { LoginService } from './../services/login.service';
+import { AuthService } from './../services/auth.service';
 import { MatButtonModule, MatSnackBarModule, MatInputModule, MatCheckboxModule } from '@angular/material';
 import { FormsModule } from '@angular/forms';
 
@@ -20,7 +20,7 @@ import { FormsModule } from '@angular/forms';
     LoginComponent
   ],
   providers: [
-    LoginService
+    AuthService
   ]
 })
 export class LoginModule { }
