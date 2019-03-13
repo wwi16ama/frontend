@@ -2,31 +2,25 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/internal/Observable';
 import { environment } from '../../environments/environment';
-import { BehaviorSubject } from 'rxjs';
+import { Subject } from 'rxjs/internal/Subject';
 
 @Injectable({
     providedIn: 'root'
-})
+  })
 
 export class AuthService {
 
-    private loggedInObservable = new BehaviorSubject<boolean>(null);
+    private loggedInObservable = new Subject<boolean>();
     private loggedIn: boolean;
 
     constructor(public httpClient: HttpClient) {
-        this.checkLoggedInStatus();
+        this.loggedIn = false;
     }
 
-    public checkLoggedInStatus(): void {
-        const memberData = JSON.parse(sessionStorage.getItem('memberData'));
-        this.loggedIn = memberData !== null ? true : false;
-        this.loggedInObservable.next(this.loggedIn);
-    }
-
-    public loginRequest(memberID: string, pass: string): Observable<any> {
+    public loginRequest(username: string, pass: string): Observable<any> {
         const url = environment.baseUrl + '/loginCheck';
         let headers = new HttpHeaders().set('Content-Type', 'application/json');
-        headers = headers.append('Authorization', 'Basic ' + btoa(memberID + ':' + pass));
+        headers = headers.append('Authorization', 'Basic ' + btoa(username + ':' + pass));
         return this.httpClient.get<any>(
             url,
             {
@@ -38,32 +32,25 @@ export class AuthService {
 
     public setAuthHeader(headers = new HttpHeaders()): HttpHeaders {
         const memberData = JSON.parse(sessionStorage.getItem('memberData'));
-        headers = headers.set('Content-Type', 'application/json');
+        headers.set('Content-Type', 'application/json');
         if (memberData.auth !== undefined) {
-            headers = headers.set('Authorization', 'Basic ' + memberData.auth);
+            headers.set('Authorization', 'Basic ' + memberData.auth);
         }
         return headers;
     }
 
     public getMemberID(): number {
-        const memberAuth = JSON.parse(sessionStorage.getItem('memberData')).auth;
-        const memberID = atob(memberAuth).split(':')[0];
-        return parseInt(memberID, 10);
-    }
-
-    public getMemberPassword(): string {
-        const memberAuth = JSON.parse(sessionStorage.getItem('memberData')).auth;
-        const memberPW = atob(memberAuth).split(':')[1];
-        return memberPW;
+        return JSON.parse(sessionStorage.getItem('memberData')).memberID;
     }
 
     public isLoggedIn(): Observable<boolean> {
         return this.loggedInObservable.asObservable();
     }
 
-    public logIn(memberID: string, pass: string) {
-        const auth = btoa(memberID + ':' + pass);
+    public logIn(username: string, pass: string, memberID: number) {
+        const auth = btoa(username + ':' + pass);
         const memberData = {
+            memberID: memberID,
             auth: auth
         };
         sessionStorage.setItem('memberData', JSON.stringify(memberData));
@@ -79,23 +66,6 @@ export class AuthService {
         this.loggedInObservable.next(this.loggedIn);
         return this.httpClient.get<any>(
             url,
-            {
-                headers: headers,
-                observe: 'response'
-            }
-        );
-    }
-
-    public changePasswordAsMember(newPassword: string): Observable<any> {
-        const url = `${environment.baseUrl}/members/${this.getMemberID()}/changePasswordAsMember`;
-        const headers = this.setAuthHeader();
-        const requestBody = {
-            password: this.getMemberPassword(),
-            newPassword: newPassword
-        };
-        return this.httpClient.put<any>(
-            url,
-            requestBody,
             {
                 headers: headers,
                 observe: 'response'
