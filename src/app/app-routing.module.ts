@@ -1,5 +1,6 @@
 import { RouterModule, Routes } from '@angular/router';
 
+import { AuthGuard } from './guards/auth-guard.service';
 import { NgModule } from '@angular/core';
 import { MemberListComponent } from './member-list/member-list.component';
 import { MemberViewComponent } from './member-view/member-view.component';
@@ -12,26 +13,29 @@ import { LoginComponent } from './login/login.component';
 
 export const appRoutes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
-  { path: 'memberlist', component: MemberListComponent },
-  { path: 'member/:id', component: MemberViewComponent },
-  { path: 'planelist', component: PlaneListComponent },
-  { path: 'expensingbilllist', component: ExpensingBillListComponent },
-  { path: 'planelist', component: PlaneListComponent },
-  { path: 'feelist', component: FeeListComponent},
-  { path: 'creditlist', component: CreditListComponent},
-  { path: 'account' , component: AccountComponent},
-  { path: 'expensingbilllist', component: ExpensingBillListComponent },
+  { path: 'memberlist', component: MemberListComponent, canActivate: [AuthGuard] },
+  { path: 'member/:id', component: MemberViewComponent, canActivate: [AuthGuard] },
+  { path: 'planelist', component: PlaneListComponent, canActivate: [AuthGuard] },
+  { path: 'expensingbilllist', component: ExpensingBillListComponent, canActivate: [AuthGuard] },
+  { path: 'planelist', component: PlaneListComponent, canActivate: [AuthGuard] },
+  { path: 'feelist', component: FeeListComponent, canActivate: [AuthGuard] },
+  { path: 'creditlist', component: CreditListComponent, canActivate: [AuthGuard] },
+  { path: 'account', component: AccountComponent, canActivate: [AuthGuard] },
+  { path: 'expensingbilllist', component: ExpensingBillListComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent }
 ];
 
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(appRoutes, {useHash: true})
+    RouterModule.forRoot(appRoutes, { useHash: true })
   ],
   exports: [
     RouterModule
   ],
+  providers: [
+    AuthGuard
+  ]
 })
 export class AppRoutingModule {
 }
