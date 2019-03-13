@@ -34,6 +34,10 @@ export class LoginService {
         return headers;
     }
 
+    public getMemberID(): number {
+        return JSON.parse(sessionStorage.get('memberData')).memberID;
+    }
+
     public isLoggedIn(): Observable<boolean> {
         return this.loggedInObservable.asObservable();
     }
