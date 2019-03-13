@@ -13,7 +13,9 @@ export class LoginService {
     private loggedInObservable = new Subject<boolean>();
     private loggedIn: boolean;
 
-    constructor(public httpClient: HttpClient) { }
+    constructor(public httpClient: HttpClient) {
+        this.loggedIn = false;
+    }
 
     public loginRequest(username: string, pass: string): Observable<any> {
         const url = environment.baseUrl + '/loginCheck';
