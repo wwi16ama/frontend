@@ -13,7 +13,7 @@ export class LoginService {
     constructor(public httpClient: HttpClient) { }
 
     public loginRequest(username: string, pass: string): Observable<any> {
-        const url = environment.baseUrl + '/login';
+        const url = environment.baseUrl + '/loginCheck';
         let headers = new HttpHeaders().set('Content-Type', 'application/json');
         headers = headers.append('Authorization', 'Basic ' + btoa(username + ':' + pass));
         return this.httpClient.get<any>(
@@ -25,13 +25,26 @@ export class LoginService {
         );
     }
 
+    public setAuthHeader(headers = new HttpHeaders()): HttpHeaders {
+        const memberData = JSON.parse(sessionStorage.getItem('memberData'));
+        headers.set('Content-Type', 'application/json');
+        if (memberData.auth !== undefined) {
+            headers.set('Authorization', 'Basic ' + memberData.auth);
+        }
+        return headers;
+    }
+
     public isLoggedIn(): Observable<boolean> {
         return this.loggedInObservable.asObservable();
     }
 
-    public logIn(username: string, pass: string) {
+    public logIn(username: string, pass: string, memberID: number) {
         const auth = btoa(username + ':' + pass);
-        sessionStorage.setItem('auth', auth);
+        const memberData = {
+            memberID: memberID,
+            auth: auth
+        };
+        sessionStorage.setItem('memberData', JSON.stringify(memberData));
         this.loggedIn = true;
         this.loggedInObservable.next(this.loggedIn);
     }

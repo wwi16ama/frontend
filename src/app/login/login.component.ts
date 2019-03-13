@@ -31,9 +31,8 @@ export class LoginComponent implements OnInit {
             }
           );
         }
-
-        this.loginService.logIn(this.username, this.pass);
-        this.router.navigateByUrl('edit/members');
+        this.loginService.logIn(this.username, this.pass, response.body.memberID);
+        this.router.navigateByUrl('/account');
       },
       error => {
         if (error.status === 401) {
