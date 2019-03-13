@@ -1,3 +1,55 @@
-<p>
-  plane-log works!
-</p>
+<div class="plane-log-wrapper">
+  <h1 class="title-text"> Logbuch - "SelectedPlane"</h1>
+  <h2 class="subtitle-text"> Betankungen</h2>
+  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+    <!-- planename Column -->
+    <ng-container matColumnDef="plane">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Flugzeug </th>
+      <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+    </ng-container>
+
+    <!-- date Column -->
+    <ng-container matColumnDef="date">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Datum </th>
+      <td mat-cell *matCellDef="let element"> {{element.date}} </td>
+    </ng-container>
+
+    <!-- time Column -->
+    <ng-container matColumnDef="time">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Zeit </th>
+      <td mat-cell *matCellDef="let element"> {{element.time}} </td>
+    </ng-container>
+    
+    <!-- pilot Column -->
+    <ng-container matColumnDef="pilot">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Pilot </th>
+      <td mat-cell *matCellDef="let element"> {{element.pilot}} </td>
+    </ng-container>
+
+    <!-- location Column -->
+    <ng-container matColumnDef="location">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Ort </th>
+      <td mat-cell *matCellDef="let element"> {{element.location}} </td>
+    </ng-container>
+
+    <!-- amount Column -->
+    <ng-container matColumnDef="fuel">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Menge </th>
+    <td mat-cell *matCellDef="let element"> {{element.fuel}} </td>
+  </ng-container>
+
+    <!-- price Column -->
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Preis </th>
+      <td mat-cell *matCellDef="let element"> {{element.price| currency:'€'}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <div>
+       <!-- TODO: Remove disabled and class button-without-functionality when button functionality is implemented-->
+    <button disabled class="button-without-functionality" mat-raised-button color="basic"> Hinzufügen </button>
+  </div>
+</div>

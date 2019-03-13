@@ -14,6 +14,8 @@ import { ExpensingBillListModule } from './expensing-bill-list/expensing-bill-li
 import { FeeListModule } from './fee-list/fee-list.module';
 import { LoginModule } from './login/login.module';
 import { PilotLogModule } from './pilotlog/pilotlog.module';
+import { PlaneLogModule } from './plane-log/plane-log.module';
+
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -32,6 +34,7 @@ describe('AppComponent', () => {
         FeeListModule,
         PilotLogModule,
         LoginModule
+        PlaneLogModule
       ],
       declarations: [
         AppComponent
