@@ -6,7 +6,7 @@ import { Member, Status } from './../models/member.model';
 import { MemberService } from './../services/member.service';
 import { MatTableDataSource, MatSort, MatPaginator, MatDialog, MatSnackBar } from '@angular/material';
 import { EditMemberProfileDialogComponent } from './edit-memberprofile-dialog/edit-memberprofile-dialog.component';
-import { LoginService } from './../services/login.service';
+import { AuthService } from './../services/auth.service';
 
 @Component({
   selector: 'app-account',
@@ -35,13 +35,13 @@ export class AccountComponent implements OnInit {
 
   constructor(
     public accountService: AccountService, public memberService: MemberService, public cdr: ChangeDetectorRef,
-    public editMemberProfileDialog: MatDialog, public snackBar: MatSnackBar, public loginService: LoginService
+    public editMemberProfileDialog: MatDialog, public snackBar: MatSnackBar, public authService: AuthService
   ) {
     this.displayedColumns = ['timestamp', 'amount', 'type'];
   }
 
   ngOnInit() {
-    this.memberService.getMemberData(this.loginService.getMemberID()).subscribe(
+    this.memberService.getMemberData(this.authService.getMemberID()).subscribe(
       (memberdata: Member) => {
         this.member = memberdata;
         this.member.status = Status[this.member.status];
