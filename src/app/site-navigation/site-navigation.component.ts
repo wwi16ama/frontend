@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { LoginService } from './../services/login.service';
 
 @Component({
   selector: 'app-site-navigation',
@@ -9,12 +10,17 @@ import { Router } from '@angular/router';
 export class SiteNavigationComponent implements OnInit {
 
   opened: boolean;
+  loggedIn: boolean;
 
-  constructor(public router: Router) {
+  constructor(public router: Router, public loginService: LoginService) {
     this.opened = false;
+    this.loggedIn = false;
   }
 
   ngOnInit() {
+    this.loginService.isLoggedIn().subscribe((loggedIn) => {
+      this.loggedIn = loggedIn;
+    });
   }
 
   public toggleOpened(): void {
@@ -24,6 +30,11 @@ export class SiteNavigationComponent implements OnInit {
   public navigateTo(link: string): void {
     this.router.navigateByUrl(link);
     this.opened = false;
+  }
+
+  public logOut(): void {
+    this.loginService.logOut();
+    this.navigateTo('/login');
   }
 
 }
