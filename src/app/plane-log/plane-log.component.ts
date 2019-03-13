@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { Plane } from './../models/plane.model';
+import { MatTableDataSource, MatSort } from '@angular/material';
+import { PlaneService } from '../services/plane.service';
 
 @Component({
   selector: 'app-plane-log',
@@ -7,9 +10,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PlaneLogComponent implements OnInit {
 
-  constructor() { }
+    @ViewChild(MatSort) sort: MatSort;
 
-  ngOnInit() {
+    displayedColumns: string[];
+    dataSource: any;
+
+    constructor(public planeService: PlaneService) {
+      this.displayedColumns = ['plane', 'date', 'time', 'pilot', 'location', 'fuel', 'price'];
+    }
+
+    ngOnInit() {
+      this.planeService.getPlaneListData().subscribe(
+        (planelogdata: Plane[]) => {
+          this.dataSource = new MatTableDataSource(planelogdata);
+          this.dataSource.sort = this.sort;
+        }
+      );
+    }
+
   }
-
-}

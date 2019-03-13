@@ -9,6 +9,7 @@ import { FeeListComponent } from './fee-list/fee-list.component';
 import { CreditListComponent } from './credit-list/credit-list.component';
 import { AccountComponent } from './account/account.component';
 import { LoginComponent } from './login/login.component';
+import { PlaneLogComponent } from './plane-log/plane-log.component';
 
 export const appRoutes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -21,7 +22,8 @@ export const appRoutes: Routes = [
   { path: 'creditlist', component: CreditListComponent},
   { path: 'account' , component: AccountComponent},
   { path: 'expensingbilllist', component: ExpensingBillListComponent },
-  { path: 'login', component: LoginComponent }
+  { path: 'login', component: LoginComponent },
+  { path: 'logbook', component: PlaneLogComponent }
 ];
 
 

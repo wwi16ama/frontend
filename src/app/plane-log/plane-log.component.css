@@ -1,0 +1,22 @@
+table {
+    width: calc(100% - 16px);
+    margin: 8px;
+  }
+  
+  .planes-log-wrapper {
+    padding: 0 10px 10px 10px;
+}
+  button {
+    margin: 8px;
+  }
+   
+  .title-text {
+    font-weight: 400;
+    font-size: 32px;
+    margin: 10px;
+  }
+  .subtitle-text {
+    font-weight: 400;
+    font-size: 16px;
+    margin: 10px;
+  }
