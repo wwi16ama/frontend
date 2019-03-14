@@ -12,7 +12,8 @@ export class Member {
         public offices: Office[],
         public flightAuthorization: Authorization[],
         public id?: number,
-        public memberBankingAccount?: MemberBankingAccount
+        public memberBankingAccount?: MemberBankingAccount,
+        public password?: string
     ) {}
 }
 

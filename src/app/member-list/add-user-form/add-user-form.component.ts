@@ -1,9 +1,18 @@
 import { Component } from '@angular/core';
 import { Validators } from '@angular/forms';
-import { FormControl } from '@angular/forms';
+import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { MatDialogRef, MatSnackBar } from '@angular/material';
-import { Office, OfficeEnum, Authorization, AuthorizationEnum, Address } from './../../models/member.model';
+import { Member, Office, OfficeEnum, Authorization, AuthorizationEnum, Address } from './../../models/member.model';
+import { ErrorStateMatcher } from '@angular/material/core';
 
+export class PasswordErrorStateMatcher implements ErrorStateMatcher {
+  isErrorState(control: FormControl | null): boolean {
+    const invalidCtrl = !!(control && control.invalid && control.parent.dirty);
+    const invalidParent = !!(control && control.parent && control.parent.invalid && control.parent.dirty);
+
+    return (invalidCtrl || invalidParent);
+  }
+}
 @Component({
   selector: 'app-add-user-form',
   templateUrl: './add-user-form.component.html',
@@ -29,18 +38,22 @@ export class AddUserFormComponent {
   cityFormControl: FormControl;
   bankingAccountFormControl: FormControl;
   memberBankingAccountFormControl: FormControl;
+  passwordFormControl: FormControl;
+  passwordFormGroup: FormGroup;
+  passwordMatcher = new PasswordErrorStateMatcher();
   admissioned: boolean;
-  office: string[];
+  offices: Office[];
 
 
   sex = ['Männlich', 'Weiblich'];
   status = ['Aktiv', 'Passiv', 'Ehrenmitglied'];
 
   constructor(
-    public addUserDialogRef: MatDialogRef<AddUserFormComponent>, public snackBar: MatSnackBar
+    public addUserDialogRef: MatDialogRef<AddUserFormComponent>, public snackBar: MatSnackBar,
+    public formbuilder: FormBuilder
   ) {
     addUserDialogRef.disableClose = true;
-    this.office = [];
+    this.offices = [];
     this.flightAuthorizations = [];
     this.possibleOffices = [
       new Office(OfficeEnum.FLUGWART),
@@ -77,20 +90,23 @@ export class AddUserFormComponent {
       const newAddress = new Address(
         this.postalCodeFormControl.value,
         this.streetAddressFormControl.value,
-        this.cityFormControl.value );
-      const newMember = {
-        firstName: this.firstNameFormControl.value,
-        lastName: this.lastNameFormControl.value,
-        dateOfBirth: this.formatDate(this.dateOfBirthFormControl.value.toString()),
-        gender: this.sexFormControl.value,
-        status: this.statusFormControl.value,
-        email: this.emailFormControl.value,
-        address: newAddress,
-        bankingAccount: this.bankingAccountFormControl.value,
-        admissioned: this.admissioned,
-        offices: this.office,
-        flightAuthorization: []
-      };
+        this.cityFormControl.value);
+      const newMember = new Member(
+        this.firstNameFormControl.value,
+        this.lastNameFormControl.value,
+        this.formatDate(this.dateOfBirthFormControl.value.toString()),
+        this.sexFormControl.value,
+        this.statusFormControl.value,
+        this.emailFormControl.value,
+        newAddress,
+        this.bankingAccountFormControl.value,
+        this.admissioned,
+        this.offices,
+        [],
+        undefined,
+        undefined,
+        this.passwordFormControl.value
+      );
       for (let i = 0; i < this.flightAuthorizations.length; i++) {
         newMember.flightAuthorization.push(
           new Authorization(
@@ -195,6 +211,22 @@ export class AddUserFormComponent {
       Validators.required
     ]);
 
+    this.passwordFormControl = new FormControl('', [
+      Validators.required,
+      Validators.pattern(/([0-9].*[a-z])|([a-z].*[0-9])/),
+    ]);
+
+    this.passwordFormGroup = this.formbuilder.group({
+      password: this.passwordFormControl,
+      passwordRepeat: ['']
+    }, { validator: this.checkPasswords });
+  }
+
+  public checkPasswords(group: FormGroup) {
+    const password = group.controls.password.value;
+    const passwordRepeat = group.controls.passwordRepeat.value;
+
+    return password === passwordRepeat ? null : { passwordsNotSame: true };
   }
 
   public checkRequiredFields(): boolean {
@@ -249,6 +281,20 @@ export class AddUserFormComponent {
       return false;
     } else if (this.bankingAccountFormControl.invalid) {
       this.snackBar.open('Kein korrektes Bankkonto.', 'Schließen',
+        {
+          duration: 3000,
+        }
+      );
+      return false;
+    } else if (this.passwordFormControl.invalid) {
+      this.snackBar.open('Passwortangabe fehlerhaft.', 'Schließen',
+        {
+          duration: 3000,
+        }
+      );
+      return false;
+    } else if (this.passwordFormGroup.invalid) {
+      this.snackBar.open('Passwortbestätigung stimmt nicht überein', 'Schließen',
         {
           duration: 3000,
         }
