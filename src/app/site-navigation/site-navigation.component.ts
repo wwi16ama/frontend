@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
 import { AuthService } from './../services/auth.service';
 
 @Component({
@@ -12,7 +13,7 @@ export class SiteNavigationComponent implements OnInit {
   opened: boolean;
   loggedIn: boolean;
 
-  constructor(public router: Router, public authService: AuthService) {
+  constructor(public router: Router, public snackBar: MatSnackBar, public authService: AuthService) {
     this.opened = false;
     this.loggedIn = false;
   }
@@ -33,6 +34,11 @@ export class SiteNavigationComponent implements OnInit {
   }
 
   public logOut(): void {
+    this.snackBar.open('Logout erfolgreich', 'Schließen',
+      {
+        duration: 3000,
+      }
+    );
     this.authService.logOut();
     this.navigateTo('/login');
   }
