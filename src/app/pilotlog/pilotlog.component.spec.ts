@@ -9,6 +9,10 @@ describe('PilotLogComponent', () => {
   let component: PilotLogComponent;
   let fixture: ComponentFixture<PilotLogComponent>;
 
+describe('PilotLogbookComponent', () => {
+  let component: PilotLogbookComponent;
+  let fixture: ComponentFixture<PilotLogbookComponent>;
+
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [

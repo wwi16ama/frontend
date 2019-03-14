@@ -4,7 +4,7 @@ import { MatTableDataSource, MatSort } from '@angular/material';
 import { Member } from './../models/member.model';
 import { MemberService } from './../services/member.service';
 import { Pilotlog } from './../models/pilotlog.model';
-import {PilotlogService} from './../services/pilotlog.service';
+import { PilotlogService } from './../services/pilotlog.service';
 
 @Component({
   selector: 'app-pilotlog',
