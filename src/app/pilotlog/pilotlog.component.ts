@@ -7,11 +7,11 @@ import { Pilotlog } from './../models/pilotlog.model';
 import {PilotlogService} from './../services/pilotlog.service';
 
 @Component({
-  selector: 'app-pilot-logbook',
-  templateUrl: './pilot-logbook.component.html',
-  styleUrls: ['./pilot-logbook.component.css']
+  selector: 'app-pilotlog',
+  templateUrl: './pilotlog.component.html',
+  styleUrls: ['./pilotlog.component.css']
 })
-export class PilotLogbookComponent implements OnInit {
+export class PilotLogComponent implements OnInit {
 
   member: Member;
   pilotlog: Pilotlog[];
