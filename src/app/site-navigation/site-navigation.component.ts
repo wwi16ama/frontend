@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material';
+import { AuthService } from './../services/auth.service';
 
 @Component({
   selector: 'app-site-navigation',
@@ -9,12 +11,17 @@ import { Router } from '@angular/router';
 export class SiteNavigationComponent implements OnInit {
 
   opened: boolean;
+  loggedIn: boolean;
 
-  constructor(public router: Router) {
+  constructor(public router: Router, public snackBar: MatSnackBar, public authService: AuthService) {
     this.opened = false;
+    this.loggedIn = false;
   }
 
   ngOnInit() {
+    this.authService.isLoggedIn().subscribe((loggedIn) => {
+      this.loggedIn = loggedIn;
+    });
   }
 
   public toggleOpened(): void {
@@ -24,6 +31,16 @@ export class SiteNavigationComponent implements OnInit {
   public navigateTo(link: string): void {
     this.router.navigateByUrl(link);
     this.opened = false;
+  }
+
+  public logOut(): void {
+    this.snackBar.open('Logout erfolgreich', 'Schließen',
+      {
+        duration: 3000,
+      }
+    );
+    this.authService.logOut();
+    this.navigateTo('/login');
   }
 
 }
