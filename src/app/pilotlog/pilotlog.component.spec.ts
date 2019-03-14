@@ -1,26 +1,27 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PilotLogbookComponent } from './pilot-logbook.component';
+import { PilotLogComponent } from './pilotlog.component';
 
-import { MatTableModule, MatSortModule } from '@angular/material';
+import { MatButtonModule, MatTableModule, MatSortModule } from '@angular/material';
 
-describe('PilotLogbookComponent', () => {
-  let component: PilotLogbookComponent;
-  let fixture: ComponentFixture<PilotLogbookComponent>;
+describe('PilotLogComponent', () => {
+  let component: PilotLogComponent;
+  let fixture: ComponentFixture<PilotLogComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
         MatTableModule,
-        MatSortModule
+        MatSortModule,
+        MatButtonModule
       ],
-      declarations: [ PilotLogbookComponent ]
+      declarations: [ PilotLogComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PilotLogbookComponent);
+    fixture = TestBed.createComponent(PilotLogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
