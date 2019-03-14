@@ -1,4 +1,4 @@
-.pilot-logbook-wrapper {
+.pilotlog-wrapper {
     padding: 0 10px;
   }
   
@@ -15,7 +15,6 @@
   
   button {
     position: relative;  
-    margin-top: 20px;
     margin-left: 10px;
   
   }

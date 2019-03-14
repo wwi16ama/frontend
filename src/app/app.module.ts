@@ -21,7 +21,6 @@ import { AccountModule } from './account/account.module';
 import { DeletePlaneDialogComponent } from './plane-list/delete-plane-dialog/delete-plane-dialog.component';
 import { ExpensingBillListModule } from './expensing-bill-list/expensing-bill-list.module';
 import { LoginModule } from './login/login.module';
-import { PilotLogbookModule } from './pilot-logbook/pilot-logbook.module';
 import { PlaneLogModule } from './plane-log/plane-log.module';
 import { PilotLogModule } from './pilotlog/pilotlog.module';
 import { AddPilotlogentryModule } from './pilotlog/add-pilotlogentry/add-pilotlogentry.module';
