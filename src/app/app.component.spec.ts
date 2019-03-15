@@ -32,7 +32,7 @@ describe('AppComponent', () => {
         AddPlaneDialogModule,
         ExpensingBillListModule,
         FeeListModule,
-        PilotLogModule
+        PilotLogModule,
         LoginModule
         LoginModule,
         PlaneLogModule
