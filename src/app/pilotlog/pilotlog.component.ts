@@ -16,13 +16,15 @@ export class PilotLogComponent implements OnInit {
   member: Member;
   pilotlog: Pilotlog[];
   dataSource: any;
+  displayedColumns: string[];
 
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(
     public memberService: MemberService,
     public pilotLogService: PilotlogService
-  ) { }
+  ) {this.displayedColumns = ['flightId', 'planeNumber', 'departureLocation', 'departureTime',
+   'arrivalLocation', 'arrivalTime', 'flightWithGuests']; }
 
   ngOnInit() {
     this.memberService.getMemberData(1).subscribe(
@@ -33,7 +35,7 @@ export class PilotLogComponent implements OnInit {
             this.pilotlog = data;
             this.dataSource = new MatTableDataSource(this.pilotlog);
           }
-        )
+        );
       }
     );
   }
