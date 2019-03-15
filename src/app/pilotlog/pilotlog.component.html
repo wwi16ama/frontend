@@ -1,8 +1,8 @@
-<div class="pilotlog-wrapper">
+<div class="pilotlog-wrapper" *ngIf="member != null">
   <h1 class="title-text">Pilotenlogbuch</h1>
-  <p *ngIf="member != null">Name: {{member.firstName}} {{member.lastName}}</p>
+  <p>Name: {{member.firstName}} {{member.lastName}}</p>
 
-  <table *ngIf="dataSource != null" class="mat-elevation-z8" mat-table [dataSource]="dataSource" matSortActive="flightId"
+  <table class="mat-elevation-z8" mat-table [dataSource]="dataSource" matSortActive="flightId"
             matSortDirection="desc" matSort>
             <ng-container matColumnDef="flightId">
               <th mat-header-cell *matHeaderCellDef mat-sort-header> Flugnummer </th>
