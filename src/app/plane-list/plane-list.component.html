@@ -30,7 +30,7 @@
         <button mat-raised-button color="warn" (click)="openDeletePlaneDialog(plane)">Löschen</button>
         
          <!-- TODO: Remove disabled and class button-without-functionality when button functionality is implemented-->
-        <button disabled class="button-without-functionality" mat-raised-button color="basic">Logbuch</button>
+        <button mat-raised-button color="basic" (click)="navigateToPlaneLog(plane.id)">Logbuch</button>
       </mat-card-actions>
     </mat-card>
   </div>
