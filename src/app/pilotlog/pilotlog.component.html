@@ -21,7 +21,7 @@
 
             <ng-container matColumnDef="departureTime">
               <th mat-header-cell *matHeaderCellDef mat-sort-header> Abflugzeit </th>
-              <td mat-cell *matCellDef="let element">{{element.departureTime}}</td>
+              <td mat-cell *matCellDef="let element">{{element.departureTime | date:'medium'}}</td>
             </ng-container>
 
             <ng-container matColumnDef="arrivalLocation">
@@ -34,10 +34,10 @@
               <td mat-cell *matCellDef="let element">{{element.arrivalTime}}</td>
             </ng-container>
 
-            <!--<ng-container>
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Dauer </th>
-              <td mat-cell> Dauer </td>
-            </ng-container>-->
+            <ng-container matColumnDef="flightDuration">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Flugdauer </th>
+              <td mat-cell *matCellDef="let element"> {{element.flightDuration}} </td>
+            </ng-container>
 
             <ng-container matColumnDef="flightWithGuests">
               <th mat-header-cell *matHeaderCellDef mat-sort-header> Gastflug </th>
