@@ -1,11 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { SiteNavigationComponent } from './site-navigation.component';
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { MatToolbarModule } from '@angular/material/toolbar';
-import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
-import { MatListModule } from '@angular/material/list';
+import {
+  MatSidenavModule, MatToolbarModule, MatButtonModule,
+  MatIconModule, MatListModule, MatSnackBarModule
+} from '@angular/material';
 
 
 @NgModule({
@@ -15,7 +14,8 @@ import { MatListModule } from '@angular/material/list';
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
-    MatListModule
+    MatListModule,
+    MatSnackBarModule
   ],
   declarations: [
     SiteNavigationComponent

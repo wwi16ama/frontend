@@ -4,20 +4,29 @@ import { Observable } from 'rxjs/internal/Observable';
 import { Plane } from './../models/plane.model';
 import { environment } from '../../environments/environment';
 
+import { AuthService } from './auth.service';
+
 @Injectable()
 export class PlaneService {
 
-  constructor(public httpClient: HttpClient) { }
+  constructor(public httpClient: HttpClient, public authService: AuthService) { }
 
-  public getPlaneListData(): Observable<Plane[]>  {
-    return this.httpClient.get<Plane[]>(environment.baseUrl + '/planes');
+  public getPlaneListData(): Observable<Plane[]> {
+    const url = environment.baseUrl + '/planes';
+    const headers = this.authService.setAuthHeader();
+    return this.httpClient.get<Plane[]>(
+      url,
+      {
+        headers: headers
+      }
+    );
   }
 
   public updatePlaneData(planeData: Plane): Observable<any> {
     const id = planeData.id;
     const url = environment.baseUrl + '/planes/' + id;
     delete planeData['id'];
-    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    const headers = this.authService.setAuthHeader();
     return this.httpClient.put<any>(
       url,
       planeData,
@@ -28,9 +37,9 @@ export class PlaneService {
     );
   }
 
-  public deletePlaneData (planeId: number): Observable <any> {
+  public deletePlaneData(planeId: number): Observable<any> {
     const url = environment.baseUrl + '/planes/' + planeId;
-    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    const headers = this.authService.setAuthHeader();
     return this.httpClient.delete<any>(
       url,
       {
@@ -41,7 +50,7 @@ export class PlaneService {
 
   public addPlaneData(planes: Plane): Observable<any> {
     const url = environment.baseUrl + '/planes/';
-    const headers = new HttpHeaders().set('Content-Type', 'application/json');
+    const headers = this.authService.setAuthHeader();
     return this.httpClient.post<Plane>(
       url,
       planes,

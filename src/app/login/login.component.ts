@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoginService } from './../services/login.service';
+import { AuthService } from './../services/auth.service';
 import { MatSnackBar } from '@angular/material';
 import { Router } from '@angular/router';
 
@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
   username: string;
   pass: string;
 
-  constructor(public loginService: LoginService, public snackBar: MatSnackBar, public router: Router) {
+  constructor(public authService: AuthService, public snackBar: MatSnackBar, public router: Router) {
     this.username = '';
     this.pass = '';
   }
@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
   }
 
   public sendLogin(): void {
-    this.loginService.loginRequest(this.username, this.pass).subscribe(
+    this.authService.loginRequest(this.username, this.pass).subscribe(
       (response) => {
         if (response.status === 200) {
           this.snackBar.open('Login erfolgreich', 'Schließen',
@@ -31,9 +31,8 @@ export class LoginComponent implements OnInit {
             }
           );
         }
-
-        this.loginService.logIn(this.username, this.pass);
-        this.router.navigateByUrl('edit/members');
+        this.authService.logIn(this.username, this.pass, response.body.memberID);
+        this.router.navigateByUrl('/account');
       },
       error => {
         if (error.status === 401) {
