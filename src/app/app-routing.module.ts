@@ -23,7 +23,7 @@ export const appRoutes: Routes = [
   { path: 'account' , component: AccountComponent},
   { path: 'expensingbilllist', component: ExpensingBillListComponent },
   { path: 'login', component: LoginComponent },
-  { path: 'logbook', component: PlaneLogComponent }
+  { path: 'planelog/:id', component: PlaneLogComponent }
 ];
 
 

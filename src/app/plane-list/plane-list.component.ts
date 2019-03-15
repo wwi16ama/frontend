@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { PlaneService } from './../services/plane.service';
 import { Plane, neededAuthorizationEnum } from './../models/plane.model';
 
+import { Router } from '@angular/router';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { EditPlaneDialogComponent } from './edit-plane-dialog/edit-plane-dialog.component';
 import { DeletePlaneDialogComponent } from './delete-plane-dialog/delete-plane-dialog.component';
@@ -17,7 +18,7 @@ export class PlaneListComponent implements OnInit {
 
   planes: Plane[];
 
-  constructor(public planeService: PlaneService, public editPlaneDialog: MatDialog, public addPlaneDialog: MatDialog,
+  constructor(public router: Router, public planeService: PlaneService, public editPlaneDialog: MatDialog, public addPlaneDialog: MatDialog,
     public deletePlaneDialog: MatDialog, public snackBar: MatSnackBar) {
 
     this.planes = [];
@@ -202,6 +203,9 @@ export class PlaneListComponent implements OnInit {
       }
     );
   }
-
+  public navigateToLogBook(planeId): void {
+    this.router.navigate(['../planelog', planeId]);
+    console.log('Plane ID: ', planeId);
+  }
 }
 
