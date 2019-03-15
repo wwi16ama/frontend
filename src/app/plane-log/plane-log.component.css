@@ -9,7 +9,13 @@ table {
   button {
     margin: 8px;
   }
-   
+  @media (min-width: 769px) {
+  .button-without-functionality {
+    position: fixed;
+    right: 30px;
+    top: 80px;
+  }
+}
   .title-text {
     font-weight: 400;
     font-size: 32px;

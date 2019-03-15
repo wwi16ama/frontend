@@ -1,6 +1,14 @@
 <div class="plane-log-wrapper">
   <h1 class="title-text"> Logbuch - "SelectedPlane"</h1>
   <h2 class="subtitle-text"> Betankungen</h2>
+
+   <!-- TODO: Remove disabled and class button-without-functionality when button functionality is implemented-->
+<div>
+    <button mat-fab color="primary" disabled class="button-without-functionality">
+    <mat-icon>add</mat-icon>
+    </button>
+</div>
+
   <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
     <!-- planename Column -->
@@ -49,7 +57,5 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
   <div>
-       <!-- TODO: Remove disabled and class button-without-functionality when button functionality is implemented-->
-    <button disabled class="button-without-functionality" mat-raised-button color="basic"> Hinzufügen </button>
   </div>
 </div>
