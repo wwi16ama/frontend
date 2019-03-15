@@ -1,7 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PlaneLogComponent } from './plane-log.component';
-import { MatTableModule, MatButtonModule, MatSortModule } from '@angular/material';
+import { MatTableModule, MatButtonModule, MatSortModule, MatIconModule } from '@angular/material';
+
 
 @NgModule({
   declarations: [PlaneLogComponent],
@@ -9,7 +10,8 @@ import { MatTableModule, MatButtonModule, MatSortModule } from '@angular/materia
     CommonModule,
     MatTableModule,
     MatButtonModule,
-    MatSortModule
+    MatSortModule,
+    MatIconModule
   ],
   exports: [
     PlaneLogComponent
