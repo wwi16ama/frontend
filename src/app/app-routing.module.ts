@@ -10,7 +10,7 @@ import { FeeListComponent } from './fee-list/fee-list.component';
 import { CreditListComponent } from './credit-list/credit-list.component';
 import { AccountComponent } from './account/account.component';
 import { LoginComponent } from './login/login.component';
-import { PilotLogbookComponent } from './pilot-logbook/pilot-logbook.component';
+import { PilotLogComponent } from './pilotlog/pilotlog.component';
 
 export const appRoutes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -23,8 +23,8 @@ export const appRoutes: Routes = [
   { path: 'creditlist', component: CreditListComponent, canActivate: [AuthGuard] },
   { path: 'account', component: AccountComponent, canActivate: [AuthGuard] },
   { path: 'expensingbilllist', component: ExpensingBillListComponent, canActivate: [AuthGuard] },
-  { path: 'login', component: LoginComponent }
-  { path: 'pilotlogbook', component: PilotLogbookComponent }
+  { path: 'login', component: LoginComponent },
+  { path: 'pilotlog', component: PilotLogComponent }
 ];
 
 
