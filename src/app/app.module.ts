@@ -26,12 +26,14 @@ import { LoginModule } from './login/login.module';
 import { LOCALE_ID } from '@angular/core';
 import localeDe from '@angular/common/locales/de';
 import { registerLocaleData } from '@angular/common';
+import { JobsDoneListComponent } from './jobs-done-list/jobs-done-list.component';
 
 registerLocaleData(localeDe);
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    JobsDoneListComponent
   ],
   imports: [
     BrowserModule,

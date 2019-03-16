@@ -9,6 +9,7 @@ import { ExpensingBillListComponent } from './expensing-bill-list/expensing-bill
 import { FeeListComponent } from './fee-list/fee-list.component';
 import { CreditListComponent } from './credit-list/credit-list.component';
 import { AccountComponent } from './account/account.component';
+import { JobsDoneListComponent } from './jobs-done-list/jobs-done-list.component';
 import { LoginComponent } from './login/login.component';
 
 export const appRoutes: Routes = [
@@ -22,6 +23,7 @@ export const appRoutes: Routes = [
   { path: 'creditlist', component: CreditListComponent, canActivate: [AuthGuard] },
   { path: 'account', component: AccountComponent, canActivate: [AuthGuard] },
   { path: 'expensingbilllist', component: ExpensingBillListComponent, canActivate: [AuthGuard] },
+  { path: 'jobsdonelist', component: JobsDoneListComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent }
 ];
 
