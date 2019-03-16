@@ -6,8 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./jobs-done-list.component.css']
 })
 export class JobsDoneListComponent implements OnInit {
+  sort: any;
+  displayedColumns: string[];
+  dataSource: any;
 
-  constructor() { }
+  constructor() { this.displayedColumns = ['date', 'service', 'credit'] }
 
   ngOnInit() {
   }
