@@ -1,7 +1,10 @@
-<div class="pilotlog-wrapper" *ngIf="member != null">
+<div class="pilotlog-wrapper">
   <h1 class="title-text">Pilotenlogbuch</h1>
-  <p>Name: {{member.firstName}} {{member.lastName}}</p>
-
+  <p *ngIf="member != null">Mitglied: {{member.firstName}} {{member.lastName}}</p>
+  <div>
+    <button disabled class="button-without-functionality" mat-raised-button  color="basic">Hinzufügen</button>
+  </div>
+  
   <table class="mat-elevation-z8" mat-table [dataSource]="dataSource" matSortActive="flightId"
             matSortDirection="desc" matSort>
             <ng-container matColumnDef="flightId">
@@ -42,8 +45,8 @@
             <ng-container matColumnDef="flightWithGuests">
               <th mat-header-cell *matHeaderCellDef mat-sort-header> Gastflug </th>
               <td mat-cell *matCellDef="let element"> 
-                <p *ngif {{element.flightWithGuests}} = "TRUE"> ja </p>
-                <p *ngif {{element.flightWithGuests}} = "FALSE"> nein </p>
+                <p *ngIf="element.flightWithGuests === true"> ja </p>
+                <p *ngIf="element.flightWithGuests === false"> nein </p>
               </td>
             </ng-container>
 
@@ -51,8 +54,4 @@
             <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
           </table>
-
-  <div>
-    <button mat-raised-button  style="text-decoration:line-through;" color="basic">Hinzufügen</button>
-  </div>
 </div>

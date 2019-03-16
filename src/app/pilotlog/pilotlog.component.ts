@@ -51,11 +51,17 @@ export class PilotLogComponent implements OnInit {
     const hours = Math.floor(timeDifference / 1000 / 60 / 60);
     const minutes = (timeDifference - (hours * 60 * 60 * 1000)) / 1000 / 60;
     let returnString = '';
-    if (hours !== 0) {
-      returnString += hours + ' Stunden ';
+    if (hours > 9) {
+      returnString += hours + ':';
     }
-    if (minutes !== 0) {
-      returnString += minutes + ' Minuten';
+    if (hours <= 9){
+      returnString += '0' + hours + ':'
+    }
+    if (minutes > 9) {
+      returnString += minutes;
+    }
+    if (minutes <= 9){
+      returnString += '0' + minutes
     }
     return returnString;
   }
