@@ -13,6 +13,7 @@ import { AddPlaneDialogModule } from './plane-list/add-plane-dialog/add-plane-di
 import { ExpensingBillListModule } from './expensing-bill-list/expensing-bill-list.module';
 import { FeeListModule } from './fee-list/fee-list.module';
 import { LoginModule } from './login/login.module';
+import { PilotLogModule } from './pilotlog/pilotlog.module';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -29,6 +30,7 @@ describe('AppComponent', () => {
         AddPlaneDialogModule,
         ExpensingBillListModule,
         FeeListModule,
+        PilotLogModule,
         LoginModule
       ],
       declarations: [
