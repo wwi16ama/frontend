@@ -203,7 +203,7 @@ export class PlaneListComponent implements OnInit {
       }
     );
   }
-  public navigateToLogBook(planeId): void {
+  public navigateToPlaneLog(planeId): void {
     this.router.navigate(['../planelog', planeId]);
     console.log('Plane ID: ', planeId);
   }
