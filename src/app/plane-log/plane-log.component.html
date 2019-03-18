@@ -11,8 +11,8 @@
 
   <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
-    <!-- planename Column -->
-    <ng-container matColumnDef="plane">
+    <!-- id Column -->
+    <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Flugzeug </th>
       <td mat-cell *matCellDef="let element"> {{element.id}} </td>
     </ng-container>
