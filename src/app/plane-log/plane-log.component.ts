@@ -1,6 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Plane } from './../models/plane.model';
+
+import { PlaneLog } from './../models/planelog.model';
 import { MatTableDataSource, MatSort } from '@angular/material';
+import { PlaneLogService } from '../services/planelog.service';
 import { PlaneService } from '../services/plane.service';
 
 @Component({
@@ -15,13 +17,14 @@ export class PlaneLogComponent implements OnInit {
     displayedColumns: string[];
     dataSource: any;
 
-    constructor(public planeService: PlaneService) {
-      this.displayedColumns = ['plane', 'date', 'time', 'pilot', 'location', 'fuel', 'price'];
+    constructor(public planeLogService: PlaneLogService) {
+      this.displayedColumns = ['id', 'refuelDateTime', 'memberId', 'location', 'startCount', 'endCount', 'totalPrice'];
     }
 
     ngOnInit() {
-      this.planeService.getPlaneListData().subscribe(
-        (planelogdata: Plane[]) => {
+      // PlaneLogService
+      this.planeLogService.getPlaneLogData().subscribe(
+        (planelogdata: PlaneLog[]) => {
           this.dataSource = new MatTableDataSource(planelogdata);
           this.dataSource.sort = this.sort;
         }
