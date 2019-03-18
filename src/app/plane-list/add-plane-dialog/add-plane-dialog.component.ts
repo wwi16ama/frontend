@@ -113,14 +113,14 @@ export class AddPlaneDialogComponent {
       );
       return false;
     } else if (this.pricePerBookedHourFormControl.invalid) {
-        this.snackBar.open('Keine korrekte Eingabe.', 'Schließen',
+        this.snackBar.open('Keine korrekte Nutzungsgebühr.', 'Schließen',
           {
             duration: 3000,
           }
         );
         return false;
     } else if (this.pricePerFlightMinuteFormControl.invalid) {
-          this.snackBar.open('Keine korrekte Eingabe.', 'Schließen',
+          this.snackBar.open('Keine korrekte Fluggebühr.', 'Schließen',
             {
               duration: 3000,
             }
