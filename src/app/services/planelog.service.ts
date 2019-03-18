@@ -4,26 +4,13 @@ import { Observable } from 'rxjs/internal/Observable';
 import { PlaneLog } from './../models/planelog.model';
 import { environment } from '../../environments/environment';
 
-@Injectable()
-export class PlaneLogService {
+@Injectable({
+  providedIn: 'root'
+})export class PlaneLogService {
 
   constructor(public httpClient: HttpClient) { }
 
-  public getPlaneListData(): Observable<PlaneLog[]>  {
+  public getPlaneLogData(): Observable<PlaneLog[]>  {
     return this.httpClient.get<PlaneLog[]>(environment.baseUrl + '/planelog');
   }
-
-  public addPlaneData(PlaneLogs: PlaneLog): Observable<any> {
-    const url = environment.baseUrl + '/planelog/';
-    const headers = new HttpHeaders().set('Content-Type', 'application/json');
-    return this.httpClient.post<PlaneLog>(
-      url,
-      PlaneLog,
-      {
-        headers: headers,
-        observe: 'response'
-      }
-    );
-  }
-
 }
