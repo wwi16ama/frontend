@@ -5,6 +5,7 @@ import { Member } from './../models/member.model';
 import { MemberService } from './../services/member.service';
 import { Pilotlog } from './../models/pilotlog.model';
 import { PilotlogService } from './../services/pilotlog.service';
+import { AuthService } from './../services/auth.service';
 
 @Component({
   selector: 'app-pilotlog',
@@ -22,14 +23,15 @@ export class PilotLogComponent implements OnInit {
 
   constructor(
     public memberService: MemberService,
-    public pilotLogService: PilotlogService
+    public pilotLogService: PilotlogService,
+    public authService: AuthService
   ) {
     this.displayedColumns = ['flightId', 'planeNumber', 'departureLocation', 'departureTime',
       'arrivalLocation', 'arrivalTime', 'flightDuration', 'flightWithGuests'];
   }
 
   ngOnInit() {
-    this.memberService.getMemberData(1).subscribe(
+    this.memberService.getMemberData(this.authService.getMemberID()).subscribe(
       (memberdata: Member) => {
         this.member = memberdata;
         this.pilotLogService.getPilotLogData(this.member.id).subscribe(
@@ -54,14 +56,14 @@ export class PilotLogComponent implements OnInit {
     if (hours > 9) {
       returnString += hours + ':';
     }
-    if (hours <= 9){
-      returnString += '0' + hours + ':'
+    if (hours <= 9) {
+      returnString += '0' + hours + ':';
     }
     if (minutes > 9) {
       returnString += minutes;
     }
-    if (minutes <= 9){
-      returnString += '0' + minutes
+    if (minutes <= 9) {
+      returnString += '0' + minutes;
     }
     return returnString;
   }
