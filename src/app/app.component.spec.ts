@@ -33,7 +33,7 @@ describe('AppComponent', () => {
         ExpensingBillListModule,
         FeeListModule,
         PilotLogModule,
-        LoginModule
+        LoginModule,
         PlaneLogModule
       ],
       declarations: [
