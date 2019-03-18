@@ -22,6 +22,7 @@ import { DeletePlaneDialogComponent } from './plane-list/delete-plane-dialog/del
 import { ExpensingBillListModule } from './expensing-bill-list/expensing-bill-list.module';
 import { LoginModule } from './login/login.module';
 import { PlaneLogModule } from './plane-log/plane-log.module';
+import { PilotLogModule } from './pilotlog/pilotlog.module';
 
 // Spracheinstellung
 import { LOCALE_ID } from '@angular/core';
@@ -46,7 +47,7 @@ registerLocaleData(localeDe);
     AccountModule,
     ExpensingBillListModule,
     LoginModule,
-    PilotLogModule
+    PilotLogModule,
     PlaneLogModule
   ],
   providers: [
