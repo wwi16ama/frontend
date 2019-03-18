@@ -17,7 +17,7 @@ export class PlaneLogComponent implements OnInit {
     displayedColumns: string[];
     dataSource: any;
 
-    constructor(public planeLogService: PlaneLogService) {
+    constructor(public planeLogService: PlaneLogService, public planeService: PlaneService) {
       this.displayedColumns = ['id', 'refuelDateTime', 'memberId', 'location', 'startCount', 'endCount', 'totalPrice'];
     }
 
