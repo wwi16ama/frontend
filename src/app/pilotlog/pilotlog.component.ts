@@ -1,11 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 
-import { MatTableDataSource, MatSort } from '@angular/material';
+import { MatTableDataSource, MatSort, MatDialog } from '@angular/material';
 import { Member } from './../models/member.model';
 import { MemberService } from './../services/member.service';
 import { Pilotlog } from './../models/pilotlog.model';
 import { PilotlogService } from './../services/pilotlog.service';
 import { AuthService } from './../services/auth.service';
+import { AddPilotlogentryComponent } from './add-pilotlogentry/add-pilotlogentry.component';
 
 @Component({
   selector: 'app-pilotlog',
@@ -24,7 +25,8 @@ export class PilotLogComponent implements OnInit {
   constructor(
     public memberService: MemberService,
     public pilotLogService: PilotlogService,
-    public authService: AuthService
+    public authService: AuthService,
+    public addPilotLogEntryDialog: MatDialog
   ) {
     this.displayedColumns = ['flightId', 'planeNumber', 'departureLocation', 'departureTime',
       'arrivalLocation', 'arrivalTime', 'flightDuration', 'flightWithGuests'];
@@ -84,4 +86,17 @@ export class PilotLogComponent implements OnInit {
     }
   }
 
+  openAddPilotLogEntryDialog(): void {
+    const dialogRef = this.addPilotLogEntryDialog.open(AddPilotlogentryComponent, {
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result != null) {
+        this.savePilotLogEntry(result);
+      }
+    });
+  }
+
+  public savePilotLogEntry(pilotlog: Pilotlog):void {
+
+  }
 }

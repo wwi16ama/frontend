@@ -1,8 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { PilotLogComponent } from './pilotlog.component';
-
-import { MatButtonModule, MatTableModule, MatSortModule } from '@angular/material';
+import { PilotlogService } from './../services/pilotlog.service';
+import { MatDialog, MatDialogModule, MatButtonModule, MatTableModule, MatSortModule } from '@angular/material';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('PilotLogComponent', () => {
   let component: PilotLogComponent;
@@ -13,9 +14,18 @@ describe('PilotLogComponent', () => {
       imports: [
         MatTableModule,
         MatSortModule,
-        MatButtonModule
+        MatButtonModule,
+        MatDialogModule,
+        MatDialog,
+        HttpClientModule
       ],
-      declarations: [ PilotLogComponent ]
+      declarations: [ 
+        PilotLogComponent 
+      ],
+      providers: [
+        PilotlogService,
+        { provide: MatDialog, useValue: {} }
+      ]
     })
     .compileComponents();
   }));
