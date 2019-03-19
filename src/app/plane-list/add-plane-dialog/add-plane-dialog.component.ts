@@ -44,8 +44,6 @@ export class AddPlaneDialogComponent {
     this.possibleAuthorizations = ['PPL-A', 'PPL-B', 'BZF-I', 'BZF-II'];
     this.position = ['Halle 1', 'Halle 2'];
     this.submitted = false;
-    this.pricePerBookedHour = 0;
-    this.pricePerFlightMinute = 0;
 
     this.pricePerBookedHourFormControl = new FormControl ('', [
       Validators.required,
