@@ -1,0 +1,19 @@
+<div class="dialog-wrapper">
+  <h2 mat-dialog-title>Logbucheintrag hinzufügen</h2>
+  <!---<mat-dialog-content>
+    <form>
+        <div class="tab-content">
+          <div id="pilotlogentry-header">Logbuchdaten</div>
+          
+          <mat-form-field class="input-width">
+            <input type="text" matInput placeholder="Abflugsort" maxlength="35" pattern="[a-zA-Z_äÄöÖüÜß0-9/. \-]+">
+          </mat-form-field>
+        </div>
+    </form>
+  </mat-dialog-content>--->
+
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Abbrechen</button>
+    <button mat-raised-button color="primary">Speichern</button>
+  </div>
+</div>
