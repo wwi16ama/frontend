@@ -91,8 +91,8 @@ export class AddPlaneDialogComponent {
       name: this.nameFormControl.value,
       position: this.positionFormControl.value,
       neededAuthorization: this.neededAuthorization,
-      pricePerBookedHour: this.pricePerBookedHour,
-      pricePerFlightMinute: this.pricePerFlightMinute
+      pricePerBookedHour: this.pricePerBookedHourFormControl.value,
+      pricePerFlightMinute: this.pricePerFlightMinuteFormControl.value
     };
     this.addPlaneDialogRef.close(newPlane);
   }}
