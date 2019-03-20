@@ -1,16 +1,42 @@
 <div class="dialog-wrapper">
   <h2 mat-dialog-title>Logbucheintrag hinzufügen</h2>
-  <!---<mat-dialog-content>
+  <mat-dialog-content>
     <form>
         <div class="tab-content">
           <div id="pilotlogentry-header">Logbuchdaten</div>
           
           <mat-form-field class="input-width">
-            <input type="text" matInput placeholder="Abflugsort" maxlength="35" pattern="[a-zA-Z_äÄöÖüÜß0-9/. \-]+">
+              <mat-select placeholder="Luftfahrzeug" [formControl]="planeNumberFormControl" id="planeNumber" 
+              required>
+              <mat-option *ngFor="let planeNumber of planeNumber" [value]="planeNumber">{{planeNumber}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          
+          <mat-form-field class="input-width">
+            <input type="text" matInput placeholder="Abflugsort" [formControl]="departureLocationFormControl" id="departureLocation" maxlength="35" pattern="[a-zA-Z_äÄöÖüÜß0-9/. \-]+" required>
+          </mat-form-field>
+
+          <mat-form-field class="input-width">
+            <input matInput placeholder="Abflugszeit" [formControl]="departureTimeFormControl" required>
+          </mat-form-field>
+
+          <mat-form-field class="input-width">
+            <input type="text" matInput placeholder="Landungsort" [formControl]="arrivalLocationFormControl" maxlength="35" pattern="[a-zA-Z_äÄöÖüÜß0-9/. \-]+" required>
+          </mat-form-field>
+
+          <mat-form-field class="input-width">
+            <input matInput placeholder="Landungszeit" [formControl]="arrivalTimeFormControl" required>
+          </mat-form-field>
+
+          <mat-form-field class="input-width">
+            <mat-select placeholder="Gastflug" [formControl]="flightWithGuestsSelectionFormControl" id="flightWithGuestsSelection" 
+              required>
+              <mat-option *ngFor="let flightWithGuestsSelection of flightWithGuestsSelection" [value]="flightWithGuestsSelection">{{flightWithGuestsSelection}}</mat-option>
+             </mat-select>
           </mat-form-field>
         </div>
     </form>
-  </mat-dialog-content>--->
+  </mat-dialog-content>
 
   <div mat-dialog-actions>
     <button mat-button (click)="onNoClick()">Abbrechen</button>
