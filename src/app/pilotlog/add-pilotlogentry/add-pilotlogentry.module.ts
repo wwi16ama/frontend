@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AddPilotlogentryComponent }from './add-pilotlogentry.component';
-import { MatButtonModule, MatFormFieldModule, MatDatepickerModule, MatDialogModule, MatInputModule } from '@angular/material';
+import { MatSelectModule, MatButtonModule, MatFormFieldModule, MatDatepickerModule, MatDialogModule, MatInputModule } from '@angular/material';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AddPilotlogentryComponent } from './add-pilotlogentry.component';
 
 @NgModule({
   declarations: [AddPilotlogentryComponent],
@@ -14,7 +14,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatDialogModule,
     FormsModule,
     ReactiveFormsModule,
-    MatInputModule
+    MatInputModule,
+    MatSelectModule
   ],
   exports: [AddPilotlogentryComponent]
 })

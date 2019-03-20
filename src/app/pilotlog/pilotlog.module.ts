@@ -3,19 +3,19 @@ import { CommonModule } from '@angular/common';
 import { PilotLogComponent } from './pilotlog.component';
 
 import { MatTableModule, MatButtonModule, MatSortModule} from '@angular/material';
-import { AddPilotlogentryComponent } from './add-pilotlogentry/add-pilotlogentry.component';
+import { AddPilotlogentryModule } from './add-pilotlogentry/add-pilotlogentry.module';
 import { PilotlogService } from './../services/pilotlog.service';
 
 @NgModule({
   declarations: [
-    PilotLogComponent, 
-    AddPilotlogentryComponent
+    PilotLogComponent,
   ],
   imports: [
     CommonModule,
     MatTableModule,
     MatButtonModule,
-    MatSortModule
+    MatSortModule,
+    AddPilotlogentryModule
   ],
   providers: [
     PilotlogService
