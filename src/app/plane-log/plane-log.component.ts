@@ -4,6 +4,9 @@ import { PlaneLog } from './../models/planelog.model';
 import { MatTableDataSource, MatSort } from '@angular/material';
 import { PlaneLogService } from '../services/planelog.service';
 import { PlaneService } from '../services/plane.service';
+import { Plane } from '../models/plane.model';
+import { ActivatedRoute, Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-plane-log',
@@ -12,23 +15,38 @@ import { PlaneService } from '../services/plane.service';
 })
 export class PlaneLogComponent implements OnInit {
 
+  planes: Plane;
+  planelog: PlaneLog;
+
     @ViewChild(MatSort) sort: MatSort;
 
     displayedColumns: string[];
     dataSource: any;
 
-    constructor(public planeLogService: PlaneLogService, public planeService: PlaneService) {
+    constructor(
+      public planeLogService: PlaneLogService,
+      public planeService: PlaneService,
+      public activatedRoute: ActivatedRoute) {
       this.displayedColumns = ['id', 'refuelDateTime', 'memberId', 'location', 'startCount', 'endCount', 'totalPrice'];
     }
 
     ngOnInit() {
+      // PlaneService
+      this.activatedRoute.params.subscribe(
+        params => {
+      this.planeService.getPlaneData(params['id']).subscribe(
+        (planedata: Plane) => {
+          this.planes = planedata;
+          }
+      );
+
       // PlaneLogService
       this.planeLogService.getPlaneLogData().subscribe(
-        (planelogdata: PlaneLog[]) => {
-          this.dataSource = new MatTableDataSource(planelogdata);
+        (planelog: PlaneLog[]) => {
+          this.dataSource = new MatTableDataSource(planelog);
           this.dataSource.sort = this.sort;
         }
       );
-    }
+    });
 
-  }
+  }}

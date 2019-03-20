@@ -1,11 +1,11 @@
 export class PlaneLog {
     constructor(
         public id: number,
-        refuelDateTime: string,
-        memberId: number,
-        location: string,
-        startCount: number,
-        endCount: number,
-        totalPrice: number
+        public refuelDateTime: string,
+        public memberId: number,
+        public location: string,
+        public startCount: number,
+        public endCount: number,
+        public totalPrice: number
     ) { }
 }
