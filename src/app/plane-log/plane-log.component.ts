@@ -37,6 +37,7 @@ export class PlaneLogComponent implements OnInit {
       this.planeService.getPlaneData(params['id']).subscribe(
         (planedata: Plane) => {
           this.planes = planedata;
+          console.log(this.planes);
           }
       );
 
@@ -47,6 +48,7 @@ export class PlaneLogComponent implements OnInit {
           this.dataSource.sort = this.sort;
         }
       );
+      console.log(this.dataSource);
     });
 
   }}
