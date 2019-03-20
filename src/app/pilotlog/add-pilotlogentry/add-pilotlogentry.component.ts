@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroupDirective, NgForm } from '@angular/forms';
+import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { MatDialogRef, MatDialog } from '@angular/material';
 
 @Component({
@@ -15,6 +15,14 @@ export class AddPilotlogentryComponent implements OnInit {
     arrivalLocation: string;
     arrivalTime: string;
     flightWithGuests: boolean;
+    flightWithGuestsSelection: string[]; 
+
+    planeNumberFormControl: FormControl;
+    departureTimeFormControl: FormControl;
+    arrivalTimeFormControl: FormControl;
+    flightWithGuestsSelectionFormControl: FormControl;
+    departureLocationFormControl: FormControl;
+    arrivalLocationFormControl: FormControl;
 
   
   constructor( public addPilotLogEntryDialogRef: MatDialogRef<AddPilotlogentryComponent>) { 
@@ -25,6 +33,31 @@ export class AddPilotlogentryComponent implements OnInit {
     this.arrivalLocation = '';
     this.arrivalTime = '';
     this.flightWithGuests = false;
+    this.flightWithGuestsSelection = ['ja', 'nein'];
+
+    this.planeNumberFormControl = new FormControl ('', [
+      Validators.required,
+    ]);
+
+    this.departureTimeFormControl = new FormControl('', [
+      Validators.required,
+    ]);
+
+    this.arrivalTimeFormControl = new FormControl('', [
+      Validators.required,
+    ]);
+
+    this.flightWithGuestsSelectionFormControl = new FormControl('', [
+      Validators.required,
+    ]);
+
+    this.departureLocationFormControl = new FormControl('', [
+      Validators.required,
+    ]);
+
+    this.arrivalLocationFormControl = new FormControl('', [
+      Validators.required,
+    ]);
   }
 
   public onNoClick(): void {
