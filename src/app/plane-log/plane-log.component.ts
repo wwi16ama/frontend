@@ -15,7 +15,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class PlaneLogComponent implements OnInit {
 
-  planes: Plane;
+  plane: Plane;
   planelog: PlaneLog;
 
     @ViewChild(MatSort) sort: MatSort;
@@ -36,8 +36,8 @@ export class PlaneLogComponent implements OnInit {
         params => {
       this.planeService.getPlaneData(params['id']).subscribe(
         (planedata: Plane) => {
-          this.planes = planedata;
-          console.log(this.planes);
+          this.plane = planedata;
+          // console.log(this.plane);
           }
       );
 
@@ -48,7 +48,7 @@ export class PlaneLogComponent implements OnInit {
           this.dataSource.sort = this.sort;
         }
       );
-      console.log(this.dataSource);
+      // console.log(this.dataSource);
     });
 
   }}
