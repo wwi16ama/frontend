@@ -31,24 +31,19 @@ export class PlaneLogComponent implements OnInit {
     }
 
     ngOnInit() {
-      // PlaneService
       this.activatedRoute.params.subscribe(
         params => {
       this.planeService.getPlaneData(params['id']).subscribe(
         (planedata: Plane) => {
           this.plane = planedata;
-          // console.log(this.plane);
-          }
-      );
-
-      // PlaneLogService
-      this.planeLogService.getPlaneLogData().subscribe(
-        (planelog: PlaneLog[]) => {
+          this.planeLogService.getPlaneLogData(this.plane.id).subscribe(
+          (planelog: PlaneLog[]) => {
           this.dataSource = new MatTableDataSource(planelog);
-          this.dataSource.sort = this.sort;
+          console.log(this.planelog);
         }
       );
-      // console.log(this.dataSource);
     });
 
-  }}
+  }); }
+}
+

@@ -4,13 +4,22 @@ import { Observable } from 'rxjs/internal/Observable';
 import { PlaneLog } from './../models/planelog.model';
 import { environment } from '../../environments/environment';
 
+import { AuthService } from './auth.service';
+
 @Injectable({
   providedIn: 'root'
 })export class PlaneLogService {
 
-  constructor(public httpClient: HttpClient) { }
+  constructor(public httpClient: HttpClient, public authService: AuthService) { }
 
-  public getPlaneLogData(): Observable<PlaneLog[]>  {
-    return this.httpClient.get<PlaneLog[]>(environment.baseUrl + '/planelog');
+  public getPlaneLogData(planeID): Observable<PlaneLog[]>  {
+    const url = environment.baseUrl + '/planes/' + planeID;
+    const headers = this.authService.setAuthHeader();
+    return this.httpClient.get<PlaneLog[]>(
+      url,
+      {
+        headers: headers
+      }
+    );
   }
 }

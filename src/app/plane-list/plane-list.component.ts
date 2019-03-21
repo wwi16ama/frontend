@@ -204,7 +204,7 @@ export class PlaneListComponent implements OnInit {
     );
   }
   public navigateToPlaneLog(planeId): void {
-    this.router.navigate(['../planelog', planeId]);
+    this.router.navigate(['../planeLog', planeId]);
     // console.log('Plane ID: ', planeId);
   }
 }
