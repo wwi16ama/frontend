@@ -11,6 +11,7 @@ import { CreditListComponent } from './credit-list/credit-list.component';
 import { AccountComponent } from './account/account.component';
 import { LoginComponent } from './login/login.component';
 import { PilotLogComponent } from './pilotlog/pilotlog.component';
+import { FinanceComponent } from './finance/finance.component';
 
 export const appRoutes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -24,7 +25,8 @@ export const appRoutes: Routes = [
   { path: 'account', component: AccountComponent, canActivate: [AuthGuard] },
   { path: 'expensingbilllist', component: ExpensingBillListComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
-  { path: 'pilotlog', component: PilotLogComponent }
+  { path: 'pilotlog', component: PilotLogComponent },
+  { path: 'finance', component: FinanceComponent }
 ];
 
 
