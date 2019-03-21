@@ -27,7 +27,7 @@ export class PlaneLogComponent implements OnInit {
       public planeLogService: PlaneLogService,
       public planeService: PlaneService,
       public activatedRoute: ActivatedRoute) {
-      this.displayedColumns = ['id', 'refuelDateTime', 'memberId', 'location', 'startCount', 'endCount', 'totalPrice'];
+      this.displayedColumns = ['nameofplane', 'id', 'refuelDateTime', 'memberId', 'location', 'startCount', 'endCount', 'totalPrice'];
     }
 
     ngOnInit() {
@@ -39,7 +39,7 @@ export class PlaneLogComponent implements OnInit {
           this.planeLogService.getPlaneLogData(this.plane.id).subscribe(
           (planelog: PlaneLog[]) => {
           this.dataSource = new MatTableDataSource(planelog);
-          console.log(this.planelog);
+          // console.log(this.planelog);
         }
       );
     });
