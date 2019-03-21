@@ -25,6 +25,7 @@ import { PlaneLogModule } from './plane-log/plane-log.module';
 import { PilotLogModule } from './pilotlog/pilotlog.module';
 import { AddPilotlogentryModule } from './pilotlog/add-pilotlogentry/add-pilotlogentry.module';
 import { AddPilotlogentryComponent } from './pilotlog/add-pilotlogentry/add-pilotlogentry.component';
+import { FinanceModule } from './finance/finance.module';
 
 // Spracheinstellung
 import { LOCALE_ID } from '@angular/core';
@@ -54,6 +55,7 @@ registerLocaleData(localeDe);
     PlaneLogModule,
     PilotLogModule,
     ChangePasswordModule
+    FinanceModule
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'ger' },
