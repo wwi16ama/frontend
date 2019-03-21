@@ -13,7 +13,7 @@ import { AuthService } from './auth.service';
   constructor(public httpClient: HttpClient, public authService: AuthService) { }
 
   public getPlaneLogData(planeID): Observable<PlaneLog[]>  {
-    const url = environment.baseUrl + '/planes/' + planeID;
+    const url = environment.baseUrl + '/planeLog/' + planeID;
     const headers = this.authService.setAuthHeader();
     return this.httpClient.get<PlaneLog[]>(
       url,
