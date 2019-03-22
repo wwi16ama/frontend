@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroupDirective, NgForm, Validators } from '@angular/forms';
-import { MatDialogRef, MatDialog } from '@angular/material';
+import { MatSnackBar, MatDialogRef, MatDialog } from '@angular/material';
+import { Plane } from '../../models/plane.model';
+import { PlaneService } from '../../services/plane.service';
 
 @Component({
   selector: 'app-add-pilotlogentry',
@@ -8,6 +10,8 @@ import { MatDialogRef, MatDialog } from '@angular/material';
   styleUrls: ['./add-pilotlogentry.component.css']
 })
 export class AddPilotlogentryComponent implements OnInit {
+
+    planes: Plane[];
 
     planeNumber: string[];
     departureLocation: string;
@@ -25,9 +29,10 @@ export class AddPilotlogentryComponent implements OnInit {
     arrivalLocationFormControl: FormControl;
 
   
-  constructor( public addPilotLogEntryDialogRef: MatDialogRef<AddPilotlogentryComponent>) { 
+  constructor( public addPilotLogEntryDialogRef: MatDialogRef<AddPilotlogentryComponent>, public snackBar: MatSnackBar, public planeService: PlaneService) { 
     /*jedes Flugzeug auch bei neu hinzugefügten?!*/
-    this.planeNumber = ['D-ERFI', 'D-EJEK'];
+    //this.planeNumber = planes.number;
+    this.planes = [];
     this.departureLocation = '';
     this.departureTime= '';
     this.arrivalLocation = '';
@@ -64,7 +69,72 @@ export class AddPilotlogentryComponent implements OnInit {
     this.addPilotLogEntryDialogRef.close();
   }
 
+  public savePlaneData(): void {
+    if (this.checkRequiredFields()) {
+      const newPilotLog = {
+        planeNumber: this.planeNumberFormControl.value,
+        departureLocation: this.departureLocationFormControl.value,
+        departureTime: this.departureTimeFormControl.value,
+        arrivalLocation: this.arrivalLocationFormControl,
+        arrivalLocationFormControl: this.arrivalLocationFormControl,
+        flightWithGuestsSelection: this.flightWithGuestsSelection,
+      };
+      this.addPilotLogEntryDialogRef.close(newPilotLog);
+  }}
+
+  public checkRequiredFields(): boolean {
+    if (this.planeNumberFormControl.invalid ) {
+      this.snackBar.open('Kein gültiges Luftfahrzeug.', 'Schließen',
+        {
+          duration: 3000,
+        }
+      );
+      return false;
+    } else if (this.departureLocationFormControl.invalid) {
+      this.snackBar.open('Kein gültiger Abflugsort.', 'Schließen',
+        {
+          duration: 3000,
+        }
+      );
+      return false;
+    } else if (this.departureTimeFormControl.invalid) {
+      this.snackBar.open('Keine gültige Abflugszeit', 'Schließen',
+        {
+          duration: 3000,
+        }
+      );
+      return false;
+    } else if (this.departureLocationFormControl.invalid) {
+      this.snackBar.open('Kein gültiger Landungsort.', 'Schließen',
+        {
+          duration: 3000,
+        }
+      );
+      return false;
+    } else if (this.arrivalTimeFormControl.invalid) {
+      this.snackBar.open('Keine gültige Landungszeit', 'Schließen',
+        {
+          duration: 3000,
+        }
+      );
+      return false;
+    } else if (this.flightWithGuestsSelectionFormControl.invalid) {
+      this.snackBar.open('Keine gültige Angabe', 'Schließen',
+        {
+          duration: 3000,
+        }
+      );
+      return false;
+    }
+    return true;
+  }
+
   ngOnInit() {
+    this.planeService.getPlaneListData().subscribe(
+      (planedata: Plane[]) => {
+        this.planes = planedata;
+      }
+    );
   }
 
 }

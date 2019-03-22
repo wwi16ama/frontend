@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 
-import { MatTableDataSource, MatSort, MatDialog } from '@angular/material';
+import { MatSnackBar, MatTableDataSource, MatSort, MatDialog } from '@angular/material';
 import { Member } from './../models/member.model';
 import { MemberService } from './../services/member.service';
 import { Pilotlog } from './../models/pilotlog.model';
@@ -26,7 +26,8 @@ export class PilotLogComponent implements OnInit {
     public memberService: MemberService,
     public pilotLogService: PilotlogService,
     public authService: AuthService,
-    public addPilotLogEntryDialog: MatDialog
+    public addPilotLogEntryDialog: MatDialog,
+    public snackBar: MatSnackBar
   ) {
     this.displayedColumns = ['flightId', 'planeNumber', 'departureLocation', 'departureTime',
       'arrivalLocation', 'arrivalTime', 'flightDuration', 'flightWithGuests'];
@@ -97,6 +98,42 @@ export class PilotLogComponent implements OnInit {
   }
 
   public savePilotLogEntry(pilotlog: Pilotlog):void {
-
+    this.pilotLogService.addPilotLogEntry(pilotlog).subscribe(
+      (response) => {
+        if (response.status === 200) {
+          this.snackBar.open('Änderungen erfolgreich gespeichert.', 'Schließen',
+            {
+              duration: 3000,
+            }
+          );
+          const newPilotLog = new Pilotlog(
+            response.body.planeNumber,
+            response.body.departureLocation,
+            response.body.departureTime,
+            response.body.arrivalLocation,
+            response.body.arrivalTime,
+            response.body.flightWithGuests,
+            response.body.flightId
+          );
+          console.log(newPilotLog);
+          this.pilotlog.push(newPilotLog);
+        }
+      },
+      error => {
+        if (error.status === 400) {
+          this.snackBar.open('Pflichtfelder nicht ausgefüllt', 'Schließen',
+            {
+              duration: 4000,
+            }
+          );
+        } else if (error.status === 0) {
+          this.snackBar.open('Es konnte keine Verbindung zum Server aufgebaut werden', 'Schließen',
+            {
+              duration: 4000,
+            }
+          );
+        }
+      }
+    );
   }
 }

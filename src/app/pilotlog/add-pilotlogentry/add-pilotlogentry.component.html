@@ -8,7 +8,7 @@
           <mat-form-field class="input-width">
               <mat-select placeholder="Luftfahrzeug" [formControl]="planeNumberFormControl" id="planeNumber" 
               required>
-              <mat-option *ngFor="let planeNumber of planeNumber" [value]="planeNumber">{{planeNumber}}</mat-option>
+              <mat-option *ngFor="let plane of planes" [value]="plane">{{plane.number}}</mat-option>
             </mat-select>
           </mat-form-field>
           
@@ -16,16 +16,20 @@
             <input type="text" matInput placeholder="Abflugsort" [formControl]="departureLocationFormControl" id="departureLocation" maxlength="35" pattern="[a-zA-Z_äÄöÖüÜß0-9/. \-]+" required>
           </mat-form-field>
 
-          <mat-form-field class="input-width">
-            <input matInput placeholder="Abflugszeit" [formControl]="departureTimeFormControl" required>
+          <mat-form-field>
+            <input matInput [matDatepicker]="departureTime" placeholder="Abflugszeit" [formControl]="departureTimeFormControl" required>
+            <mat-datepicker-toggle matSuffix [for]="departureTime"></mat-datepicker-toggle>
+            <mat-datepicker #departureTime></mat-datepicker>
           </mat-form-field>
 
           <mat-form-field class="input-width">
             <input type="text" matInput placeholder="Landungsort" [formControl]="arrivalLocationFormControl" maxlength="35" pattern="[a-zA-Z_äÄöÖüÜß0-9/. \-]+" required>
           </mat-form-field>
 
-          <mat-form-field class="input-width">
-            <input matInput placeholder="Landungszeit" [formControl]="arrivalTimeFormControl" required>
+          <mat-form-field>
+            <input matInput [matDatepicker]="arrivalTime" placeholder="Landungszeit" [formControl]="arrivalTimeFormControl" required>
+            <mat-datepicker-toggle matSuffix [for]="arrivalTime"></mat-datepicker-toggle>
+            <mat-datepicker #arrivalTime></mat-datepicker>
           </mat-form-field>
 
           <mat-form-field class="input-width">
@@ -40,6 +44,6 @@
 
   <div mat-dialog-actions>
     <button mat-button (click)="onNoClick()">Abbrechen</button>
-    <button mat-raised-button color="primary">Speichern</button>
+    <button mat-raised-button (click)="savePlaneData()" color="primary">Speichern</button>
   </div>
 </div>

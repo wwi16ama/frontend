@@ -17,7 +17,7 @@ export class PilotlogService {
   }
 
   public addPilotLogEntry(pilotlog:  Pilotlog): Observable<any> {
-    const url = environment.baseUrl + '/pilotlog/' + this.authService.getMemberID() +'pilotlogentry';
+    const url = environment.baseUrl + '/pilotlog/' + this.authService.getMemberID() +'/pilotlogentry';
     const headers = this.authService.setAuthHeader();
     return this.httpClient.post<Pilotlog>(
       url,
