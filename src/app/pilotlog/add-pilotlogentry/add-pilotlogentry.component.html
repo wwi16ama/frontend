@@ -31,13 +31,11 @@
             <mat-datepicker-toggle matSuffix [for]="arrivalTime"></mat-datepicker-toggle>
             <mat-datepicker #arrivalTime></mat-datepicker>
           </mat-form-field>
-
-          <mat-form-field class="input-width">
-            <mat-select placeholder="Gastflug" [formControl]="flightWithGuestsSelectionFormControl" id="flightWithGuestsSelection" 
-              required>
-              <mat-option *ngFor="let flightWithGuestsSelection of flightWithGuestsSelection" [value]="flightWithGuestsSelection">{{flightWithGuestsSelection}}</mat-option>
-             </mat-select>
-          </mat-form-field>
+          <div>
+            <mat-checkbox labelPosition="after" [(ngModel)]="flightWithGuests" name="flightWithGuests" >
+              <span>Gastflug</span>
+            </mat-checkbox>
+          </div>
         </div>
     </form>
   </mat-dialog-content>

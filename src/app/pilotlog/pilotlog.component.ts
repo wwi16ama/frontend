@@ -97,7 +97,7 @@ export class PilotLogComponent implements OnInit {
     });
   }
 
-  public savePilotLogEntry(pilotlog: Pilotlog):void {
+  public savePilotLogEntry(pilotlog: Pilotlog): void {
     this.pilotLogService.addPilotLogEntry(pilotlog).subscribe(
       (response) => {
         if (response.status === 200) {

@@ -10,7 +10,6 @@ import { PlaneService } from '../../services/plane.service';
   styleUrls: ['./add-pilotlogentry.component.css']
 })
 export class AddPilotlogentryComponent implements OnInit {
-
     planes: Plane[];
 
     planeNumber: string[];
@@ -19,26 +18,22 @@ export class AddPilotlogentryComponent implements OnInit {
     arrivalLocation: string;
     arrivalTime: string;
     flightWithGuests: boolean;
-    flightWithGuestsSelection: string[]; 
 
     planeNumberFormControl: FormControl;
     departureTimeFormControl: FormControl;
     arrivalTimeFormControl: FormControl;
-    flightWithGuestsSelectionFormControl: FormControl;
     departureLocationFormControl: FormControl;
     arrivalLocationFormControl: FormControl;
 
-  
-  constructor( public addPilotLogEntryDialogRef: MatDialogRef<AddPilotlogentryComponent>, public snackBar: MatSnackBar, public planeService: PlaneService) { 
-    /*jedes Flugzeug auch bei neu hinzugefügten?!*/
-    //this.planeNumber = planes.number;
+
+  constructor( public addPilotLogEntryDialogRef: MatDialogRef<AddPilotlogentryComponent>, public snackBar: MatSnackBar,
+    public planeService: PlaneService) {
     this.planes = [];
     this.departureLocation = '';
-    this.departureTime= '';
+    this.departureTime = '';
     this.arrivalLocation = '';
     this.arrivalTime = '';
     this.flightWithGuests = false;
-    this.flightWithGuestsSelection = ['ja', 'nein'];
 
     this.planeNumberFormControl = new FormControl ('', [
       Validators.required,
@@ -49,10 +44,6 @@ export class AddPilotlogentryComponent implements OnInit {
     ]);
 
     this.arrivalTimeFormControl = new FormControl('', [
-      Validators.required,
-    ]);
-
-    this.flightWithGuestsSelectionFormControl = new FormControl('', [
       Validators.required,
     ]);
 
@@ -77,7 +68,7 @@ export class AddPilotlogentryComponent implements OnInit {
         departureTime: this.departureTimeFormControl.value,
         arrivalLocation: this.arrivalLocationFormControl,
         arrivalLocationFormControl: this.arrivalLocationFormControl,
-        flightWithGuestsSelection: this.flightWithGuestsSelection,
+        flightWithGuests: this.flightWithGuests
       };
       this.addPilotLogEntryDialogRef.close(newPilotLog);
   }}
@@ -118,15 +109,8 @@ export class AddPilotlogentryComponent implements OnInit {
         }
       );
       return false;
-    } else if (this.flightWithGuestsSelectionFormControl.invalid) {
-      this.snackBar.open('Keine gültige Angabe', 'Schließen',
-        {
-          duration: 3000,
-        }
-      );
-      return false;
     }
-    return true;
+      return true;
   }
 
   ngOnInit() {
