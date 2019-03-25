@@ -40,7 +40,7 @@
           </mat-form-field>
 
           <mat-form-field class="half-width">
-            <input type="text" matInput placeholder="Ankunfszeit" [formControl]="arrivalTimeFormControl" pattern="[0-9]{2}:[0-9]{2}" required>
+            <input type="text" matInput placeholder="Landungszeit" [formControl]="arrivalTimeFormControl" pattern="[0-9]{2}:[0-9]{2}" required>
             <mat-error *ngIf="departureTimeFormControl.hasError('pattern')">
               Die Ankunfszeit entspricht nicht dem Format. Beispiel: '16:50'.</mat-error>
             <mat-error *ngIf="departureTimeFormControl.hasError('required')">Die Ankunfszeit ist erforderlich</mat-error>
