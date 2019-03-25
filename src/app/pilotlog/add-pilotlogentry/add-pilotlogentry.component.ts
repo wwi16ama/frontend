@@ -71,6 +71,7 @@ export class AddPilotlogentryComponent implements OnInit {
   }
 
   public onNoClick(): void {
+    console.log(this.departureDayFormControl.value + 'T' +  this.departureTimeFormControl.value + ':00.002Z');
     this.addPilotLogEntryDialogRef.close();
   }
 
@@ -79,12 +80,12 @@ export class AddPilotlogentryComponent implements OnInit {
       const newPilotLog = {
         planeNumber: this.planeNumberFormControl.value,
         departureLocation: this.departureLocationFormControl.value,
-        departureTime: this.departureDayFormControl.value + 'T' +  this.departureTimeFormControl.value + '.002Z',
+        departureTime: this.departureDayFormControl.value + 'T' +  this.departureTimeFormControl.value + ':00.002Z',
         arrivalLocation: this.arrivalLocationFormControl,
         arrivalLocationFormControl: this.arrivalLocationFormControl,
         flightWithGuests: this.flightWithGuests
       };
-      console.log(this.departureTime);
+      console.log(this.departureDayFormControl.value);
       this.addPilotLogEntryDialogRef.close(newPilotLog);
   }}
 
