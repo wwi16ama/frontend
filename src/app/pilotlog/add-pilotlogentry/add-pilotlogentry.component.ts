@@ -14,14 +14,18 @@ export class AddPilotlogentryComponent implements OnInit {
 
     planeNumber: string[];
     departureLocation: string;
+    departureDay: string;
     departureTime: string;
     arrivalLocation: string;
+    arrivalDay: string;
     arrivalTime: string;
     flightWithGuests: boolean;
 
     planeNumberFormControl: FormControl;
     departureTimeFormControl: FormControl;
+    departureDayFormControl: FormControl;
     arrivalTimeFormControl: FormControl;
+    arrivalDayFormControl: FormControl;
     departureLocationFormControl: FormControl;
     arrivalLocationFormControl: FormControl;
 
@@ -31,9 +35,19 @@ export class AddPilotlogentryComponent implements OnInit {
     this.planes = [];
     this.departureLocation = '';
     this.departureTime = '';
+    this.departureDay = '';
     this.arrivalLocation = '';
     this.arrivalTime = '';
+    this.arrivalDay = '';
     this.flightWithGuests = false;
+
+    this.departureDayFormControl = new FormControl ('', [
+      Validators.required,
+    ]);
+
+    this.arrivalDayFormControl = new FormControl ('', [
+      Validators.required,
+    ]);
 
     this.planeNumberFormControl = new FormControl ('', [
       Validators.required,
@@ -65,11 +79,12 @@ export class AddPilotlogentryComponent implements OnInit {
       const newPilotLog = {
         planeNumber: this.planeNumberFormControl.value,
         departureLocation: this.departureLocationFormControl.value,
-        departureTime: this.departureTimeFormControl.value,
+        departureTime: this.departureDayFormControl.value + 'T' +  this.departureTimeFormControl.value + '.002Z',
         arrivalLocation: this.arrivalLocationFormControl,
         arrivalLocationFormControl: this.arrivalLocationFormControl,
         flightWithGuests: this.flightWithGuests
       };
+      console.log(this.departureTime);
       this.addPilotLogEntryDialogRef.close(newPilotLog);
   }}
 
@@ -109,8 +124,22 @@ export class AddPilotlogentryComponent implements OnInit {
         }
       );
       return false;
+    } else if (this.arrivalDayFormControl.invalid) {
+      this.snackBar.open('Kein gültiger Ankunftstag', 'Schließen',
+        {
+          duration: 3000,
+        }
+      );
+      return false;
+    } else if (this.departureDayFormControl.invalid) {
+      this.snackBar.open('Kein gültiger Abflugtag', 'Schließen',
+        {
+          duration: 3000,
+        }
+      );
+      return false;
     }
-      return true;
+    return true;
   }
 
   ngOnInit() {

@@ -21,6 +21,20 @@
     flex-shrink: inherit;
 }
 
+.datepicker-width {
+    width: 45%;
+    margin-right: 5%;
+    flex-grow: inherit;
+    flex-shrink: inherit;
+}
+
+.half-width {
+    width: 45%;
+    margin-left: 5%;
+    flex-grow: inherit;
+    flex-shrink: inherit;
+}
+
 #pilotlogentry-header {
     font-weight: bold;
     margin-bottom: 10px;
