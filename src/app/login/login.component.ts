@@ -34,7 +34,7 @@ export class LoginComponent implements OnInit {
           this.router.navigateByUrl('/account');
         }
       },
-      error => {
+      (error) => {
         if (error.status === 401) {
           this.snackBar.open('Login fehlgeschlagen', 'Schließen',
             {

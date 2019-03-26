@@ -76,4 +76,21 @@ export class AuthService {
         this.loggedIn = false;
         this.loggedInObservable.next(this.loggedIn);
     }
+
+    public changePasswordAsMember(newPassword: string): Observable<any> {
+        const url = `${environment.baseUrl}/members/${this.getMemberID()}/changePasswordAsMember`;
+        const headers = this.setAuthHeader();
+        const requestBody = {
+            password: this.getMemberPassword(),
+            newPassword: newPassword
+        };
+        return this.httpClient.put<any>(
+            url,
+            requestBody,
+            {
+                headers: headers,
+                observe: 'response'
+            }
+        );
+    }
 }

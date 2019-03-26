@@ -214,7 +214,7 @@ export class AddUserFormComponent {
     }, { validator: this.checkPasswords });
   }
 
-  public checkPasswords(group: FormGroup) {
+  public checkPasswords(group: FormGroup): any {
     const password = group.controls.password.value;
     const passwordRepeat = group.controls.passwordRepeat.value;
 
