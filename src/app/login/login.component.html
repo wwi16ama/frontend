@@ -10,8 +10,7 @@
         (keydown)="checkEnter($event)">
     </mat-form-field>
     <mat-checkbox class="block" #showPassword>Passwort anzeigen</mat-checkbox>
-    <!-- TODO: Remove disabled and class button-without-functionality when button functionality is implemented-->
-    <button disabled class="button-without-functionality margin-right" mat-raised-button color="primary">Zurück</button>
+    <button (click)="returnToLandingPage()" class="margin-right" mat-raised-button color="primary">Zurück</button>
     <button (click)="sendLogin()" mat-raised-button color="primary">Login</button>
   </div>
 </div>
