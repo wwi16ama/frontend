@@ -48,7 +48,7 @@ registerLocaleData(localeDe);
     AccountModule,
     ExpensingBillListModule,
     LoginModule,
-    PlaneLogModule
+    PlaneLogModule,
     PilotLogModule,
     ChangePasswordModule
   ],
