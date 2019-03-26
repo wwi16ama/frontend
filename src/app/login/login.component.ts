@@ -52,4 +52,8 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  public returnToLandingPage(): void {
+    document.location.href = 'https://flugsportvereinreilingen.jimdofree.com';
+  }
+
 }
