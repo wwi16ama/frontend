@@ -1,0 +1,68 @@
+<div class="plane-log-wrapper">
+  <h1 class="title-text" *ngIf="plane != null"> Logbuch - {{plane.name}}
+  </h1>
+  <h2 class="subtitle-text"> Betankungen</h2>
+
+   <!-- TODO: Remove disabled and class button-without-functionality when button functionality is implemented-->
+<div>
+    <button mat-fab color="primary" disabled class="button-without-functionality">
+    <mat-icon>add</mat-icon>
+    </button>
+</div>
+
+  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+    <!-- plane-name Column -->
+    <ng-container matColumnDef="nameofplane">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Flugzeug </th>
+      <td mat-cell *matCellDef="let element"> {{plane.name}} </td>
+    </ng-container>
+
+    <!-- id Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Tank-ID </th>
+      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+    </ng-container>
+
+    <!-- date Column -->
+    <ng-container matColumnDef="refuelDateTime">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Datum, Uhrzeit </th>
+      <td mat-cell *matCellDef="let element"> {{element.refuelDateTime | date:'medium'}} </td>
+    </ng-container>
+
+    <!-- member Column -->
+    <ng-container matColumnDef="memberId">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Mitglied </th>
+      <td mat-cell *matCellDef="let element"> {{element.memberId}} </td>
+    </ng-container>
+    
+    <!-- location Column -->
+    <ng-container matColumnDef="location">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Ort </th>
+      <td mat-cell *matCellDef="let element"> {{element.location}} </td>
+    </ng-container>
+
+    <!-- startCount Column -->
+    <ng-container matColumnDef="startCount">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Anfangsstand </th>
+      <td mat-cell *matCellDef="let element"> {{element.startCount}} </td>
+    </ng-container>
+
+    <!-- endCount Column -->
+    <ng-container matColumnDef="endCount">
+    <th mat-header-cell *matHeaderCellDef mat-sort-header> Endstand </th>
+    <td mat-cell *matCellDef="let element"> {{element.endCount}} </td>
+  </ng-container>
+
+    <!-- totalPrice Column -->
+    <ng-container matColumnDef="totalPrice">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Preis </th>
+      <td mat-cell *matCellDef="let element"> {{element.totalPrice| currency:'€'}} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <div>
+  </div>
+</div>

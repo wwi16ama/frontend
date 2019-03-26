@@ -21,6 +21,16 @@ export class PlaneService {
       }
     );
   }
+  public getPlaneData(id): Observable<Plane> {
+    const url = environment.baseUrl + '/planes/' + id;
+    const headers = this.authService.setAuthHeader();
+    return this.httpClient.get<Plane>(
+      url,
+      {
+        headers: headers
+      }
+    );
+  }
 
   public updatePlaneData(planeData: Plane): Observable<any> {
     const id = planeData.id;
