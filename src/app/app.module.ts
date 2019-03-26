@@ -28,12 +28,13 @@ import { PilotLogModule } from './pilotlog/pilotlog.module';
 import { LOCALE_ID } from '@angular/core';
 import localeDe from '@angular/common/locales/de';
 import { registerLocaleData } from '@angular/common';
+import { ChangePasswordModule } from './change-password/change-password.module';
 
 registerLocaleData(localeDe);
 
 @NgModule({
   declarations: [
-    AppComponent,
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -47,8 +48,9 @@ registerLocaleData(localeDe);
     AccountModule,
     ExpensingBillListModule,
     LoginModule,
-    PilotLogModule,
     PlaneLogModule
+    PilotLogModule,
+    ChangePasswordModule
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'ger' },

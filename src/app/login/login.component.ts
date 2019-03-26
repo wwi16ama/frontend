@@ -10,11 +10,11 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent implements OnInit {
 
-  username: string;
+  memberID: string;
   pass: string;
 
   constructor(public authService: AuthService, public snackBar: MatSnackBar, public router: Router) {
-    this.username = '';
+    this.memberID = '';
     this.pass = '';
   }
 
@@ -22,7 +22,7 @@ export class LoginComponent implements OnInit {
   }
 
   public sendLogin(): void {
-    this.authService.loginRequest(this.username, this.pass).subscribe(
+    this.authService.loginRequest(this.memberID, this.pass).subscribe(
       (response) => {
         if (response.status === 200) {
           this.snackBar.open('Login erfolgreich', 'Schließen',
@@ -30,11 +30,11 @@ export class LoginComponent implements OnInit {
               duration: 3000,
             }
           );
+          this.authService.logIn(this.memberID, this.pass);
+          this.router.navigateByUrl('/account');
         }
-        this.authService.logIn(this.username, this.pass, response.body.memberID);
-        this.router.navigateByUrl('/account');
       },
-      error => {
+      (error) => {
         if (error.status === 401) {
           this.snackBar.open('Login fehlgeschlagen', 'Schließen',
             {
