@@ -76,27 +76,27 @@ export class AddPilotlogentryComponent implements OnInit {
 
   public savePilotLogData(): void {
     if (this.checkRequiredFields()) {
+      console.log(this.departureDayFormControl.value);
       const newPilotLog = {
         planeNumber: this.planeNumberFormControl.value,
         departureLocation: this.departureLocationFormControl.value,
-        // @ts-ignore
         departureTime: this.formatDate(new Date(
-          this.departureDayFormControl.value.getYear(),
+          this.departureDayFormControl.value.getFullYear(),
           this.departureDayFormControl.value.getMonth(),
-          this.departureDayFormControl.value.getDay(),
-          parseInt(this.departureTimeFormControl.value.slice(0, 3), 10),
+          this.departureDayFormControl.value.getDate(),
+          parseInt(this.departureTimeFormControl.value.slice(0, 2), 10),
           parseInt(this.departureTimeFormControl.value.slice(3, 5), 10)
-        )),
-        // @ts-ignore
+        ).toString()),
         arrivalTime: this.formatDate(new Date(
-          this.arrivalDayFormControl.value.getYear(),
+          this.arrivalDayFormControl.value.getFullYear(),
           this.arrivalDayFormControl.value.getMonth(),
-          this.arrivalDayFormControl.value.getDay(),
-          parseInt(this.arrivalTimeFormControl.value.slice(0, 3), 10),
+          this.arrivalDayFormControl.value.getDate(),
+          parseInt(this.arrivalTimeFormControl.value.slice(0, 2), 10),
           parseInt(this.arrivalTimeFormControl.value.slice(3, 5), 10)
-        )),
+        ).toString()),
         flightWithGuests: this.flightWithGuests
       };
+      console.log(newPilotLog);
       this.addPilotLogEntryDialogRef.close(newPilotLog);
   }}
 
