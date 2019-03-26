@@ -13,7 +13,14 @@ export class PilotlogService {
   constructor(public httpClient: HttpClient, public authService: AuthService) { }
 
   public getPilotLogData(memberId): Observable<Pilotlog[]> {
-    return this.httpClient.get<Pilotlog[]>(environment.baseUrl + '/pilotlog/' + memberId);
+    const url = environment.baseUrl + '/pilotlog/' + memberId;
+    const headers = this.authService.setAuthHeader();
+    return this.httpClient.get<Pilotlog[]>(
+      url,
+      {
+        headers: headers
+      }
+    );
   }
 
   public addPilotLogEntry(pilotlog:  Pilotlog): Observable<any> {
