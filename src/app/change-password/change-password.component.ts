@@ -64,6 +64,7 @@ export class ChangePasswordComponent implements OnInit {
               }
             );
           }
+          this.authService.logIn(`${this.authService.getMemberID()}`, this.newPasswordFormControl.value);
       },
       (error) => {
         if (error.status === 401) {
