@@ -8,7 +8,7 @@
           <mat-form-field class="input-width">
               <mat-select placeholder="Luftfahrzeug" [formControl]="planeNumberFormControl" id="planeNumber" 
               required>
-              <mat-option *ngFor="let plane of planes" [value]="plane">{{plane.number}}</mat-option>
+              <mat-option *ngFor="let plane of planes" [value]="plane.number">{{plane.number}}</mat-option>
             </mat-select>
           </mat-form-field>
           
@@ -56,6 +56,6 @@
 
   <div mat-dialog-actions>
     <button mat-button (click)="onNoClick()">Abbrechen</button>
-    <button mat-raised-button (click)="savePlaneData()" color="primary">Speichern</button>
+    <button mat-raised-button (click)="savePilotLogData()" color="primary">Speichern</button>
   </div>
 </div>
