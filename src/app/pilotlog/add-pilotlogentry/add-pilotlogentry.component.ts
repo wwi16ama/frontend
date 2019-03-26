@@ -12,7 +12,7 @@ import { PlaneService } from '../../services/plane.service';
 export class AddPilotlogentryComponent implements OnInit {
     planes: Plane[];
 
-    planeNumber: string[];
+    planeNumber: string;
     departureLocation: string;
     departureDay: string;
     departureTime: string;
@@ -71,23 +71,40 @@ export class AddPilotlogentryComponent implements OnInit {
   }
 
   public onNoClick(): void {
-    console.log(this.departureDayFormControl.value + 'T' +  this.departureTimeFormControl.value + ':00.002Z');
     this.addPilotLogEntryDialogRef.close();
   }
 
-  public savePlaneData(): void {
+  public savePilotLogData(): void {
     if (this.checkRequiredFields()) {
       const newPilotLog = {
         planeNumber: this.planeNumberFormControl.value,
         departureLocation: this.departureLocationFormControl.value,
-        departureTime: this.departureDayFormControl.value + 'T' +  this.departureTimeFormControl.value + ':00.002Z',
-        arrivalLocation: this.arrivalLocationFormControl,
-        arrivalLocationFormControl: this.arrivalLocationFormControl,
+        // @ts-ignore
+        departureTime: this.formatDate(new Date(
+          this.departureDayFormControl.value.getYear(),
+          this.departureDayFormControl.value.getMonth(),
+          this.departureDayFormControl.value.getDay(),
+          parseInt(this.departureTimeFormControl.value.slice(0, 3), 10),
+          parseInt(this.departureTimeFormControl.value.slice(3, 5), 10)
+        )),
+        // @ts-ignore
+        arrivalTime: this.formatDate(new Date(
+          this.arrivalDayFormControl.value.getYear(),
+          this.arrivalDayFormControl.value.getMonth(),
+          this.arrivalDayFormControl.value.getDay(),
+          parseInt(this.arrivalTimeFormControl.value.slice(0, 3), 10),
+          parseInt(this.arrivalTimeFormControl.value.slice(3, 5), 10)
+        )),
         flightWithGuests: this.flightWithGuests
       };
-      console.log(this.departureDayFormControl.value);
       this.addPilotLogEntryDialogRef.close(newPilotLog);
   }}
+
+  public formatDate(date: string): string {
+    const parseDate = new Date(date);
+    // console.log(new Date(parseDate.getTime() - parseDate.getTimezoneOffset() * 60000).toISOString());
+    return new Date(parseDate.getTime() - parseDate.getTimezoneOffset() * 60000).toISOString();
+  }
 
   public checkRequiredFields(): boolean {
     if (this.planeNumberFormControl.invalid ) {
