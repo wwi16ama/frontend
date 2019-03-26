@@ -76,7 +76,6 @@ export class AddPilotlogentryComponent implements OnInit {
 
   public savePilotLogData(): void {
     if (this.checkRequiredFields()) {
-      console.log(this.departureDayFormControl.value);
       const newPilotLog = {
         planeNumber: this.planeNumberFormControl.value,
         departureLocation: this.departureLocationFormControl.value,
@@ -96,7 +95,6 @@ export class AddPilotlogentryComponent implements OnInit {
         ).toString()),
         flightWithGuests: this.flightWithGuests
       };
-      console.log(newPilotLog);
       this.addPilotLogEntryDialogRef.close(newPilotLog);
   }}
 
