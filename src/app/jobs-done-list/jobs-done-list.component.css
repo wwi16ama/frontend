@@ -1,5 +1,6 @@
 table {
     width: calc(100% - 16px);
+    height: auto;
     margin: 8px;
   }
   

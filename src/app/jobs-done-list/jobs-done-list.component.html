@@ -4,25 +4,32 @@
   <button disabled class="button-without-functionality" mat-raised-button color="basic">Hinzufügen</button>
   <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
-    <!-- date Column -->
-    <ng-container matColumnDef="date">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Datum </th>
-      <td mat-cell *matCellDef="let element"></td>
+    <!-- startdate Column -->
+    <ng-container matColumnDef="startdate">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Startdatum </th>
+      <td mat-cell *matCellDef="let element">{{element.startdate}}</td>
     </ng-container>
 
+    <!-- enddate Column -->
+    <ng-container matColumnDef="enddate">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Enddatum </th>
+        <td mat-cell *matCellDef="let element">{{element.enddate}}</td>
+      </ng-container>
+
     <!-- start Column -->
-    <ng-container matColumnDef="start">
+    <ng-container matColumnDef="job">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Dienststart </th>
-      <td mat-cell *matCellDef="let element"> </td>
+      <td mat-cell *matCellDef="let element">{{element.job}}</td>
     </ng-container>
 
     <!-- credit Column -->
     <ng-container matColumnDef="credit">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Gutschrift </th>
-      <td mat-cell *matCellDef="let element"> </td>
+      <td mat-cell *matCellDef="let element">{{element.credit}}</td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
+  <mat-paginator [pageSizeOptions]="[5, 10]" showFirstLastButtons></mat-paginator>
   <div>

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { JobsDoneListComponent } from './jobs-done-list.component';
-import { MatTableModule, MatListModule, MatButtonModule, MatDatepickerModule, MatFormFieldModule } from '@angular/material';
+import { MatTableModule, MatListModule, MatButtonModule, MatDatepickerModule, MatFormFieldModule, MatPaginatorModule } from '@angular/material';
 
 @NgModule({
   declarations: [JobsDoneListComponent],
@@ -12,6 +12,7 @@ import { MatTableModule, MatListModule, MatButtonModule, MatDatepickerModule, Ma
     MatButtonModule,
     MatDatepickerModule,
     MatFormFieldModule,
+    MatPaginatorModule,
   ]
 })
 export class JobsDoneListModule { }
