@@ -21,19 +21,18 @@ import { AccountModule } from './account/account.module';
 import { DeletePlaneDialogComponent } from './plane-list/delete-plane-dialog/delete-plane-dialog.component';
 import { ExpensingBillListModule } from './expensing-bill-list/expensing-bill-list.module';
 import { LoginModule } from './login/login.module';
+import { JobsDoneListModule } from './jobs-done-list/jobs-done-list.module';
 
 // Spracheinstellung
 import { LOCALE_ID } from '@angular/core';
 import localeDe from '@angular/common/locales/de';
 import { registerLocaleData } from '@angular/common';
-import { JobsDoneListComponent } from './jobs-done-list/jobs-done-list.component';
 
 registerLocaleData(localeDe);
 
 @NgModule({
   declarations: [
     AppComponent,
-    JobsDoneListComponent
   ],
   imports: [
     BrowserModule,
@@ -46,7 +45,8 @@ registerLocaleData(localeDe);
     CreditListModule,
     AccountModule,
     ExpensingBillListModule,
-    LoginModule
+    LoginModule,
+    JobsDoneListModule
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'ger' },

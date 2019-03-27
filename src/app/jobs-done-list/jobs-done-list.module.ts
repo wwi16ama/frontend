@@ -1,13 +1,17 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatTableModule, MatSortModule } from '@angular/material';
+import { JobsDoneListComponent } from './jobs-done-list.component';
+import { MatTableModule, MatListModule, MatButtonModule, MatDatepickerModule, MatFormFieldModule } from '@angular/material';
 
 @NgModule({
-  declarations: [],
+  declarations: [JobsDoneListComponent],
   imports: [
     CommonModule,
     MatTableModule,
-    MatSortModule
+    MatListModule,
+    MatButtonModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
   ]
 })
 export class JobsDoneListModule { }
