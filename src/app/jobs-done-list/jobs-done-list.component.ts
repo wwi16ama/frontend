@@ -38,7 +38,7 @@ export class JobsDoneListComponent implements OnInit {
 
   member: Member;
 
-  @ViewChild(MatPaginator,) paginator: MatPaginator;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
   displayedColumns: string[];
