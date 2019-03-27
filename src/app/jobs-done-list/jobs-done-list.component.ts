@@ -1,9 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatSort } from '@angular/material';
 import { Member } from './../models/member.model';
 import { MemberService } from './../services/member.service';
 import { AuthService } from './../services/auth.service';
-import { MatTableDataSource, MatPaginator} from '@angular/material';
+import { MatTableDataSource, MatPaginator, MatSort} from '@angular/material';
 
 export interface PeriodicElement {
   startdate: string;
@@ -39,8 +38,8 @@ export class JobsDoneListComponent implements OnInit {
 
   member: Member;
 
-  @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatPaginator,) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
 
   displayedColumns: string[];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
@@ -51,6 +50,7 @@ export class JobsDoneListComponent implements OnInit {
 
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
     this.memberService.getMemberData(this.authService.getMemberID()).subscribe(
       (memberdata: Member) => {
         this.member = memberdata;
