@@ -101,7 +101,6 @@ export class AddPilotlogentryComponent implements OnInit {
 
   public formatDate(date: string): string {
     const parseDate = new Date(date);
-    // console.log(new Date(parseDate.getTime() - parseDate.getTimezoneOffset() * 60000).toISOString());
     return new Date(parseDate.getTime() - parseDate.getTimezoneOffset() * 60000).toISOString();
   }
 
