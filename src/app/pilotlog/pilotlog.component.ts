@@ -106,14 +106,14 @@ export class PilotLogComponent implements OnInit {
               duration: 3000,
             }
           );
-          const newPilotLog = new Pilotlog(
+          const newPilotLog = new Pilotlog (
+            response.body.flightId,
             response.body.planeNumber,
             response.body.departureLocation,
             response.body.departureTime,
             response.body.arrivalLocation,
             response.body.arrivalTime,
-            response.body.flightWithGuests,
-            response.body.flightId
+            response.body.flightWithGuests
           );
           console.log(newPilotLog);
           this.pilotlog.push(newPilotLog);
