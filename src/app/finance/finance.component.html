@@ -1,44 +1,133 @@
-
-<div class="member-list-wrapper">
-  <h1>Kontoverwaltung</h1>
-  <h4>Mitglied auswählen</h4>
-  <table *ngIf="dataSource" mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
-
-    <!-- ID Column -->
-    <ng-container matColumnDef="id">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
-      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-    </ng-container>
-
-    <!-- Vorname Column -->
-    <ng-container matColumnDef="firstName">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Vorname </th>
-      <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
-    </ng-container>
-
-    <!-- Nachname Column -->
-    <ng-container matColumnDef="lastName">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Nachname </th>
-      <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
-    </ng-container>
-
-     <!-- Kontonummer Column -->
-     <ng-container matColumnDef="memberBankingAccountId">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Kontonummer </th>
-      <td mat-cell *matCellDef="let element"> {{element.memberBankingAccountId}} </td>
-    </ng-container>
-
-    
-    <!-- Kontostand Column to do!
-    <ng-container matColumnDef="balance">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Kontostand </th>
-      <td mat-cell *matCellDef="let element"> {{member.balance}} </td>
-    </ng-container>
-    -->
+<div class="divide-wrapper">
+    <div class="member-list-wrapper">
+        <h1>Kontoabbuchungen vornehmen</h1>
+        <h4>Mitglied auswählen</h4>
+        <table *ngIf="dataSource" mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+      
+          <!-- ID Column -->
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+          </ng-container>
+      
+          <!-- Vorname Column -->
+          <ng-container matColumnDef="firstName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Vorname </th>
+            <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
+          </ng-container>
+      
+          <!-- Nachname Column -->
+          <ng-container matColumnDef="lastName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Nachname </th>
+            <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+          </ng-container>
+      
+           <!-- Kontonummer Column -->
+           <ng-container matColumnDef="memberBankingAccountId">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Kontonummer </th>
+            <td mat-cell *matCellDef="let element"> {{element.memberBankingAccountId}} </td>
+          </ng-container>
+      
+          
+          <!-- Kontostand Column to do!
+          <ng-container matColumnDef="balance">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header> Kontostand </th>
+            <td mat-cell *matCellDef="let element"> {{member.balance}} </td>
+          </ng-container>
+          -->
+        
+          
+      
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr class="pointer" mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openFinanceDialog()"></tr>
+        </table>
+      </div>
+  <div class="member-list-wrapper">
+    <h1>Kontoverwaltung</h1>
+    <h4>Mitglied auswählen</h4>
+    <table *ngIf="dataSource" mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
   
+      <!-- ID Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      </ng-container>
+  
+      <!-- Vorname Column -->
+      <ng-container matColumnDef="firstName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Vorname </th>
+        <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
+      </ng-container>
+  
+      <!-- Nachname Column -->
+      <ng-container matColumnDef="lastName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nachname </th>
+        <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+      </ng-container>
+  
+       <!-- Kontonummer Column -->
+       <ng-container matColumnDef="memberBankingAccountId">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Kontonummer </th>
+        <td mat-cell *matCellDef="let element"> {{element.memberBankingAccountId}} </td>
+      </ng-container>
+  
+      
+      <!-- Kontostand Column to do!
+      <ng-container matColumnDef="balance">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Kontostand </th>
+        <td mat-cell *matCellDef="let element"> {{member.balance}} </td>
+      </ng-container>
+      -->
     
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr class="pointer" mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openFinanceDialog()"></tr>
-  </table>
+      
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr class="pointer" mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openFinanceDialog()"></tr>
+    </table>
+  </div>
 </div>
+<div class="divide-wrapper">
+  <div class="member-list-wrapper">
+    <h1>Vereinskonto</h1>
+    <h4>Buchung auswählen</h4>
+    <table *ngIf="dataSource" mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+  
+      <!-- ID Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      </ng-container>
+  
+      <!-- Vorname Column -->
+      <ng-container matColumnDef="firstName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Vorname </th>
+        <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
+      </ng-container>
+  
+      <!-- Nachname Column -->
+      <ng-container matColumnDef="lastName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nachname </th>
+        <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+      </ng-container>
+  
+       <!-- Kontonummer Column -->
+       <ng-container matColumnDef="memberBankingAccountId">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Kontonummer </th>
+        <td mat-cell *matCellDef="let element"> {{element.memberBankingAccountId}} </td>
+      </ng-container>
+  
+      
+      <!-- Kontostand Column to do!
+      <ng-container matColumnDef="balance">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Kontostand </th>
+        <td mat-cell *matCellDef="let element"> {{member.balance}} </td>
+      </ng-container>
+      -->
+    
+      
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr class="pointer" mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openFinanceDialog()"></tr>
+    </table>
+  </div>
+  </div>

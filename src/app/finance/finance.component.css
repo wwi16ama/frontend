@@ -1,6 +1,11 @@
 .member-list-wrapper {
     padding: 0 10px;
   }
+
+.divide-wrapper {
+  float: left;
+  width:50%;
+}
   
   .title-text {
     font-weight: 400;
