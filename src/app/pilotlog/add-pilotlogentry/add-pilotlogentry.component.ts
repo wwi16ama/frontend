@@ -93,6 +93,7 @@ export class AddPilotlogentryComponent implements OnInit {
           parseInt(this.arrivalTimeFormControl.value.slice(0, 2), 10),
           parseInt(this.arrivalTimeFormControl.value.slice(3, 5), 10)
         ).toString()),
+        arrivalLocation: this.arrivalLocationFormControl.value,
         flightWithGuests: this.flightWithGuests
       };
       this.addPilotLogEntryDialogRef.close(newPilotLog);
