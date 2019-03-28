@@ -115,8 +115,8 @@ export class PilotLogComponent implements OnInit {
             response.body.arrivalTime,
             response.body.flightWithGuests
           );
-          console.log(newPilotLog);
-          this.pilotlog.push(newPilotLog);
+          this.dataSource.data.push(newPilotLog);
+          this.addFlightDuration();
           this.dataSource.sort = this.sort;
         }
       },
