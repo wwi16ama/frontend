@@ -24,10 +24,13 @@ import { LoginModule } from './login/login.module';
 import { PilotLogModule } from './pilotlog/pilotlog.module';
 import { FinanceModule } from './finance/finance.module';
 
+
 // Spracheinstellung
 import { LOCALE_ID } from '@angular/core';
 import localeDe from '@angular/common/locales/de';
 import { registerLocaleData } from '@angular/common';
+import { EditBalanceModule } from './finance/edit-balance/edit-balance.module';
+import { EditBalanceComponent } from './finance/edit-balance/edit-balance.component';
 
 registerLocaleData(localeDe);
 
@@ -48,7 +51,8 @@ registerLocaleData(localeDe);
     ExpensingBillListModule,
     LoginModule,
     PilotLogModule,
-    FinanceModule
+    FinanceModule,
+    EditBalanceModule
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'ger' },
@@ -62,7 +66,8 @@ registerLocaleData(localeDe);
     EditPlaneDialogComponent,
     DeleteMemberDialogComponent,
     DeletePlaneDialogComponent,
-    EditMemberProfileDialogComponent
+    EditMemberProfileDialogComponent,
+    EditBalanceComponent
   ]
 })
 export class AppModule {

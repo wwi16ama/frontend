@@ -1,0 +1,19 @@
+<div class="dialog-wrapper">
+  <h1 mat-dialog-title>Kontostand von {{member.name}} bearbeiten.</h1>
+  <div mat-dialog-content>
+      <mat-form-field class="input-width">
+          <input matInput placeholder="Betrag"
+              [formControl]="numberFormControl" required>
+          <mat-error *ngIf="numberFormControl.hasError('required')">Der Betrag ist erforderlich</mat-error>
+      </mat-form-field>
+      <mat-form-field class="input-width">
+          <input matInput placeholder="Typ"
+              [formControl]="nameFormControl" required>
+          <mat-error *ngIf="nameFormControl.hasError('required')">Der Typ/Betreff ist erforderlich</mat-error>
+      </mat-form-field>
+  </div>
+  <div mat-dialog-actions>
+      <button mat-button (click)="onNoClick()">Abbrechen</button>
+      <button mat-raised-button (click)="saveBalanceData()" color="primary">Speichern</button>
+  </div>
+</div>
