@@ -117,6 +117,7 @@ export class PilotLogComponent implements OnInit {
           );
           console.log(newPilotLog);
           this.pilotlog.push(newPilotLog);
+          this.dataSource.sort = this.sort;
         }
       },
       error => {
