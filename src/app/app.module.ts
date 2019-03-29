@@ -50,7 +50,7 @@ registerLocaleData(localeDe);
     AccountModule,
     ExpensingBillListModule,
     LoginModule,
-    AddPilotlogentryModule
+    AddPilotlogentryModule,
     PlaneLogModule,
     PilotLogModule,
     ChangePasswordModule

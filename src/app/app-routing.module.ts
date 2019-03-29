@@ -26,9 +26,9 @@ export const appRoutes: Routes = [
   { path: 'account', component: AccountComponent, canActivate: [AuthGuard] },
   { path: 'expensingbilllist', component: ExpensingBillListComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
-  { path: 'pilotlog', component: PilotLogComponent, canActivate: [AuthGuard] }
-  { path: 'planeLog/:id', component: PlaneLogComponent }
-  { path: 'change-password', component: ChangePasswordComponent, canActivate: [AuthGuard] },
+  { path: 'pilotlog', component: PilotLogComponent, canActivate: [AuthGuard] },
+  { path: 'planeLog/:id', component: PlaneLogComponent },
+  { path: 'change-password', component: ChangePasswordComponent, canActivate: [AuthGuard] }
 ];
 
 
