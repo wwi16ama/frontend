@@ -1,0 +1,72 @@
+<div class="dialog-wrapper">
+  <h2 mat-dialog-title>Logbucheintrag hinzufügen</h2>
+  <mat-dialog-content>
+    <form>
+        <div class="tab-content">
+          <div id="pilotlogentry-header">Logbuchdaten</div>
+          
+          <mat-form-field class="input-width">
+              <mat-select placeholder="Luftfahrzeug" [formControl]="planeNumberFormControl" id="planeNumber" 
+              required>
+              <mat-option *ngFor="let plane of planes" [value]="plane.number">{{plane.number}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+          
+          <mat-form-field class="input-width">
+            <input type="text" matInput placeholder="Abflugsort" [formControl]="departureLocationFormControl" 
+            id="departureLocation" maxlength="35" pattern="[a-zA-Z_äÄöÖüÜß0-9/. \-]+" required>
+            <mat-error *ngIf="departureLocationFormControl.hasError('pattern')">Kein korrekter Abflugsort</mat-error>
+            <mat-error *ngIf="departureLocationFormControl.hasError('required')">Der Abflugsort muss angegeben werden</mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="datepicker-width">
+            <input matInput [matDatepicker]="departureDay" placeholder="Abflugtag" 
+            [formControl]="departureDayFormControl" required>
+            <mat-datepicker-toggle matSuffix [for]="departureDay"></mat-datepicker-toggle>
+            <mat-datepicker #departureDay></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field class="half-width">
+            <input type="text" matInput placeholder="Abflugszeit" [formControl]="departureTimeFormControl" 
+            pattern="^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$" maxlength="5" required>
+            <mat-error *ngIf="departureTimeFormControl.hasError('pattern')">
+              Die Abflugszeit entspricht nicht dem Format. Beispiel: '12:50'.</mat-error>
+            <mat-error *ngIf="departureTimeFormControl.hasError('required')">Die Abflugszeit ist erforderlich</mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="input-width">
+            <input type="text" matInput placeholder="Landungsort" [formControl]="arrivalLocationFormControl" 
+            maxlength="35" pattern="[a-zA-Z_äÄöÖüÜß0-9/. \-]+" required>
+            <mat-error *ngIf="arrivalLocationFormControl.hasError('pattern')">Kein korrekter Landungsort</mat-error>
+            <mat-error *ngIf="arrivalLocationFormControl.hasError('required')">Der Landungsort muss angegeben werden</mat-error>
+          
+          </mat-form-field>
+
+          <mat-form-field class="datepicker-width">
+            <input matInput [matDatepicker]="arrivalDay" placeholder="Landungstag" 
+            [formControl]="arrivalDayFormControl" required>
+            <mat-datepicker-toggle matSuffix [for]="arrivalDay"></mat-datepicker-toggle>
+            <mat-datepicker #arrivalDay></mat-datepicker>
+          </mat-form-field>
+
+          <mat-form-field class="half-width">
+            <input type="text" matInput placeholder="Landungszeit" [formControl]="arrivalTimeFormControl"
+            pattern="^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$" maxlength="5" required>
+            <mat-error *ngIf="departureTimeFormControl.hasError('pattern')">
+              Die Ankunfszeit entspricht nicht dem Format. Beispiel: '16:50'.</mat-error>
+            <mat-error *ngIf="departureTimeFormControl.hasError('required')">Die Ankunfszeit ist erforderlich</mat-error>
+          </mat-form-field>
+         
+          <mat-checkbox labelPosition="after" [(ngModel)]="flightWithGuests" name="flightWithGuests" >
+            <span>Gastflug</span>
+          </mat-checkbox>
+          
+        </div>
+    </form>
+  </mat-dialog-content>
+
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Abbrechen</button>
+    <button mat-raised-button (click)="savePilotLogData()" color="primary">Speichern</button>
+  </div>
+</div>

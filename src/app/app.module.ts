@@ -23,6 +23,8 @@ import { ExpensingBillListModule } from './expensing-bill-list/expensing-bill-li
 import { LoginModule } from './login/login.module';
 import { PlaneLogModule } from './plane-log/plane-log.module';
 import { PilotLogModule } from './pilotlog/pilotlog.module';
+import { AddPilotlogentryModule } from './pilotlog/add-pilotlogentry/add-pilotlogentry.module';
+import { AddPilotlogentryComponent } from './pilotlog/add-pilotlogentry/add-pilotlogentry.component';
 
 // Spracheinstellung
 import { LOCALE_ID } from '@angular/core';
@@ -48,6 +50,7 @@ registerLocaleData(localeDe);
     AccountModule,
     ExpensingBillListModule,
     LoginModule,
+    AddPilotlogentryModule,
     PlaneLogModule,
     PilotLogModule,
     ChangePasswordModule
@@ -64,7 +67,8 @@ registerLocaleData(localeDe);
     EditPlaneDialogComponent,
     DeleteMemberDialogComponent,
     DeletePlaneDialogComponent,
-    EditMemberProfileDialogComponent
+    EditMemberProfileDialogComponent,
+    AddPilotlogentryComponent
   ]
 })
 export class AppModule {
