@@ -20,7 +20,8 @@ export enum Type {
   GEBÜHRFLUGZEUG = 'Gebühren für die Flugzeugnutzung',
   GUTSCHRIFTAMT = 'Gutschrift für ein Amt',
   GUTSCHRIFTLEISTUNG = 'Gutschrift für eine Leistung',
-  EINZAHLUNG = 'Einzahlung auf das Kundenkonto'
+  EINZAHLUNG = 'Einzahlung auf das Kundenkonto',
+  AUSZUAHLUNG = 'Auszahlung von dem Kundenkonto'
 }
 
 export namespace Type {
@@ -31,6 +32,7 @@ export namespace Type {
             case Type.GUTSCHRIFTAMT: return 'Gutschrift für ein Amt';
             case Type.GUTSCHRIFTLEISTUNG: return 'Gutschrift für eine Leistung';
             case Type.EINZAHLUNG: return 'Einzahlung auf das Kundenkonto';
+            case Type.AUSZUAHLUNG: return 'Auszahlung von dem Kundenkonto';
         }
     }
 }
