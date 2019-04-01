@@ -30,7 +30,7 @@ export class PilotLogComponent implements OnInit {
     public snackBar: MatSnackBar
   ) {
     this.displayedColumns = ['flightId', 'planeNumber', 'departureLocation', 'departureTime',
-      'arrivalLocation', 'arrivalTime', 'flightDuration', 'flightWithGuests'];
+      'arrivalLocation', 'arrivalTime', 'flightDuration', 'flightWithGuests', 'useDuration', 'flightPrice'];
   }
 
   ngOnInit() {
