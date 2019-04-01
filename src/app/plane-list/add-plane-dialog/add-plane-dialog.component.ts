@@ -27,12 +27,16 @@ export class AddPlaneDialogComponent {
   position: string[];
   submitted: boolean;
   possibleAuthorizations: string[];
+  pricePerBookedHour: number;
+  pricePerFlightMinute: number;
 
   numberFormControl: FormControl;
   nameFormControl: FormControl;
   neededAuthorizationFormControl: FormControl;
   positionFormControl: FormControl;
   matcher: ErrorStateMatcher;
+  pricePerFlightMinuteFormControl: FormControl;
+  pricePerBookedHourFormControl: FormControl;
 
   constructor(public addPlaneDialogRef: MatDialogRef<AddPlaneDialogComponent>, public snackBar: MatSnackBar) {
     this.number = '';
@@ -40,6 +44,14 @@ export class AddPlaneDialogComponent {
     this.possibleAuthorizations = ['PPL-A', 'PPL-B', 'BZF-I', 'BZF-II'];
     this.position = ['Halle 1', 'Halle 2'];
     this.submitted = false;
+
+    this.pricePerBookedHourFormControl = new FormControl ('', [
+      Validators.required,
+    ]);
+
+    this.pricePerFlightMinuteFormControl = new FormControl ('', [
+      Validators.required,
+    ]);
 
     this.numberFormControl = new FormControl('', [
       Validators.required,
@@ -76,7 +88,9 @@ export class AddPlaneDialogComponent {
       number: this.numberFormControl.value,
       name: this.nameFormControl.value,
       position: this.positionFormControl.value,
-      neededAuthorization: this.neededAuthorization
+      neededAuthorization: this.neededAuthorization,
+      pricePerBookedHour: this.pricePerBookedHourFormControl.value,
+      pricePerFlightMinute: this.pricePerFlightMinuteFormControl.value
     };
     this.addPlaneDialogRef.close(newPlane);
   }}
@@ -96,6 +110,20 @@ export class AddPlaneDialogComponent {
         }
       );
       return false;
+    } else if (this.pricePerBookedHourFormControl.invalid) {
+        this.snackBar.open('Keine korrekte Nutzungsgebühr.', 'Schließen',
+          {
+            duration: 3000,
+          }
+        );
+        return false;
+    } else if (this.pricePerFlightMinuteFormControl.invalid) {
+          this.snackBar.open('Keine korrekte Fluggebühr.', 'Schließen',
+            {
+              duration: 3000,
+            }
+          );
+          return false;
     } else if (this.neededAuthorization === undefined) {
       this.snackBar.open('Keine Lizenz angegeben.', 'Schließen',
         {

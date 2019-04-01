@@ -2,7 +2,7 @@
   <h1 class="title-text">Pilotenlogbuch</h1>
   <p *ngIf="member != null">Mitglied: {{member.firstName}} {{member.lastName}}</p>
   <div>
-    <button disabled class="button-without-functionality" mat-raised-button  color="basic">Hinzufügen</button>
+    <button mat-raised-button  color="primary" (click)=" openAddPilotLogEntryDialog()">Hinzufügen</button>
   </div>
   
   <table class="mat-elevation-z8" mat-table [dataSource]="dataSource" matSortActive="flightId"

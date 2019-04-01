@@ -3,16 +3,8 @@ import { Validators } from '@angular/forms';
 import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
 import { MatDialogRef, MatSnackBar } from '@angular/material';
 import { Member, Office, OfficeEnum, Authorization, AuthorizationEnum, Address } from './../../models/member.model';
-import { ErrorStateMatcher } from '@angular/material/core';
+import { PasswordErrorStateMatcher } from './../../error-state-matcher/password-error-state-matcher/password-error-state-matcher';
 
-export class PasswordErrorStateMatcher implements ErrorStateMatcher {
-  isErrorState(control: FormControl | null): boolean {
-    const invalidCtrl = !!(control && control.invalid && control.parent.dirty);
-    const invalidParent = !!(control && control.parent && control.parent.invalid && control.parent.dirty);
-
-    return (invalidCtrl || invalidParent);
-  }
-}
 @Component({
   selector: 'app-add-user-form',
   templateUrl: './add-user-form.component.html',
@@ -222,7 +214,7 @@ export class AddUserFormComponent {
     }, { validator: this.checkPasswords });
   }
 
-  public checkPasswords(group: FormGroup) {
+  public checkPasswords(group: FormGroup): any {
     const password = group.controls.password.value;
     const passwordRepeat = group.controls.passwordRepeat.value;
 
