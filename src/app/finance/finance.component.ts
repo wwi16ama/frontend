@@ -74,20 +74,5 @@ export class FinanceComponent implements OnInit {
   saveBalance(result: any): any {
     throw new Error('Method not implemented.');
   }
-
- /* // tslint:disable-next-line:no-shadowed-variable
-  public authorization(OfficeEnum: any) {
-    console.log(this.member.offices);
-      switch (this.member.offices) {
-        case OfficeEnum.VORSTANDSVORSITZENDER: return this.authorized = false;
-        case OfficeEnum.SYSTEMADMINISTRATOR: return this.authorized = false;
-        case OfficeEnum.KASSIERER: return this.authorized = true;
-        case OfficeEnum.FLUGWART: return this.authorized = false;
-        case OfficeEnum.IMBETRIEBSKONTROLLTURMARBEITEND: return this.authorized = false;
-
-      }
-
-}*/
-
   }
 
