@@ -12,7 +12,7 @@ import { AddPlaneDialogComponent } from './add-plane-dialog/add-plane-dialog.com
 @Component({
   selector: 'app-plane-list',
   templateUrl: './plane-list.component.html',
-  styleUrls: ['./plane-list.component.css']
+  styleUrls: ['./plane-list.component.scss']
 })
 export class PlaneListComponent implements OnInit {
 
