@@ -158,6 +158,7 @@ export class PlaneListComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result != null) {
+        console.log(result);
         this.savePlaneData(result);
       }
     });
@@ -205,7 +206,6 @@ export class PlaneListComponent implements OnInit {
   }
   public navigateToPlaneLog(planeId): void {
     this.router.navigate(['../planeLog', planeId]);
-    // console.log('Plane ID: ', planeId);
   }
 }
 

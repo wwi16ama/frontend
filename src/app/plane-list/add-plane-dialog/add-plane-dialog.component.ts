@@ -3,6 +3,7 @@ import { Validators } from '@angular/forms';
 import { FormControl, FormGroupDirective, NgForm } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material/core';
 import { MatDialogRef, MatSnackBar } from '@angular/material';
+import { Plane, neededAuthorizationEnum } from './../../models/plane.model';
 
 
 /** Error when invalid control is dirty, touched, or submitted. */
@@ -46,11 +47,23 @@ export class AddPlaneDialogComponent {
     this.position = ['Halle 1', 'Halle 2'];
     this.submitted = false;
 
-    this.pricePerBookedHourFormControl = new FormControl ('', [
+    this.initializeFormControls();
+  }
+
+  public onNoClick(): void {
+    this.addPlaneDialogRef.close();
+  }
+
+  public onSubmit(): void {
+    this.submitted = true;
+  }
+
+  public initializeFormControls(): void {
+    this.pricePerBookedHourFormControl = new FormControl('', [
       Validators.required,
     ]);
 
-    this.pricePerFlightMinuteFormControl = new FormControl ('', [
+    this.pricePerFlightMinuteFormControl = new FormControl('', [
       Validators.required,
     ]);
 
@@ -74,26 +87,21 @@ export class AddPlaneDialogComponent {
 
     this.matcher = new MyErrorStateMatcher();
   }
-  public onNoClick(): void {
-    this.addPlaneDialogRef.close();
-  }
-  public onSubmit(): void {
-    this.submitted = true;
-  }
 
   public savePlaneData(): void {
     if (this.checkRequiredFields()) {
-    const newPlane = {
-      number: this.numberFormControl.value,
-      name: this.nameFormControl.value,
-      position: this.positionFormControl.value,
-      neededAuthorization: this.neededAuthorization,
-      pricePerBookedHour: this.pricePerBookedHourFormControl.value,
-      pricePerFlightMinute: this.pricePerFlightMinuteFormControl.value,
-      pictureUrl: this.pictureUrlFormControl.value
-    };
-    this.addPlaneDialogRef.close(newPlane);
-  }}
+      const newPlane = new Plane(
+        this.numberFormControl.value,
+        this.nameFormControl.value,
+        this.positionFormControl.value,
+        this.pictureUrlFormControl.value,
+        neededAuthorizationEnum[neededAuthorizationEnum.getEnumString(this.neededAuthorization)],
+        this.pricePerBookedHourFormControl.value,
+        this.pricePerFlightMinuteFormControl.value
+        );
+      this.addPlaneDialogRef.close(newPlane);
+    }
+  }
 
   public checkRequiredFields(): boolean {
     if (this.numberFormControl.invalid) {
@@ -111,19 +119,19 @@ export class AddPlaneDialogComponent {
       );
       return false;
     } else if (this.pricePerBookedHourFormControl.invalid) {
-        this.snackBar.open('Keine korrekte Nutzungsgebühr.', 'Schließen',
-          {
-            duration: 3000,
-          }
-        );
-        return false;
+      this.snackBar.open('Keine korrekte Nutzungsgebühr.', 'Schließen',
+        {
+          duration: 3000,
+        }
+      );
+      return false;
     } else if (this.pricePerFlightMinuteFormControl.invalid) {
-          this.snackBar.open('Keine korrekte Fluggebühr.', 'Schließen',
-            {
-              duration: 3000,
-            }
-          );
-          return false;
+      this.snackBar.open('Keine korrekte Fluggebühr.', 'Schließen',
+        {
+          duration: 3000,
+        }
+      );
+      return false;
     } else if (this.neededAuthorization === undefined) {
       this.snackBar.open('Keine Lizenz angegeben.', 'Schließen',
         {
