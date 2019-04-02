@@ -14,6 +14,7 @@ export class EditPlaneDialogComponent {
   numberFormControl: FormControl;
   nameFormControl: FormControl;
   positionFormControl: FormControl;
+  pictureUrlFormControl: FormControl;
 
 
   constructor(
@@ -33,6 +34,7 @@ export class EditPlaneDialogComponent {
       this.plane.number = this.numberFormControl.value;
       this.plane.name = this.nameFormControl.value;
       this.plane.position = this.positionFormControl.value;
+      this.plane.pictureUrl = this.pictureUrlFormControl.value;
       this.editPlaneDialogRef.close(this.plane);
     }
   }
@@ -49,6 +51,8 @@ export class EditPlaneDialogComponent {
     this.positionFormControl = new FormControl(this.plane.position, [
       Validators.required
     ]);
+
+    this.pictureUrlFormControl = new FormControl(this.plane.pictureUrl, []);
   }
 
   public checkRequiredFields(): boolean {

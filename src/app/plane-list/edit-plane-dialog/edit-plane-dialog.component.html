@@ -16,6 +16,9 @@
             </mat-select>
             <mat-error *ngIf="positionFormControl.hasError('required')">Die Position ist erforderlich</mat-error>
         </mat-form-field>
+        <mat-form-field class="input-width">
+            <input matInput placeholder="Bildlink" [formControl]="pictureUrlFormControl">
+        </mat-form-field>
     </div>
     <div mat-dialog-actions>
         <button mat-button (click)="onNoClick()">Abbrechen</button>

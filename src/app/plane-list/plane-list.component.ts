@@ -48,9 +48,9 @@ export class PlaneListComponent implements OnInit {
       disableClose: true,
       data: JSON.parse(JSON.stringify(plane))
     });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result != null) {
-        this.savePlane(result);
+    dialogRef.afterClosed().subscribe(changedPlane => {
+      if (changedPlane != null) {
+        this.savePlane(changedPlane);
       }
     });
   }
