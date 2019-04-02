@@ -78,10 +78,6 @@ export class AddPlaneDialogComponent {
     this.submitted = true;
   }
 
-  public onFileChanged(event): void {
-    const file = event.target.files[0];
-  }
-
   public savePlaneData(): void {
     if (this.checkRequiredFields()) {
     const newPlane = {
