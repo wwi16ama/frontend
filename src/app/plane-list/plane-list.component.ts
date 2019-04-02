@@ -158,7 +158,6 @@ export class PlaneListComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result != null) {
-        console.log(result);
         this.savePlaneData(result);
       }
     });
@@ -178,10 +177,10 @@ export class PlaneListComponent implements OnInit {
             response.body.number,
             response.body.name,
             response.body.position,
+            response.body.pictureUrl,
             response.body.neededAuthorization,
             response.body.pricePerBookedHour,
-            response.body.pricePerFlightMinute,
-            response.body.id
+            response.body.pricePerFlightMinute
           );
           newPlane.neededAuthorization = neededAuthorizationEnum[newPlane.neededAuthorization];
           this.planes.push(newPlane);
