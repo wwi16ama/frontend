@@ -10,7 +10,7 @@
       </mat-card-header>
 
       <img *ngIf="plane.pictureUrl" mat-card-image [src]="plane.pictureUrl" alt="Photo of {{plane.name}}">
-      <div *ngIf="plane.pictureUrl === undefined || plane.pictureUrl === null" mat-card-image class="dummy-plane-picture">
+      <div *ngIf="plane.pictureUrl === undefined || plane.pictureUrl === null || plane.pictureUrl === ''" mat-card-image class="dummy-plane-picture">
         <div class="icon-wrapper">
             <mat-icon class="plane-icon">airplanemode_active</mat-icon>
         </div>
