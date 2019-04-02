@@ -37,6 +37,7 @@ export class AddPlaneDialogComponent {
   matcher: ErrorStateMatcher;
   pricePerFlightMinuteFormControl: FormControl;
   pricePerBookedHourFormControl: FormControl;
+  pictureUrlFormControl: FormControl;
 
   constructor(public addPlaneDialogRef: MatDialogRef<AddPlaneDialogComponent>, public snackBar: MatSnackBar) {
     this.number = '';
@@ -69,6 +70,8 @@ export class AddPlaneDialogComponent {
       Validators.required,
     ]);
 
+    this.pictureUrlFormControl = new FormControl('', []);
+
     this.matcher = new MyErrorStateMatcher();
   }
   public onNoClick(): void {
@@ -86,7 +89,8 @@ export class AddPlaneDialogComponent {
       position: this.positionFormControl.value,
       neededAuthorization: this.neededAuthorization,
       pricePerBookedHour: this.pricePerBookedHourFormControl.value,
-      pricePerFlightMinute: this.pricePerFlightMinuteFormControl.value
+      pricePerFlightMinute: this.pricePerFlightMinuteFormControl.value,
+      pictureUrl: this.pictureUrlFormControl.value
     };
     this.addPlaneDialogRef.close(newPlane);
   }}
