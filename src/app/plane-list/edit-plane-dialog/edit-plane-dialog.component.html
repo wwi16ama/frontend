@@ -2,22 +2,20 @@
     <h1 mat-dialog-title>{{plane.name}} bearbeiten.</h1>
     <div mat-dialog-content>
         <mat-form-field class="input-width">
-            <input matInput placeholder="Kennung"
-                [formControl]="numberFormControl" required>
+            <input matInput placeholder="Kennung" [formControl]="numberFormControl" required>
             <mat-error *ngIf="numberFormControl.hasError('required')">Die Kennung ist erforderlich</mat-error>
         </mat-form-field>
         <mat-form-field class="input-width">
-            <input matInput placeholder="Name"
-                [formControl]="nameFormControl" required>
+            <input matInput placeholder="Name" [formControl]="nameFormControl" required>
             <mat-error *ngIf="nameFormControl.hasError('required')">Der Name ist erforderlich</mat-error>
         </mat-form-field>
         <mat-form-field class="input-width">
-                <mat-select placeholder="Position" [formControl]="positionFormControl" required>
-                  <mat-option value="Halle 1">Halle 1</mat-option>
-                  <mat-option value="Halle 2">Halle 2</mat-option>
-                </mat-select>
-                <mat-error *ngIf="positionFormControl.hasError('required')">Die Position ist erforderlich</mat-error>
-              </mat-form-field>
+            <mat-select placeholder="Position" [formControl]="positionFormControl" required>
+                <mat-option value="Halle 1">Halle 1</mat-option>
+                <mat-option value="Halle 2">Halle 2</mat-option>
+            </mat-select>
+            <mat-error *ngIf="positionFormControl.hasError('required')">Die Position ist erforderlich</mat-error>
+        </mat-form-field>
     </div>
     <div mat-dialog-actions>
         <button mat-button (click)="onNoClick()">Abbrechen</button>
