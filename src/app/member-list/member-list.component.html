@@ -23,7 +23,9 @@
     <!-- Aufwand Column -->
     <ng-container matColumnDef="sumAufwand">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Summe der Aufwände </th>
-      <td mat-cell *matCellDef="let element" (click)="navigateTo(element.id, 'A')"> Test::: {{getAufwand(element.id)}} </td>
+      <td mat-cell *matCellDef="let element" (click)="navigateTo(element.id, 'A')">
+        <a onmouseover="style='text-decoration:underline'" onmouseout="style='text-decoration:none'">Summe: {{getAufwand(element.id)}} </a>
+      </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

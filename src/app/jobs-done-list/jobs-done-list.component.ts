@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Member } from './../models/member.model';
 import { MemberService } from './../services/member.service';
 import { AuthService } from './../services/auth.service';
@@ -35,7 +36,8 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./jobs-done-list.component.css']
 })
 export class JobsDoneListComponent implements OnInit {
-
+  private sub: any;
+  id: number;
   member: Member;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -44,8 +46,10 @@ export class JobsDoneListComponent implements OnInit {
   displayedColumns: string[];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
 
-  constructor(public authService: AuthService, public memberService: MemberService,) { 
-    
+  constructor(public authService: AuthService, public memberService: MemberService, private route: ActivatedRoute) { 
+    this.sub = this.route.params.subscribe(params => {
+    this.id = +params['id']; // (+) converts string 'id' to a number
+    });
     this.displayedColumns = ['startdate', 'enddate', 'job', 'credit']; }
 
   ngOnInit() {
