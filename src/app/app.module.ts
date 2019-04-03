@@ -57,8 +57,8 @@ registerLocaleData(localeDe);
     AddPilotlogentryModule,
     PlaneLogModule,
     PilotLogModule,
-    ChangePasswordModule
-    FinanceModule
+    ChangePasswordModule,
+    FinanceModule,
     EditBalanceModule
   ],
   providers: [
@@ -73,7 +73,7 @@ registerLocaleData(localeDe);
     EditPlaneDialogComponent,
     DeleteMemberDialogComponent,
     DeletePlaneDialogComponent,
-    AddPilotlogentryComponent
+    AddPilotlogentryComponent,
     EditMemberProfileDialogComponent,
     EditBalanceComponent
   ]

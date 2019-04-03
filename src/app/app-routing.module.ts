@@ -29,10 +29,9 @@ export const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'pilotlog', component: PilotLogComponent, canActivate: [AuthGuard] },
   { path: 'planeLog/:id', component: PlaneLogComponent },
-  { path: 'change-password', component: ChangePasswordComponent, canActivate: [AuthGuard] }
-  { path: 'finance', component: FinanceComponent }
+  { path: 'change-password', component: ChangePasswordComponent, canActivate: [AuthGuard] },
+  { path: 'finance', component: FinanceComponent, canActivate: [AuthGuard] },
 ];
-
 
 @NgModule({
   imports: [
