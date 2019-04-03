@@ -25,6 +25,17 @@ export class AccountService {
     );
   }
 
+  public getAccountVereinskonto(): Observable<Account> {
+    const url = environment.baseUrl + '/accounts/vereinskonto';
+    const headers = this.authService.setAuthHeader();
+    return this.httpClient.get<Account>(
+      url,
+      {
+        headers: headers
+      }
+    );
+  }
+
   public getAccountData(memberBankingAccountId: number): Observable<Account> {
     const url = environment.baseUrl + '/accounts/' + memberBankingAccountId;
     const headers = this.authService.setAuthHeader();
