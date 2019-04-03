@@ -28,7 +28,7 @@ export class MemberListComponent implements OnInit {
 
   constructor(public router: Router, public addUserDialog: MatDialog, public snackBar: MatSnackBar, public activatedRoute: ActivatedRoute,
     public memberService: MemberService) {
-    this.displayedColumns = ['id', 'firstName', 'lastName'];
+    this.displayedColumns = ['id', 'firstName', 'lastName', 'sumAufwand'];
   }
 
   ngOnInit() {
@@ -40,8 +40,23 @@ export class MemberListComponent implements OnInit {
     );
   }
 
-  public navigateTo(rowId): void {
+  public navigateTo(rowId, kennzeichen = ''): void {
     this.router.navigate(['/member', rowId]);
+    if (kennzeichen != '') {
+      // Zur Aufwandsliste navigieren...
+      
+    }
+    else {
+      this.router.navigate(['/member', rowId]);
+    }
+  }
+  
+  public navigateToAufwand(memberID): void {
+
+  }
+
+  public getAufwand(MemberID): string {
+    return MemberID
   }
 
   openAddUserDialog(): void {
