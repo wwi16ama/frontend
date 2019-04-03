@@ -1,8 +1,7 @@
-import { Component, Inject, OnInit } from '@angular/core';
-import { Member } from './../../models/member.model';
-import { Account, Transaction } from './../../models/account.model';
+import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import { FormControl, Validators } from '@angular/forms';
+import { ListMember } from 'src/app/models/list-member.model';
 
 @Component({
   selector: 'app-edit-balance',
@@ -11,51 +10,42 @@ import { FormControl, Validators } from '@angular/forms';
 })
 export class EditBalanceComponent {
 
-  numberFormControl: FormControl;
-  nameFormControl: FormControl;
-  positionFormControl: FormControl;
+  amountFormControl: FormControl;
+  typeFormControl: FormControl;
 
   constructor(
     public editBalanceDialogRef: MatDialogRef<EditBalanceComponent>, public snackBar: MatSnackBar,
-    @Inject(MAT_DIALOG_DATA) public member: Member, public account: Account, public transaction: Transaction
+    @Inject(MAT_DIALOG_DATA) public Listmember: ListMember
   ) {
     this.initializeFormControls();
+    console.log(Listmember.id);
   }
 
+  public initializeFormControls(): void {
+  }
+  public saveBalanceData(): void {
+    console.log(this.amountFormControl.value);
+    /* const newTransaction = {
+        amount: this.amountFormControl.value,
+        type: this.typeFormControl.value
+      };
+      console.log(newTransaction);*/
+    }
 
   public onNoClick(): void {
     this.editBalanceDialogRef.close();
   }
 
-  public saveBalanceData(): void {
-    if (this.checkRequiredFields()) {
-      this.account.balance = this.numberFormControl.value;
-      this.transaction.type = this.nameFormControl.value;
-
-      this.editBalanceDialogRef.close(this.account);
-    }
-  }
-
-  public initializeFormControls(): void {
-    this.numberFormControl = new FormControl(this.account.balance, [
-      Validators.required
-    ]);
-
-    this.nameFormControl = new FormControl(this.transaction.type, [
-      Validators.required
-    ]);
-
-  }
 
   public checkRequiredFields(): boolean {
-    if (this.numberFormControl.invalid) {
+    if (this.amountFormControl.invalid) {
       this.snackBar.open('Kein korrekter Betrag.', 'Schließen',
         {
           duration: 3000,
         }
       );
       return false;
-    } else if (this.nameFormControl.invalid) {
+    } else if (this.typeFormControl.invalid) {
       this.snackBar.open('Kein korrekter Typ.', 'Schließen',
         {
           duration: 3000,

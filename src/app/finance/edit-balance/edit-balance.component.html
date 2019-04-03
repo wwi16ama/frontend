@@ -1,15 +1,11 @@
 <div class="dialog-wrapper">
-  <h1 mat-dialog-title>Kontostand von {{member.name}} bearbeiten.</h1>
+  <h1 mat-dialog-title>Kontostand von {{Listmember.firstName}} {{Listmember.lastName}} ({{Listmember.memberBankingAccountId}}) bearbeiten   </h1>
   <div mat-dialog-content>
       <mat-form-field class="input-width">
-          <input matInput placeholder="Betrag"
-              [formControl]="numberFormControl" required>
-          <mat-error *ngIf="numberFormControl.hasError('required')">Der Betrag ist erforderlich</mat-error>
+          <input matInput placeholder="Betrag" id='input_amount' [formControl]="amountFormControl" required>
       </mat-form-field>
       <mat-form-field class="input-width">
-          <input matInput placeholder="Typ"
-              [formControl]="nameFormControl" required>
-          <mat-error *ngIf="nameFormControl.hasError('required')">Der Typ/Betreff ist erforderlich</mat-error>
+          <input matInput placeholder="Typ" id='input_type' [formControl]="typeFormControl" required>
       </mat-form-field>
   </div>
   <div mat-dialog-actions>

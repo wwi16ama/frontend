@@ -25,6 +25,7 @@ export class FinanceComponent implements OnInit {
   listmember: ListMember;
   officeenum: OfficeEnum;
   authorized: boolean;
+  memberdata_global: ListMember[];
 
 
   @ViewChild(MatSort) set content(sort: ElementRef) {
@@ -46,6 +47,8 @@ export class FinanceComponent implements OnInit {
       (memberdata: ListMember[]) => {
         this.dataSource = new MatTableDataSource(memberdata);
         this.dataSource.sort = this.sort;
+        this.memberdata_global = memberdata;
+        console.log(memberdata);
 /*To edit
         this.accountService.getAccountData(this.dataSource.memberBankingAccountId).subscribe(
         (data: Account) => {
@@ -57,22 +60,21 @@ export class FinanceComponent implements OnInit {
     );
   }
 
-    public openFinanceDialog(account: Account): void {
-      const dialogRef = this.editBalanceDialog.open(EditBalanceComponent, {
+    public openFinanceDialog(member: ListMember): void {
+      console.log(member);
+        const dialogRef = this.editBalanceDialog.open(EditBalanceComponent, {
         maxWidth: '100vw',
         minWidth: '0px',
         maxHeight: '90vh',
         disableClose: true,
-
+        data: JSON.parse(JSON.stringify(member))
       });
+      /*
       dialogRef.afterClosed().subscribe(result => {
         if (result != null) {
           this.saveBalance(result);
         }
-      });
-    }
-  saveBalance(result: any): any {
-    throw new Error('Method not implemented.');
-  }
-  }
+      */
+      }
+}
 
