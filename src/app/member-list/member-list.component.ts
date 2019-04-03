@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { AddUserFormComponent } from './add-user-form/add-user-form.component';
 import { Member, Status, Gender, OfficeEnum, AuthorizationEnum } from './../models/member.model';
+import { equal } from 'assert';
 
 @Component({
   selector: 'app-member-list',
@@ -40,13 +41,13 @@ export class MemberListComponent implements OnInit {
     );
   }
 
-  public navigateTo(rowId, kennzeichen = ''): void {
-    this.router.navigate(['/member', rowId]);
-    if (kennzeichen != '') {
-      // Zur Aufwandsliste navigieren...
-      
+  public navigateTo(rowId: number, kennzeichen: string): void {
+    if (kennzeichen == 'A') {
+      // Route zur Aufwandsliste
+      console.log(rowId)
     }
     else {
+      // Route zur Detailansicht
       this.router.navigate(['/member', rowId]);
     }
   }
