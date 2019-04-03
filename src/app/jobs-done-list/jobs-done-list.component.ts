@@ -55,11 +55,25 @@ export class JobsDoneListComponent implements OnInit {
   ngOnInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-    this.memberService.getMemberData(this.authService.getMemberID()).subscribe(
+    this.memberService.getMemberData(this.id).subscribe(
       (memberdata: Member) => {
         this.member = memberdata;
       }
     );
+  }
+
+  public getServiceSum(): number {
+    var sum = 0;
+    ELEMENT_DATA.forEach(element => {
+      sum += element.credit;
+    });
+    return sum;
+  }
+
+  public getUsr(): string {
+    var erg: any;
+      erg = this.member.firstName + ' ' + this.member.lastName + ' (' + this.member.id + ')';
+    return erg
   }
 
 }

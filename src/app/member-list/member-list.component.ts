@@ -43,22 +43,15 @@ export class MemberListComponent implements OnInit {
 
   public navigateTo(rowId: number, kennzeichen: string): void {
     if (kennzeichen == 'A') {
-      // Route zur Aufwandsliste
-      console.log(rowId)
-      //this.router.navigateByUrl('jobsdonelist');
       this.router.navigate(['/jobsdonelist', rowId]);
     }
     else {
-      // Route zur Detailansicht
       this.router.navigate(['/member', rowId]);
     }
   }
-  
-  public navigateToAufwand(memberID): void {
-
-  }
 
   public getAufwand(MemberID): string {
+    // Summe aller Aufwände für anzeige in Tabelle
     return MemberID
   }
 

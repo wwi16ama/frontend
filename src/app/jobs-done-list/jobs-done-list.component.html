@@ -1,6 +1,6 @@
 <div class="jobs-done-list-wrapper">
   <h1 mat-subheader class="title-text">Aufwände</h1>
-  <h3 mat-subheader class="subheader">User: {{id}}</h3>
+  <h3 mat-subheader class="subheader">User: {{getUsr()}}</h3>
   <button disabled class="button-without-functionality" mat-raised-button color="basic">Hinzufügen</button>
   <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
 
@@ -8,29 +8,33 @@
     <ng-container matColumnDef="startdate">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Startdatum </th>
       <td mat-cell *matCellDef="let element">{{element.startdate}}</td>
+      <td mat-footer-cell *matFooterCellDef></td>
     </ng-container>
 
     <!-- enddate Column -->
     <ng-container matColumnDef="enddate">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Enddatum </th>
         <td mat-cell *matCellDef="let element">{{element.enddate}}</td>
+        <td mat-footer-cell *matFooterCellDef></td>
       </ng-container>
 
     <!-- start Column -->
     <ng-container matColumnDef="job">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Dienststart </th>
       <td mat-cell *matCellDef="let element">{{element.job}}</td>
+      <td mat-footer-cell *matFooterCellDef></td>
     </ng-container>
 
     <!-- credit Column -->
     <ng-container matColumnDef="credit">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Gutschrift </th>
       <td mat-cell *matCellDef="let element">{{element.credit}}</td>
+      <td mat-footer-cell *matFooterCellDef>Summe: {{getServiceSum()}}</td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
   </table>
   <mat-paginator [pageSizeOptions]="[5, 10]" showFirstLastButtons></mat-paginator>
-  <h3 mat-subheader>Summe: </h3>
   <div>

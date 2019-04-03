@@ -24,3 +24,7 @@ table {
   .subheader {
       margin: 0;
   }
+
+  tr.mat-footer-row {
+    font-weight: bold;
+  }
