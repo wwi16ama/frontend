@@ -45,6 +45,7 @@ export class MemberListComponent implements OnInit {
     if (kennzeichen == 'A') {
       // Route zur Aufwandsliste
       console.log(rowId)
+      this.router.navigateByUrl('jobsdonelist');
     }
     else {
       // Route zur Detailansicht

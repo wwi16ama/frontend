@@ -31,6 +31,7 @@ import { LOCALE_ID } from '@angular/core';
 import localeDe from '@angular/common/locales/de';
 import { registerLocaleData } from '@angular/common';
 import { ChangePasswordModule } from './change-password/change-password.module';
+import { JobsDoneListModule } from './jobs-done-list/jobs-done-list.module';
 
 registerLocaleData(localeDe);
 
@@ -53,7 +54,8 @@ registerLocaleData(localeDe);
     AddPilotlogentryModule,
     PlaneLogModule,
     PilotLogModule,
-    ChangePasswordModule
+    ChangePasswordModule,
+    JobsDoneListModule
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'ger' },
