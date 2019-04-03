@@ -5,11 +5,10 @@ import { ListMember } from './../models/list-member.model';
 import { MemberService } from './../services/member.service';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
-import { Account} from './../models/account.model';
+import { Account, Type} from './../models/account.model';
 import { Member, OfficeEnum} from './../models/member.model';
 import { AccountService } from './../services/account.service';
 import { EditBalanceComponent } from './edit-balance/edit-balance.component';
-
 
 @Component({
   selector: 'app-finance',
@@ -20,7 +19,7 @@ export class FinanceComponent implements OnInit {
   sort: any;
   dataSource: any;
   displayedColumns: string[];
-  account: Account;
+  accountVereinskonto: Account;
   member: Member;
   listmember: ListMember;
   officeenum: OfficeEnum;
@@ -38,24 +37,20 @@ export class FinanceComponent implements OnInit {
   constructor(public accountService: AccountService, public router: Router, public addUserDialog: MatDialog,
     public snackBar: MatSnackBar, public activatedRoute: ActivatedRoute, public editBalanceDialog: MatDialog,
     public memberService: MemberService) {
-    this.displayedColumns = ['id', 'firstName', 'lastName', 'memberBankingAccountId', /*'balance'*/];
+    this.displayedColumns = ['timestamp', 'amount', 'type'];
   }
 
   ngOnInit() {
-    this.memberService.getMemberListData().subscribe(
-      (memberdata: ListMember[]) => {
-        this.dataSource = new MatTableDataSource(memberdata);
-        this.dataSource.sort = this.sort;
-/*To edit
-        this.accountService.getAccountData(this.dataSource.memberBankingAccountId).subscribe(
-        (data: Account) => {
-            this.account = data;
-            this.account.balance = Account[this.account.balance];
-           }
-        );*/
-      }
-    );
-  }
+    this.accountService.getAccountVereinskonto().subscribe(
+        (accountDataVereinskonto: Account) => {
+          this.accountVereinskonto = accountDataVereinskonto;
+          for (let i = 0; i < this.accountVereinskonto.transactions.length; i++) {
+            this.accountVereinskonto.transactions[i].type = Type[this.accountVereinskonto.transactions[i].type];
+          }
+          this.dataSource = new MatTableDataSource(this.accountVereinskonto.transactions);
+        }
+      );
+    }
 
     public openFinanceDialog(account: Account): void {
       const dialogRef = this.editBalanceDialog.open(EditBalanceComponent, {

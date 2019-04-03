@@ -4,7 +4,7 @@ import { FinanceComponent } from './finance.component';
 import {MatSelectModule} from '@angular/material/select';
 import { MatIconModule, MatButtonModule, MatCheckboxModule, MatFormFieldModule,
   MatInputModule, MatStepperModule, MatCardModule, MatTooltipModule, MatDatepickerModule,
-  MatNativeDateModule, MatDialogModule, MatTabsModule, MatTableModule } from '@angular/material';
+  MatNativeDateModule, MatSortModule, MatDialogModule, MatTabsModule, MatTableModule, MatListModule } from '@angular/material';
 import { SharedDirectivesModule } from '../directives/shared-directives.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
@@ -28,7 +28,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     FormsModule,
     ReactiveFormsModule,
     MatTabsModule,
-    MatIconModule
+    MatIconModule,
+    MatListModule,
+    MatSortModule
   ]
 })
 export class FinanceModule { }
