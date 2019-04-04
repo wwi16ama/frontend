@@ -81,6 +81,7 @@ export class PilotLogComponent implements OnInit {
         this.pilotlog[i].arrivalLocation,
         this.pilotlog[i].arrivalTime,
         this.pilotlog[i].flightWithGuests,
+        this.pilotlog[i].useDuration,
         this.calculateTimeDifference(this.pilotlog[i].departureTime, this.pilotlog[i].arrivalTime)
       );
       this.pilotlog[i] = newPilotLog;
