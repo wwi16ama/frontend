@@ -5,7 +5,7 @@ import { ListMember } from './../models/list-member.model';
 import { MemberService } from './../services/member.service';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
-import { Account} from './../models/account.model';
+import { Account, AddTransaction } from './../models/account.model';
 import { Member, OfficeEnum} from './../models/member.model';
 import { AccountService } from './../services/account.service';
 import { EditBalanceComponent } from './edit-balance/edit-balance.component';
@@ -69,12 +69,24 @@ export class FinanceComponent implements OnInit {
         disableClose: true,
         data: JSON.parse(JSON.stringify(member))
       });
-      /*
       dialogRef.afterClosed().subscribe(result => {
         if (result != null) {
-          this.saveBalance(result);
+          this.saveBalance(result, member.memberBankingAccountId);
         }
-      */
-      }
+      });
+    }
+
+  public saveBalance(transaction: AddTransaction, bankId): void {
+    this.accountService.addTransaction(transaction, bankId).subscribe(
+      (response) => {
+        if (response.status === 200) {
+          this.snackBar.open('Änderungen erfolgreich gespeichert.', 'Schließen',
+            {
+              duration: 3000,
+            }
+          );
+          }
+      });
+  }
 }
 

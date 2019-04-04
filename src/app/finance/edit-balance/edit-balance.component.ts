@@ -2,6 +2,7 @@ import { Component, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA, MatSnackBar } from '@angular/material';
 import { FormControl, Validators } from '@angular/forms';
 import { ListMember } from 'src/app/models/list-member.model';
+import { Transaction } from 'src/app/models/account.model';
 
 @Component({
   selector: 'app-edit-balance',
@@ -25,39 +26,43 @@ export class EditBalanceComponent {
     this.amountFormControl = new FormControl('', [
       Validators.required
     ]);
-    this.typeFormControl = new FormControl('',[
+    this.typeFormControl = new FormControl('', [
       Validators.required
     ]);
   }
   public saveBalanceData(): void {
     console.log(this.amountFormControl.value);
-    /* const newTransaction = {
-        amount: this.amountFormControl.value,
-        type: this.typeFormControl.value
+    if (this.checkRequiredFields()) {
+      const newTransaction = {
+       amount: this.amountFormControl.value,
+       type: this.typeFormControl.value
       };
-      console.log(newTransaction);*/
+      console.log(newTransaction);
+      this.editBalanceDialogRef.close(newTransaction);
+    }
+    }
+
+   public checkRequiredFields(): boolean {
+      if (this.amountFormControl.invalid) {
+        this.snackBar.open('Kein korrekter Betrag.', 'Schließen',
+          {
+            duration: 3000,
+          }
+        );
+        return false;
+      } else if (this.typeFormControl.invalid) {
+        this.snackBar.open('Kein korrekter Betreff.', 'Schließen',
+          {
+            duration: 3000,
+          }
+        );
+        return false;
+      } else {
+        return true;
+      }
     }
 
   public onNoClick(): void {
     this.editBalanceDialogRef.close();
   }
-
-
-  public checkRequiredFields(): boolean {
-    if (this.amountFormControl.invalid) {
-      this.snackBar.open('Kein korrekter Betrag.', 'Schließen',
-        {
-          duration: 3000,
-        }
-      );
-      return false;
-    } else if (this.typeFormControl.invalid) {
-      this.snackBar.open('Kein korrekter Typ.', 'Schließen',
-        {
-          duration: 3000,
-        }
-      );
-      return false;
-      }
-    return true;
-  }}
+}
