@@ -71,10 +71,19 @@ export class AuthService {
         this.loggedInObservable.next(this.loggedIn);
     }
 
-    public logOut(): void {
+    public logOut(): Observable<any> {
+        const url = `${environment.baseUrl}/logout`;
+        const headers = this.setAuthHeader();
         sessionStorage.clear();
         this.loggedIn = false;
         this.loggedInObservable.next(this.loggedIn);
+        return this.httpClient.get<any>(
+            url,
+            {
+                headers: headers,
+                observe: 'response'
+            }
+        );
     }
 
     public changePasswordAsMember(newPassword: string): Observable<any> {
