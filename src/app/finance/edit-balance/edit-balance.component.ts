@@ -22,6 +22,12 @@ export class EditBalanceComponent {
   }
 
   public initializeFormControls(): void {
+    this.amountFormControl = new FormControl('', [
+      Validators.required
+    ]);
+    this.typeFormControl = new FormControl('',[
+      Validators.required
+    ]);
   }
   public saveBalanceData(): void {
     console.log(this.amountFormControl.value);
