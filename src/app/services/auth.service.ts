@@ -71,6 +71,10 @@ export class AuthService {
         return this.loggedInObservable.asObservable();
     }
 
+    public getCurrentLogInStatus(): boolean {
+        return this.loggedIn;
+    }
+
     public logIn(memberID: string, pass: string) {
         const auth = btoa(memberID + ':' + pass);
         const memberData = {
