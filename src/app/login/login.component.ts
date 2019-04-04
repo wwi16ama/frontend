@@ -24,7 +24,6 @@ export class LoginComponent implements OnInit {
   public sendLogin(): void {
     this.authService.loginRequest(this.memberID, this.pass).subscribe(
       (response) => {
-        console.log(response);
         if (response.status === 200) {
           this.snackBar.open('Login erfolgreich', 'Schließen',
             {
