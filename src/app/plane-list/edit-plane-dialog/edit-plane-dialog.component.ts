@@ -77,6 +77,13 @@ export class EditPlaneDialogComponent {
         }
       );
       return false;
+    } else if (this.pictureUrlFormControl.invalid) {
+      this.snackBar.open('Kein passender Bidlink.', 'Schließen',
+        {
+          duration: 3000,
+        }
+      );
+      return false;
     }
     return true;
   }
