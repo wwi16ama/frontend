@@ -24,6 +24,7 @@ export class LoginComponent implements OnInit {
   public sendLogin(): void {
     this.authService.loginRequest(this.memberID, this.pass).subscribe(
       (response) => {
+        console.log(response);
         if (response.status === 200) {
           this.snackBar.open('Login erfolgreich', 'Schließen',
             {
@@ -35,13 +36,11 @@ export class LoginComponent implements OnInit {
         }
       },
       (error) => {
-        if (error.status === 401) {
-          this.snackBar.open('Login fehlgeschlagen', 'Schließen',
-            {
-              duration: 4000,
-            }
-          );
-        }
+        this.snackBar.open('Login fehlgeschlagen', 'Schließen',
+          {
+            duration: 4000,
+          }
+        );
       }
     );
   }
