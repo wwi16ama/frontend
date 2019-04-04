@@ -35,13 +35,11 @@ export class LoginComponent implements OnInit {
         }
       },
       (error) => {
-        if (error.status === 401) {
-          this.snackBar.open('Login fehlgeschlagen', 'Schließen',
-            {
-              duration: 4000,
-            }
-          );
-        }
+        this.snackBar.open('Login fehlgeschlagen', 'Schließen',
+          {
+            duration: 4000,
+          }
+        );
       }
     );
   }
