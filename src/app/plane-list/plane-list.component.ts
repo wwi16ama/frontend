@@ -12,7 +12,7 @@ import { AddPlaneDialogComponent } from './add-plane-dialog/add-plane-dialog.com
 @Component({
   selector: 'app-plane-list',
   templateUrl: './plane-list.component.html',
-  styleUrls: ['./plane-list.component.css']
+  styleUrls: ['./plane-list.component.scss']
 })
 export class PlaneListComponent implements OnInit {
 
@@ -48,9 +48,9 @@ export class PlaneListComponent implements OnInit {
       disableClose: true,
       data: JSON.parse(JSON.stringify(plane))
     });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result != null) {
-        this.savePlane(result);
+    dialogRef.afterClosed().subscribe(changedPlane => {
+      if (changedPlane != null) {
+        this.savePlane(changedPlane);
       }
     });
   }
@@ -177,10 +177,10 @@ export class PlaneListComponent implements OnInit {
             response.body.number,
             response.body.name,
             response.body.position,
+            response.body.pictureUrl,
             response.body.neededAuthorization,
             response.body.pricePerBookedHour,
-            response.body.pricePerFlightMinute,
-            response.body.id
+            response.body.pricePerFlightMinute
           );
           newPlane.neededAuthorization = neededAuthorizationEnum[newPlane.neededAuthorization];
           this.planes.push(newPlane);
@@ -205,7 +205,6 @@ export class PlaneListComponent implements OnInit {
   }
   public navigateToPlaneLog(planeId): void {
     this.router.navigate(['../planeLog', planeId]);
-    // console.log('Plane ID: ', planeId);
   }
 }
 
