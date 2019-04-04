@@ -82,6 +82,7 @@ export class PilotLogComponent implements OnInit {
         this.pilotlog[i].arrivalTime,
         this.pilotlog[i].flightWithGuests,
         this.pilotlog[i].useDuration,
+        this.pilotlog[i].flightPrice,
         this.calculateTimeDifference(this.pilotlog[i].departureTime, this.pilotlog[i].arrivalTime)
       );
       this.pilotlog[i] = newPilotLog;
@@ -115,7 +116,8 @@ export class PilotLogComponent implements OnInit {
             response.body.arrivalLocation,
             response.body.arrivalTime,
             response.body.flightWithGuests,
-            response.body.useDuration
+            response.body.useDuration,
+            response.body.flightPrice
           );
           this.dataSource.data.push(newPilotLog);
           this.addFlightDuration();
