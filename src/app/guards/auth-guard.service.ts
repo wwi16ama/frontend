@@ -39,7 +39,7 @@ export class AuthGuard implements CanActivate {
           isAllowed = true;
           break;
         case 'pilotlog':
-          isAllowed = true;
+          isAllowed = this.checkPilotLogRoute();
           break;
         case 'planeLog':
           isAllowed = true;
@@ -68,5 +68,9 @@ export class AuthGuard implements CanActivate {
       return true;
     }
     return this.authService.getMemberID() === parseInt(memberId, 10) ? true : false;
+  }
+
+  private checkPilotLogRoute(): boolean {
+    return this.authService.memberHasAuthorization('ACTIVE') ? false : true;
   }
 }

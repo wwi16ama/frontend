@@ -83,7 +83,9 @@ export class AuthService {
                 'VV',
                 'SYSADMIN',
                 'KASSIERER',
-                'FLUGWART'
+                'FLUGWART',
+                'ACTIVE',
+                'PASSIVE'
             ]
         };
         this.authorization = memberData.authorization;
