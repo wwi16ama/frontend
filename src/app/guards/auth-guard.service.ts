@@ -71,6 +71,6 @@ export class AuthGuard implements CanActivate {
   }
 
   private checkPilotLogRoute(): boolean {
-    return this.authService.memberHasAuthorization('ACTIVE') ? false : true;
+    return this.authService.memberHasAuthorization('PASSIVE') ? false : true;
   }
 }
