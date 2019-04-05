@@ -21,6 +21,7 @@ export class PlaneListComponent implements OnInit {
   allowedToDeletePlane: boolean;
   allowedToAddNewPlane: boolean;
   allowedToEditPlane: boolean;
+  allowedToSeePlaneLog: boolean;
 
   constructor(public router: Router, public planeService: PlaneService, public editPlaneDialog: MatDialog, public addPlaneDialog: MatDialog,
     public deletePlaneDialog: MatDialog, public snackBar: MatSnackBar, private authService: AuthService) {
@@ -29,6 +30,8 @@ export class PlaneListComponent implements OnInit {
     this.allowedToDeletePlane = false;
     this.allowedToAddNewPlane = false;
     this.allowedToEditPlane = false;
+    this.allowedToSeePlaneLog = false;
+
   }
 
   ngOnInit() {
@@ -36,6 +39,7 @@ export class PlaneListComponent implements OnInit {
     this.allowedToDeletePlane = hasVVOrSYSADMIN;
     this.allowedToAddNewPlane = hasVVOrSYSADMIN;
     this.allowedToEditPlane = hasVVOrSYSADMIN;
+    this.allowedToSeePlaneLog = !this.authService.memberHasAuthorization('PASSIVE');
     this.planeService.getPlaneListData().subscribe(
       (planedata: Plane[]) => {
         this.planes = planedata;
