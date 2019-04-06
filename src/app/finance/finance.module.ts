@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FinanceComponent } from './finance.component';
 import {MatSelectModule} from '@angular/material/select';
-import { MatIconModule, MatButtonModule, MatCheckboxModule, MatFormFieldModule,
+import { MatPaginatorModule, MatIconModule, MatButtonModule, MatCheckboxModule, MatFormFieldModule,
   MatInputModule, MatStepperModule, MatCardModule, MatTooltipModule, MatDatepickerModule,
   MatNativeDateModule, MatSortModule, MatDialogModule, MatTabsModule, MatTableModule, MatListModule } from '@angular/material';
 import { SharedDirectivesModule } from '../directives/shared-directives.module';
@@ -30,7 +30,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     MatTabsModule,
     MatIconModule,
     MatListModule,
-    MatSortModule
+    MatSortModule,
+    MatPaginatorModule
   ]
 })
 export class FinanceModule { }

@@ -1,6 +1,6 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef, ChangeDetectorRef } from '@angular/core';
 
-import { MatTableDataSource, MatDialog, MatSnackBar, MatSort } from '@angular/material';
+import { MatTableDataSource, MatDialog, MatSnackBar, MatSort, MatPaginator } from '@angular/material';
 import { ListMember } from './../models/list-member.model';
 import { MemberService } from './../services/member.service';
 import { Router } from '@angular/router';
@@ -25,18 +25,24 @@ export class FinanceComponent implements OnInit {
   officeenum: OfficeEnum;
   authorized: boolean;
 
+  @ViewChild(MatPaginator) set paginator(paginator: MatPaginator) {
+    if (this.dataSource && paginator) {
+      this.dataSource.paginator = paginator;
+      this.cdr.detectChanges();
+    }
+  }
 
   @ViewChild(MatSort) set content(sort: ElementRef) {
     this.sort = sort;
     if (this.sort) {
       this.dataSource.sort = this.sort;
-
+      this.cdr.detectChanges();
     }
   }
 
   constructor(public accountService: AccountService, public router: Router, public addUserDialog: MatDialog,
     public snackBar: MatSnackBar, public activatedRoute: ActivatedRoute, public editBalanceDialog: MatDialog,
-    public memberService: MemberService) {
+    public memberService: MemberService, public cdr: ChangeDetectorRef) {
     this.displayedColumns = ['timestamp', 'amount', 'type'];
   }
 
