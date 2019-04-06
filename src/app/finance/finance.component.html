@@ -1,12 +1,12 @@
 <div class="divide-wrapper">
     <div class="member-list-wrapper">
-      <h1>Finanzverwaltung</h1>
-      <h1>Kontoverwaltung</h1>
+      <h1 class="title-text">Finanzverwaltung</h1>
+      <h1 class="title-text">Kontoverwaltung</h1>
     </div>
 </div>
 <div class="divide-wrapper">
   <div class="member-list-wrapper">
-    <h1>Vereinskonto</h1>
+    <h1 class="title-text">Vereinskonto</h1>
     <mat-list *ngIf="accountVereinskonto != null">
       <h3 mat-subheader>Guthaben</h3>
       <mat-list-item>
@@ -39,6 +39,7 @@
           <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
         </table>
+        <mat-paginator class="matpaginator" [pageSizeOptions]="[5, 10, 25]"></mat-paginator>
       </div>
       <mat-divider></mat-divider>
     </mat-list>
