@@ -1,0 +1,26 @@
+.dialog-wrapper {
+    width: 30vw;
+    margin-top: 0px;
+   }
+
+.mat-dialog-content {
+    padding: 0 0;
+   }
+
+.tab-content {
+    padding: 24px 24px;
+    display: block !important;
+    flex-grow: inherit;
+    flex-shrink: inherit;
+    }
+
+.input-width {
+    width: 100%;
+    display: block;
+    flex-grow: inherit;
+    flex-shrink: inherit;
+}
+#logentry-header {
+    font-weight: bold;
+    margin-bottom: 10px;
+   }

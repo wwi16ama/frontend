@@ -31,6 +31,8 @@ import { LOCALE_ID } from '@angular/core';
 import localeDe from '@angular/common/locales/de';
 import { registerLocaleData } from '@angular/common';
 import { ChangePasswordModule } from './change-password/change-password.module';
+import { AddPlaneLogModule } from './plane-log/add-plane-log/add-plane-log.module';
+import { AddPlaneLogComponent } from './plane-log/add-plane-log/add-plane-log.component';
 
 registerLocaleData(localeDe);
 
@@ -53,7 +55,8 @@ registerLocaleData(localeDe);
     AddPilotlogentryModule,
     PlaneLogModule,
     PilotLogModule,
-    ChangePasswordModule
+    ChangePasswordModule,
+    AddPlaneLogModule,
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'ger' },
@@ -68,7 +71,8 @@ registerLocaleData(localeDe);
     DeleteMemberDialogComponent,
     DeletePlaneDialogComponent,
     EditMemberProfileDialogComponent,
-    AddPilotlogentryComponent
+    AddPilotlogentryComponent,
+    AddPlaneLogComponent,
   ]
 })
 export class AppModule {
