@@ -22,4 +22,16 @@ import { AuthService } from './auth.service';
       }
     );
   }
+  public addPlaneLogEntry(planelog:  PlaneLog, planeID): Observable<any> {
+    const url = environment.baseUrl + '/planeLog/' + planeID;
+    const headers = this.authService.setAuthHeader();
+    return this.httpClient.post<PlaneLog>(
+      url,
+      planelog,
+      {
+        headers: headers,
+        observe: 'response'
+      }
+    );
+  }
 }

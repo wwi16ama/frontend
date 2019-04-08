@@ -5,12 +5,12 @@
       <div class="tab-content">
         <div id="logentry-header">Logbuchdaten</div>
 
-        <mat-form-field class="input-width">
-          <mat-select placeholder="Luftfahrzeug" [formControl]="planeNameFormControl" id="planeNumber" 
+        <!-- <mat-form-field class="input-width">
+          <mat-select placeholder="Luftfahrzeug" [formControl]="planeNumberFormControl" id="planeNumber" 
           required>
-          <mat-option *ngFor="let plane of planes" [value]="plane.name">{{plane.name}}</mat-option>
+          <mat-option *ngFor="let plane of planes" [value]="plane.id">{{plane.name}}</mat-option>
         </mat-select>
-      </mat-form-field>
+      </mat-form-field> -->
 
           <mat-form-field class="input-width">
             <input type="text" matInput placeholder="Ort" [formControl]="locationFormControl" 

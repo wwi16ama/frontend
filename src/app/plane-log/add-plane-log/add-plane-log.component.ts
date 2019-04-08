@@ -15,14 +15,14 @@ import { PlaneService } from '../../services/plane.service';
 export class AddPlaneLogComponent implements OnInit {
   planes: Plane[];
   member: Member;
-  planeName: string;
+  planeNumber: string;
   location: string;
   initialFuelLevel: string;
   finalFuelLevel: string;
   price: string;
   date= new Date();
 
-  planeNameFormControl: FormControl;
+  planeNumberFormControl: FormControl;
   locationFormControl: FormControl;
   initialFuelLevelFormControl: FormControl;
   finalFuelLevelFormControl: FormControl;
@@ -39,7 +39,7 @@ export class AddPlaneLogComponent implements OnInit {
     this.finalFuelLevel= '';
     this.price= '';
 
-    this.planeNameFormControl = new FormControl ('', [
+    this.planeNumberFormControl = new FormControl ('', [
       Validators.required,
     ]);
     this.locationFormControl = new FormControl ('', [
@@ -58,23 +58,22 @@ export class AddPlaneLogComponent implements OnInit {
 
    public saveLogData(): void {
     if (this.checkRequiredFields()) {
-      const newLog = {
-        planeName: this.planeNameFormControl.value,
-        member: this.member.id,
+      const newPlaneLog = {
+        memberId: this.member.id,
         location: this.locationFormControl.value,
-        date: this.formatDate(new Date(
+        refuelDateTime: this.formatDate(new Date(
           this.date.getFullYear(),
           this.date.getMonth(),
           this.date.getDate(),
-          // parseInt(this.date.slice(0, 2), 10),
-          // parseInt(this.date.slice(3, 5), 10)
+          this.date.getHours(),
+          this.date.getMinutes(),
+          this.date.getSeconds()
         ).toString()),
-        initialFuelLevel: this.initialFuelLevelFormControl.value,
-        finalFuelLevel: this.finalFuelLevelFormControl.value,
-        price: this.priceFormControl.value
+        startCount: this.initialFuelLevelFormControl.value,
+        endCount: this.finalFuelLevelFormControl.value,
+        totalPrice: this.priceFormControl.value
       };
-      this.addLogDialogRef.close(newLog);
-      console.log(newLog);
+      this.addLogDialogRef.close(newPlaneLog);
   }}
 
   public formatDate(date: string): string {
