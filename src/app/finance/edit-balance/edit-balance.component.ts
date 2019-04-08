@@ -35,7 +35,7 @@ export class EditBalanceComponent {
     if (this.checkRequiredFields()) {
       const newTransaction = {
        amount: this.amountFormControl.value,
-       type: this.typeFormControl.value
+       text: this.typeFormControl.value
       };
       console.log(newTransaction);
       this.editBalanceDialogRef.close(newTransaction);

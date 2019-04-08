@@ -11,14 +11,15 @@ export class Transaction {
         public id: number,
         public timestamp: string,
         public amount: number,
-        public type: Type
+        public type: Type,
+        public text: string
     ) {}
 }
 
 export class AddTransaction {
     constructor(
         public amount: number,
-        public type: string
+        public text: string
     ) {}
 }
 
