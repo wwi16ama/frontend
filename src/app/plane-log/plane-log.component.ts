@@ -38,7 +38,7 @@ export class PlaneLogComponent implements OnInit {
           this.planeLogService.getPlaneLogData(this.plane.id).subscribe(
           (planelog: PlaneLog[]) => {
           this.dataSource = new MatTableDataSource(planelog);
-          this.sort.sort(<MatSortable>({id: 'id', start: 'desc'}));
+          this.sort.sort(<MatSortable>({id: 'refuelDateTime', start: 'desc'}));
           this.dataSource.sort = this.sort;
         }
       );
