@@ -27,7 +27,7 @@ export class PlaneLogComponent implements OnInit {
       public planeLogService: PlaneLogService,
       public planeService: PlaneService,
       public activatedRoute: ActivatedRoute) {
-      this.displayedColumns = ['nameofplane', 'id', 'refuelDateTime', 'memberId', 'location', 'startCount', 'endCount', 'totalPrice'];
+      this.displayedColumns = ['nameofplane', 'id', 'refuelDateTime', 'memberId', 'location', 'startCount', 'endCount', 'fuelPrice'];
     }
 
     ngOnInit() {

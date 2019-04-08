@@ -6,6 +6,6 @@ export class PlaneLog {
         public location: string,
         public startCount: number,
         public endCount: number,
-        public totalPrice: number
+        public fuelPrice: number
     ) { }
 }
