@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
 import { PlaneLog } from './../models/planelog.model';
-import { MatTableDataSource, MatSort } from '@angular/material';
+import { MatTableDataSource, MatSort, MatSortable } from '@angular/material';
 import { PlaneLogService } from '../services/planelog.service';
 import { PlaneService } from '../services/plane.service';
 import { Plane } from '../models/plane.model';
@@ -17,11 +17,10 @@ export class PlaneLogComponent implements OnInit {
 
   plane: Plane;
   planelog: PlaneLog;
+  displayedColumns: string[];
+  dataSource: any;
 
-    @ViewChild(MatSort) sort: MatSort;
-
-    displayedColumns: string[];
-    dataSource: any;
+  @ViewChild(MatSort) sort: MatSort;
 
     constructor(
       public planeLogService: PlaneLogService,
@@ -39,11 +38,11 @@ export class PlaneLogComponent implements OnInit {
           this.planeLogService.getPlaneLogData(this.plane.id).subscribe(
           (planelog: PlaneLog[]) => {
           this.dataSource = new MatTableDataSource(planelog);
-          // console.log(this.planelog);
+          this.sort.sort(<MatSortable>({id: 'id', start: 'desc'}));
+          this.dataSource.sort = this.sort;
         }
       );
     });
-
   }); }
 }
 
