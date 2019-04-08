@@ -19,7 +19,7 @@ export class AddPilotlogentryComponent implements OnInit {
     arrivalLocation: string;
     arrivalDay: string;
     arrivalTime: string;
-    useDuration: string;
+    usageTime: number;
     flightWithGuests: boolean;
 
     planeNumberFormControl: FormControl;
@@ -29,7 +29,7 @@ export class AddPilotlogentryComponent implements OnInit {
     arrivalDayFormControl: FormControl;
     departureLocationFormControl: FormControl;
     arrivalLocationFormControl: FormControl;
-    useDurationFormControl: FormControl;
+    usageTimeFormControl: FormControl;
 
 
   constructor( public addPilotLogEntryDialogRef: MatDialogRef<AddPilotlogentryComponent>, public snackBar: MatSnackBar,
@@ -41,10 +41,10 @@ export class AddPilotlogentryComponent implements OnInit {
     this.arrivalLocation = '';
     this.arrivalTime = '';
     this.arrivalDay = '';
-    this.useDuration = '';
+    this.usageTime = 0;
     this.flightWithGuests = false;
 
-    this.useDurationFormControl = new FormControl ('', [
+    this.usageTimeFormControl = new FormControl ('', [
       Validators.required,
     ]);
 
@@ -101,7 +101,7 @@ export class AddPilotlogentryComponent implements OnInit {
           parseInt(this.arrivalTimeFormControl.value.slice(3, 5), 10)
         ).toString()),
         arrivalLocation: this.arrivalLocationFormControl.value,
-        useDuration: this.useDurationFormControl.value,
+        useDuration: this.usageTimeFormControl.value,
         flightWithGuests: this.flightWithGuests
       };
       this.addPilotLogEntryDialogRef.close(newPilotLog);
@@ -162,7 +162,7 @@ export class AddPilotlogentryComponent implements OnInit {
         }
       );
       return false;
-    } else if (this.useDurationFormControl.invalid) {
+    } else if (this.usageTimeFormControl.invalid) {
       this.snackBar.open('Keine gültige Nutzungsdauer', 'Schließen',
         {
           duration: 3000,
