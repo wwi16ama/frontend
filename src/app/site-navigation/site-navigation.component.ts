@@ -54,7 +54,7 @@ export class SiteNavigationComponent implements OnInit {
         }
       },
       (error) => {
-        this.snackBar.open('Logout erfolgreich', 'Schließen',
+        this.snackBar.open('Logout nicht vollständig erfolgreich. Besteht eine Internetverbindung?', 'Schließen',
           {
             duration: 3000,
           }
