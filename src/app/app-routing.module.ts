@@ -13,6 +13,7 @@ import { LoginComponent } from './login/login.component';
 import { PilotLogComponent } from './pilotlog/pilotlog.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { PlaneLogComponent } from './plane-log/plane-log.component';
+import { FinanceComponent } from './finance/finance.component';
 
 export const appRoutes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -28,9 +29,9 @@ export const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'pilotlog', component: PilotLogComponent, canActivate: [AuthGuard] },
   { path: 'planeLog/:id', component: PlaneLogComponent },
-  { path: 'change-password', component: ChangePasswordComponent, canActivate: [AuthGuard] }
+  { path: 'change-password', component: ChangePasswordComponent, canActivate: [AuthGuard] },
+  { path: 'finance', component: FinanceComponent, canActivate: [AuthGuard] },
 ];
-
 
 @NgModule({
   imports: [
