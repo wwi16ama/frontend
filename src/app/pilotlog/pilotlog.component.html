@@ -6,62 +6,62 @@
   </div>
   
   <table class="mat-elevation-z8" mat-table [dataSource]="dataSource" matSortActive="flightId"
-            matSortDirection="desc" matSort>
-            <ng-container matColumnDef="flightId">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Flugnummer </th>
-              <td mat-cell *matCellDef="let element">{{element.flightId}}</td>
-            </ng-container>
+      matSortDirection="desc" matSort>
+      <ng-container matColumnDef="flightId">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Flugnummer </th>
+        <td mat-cell *matCellDef="let element">{{element.flightId}}</td>
+      </ng-container>
 
-            <ng-container matColumnDef="planeNumber">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Luftfahrzeug </th>
-              <td mat-cell *matCellDef="let element">{{element.planeNumber}}</td>
-            </ng-container>
+      <ng-container matColumnDef="planeNumber">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Luftfahrzeug </th>
+        <td mat-cell *matCellDef="let element">{{element.planeNumber}}</td>
+      </ng-container>
 
-            <ng-container matColumnDef="departureLocation">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Abflugsort </th>
-              <td mat-cell *matCellDef="let element">{{element.departureLocation}}</td>
-            </ng-container>
+      <ng-container matColumnDef="departureLocation">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Abflugsort </th>
+        <td mat-cell *matCellDef="let element">{{element.departureLocation}}</td>
+      </ng-container>
 
-            <ng-container matColumnDef="departureTime">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Abflugzeit </th>
-              <td mat-cell *matCellDef="let element">{{element.departureTime | date:'short'}}</td>
-            </ng-container>
+      <ng-container matColumnDef="departureTime">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Abflugzeit </th>
+        <td mat-cell *matCellDef="let element">{{element.departureTime | date:'short'}}</td>
+      </ng-container>
 
-            <ng-container matColumnDef="arrivalLocation">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Landungsort </th>
-              <td mat-cell *matCellDef="let element">{{element.arrivalLocation}}</td>
-            </ng-container>
+      <ng-container matColumnDef="arrivalLocation">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Landungsort </th>
+        <td mat-cell *matCellDef="let element">{{element.arrivalLocation}}</td>
+      </ng-container>
 
-            <ng-container matColumnDef="arrivalTime">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Landungszeit </th>
-              <td mat-cell *matCellDef="let element">{{element.arrivalTime | date:'short'}}</td>
-            </ng-container>
+      <ng-container matColumnDef="arrivalTime">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Landungszeit </th>
+        <td mat-cell *matCellDef="let element">{{element.arrivalTime | date:'short'}}</td>
+      </ng-container>
 
-            <ng-container matColumnDef="flightDuration">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Flugdauer </th>
-              <td mat-cell *matCellDef="let element"> {{element.flightDuration}} </td>
-            </ng-container>
+      <ng-container matColumnDef="flightDuration">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Flugdauer </th>
+        <td mat-cell *matCellDef="let element"> {{element.flightDuration}} </td>
+      </ng-container>
 
-            <ng-container matColumnDef="flightWithGuests">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Gastflug </th>
-              <td mat-cell *matCellDef="let element"> 
-                <p *ngIf="element.flightWithGuests === true"> Ja </p>
-                <p *ngIf="element.flightWithGuests === false"> Nein </p>
-              </td>
-            </ng-container>
+      <ng-container matColumnDef="flightWithGuests">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Gastflug </th>
+        <td mat-cell *matCellDef="let element"> 
+          <p *ngIf="element.flightWithGuests === true"> Ja </p>
+          <p *ngIf="element.flightWithGuests === false"> Nein </p>
+        </td>
+      </ng-container>
 
-            <ng-container matColumnDef="usageTime">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Nutzungsdauer </th>
-              <td mat-cell *matCellDef="let element"> {{element.usageTime}} Stunde(n)</td>
-            </ng-container>
+      <ng-container matColumnDef="usageTime">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nutzungsdauer </th>
+        <td mat-cell *matCellDef="let element"> {{element.usageTime}} Stunde(n)</td>
+      </ng-container>
 
-            <ng-container matColumnDef="flightPrice">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Flugpreis </th>
-              <td mat-cell *matCellDef="let element"> {{element.flightPrice}} </td>
-            </ng-container>
+      <ng-container matColumnDef="flightPrice">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Flugpreis </th>
+        <td mat-cell *matCellDef="let element"> {{element.flightPrice}} €</td>
+      </ng-container>
 
-            <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
-          </table>
+    </table>
 </div>

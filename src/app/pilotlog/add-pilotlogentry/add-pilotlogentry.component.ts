@@ -93,6 +93,7 @@ export class AddPilotlogentryComponent implements OnInit {
           parseInt(this.departureTimeFormControl.value.slice(0, 2), 10),
           parseInt(this.departureTimeFormControl.value.slice(3, 5), 10)
         ).toString()),
+
         arrivalTime: this.formatDate(new Date(
           this.arrivalDayFormControl.value.getFullYear(),
           this.arrivalDayFormControl.value.getMonth(),
@@ -100,6 +101,7 @@ export class AddPilotlogentryComponent implements OnInit {
           parseInt(this.arrivalTimeFormControl.value.slice(0, 2), 10),
           parseInt(this.arrivalTimeFormControl.value.slice(3, 5), 10)
         ).toString()),
+
         arrivalLocation: this.arrivalLocationFormControl.value,
         usageTime: this.usageTimeFormControl.value,
         flightWithGuests: this.flightWithGuests
