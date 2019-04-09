@@ -12,6 +12,5 @@ import { MatTableModule, MatButtonModule, MatSortModule} from '@angular/material
     MatButtonModule,
     MatSortModule
   ]
-
 })
 export class PilotLogModule {}
