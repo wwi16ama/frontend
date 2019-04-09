@@ -75,18 +75,11 @@ export class AuthService {
         return this.loggedIn;
     }
 
-    public logIn(memberID: string, pass: string) {
+    public logIn(memberID: string, pass: string, authorizations: string[]) {
         const auth = btoa(memberID + ':' + pass);
         const memberData = {
             auth: auth,
-            authorization: [
-                'VV',
-                'SYSADMIN',
-                'KASSIERER',
-                'FLUGWART',
-                'ACTIVE',
-                'PASSIVE'
-            ]
+            authorization: authorizations
         };
         this.authorization = memberData.authorization;
         sessionStorage.setItem('memberData', JSON.stringify(memberData));

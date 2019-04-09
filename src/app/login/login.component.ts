@@ -30,7 +30,7 @@ export class LoginComponent implements OnInit {
               duration: 3000,
             }
           );
-          this.authService.logIn(this.memberID, this.pass);
+          this.authService.logIn(this.memberID, this.pass, response.body);
           this.router.navigateByUrl('/account');
         }
       },
