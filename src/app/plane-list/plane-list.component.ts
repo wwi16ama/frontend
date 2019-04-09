@@ -8,6 +8,7 @@ import { EditPlaneDialogComponent } from './edit-plane-dialog/edit-plane-dialog.
 import { DeletePlaneDialogComponent } from './delete-plane-dialog/delete-plane-dialog.component';
 import { AddPlaneDialogComponent } from './add-plane-dialog/add-plane-dialog.component';
 
+import { AuthService } from './../services/auth.service';
 
 @Component({
   selector: 'app-plane-list',
@@ -17,14 +18,28 @@ import { AddPlaneDialogComponent } from './add-plane-dialog/add-plane-dialog.com
 export class PlaneListComponent implements OnInit {
 
   planes: Plane[];
+  allowedToDeletePlane: boolean;
+  allowedToAddNewPlane: boolean;
+  allowedToEditPlane: boolean;
+  allowedToSeePlaneLog: boolean;
 
   constructor(public router: Router, public planeService: PlaneService, public editPlaneDialog: MatDialog, public addPlaneDialog: MatDialog,
-    public deletePlaneDialog: MatDialog, public snackBar: MatSnackBar) {
+    public deletePlaneDialog: MatDialog, public snackBar: MatSnackBar, private authService: AuthService) {
 
     this.planes = [];
+    this.allowedToDeletePlane = false;
+    this.allowedToAddNewPlane = false;
+    this.allowedToEditPlane = false;
+    this.allowedToSeePlaneLog = false;
+
   }
 
   ngOnInit() {
+    const hasVVOrSYSADMIN = this.authService.memberHasAuthorization('VV') || this.authService.memberHasAuthorization('SYSADMIN');
+    this.allowedToDeletePlane = hasVVOrSYSADMIN;
+    this.allowedToAddNewPlane = hasVVOrSYSADMIN;
+    this.allowedToEditPlane = hasVVOrSYSADMIN;
+    this.allowedToSeePlaneLog = !this.authService.memberHasAuthorization('PASSIVE');
     this.planeService.getPlaneListData().subscribe(
       (planedata: Plane[]) => {
         this.planes = planedata;

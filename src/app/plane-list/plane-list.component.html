@@ -29,15 +29,13 @@
         </p>
       </mat-card-content>
       <mat-card-actions>
-        <button mat-raised-button color="primary" (click)="openEditPlaneDialog(plane)">Ändern</button>
-        <button mat-raised-button color="warn" (click)="openDeletePlaneDialog(plane)">Löschen</button>
-        
-         <!-- TODO: Remove disabled and class button-without-functionality when button functionality is implemented-->
-        <button mat-raised-button color="basic" (click)="navigateToPlaneLog(plane.id)">Logbuch</button>
+        <button *ngIf="allowedToEditPlane" mat-raised-button color="primary" (click)="openEditPlaneDialog(plane)">Ändern</button>
+        <button *ngIf="allowedToDeletePlane" mat-raised-button color="warn" (click)="openDeletePlaneDialog(plane)">Löschen</button>
+        <button *ngIf="allowedToSeePlaneLog" mat-raised-button color="basic" (click)="navigateToPlaneLog(plane.id)">Logbuch</button>
       </mat-card-actions>
     </mat-card>
   </div>
-  <button mat-fab color="primary" (click)="openAddPlaneDialog()" class="add-plane-button">
+  <button *ngIf="allowedToAddNewPlane" mat-fab color="primary" (click)="openAddPlaneDialog()" class="add-plane-button">
     <mat-icon>add</mat-icon>
   </button>
 </div>

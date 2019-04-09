@@ -12,8 +12,10 @@ export class AuthService {
 
     private loggedInObservable = new BehaviorSubject<boolean>(null);
     private loggedIn: boolean;
+    private authorization: string[];
 
     constructor(public httpClient: HttpClient) {
+        this.authorization = [];
         this.checkLoggedInStatus();
     }
 
@@ -57,15 +59,30 @@ export class AuthService {
         return memberPW;
     }
 
+    public getMemberAuthorization(): string[] {
+        return this.authorization;
+    }
+
+    public memberHasAuthorization(authorization: string): boolean {
+        return this.authorization.indexOf(authorization) === -1 ? false : true;
+    }
+
     public isLoggedIn(): Observable<boolean> {
         return this.loggedInObservable.asObservable();
     }
 
-    public logIn(memberID: string, pass: string) {
+    public getCurrentLogInStatus(): boolean {
+        return this.loggedIn;
+    }
+
+    public logIn(memberID: string, pass: string, authorizations?: string[]) {
+        const newAuthroziation = authorizations !== undefined ? authorizations : this.getMemberAuthorization();
         const auth = btoa(memberID + ':' + pass);
         const memberData = {
-            auth: auth
+            auth: auth,
+            authorization: newAuthroziation
         };
+        this.authorization = memberData.authorization;
         sessionStorage.setItem('memberData', JSON.stringify(memberData));
         this.loggedIn = true;
         this.loggedInObservable.next(this.loggedIn);
