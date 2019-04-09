@@ -1,5 +1,5 @@
 <mat-toolbar color="primary" class="header">
-  <button mat-icon-button (click)="toggleOpened()">
+  <button *ngIf="loggedIn" mat-icon-button (click)="toggleOpened()">
     <mat-icon>menu</mat-icon>
   </button>
   <span class="toolbar-text">Flugverein Reilingen</span>
