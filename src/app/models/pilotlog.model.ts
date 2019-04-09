@@ -7,6 +7,8 @@ export class Pilotlog {
         public arrivalLocation: string,
         public arrivalTime: string,
         public flightWithGuests: boolean,
+        public usageTime: number,
+        public flightPrice: number,
         public flightDuration?: string
     ) {}
 }

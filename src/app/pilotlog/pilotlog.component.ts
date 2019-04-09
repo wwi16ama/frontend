@@ -30,7 +30,7 @@ export class PilotLogComponent implements OnInit {
     public snackBar: MatSnackBar
   ) {
     this.displayedColumns = ['flightId', 'planeNumber', 'departureLocation', 'departureTime',
-      'arrivalLocation', 'arrivalTime', 'flightDuration', 'flightWithGuests'];
+      'arrivalLocation', 'arrivalTime', 'flightDuration', 'flightWithGuests', 'usageTime', 'flightPrice'];
   }
 
   ngOnInit() {
@@ -81,6 +81,8 @@ export class PilotLogComponent implements OnInit {
         this.pilotlog[i].arrivalLocation,
         this.pilotlog[i].arrivalTime,
         this.pilotlog[i].flightWithGuests,
+        this.pilotlog[i].usageTime,
+        this.pilotlog[i].flightPrice,
         this.calculateTimeDifference(this.pilotlog[i].departureTime, this.pilotlog[i].arrivalTime)
       );
       this.pilotlog[i] = newPilotLog;
@@ -113,7 +115,9 @@ export class PilotLogComponent implements OnInit {
             response.body.departureTime,
             response.body.arrivalLocation,
             response.body.arrivalTime,
-            response.body.flightWithGuests
+            response.body.flightWithGuests,
+            response.body.usageTime,
+            response.body.flightPrice
           );
           this.dataSource.data.push(newPilotLog);
           this.addFlightDuration();
