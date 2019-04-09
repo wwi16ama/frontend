@@ -1,11 +1,12 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 
-import { MatTableDataSource, MatSort } from '@angular/material';
+import { MatSnackBar, MatTableDataSource, MatSort, MatDialog } from '@angular/material';
 import { Member } from './../models/member.model';
 import { MemberService } from './../services/member.service';
 import { Pilotlog } from './../models/pilotlog.model';
 import { PilotlogService } from './../services/pilotlog.service';
 import { AuthService } from './../services/auth.service';
+import { AddPilotlogentryComponent } from './add-pilotlogentry/add-pilotlogentry.component';
 
 @Component({
   selector: 'app-pilotlog',
@@ -24,7 +25,9 @@ export class PilotLogComponent implements OnInit {
   constructor(
     public memberService: MemberService,
     public pilotLogService: PilotlogService,
-    public authService: AuthService
+    public authService: AuthService,
+    public addPilotLogEntryDialog: MatDialog,
+    public snackBar: MatSnackBar
   ) {
     this.displayedColumns = ['flightId', 'planeNumber', 'departureLocation', 'departureTime',
       'arrivalLocation', 'arrivalTime', 'flightDuration', 'flightWithGuests'];
@@ -82,6 +85,57 @@ export class PilotLogComponent implements OnInit {
       );
       this.pilotlog[i] = newPilotLog;
     }
+  }
+
+  openAddPilotLogEntryDialog(): void {
+    const dialogRef = this.addPilotLogEntryDialog.open(AddPilotlogentryComponent, {
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result != null) {
+        this.savePilotLogEntry(result);
+      }
+    });
+  }
+
+  public savePilotLogEntry(pilotlog: Pilotlog): void {
+    this.pilotLogService.addPilotLogEntry(pilotlog).subscribe(
+      (response) => {
+        if (response.status === 200) {
+          this.snackBar.open('Änderungen erfolgreich gespeichert.', 'Schließen',
+            {
+              duration: 3000,
+            }
+          );
+          const newPilotLog = new Pilotlog (
+            response.body.flightId,
+            response.body.planeNumber,
+            response.body.departureLocation,
+            response.body.departureTime,
+            response.body.arrivalLocation,
+            response.body.arrivalTime,
+            response.body.flightWithGuests
+          );
+          this.dataSource.data.push(newPilotLog);
+          this.addFlightDuration();
+          this.dataSource.sort = this.sort;
+        }
+      },
+      error => {
+        if (error.status === 400) {
+          this.snackBar.open('Pflichtfelder nicht ausgefüllt', 'Schließen',
+            {
+              duration: 4000,
+            }
+          );
+        } else if (error.status === 0) {
+          this.snackBar.open('Es konnte keine Verbindung zum Server aufgebaut werden', 'Schließen',
+            {
+              duration: 4000,
+            }
+          );
+        }
+      }
+    );
   }
 
 }
