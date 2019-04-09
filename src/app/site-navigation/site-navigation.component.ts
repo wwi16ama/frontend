@@ -34,13 +34,34 @@ export class SiteNavigationComponent implements OnInit {
   }
 
   public logOut(): void {
-    this.snackBar.open('Logout erfolgreich', 'Schließen',
-      {
-        duration: 3000,
+
+    this.authService.logOut().subscribe(
+      (response) => {
+        if (response.status === 204) {
+          this.snackBar.open('Logout erfolgreich', 'Schließen',
+            {
+              duration: 3000,
+            }
+          );
+          this.navigateTo('/login');
+        } else {
+          this.snackBar.open('Logout nicht vollständig erfolgreich', 'Schließen',
+            {
+              duration: 3000,
+            }
+          );
+          this.navigateTo('/login');
+        }
+      },
+      (error) => {
+        this.snackBar.open('Logout nicht vollständig erfolgreich. Besteht eine Internetverbindung?', 'Schließen',
+          {
+            duration: 3000,
+          }
+        );
+        this.navigateTo('/login');
       }
     );
-    this.authService.logOut();
-    this.navigateTo('/login');
   }
 
 }

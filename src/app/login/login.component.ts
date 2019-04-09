@@ -30,18 +30,16 @@ export class LoginComponent implements OnInit {
               duration: 3000,
             }
           );
-          this.authService.logIn(this.memberID, this.pass);
+          this.authService.logIn(this.memberID, this.pass, response.body);
           this.router.navigateByUrl('/account');
         }
       },
       (error) => {
-        if (error.status === 401) {
-          this.snackBar.open('Login fehlgeschlagen', 'Schließen',
-            {
-              duration: 4000,
-            }
-          );
-        }
+        this.snackBar.open('Login fehlgeschlagen', 'Schließen',
+          {
+            duration: 4000,
+          }
+        );
       }
     );
   }
