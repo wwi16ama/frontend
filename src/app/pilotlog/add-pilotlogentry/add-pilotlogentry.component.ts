@@ -86,6 +86,7 @@ export class AddPilotlogentryComponent implements OnInit {
       const newPilotLog = {
         planeNumber: this.planeNumberFormControl.value,
         departureLocation: this.departureLocationFormControl.value,
+
         departureTime: this.formatDate(new Date(
           this.departureDayFormControl.value.getFullYear(),
           this.departureDayFormControl.value.getMonth(),
