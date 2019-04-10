@@ -31,11 +31,11 @@ export class MemberViewComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.allowedToDeleteMember = this.authService.memberHasAuthorization('VV') || this.authService.memberHasAuthorization('SYSADMIN');
+    this.allowedToDeleteMember = this.authService.memberHasAuthorization('VORSTANDSVORSITZENDER') || this.authService.memberHasAuthorization('SYSTEMADMINISTRATOR');
     this.activatedRoute.params.subscribe(
       params => {
-        this.allowedToEditMember = this.authService.memberHasAuthorization('VV') ||
-          this.authService.memberHasAuthorization('SYSADMIN') ||
+        this.allowedToEditMember = this.authService.memberHasAuthorization('VORSTANDSVORSITZENDER') ||
+          this.authService.memberHasAuthorization('SYSTEMADMINISTRATOR') ||
           params['id'] === this.authService.getMemberID().toString();
         this.memberService.getMemberData(params['id']).subscribe(
           (data: Member) => {

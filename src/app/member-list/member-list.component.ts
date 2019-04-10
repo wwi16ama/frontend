@@ -35,7 +35,7 @@ export class MemberListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.allowedToAddNewMember = this.authService.memberHasAuthorization('VV') || this.authService.memberHasAuthorization('SYSADMIN');
+    this.allowedToAddNewMember = this.authService.memberHasAuthorization('VORSTANDSVORSITZENDER') || this.authService.memberHasAuthorization('SYSTEMADMINISTRATOR');
     this.memberService.getMemberListData().subscribe(
       (data: ListMember[]) => {
         this.dataSource = new MatTableDataSource(data);
