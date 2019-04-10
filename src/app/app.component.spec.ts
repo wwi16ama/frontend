@@ -15,6 +15,7 @@ import { FeeListModule } from './fee-list/fee-list.module';
 import { LoginModule } from './login/login.module';
 import { PilotLogModule } from './pilotlog/pilotlog.module';
 import { PlaneLogModule } from './plane-log/plane-log.module';
+import { FinanceModule } from './finance/finance.module';
 
 
 describe('AppComponent', () => {

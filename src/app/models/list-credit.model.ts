@@ -8,21 +8,21 @@ export class ListCredit {
 }
 
 export enum ServiceNameEnum {
-    VORSTANDSMITGLIED = 'Vorstandsmitglied',
-    FLUGLEHRER = 'Fluglehrer',
-    FLUGWART = 'Flugwart',
-    TAGESEINSATZ = 'Kontrollturm',
-    PILOT = 'Pilot'
+    J_VORSTANDSMITGLIED = 'Vorstandsmitglied',
+    J_FLUGLEHRER = 'Fluglehrer',
+    J_FLUGWART = 'Flugwart',
+    T_TAGESEINSATZ = 'Kontrollturm',
+    T_PILOT = 'Pilot'
 }
 
 export namespace ServiceNameEnum {
     export function getEnumString(enteredString: string): string {
         switch (enteredString) {
-            case ServiceNameEnum.VORSTANDSMITGLIED: return 'Vorstandsmitglied';
-            case ServiceNameEnum.FLUGLEHRER: return 'Fluglehrer';
-            case ServiceNameEnum.FLUGWART: return 'Flugwart';
-            case ServiceNameEnum.TAGESEINSATZ: return 'Kontrollturm';
-            case ServiceNameEnum.PILOT: return 'Pilot';
+            case ServiceNameEnum.J_VORSTANDSMITGLIED: return 'Vorstandsmitglied';
+            case ServiceNameEnum.J_FLUGLEHRER: return 'Fluglehrer';
+            case ServiceNameEnum.J_FLUGWART: return 'Flugwart';
+            case ServiceNameEnum.T_TAGESEINSATZ: return 'Kontrollturm';
+            case ServiceNameEnum.T_PILOT: return 'Pilot';
         }
     }
 }

@@ -25,6 +25,8 @@ import { PlaneLogModule } from './plane-log/plane-log.module';
 import { PilotLogModule } from './pilotlog/pilotlog.module';
 import { AddPilotlogentryModule } from './pilotlog/add-pilotlogentry/add-pilotlogentry.module';
 import { AddPilotlogentryComponent } from './pilotlog/add-pilotlogentry/add-pilotlogentry.component';
+import { FinanceModule } from './finance/finance.module';
+
 
 // Spracheinstellung
 import { LOCALE_ID } from '@angular/core';
@@ -32,12 +34,16 @@ import localeDe from '@angular/common/locales/de';
 import { registerLocaleData } from '@angular/common';
 import { ChangePasswordModule } from './change-password/change-password.module';
 import { JobsDoneListModule } from './jobs-done-list/jobs-done-list.module';
+import { AddPlaneLogModule } from './plane-log/add-plane-log/add-plane-log.module';
+import { AddPlaneLogComponent } from './plane-log/add-plane-log/add-plane-log.component';
+import { EditBalanceModule } from './finance/edit-balance/edit-balance.module';
+import { EditBalanceComponent } from './finance/edit-balance/edit-balance.component';
 
 registerLocaleData(localeDe);
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,
@@ -56,6 +62,9 @@ registerLocaleData(localeDe);
     PilotLogModule,
     ChangePasswordModule,
     JobsDoneListModule
+    AddPlaneLogModule,
+    FinanceModule,
+    EditBalanceModule
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'ger' },
@@ -69,8 +78,11 @@ registerLocaleData(localeDe);
     EditPlaneDialogComponent,
     DeleteMemberDialogComponent,
     DeletePlaneDialogComponent,
+    AddPilotlogentryComponent,
     EditMemberProfileDialogComponent,
-    AddPilotlogentryComponent
+    AddPilotlogentryComponent,
+    AddPlaneLogComponent,
+    EditBalanceComponent
   ]
 })
 export class AppModule {

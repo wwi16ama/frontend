@@ -9,6 +9,7 @@ import { AddUserFormComponent } from './add-user-form/add-user-form.component';
 import { Member, Status, Gender, OfficeEnum, AuthorizationEnum } from './../models/member.model';
 import { JobsDoneList } from '../models/jobsdonelist.model';
 import { JobsdonelistService } from '../services/jobsdonelist.service';
+import { AuthService } from './../services/auth.service';
 
 @Component({
   selector: 'app-member-list',
@@ -19,6 +20,7 @@ export class MemberListComponent implements OnInit {
   sort: any;
   displayedColumns: string[];
   dataSource: any;
+  allowedToAddNewMember: boolean;
 
   @ViewChild(MatSort) set content(sort: ElementRef) {
     this.sort = sort;
@@ -31,9 +33,11 @@ export class MemberListComponent implements OnInit {
   constructor(public router: Router, public addUserDialog: MatDialog, public snackBar: MatSnackBar, public activatedRoute: ActivatedRoute,
     public memberService: MemberService, public jobsdonelistService: JobsdonelistService) {
     this.displayedColumns = ['id', 'firstName', 'lastName', 'sumAufwand'];
+    this.allowedToAddNewMember = false;
   }
 
   ngOnInit() {
+    this.allowedToAddNewMember = this.authService.memberHasAuthorization('VV') || this.authService.memberHasAuthorization('SYSADMIN');
     this.memberService.getMemberListData().subscribe(
       (data: ListMember[]) => {
         this.dataSource = new MatTableDataSource(data);

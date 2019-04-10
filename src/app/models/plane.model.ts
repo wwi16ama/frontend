@@ -3,6 +3,7 @@ export class Plane {
         public number: string,
         public name: string,
         public position: string,
+        public pictureUrl: string,
         public neededAuthorization: neededAuthorizationEnum,
         public pricePerBookedHour: number,
         public pricePerFlightMinute: number,

@@ -32,7 +32,7 @@
     <tr class="pointer" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
 
-  <button mat-fab color="primary" (click)="openAddUserDialog()" class="add-member-button">
+  <button *ngIf="allowedToAddNewMember" mat-fab color="primary" (click)="openAddUserDialog()" class="add-member-button">
     <mat-icon>add</mat-icon>
   </button>
 </div>
