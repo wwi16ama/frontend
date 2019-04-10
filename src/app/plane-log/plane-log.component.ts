@@ -30,7 +30,7 @@ export class PlaneLogComponent implements OnInit {
       public activatedRoute: ActivatedRoute,
       public addLogDialog: MatDialog,
       public snackBar: MatSnackBar) {
-      this.displayedColumns = ['nameofplane', 'id', 'refuelDateTime', 'memberId', 'location', 'startCount', 'endCount', 'totalPrice'];
+      this.displayedColumns = ['nameofplane', 'id', 'refuelDateTime', 'memberId', 'location', 'startCount', 'endCount', 'fuelPrice'];
     }
 
     ngOnInit() {

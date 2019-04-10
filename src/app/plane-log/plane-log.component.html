@@ -53,10 +53,10 @@
     <td mat-cell *matCellDef="let element"> {{element.endCount}} </td>
   </ng-container>
 
-    <!-- totalPrice Column -->
-    <ng-container matColumnDef="totalPrice">
+    <!-- fuelPrice Column -->
+    <ng-container matColumnDef="fuelPrice">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Preis </th>
-      <td mat-cell *matCellDef="let element"> {{element.totalPrice| currency:'€'}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.fuelPrice| currency:'€'}} </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
