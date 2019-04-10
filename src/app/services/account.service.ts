@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Account } from './../models/account.model';
+import { Account, AddTransaction } from './../models/account.model';
 import { ListAccount } from './../models/list-account.model';
 
 import { AuthService } from './auth.service';
@@ -43,6 +43,18 @@ export class AccountService {
       url,
       {
         headers: headers
+      }
+    );
+  }
+  public addTransaction(transactions: AddTransaction, bankingAccount): Observable<any> {
+    const url = environment.baseUrl + '/accounts/' + bankingAccount + '/transactions';
+    const headers = this.authService.setAuthHeader();
+    return this.httpClient.post<AddTransaction>(
+      url,
+      transactions,
+      {
+        headers: headers,
+        observe: 'response'
       }
     );
   }
