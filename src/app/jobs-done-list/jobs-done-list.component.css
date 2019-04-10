@@ -1,0 +1,30 @@
+table {
+    width: calc(100% - 16px);
+    height: auto;
+    margin: 8px;
+  }
+  
+  button {
+    margin: 8px;
+  }
+  
+  .jobs-done-list-wrapper {
+    padding: 0 10px;
+  }
+  
+  .title-text {
+    font-weight: 400;
+    font-size: 32px;
+  }
+  
+  .title-text {
+      margin: 0;
+  }
+
+  .subheader {
+      margin: 0;
+  }
+
+  tr.mat-footer-row {
+    font-weight: bold;
+  }

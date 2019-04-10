@@ -33,6 +33,7 @@ import { LOCALE_ID } from '@angular/core';
 import localeDe from '@angular/common/locales/de';
 import { registerLocaleData } from '@angular/common';
 import { ChangePasswordModule } from './change-password/change-password.module';
+import { JobsDoneListModule } from './jobs-done-list/jobs-done-list.module';
 import { AddPlaneLogModule } from './plane-log/add-plane-log/add-plane-log.module';
 import { AddPlaneLogComponent } from './plane-log/add-plane-log/add-plane-log.component';
 import { EditBalanceModule } from './finance/edit-balance/edit-balance.module';
@@ -60,6 +61,7 @@ registerLocaleData(localeDe);
     PlaneLogModule,
     PilotLogModule,
     ChangePasswordModule,
+    JobsDoneListModule
     AddPlaneLogModule,
     FinanceModule,
     EditBalanceModule

@@ -5,23 +5,31 @@
     <!-- ID Column -->
     <ng-container matColumnDef="id">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
-      <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+      <td mat-cell *matCellDef="let element" (click)="navigateTo(element.id, 'X')"> {{element.id}} </td>
     </ng-container>
 
     <!-- Vorname Column -->
     <ng-container matColumnDef="firstName">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Vorname </th>
-      <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
+      <td mat-cell *matCellDef="let element" (click)="navigateTo(element.id, 'X')"> {{element.firstName}} </td>
     </ng-container>
 
-    <!-- Nachname Column -->
+    <!-- Nachname Column --> 
     <ng-container matColumnDef="lastName">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Nachname </th>
-      <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+      <td mat-cell *matCellDef="let element" (click)="navigateTo(element.id, 'X')"> {{element.lastName}} </td>
+    </ng-container>
+
+    <!-- Aufwand Column -->
+    <ng-container matColumnDef="sumAufwand">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Summe der Aufwände </th>
+      <td mat-cell *matCellDef="let element" (click)="navigateTo(element.id, 'A')">
+        <a onmouseover="style='text-decoration:underline'" onmouseout="style='text-decoration:none'">Summe: {{getAufwand(element.id)}} </a>
+      </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr class="pointer" mat-row *matRowDef="let row; columns: displayedColumns;" (click)="navigateTo(row.id)"></tr>
+    <tr class="pointer" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
 
   <button *ngIf="allowedToAddNewMember" mat-fab color="primary" (click)="openAddUserDialog()" class="add-member-button">
