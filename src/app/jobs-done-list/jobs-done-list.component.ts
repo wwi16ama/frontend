@@ -6,7 +6,6 @@ import { MemberService } from './../services/member.service';
 import { JobsdonelistService } from './../services/jobsdonelist.service';
 import { AuthService } from './../services/auth.service';
 import { MatTableDataSource, MatPaginator, MatSort, MatSnackBar, MatDialog} from '@angular/material';
-import {AddJobsdonelistentryComponent} from "./add-jobsdonelistentry/add-jobsdonelistentry/add-jobsdonelistentry.component";
 
 
 @Component({
@@ -70,45 +69,6 @@ export class JobsDoneListComponent implements OnInit {
     var erg: any;
       erg = this.member.firstName + ' ' + this.member.lastName + ' (' + this.member.id + ')';
     return erg
-  }
-
-  openAddJobDialog(): void {
-    const dialogRef = this.AddJobDialog.open(AddJobsdonelistentryComponent, {
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result != null) {
-        this.savePilotLogEntry(result);
-      }
-    });
-  }
-
-  public savePilotLogEntry(jobsdone: JobsDoneList): void {
-    this.jobsdonelistService.addJobsDoneListEntry(jobsdone).subscribe(
-      (response) => {
-        if (response.status === 200) {
-          this.snackBar.open('Änderungen erfolgreich gespeichert.', 'Schließen',
-            {
-              duration: 3000,
-            }
-          );
-        }
-      },
-      error => {
-        if (error.status === 400) {
-          this.snackBar.open('Pflichtfelder nicht ausgefüllt', 'Schließen',
-            {
-              duration: 4000,
-            }
-          );
-        } else if (error.status === 0) {
-          this.snackBar.open('Es konnte keine Verbindung zum Server aufgebaut werden', 'Schließen',
-            {
-              duration: 4000,
-            }
-          );
-        }
-      }
-    );
   }
 
 }
