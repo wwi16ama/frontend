@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { PlaneLogComponent } from './plane-log.component';
 import { MatTableModule, MatButtonModule, MatSortModule, MatIconModule } from '@angular/material';
 import { PlaneLogService } from '../services/planelog.service';
+import { AddPlaneLogModule } from './add-plane-log/add-plane-log.module';
 
 
 @NgModule({
@@ -14,7 +15,8 @@ import { PlaneLogService } from '../services/planelog.service';
     MatButtonModule,
     HttpClientModule,
     MatSortModule,
-    MatIconModule
+    MatIconModule,
+    AddPlaneLogModule,
   ],
   exports: [
     PlaneLogComponent,
