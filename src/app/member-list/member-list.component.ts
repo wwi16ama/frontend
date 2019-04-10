@@ -7,7 +7,6 @@ import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { AddUserFormComponent } from './add-user-form/add-user-form.component';
 import { Member, Status, Gender, OfficeEnum, AuthorizationEnum } from './../models/member.model';
-import { equal } from 'assert';
 
 @Component({
   selector: 'app-member-list',
