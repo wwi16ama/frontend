@@ -1,36 +1,13 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Member } from './../models/member.model';
-import { JobsDoneList } from './../models/jobsdonelist.model';
+import { JobsDoneList, Name } from './../models/jobsdonelist.model';
 import { MemberService } from './../services/member.service';
 import { JobsdonelistService } from './../services/jobsdonelist.service';
 import { AuthService } from './../services/auth.service';
-import { MatTableDataSource, MatPaginator, MatSort} from '@angular/material';
+import { MatTableDataSource, MatPaginator, MatSort, MatSnackBar, MatDialog} from '@angular/material';
+import {AddJobsdonelistentryComponent} from "./add-jobsdonelistentry/add-jobsdonelistentry/add-jobsdonelistentry.component";
 
-export interface PeriodicElement {
-  startdate: string;
-  enddate: string;
-  job: string;
-  credit: number;
-}
-
-const ELEMENT_DATA: PeriodicElement[] = [
-  {startdate: '01.01.2019', enddate: '01.01.2020', job: 'Kassierer', credit: 30},
-  {startdate: '02.01.2019', enddate: '01.01.2020', job: 'Kassierer', credit: 30},
-  {startdate: '03.01.2019', enddate: '01.01.2020', job: 'Kassierer', credit: 30},
-  {startdate: '04.01.2019', enddate: '01.01.2020', job: 'Kassierer', credit: 30},
-  {startdate: '06.01.2019', enddate: '01.01.2020', job: 'Kassierer', credit: 30},
-  {startdate: '05.01.2019', enddate: '01.01.2020', job: 'Kassierer', credit: 30},
-  {startdate: '07.01.2019', enddate: '01.01.2020', job: 'Kassierer', credit: 30},
-  {startdate: '09.01.2019', enddate: '01.01.2020', job: 'Kassierer', credit: 30},
-  {startdate: '08.01.2019', enddate: '01.01.2020', job: 'Kassierer', credit: 30},
-  {startdate: '10.01.2019', enddate: '01.01.2020', job: 'Kassierer', credit: 30},
-  {startdate: '10.01.2018', enddate: '31.12.2018', job: 'Kassierer', credit: 30},
-  {startdate: '10.01.2018', enddate: '31.12.2018', job: 'Kassierer', credit: 30},
-  {startdate: '10.01.2018', enddate: '31.12.2018', job: 'Kassierer', credit: 30},
-  {startdate: '10.01.2018', enddate: '31.12.2018', job: 'Kassierer', credit: 30},
-  {startdate: '10.01.2018', enddate: '31.12.2018', job: 'Kassierer', credit: 30},
-];
 
 @Component({
   selector: 'app-jobs-done-list',
@@ -41,24 +18,25 @@ export class JobsDoneListComponent implements OnInit {
   private sub: any;
   id: number;
   member: Member;
-  dataSource: any;
+  jobs : any;
   sort: any;
-
-
+  gutschriftSumme : any;
   displayedColumns: string[];
 
-//  @ViewChild(MatSort) set content(sort: ElementRef) {
-//    this.sort = sort;
-//    if (this.sort) {
-//      this.dataSource.sort = this.sort;
-//    }
-//  }
-
-  constructor(public authService: AuthService, public memberService: MemberService, public jobsdonelistService: JobsdonelistService, private route: ActivatedRoute) { 
+  constructor(public authService: AuthService, 
+              public memberService: MemberService, 
+              public jobsdonelistService: JobsdonelistService, 
+              private route: ActivatedRoute, 
+              public snackBar: MatSnackBar, 
+              public AddJobDialog: MatDialog) 
+  { 
     this.sub = this.route.params.subscribe(params => {
-    this.id = +params['id']; // (+) converts string 'id' to a number
+    this.id = +params['id']; 
     });
-    this.displayedColumns = ['startDate', 'endDate', 'name', 'gutschrift']; }
+    this.displayedColumns = ['startTime', 'endTime', 'name', 'gutschrift']; 
+    this.jobs = [];
+    this.gutschriftSumme = 0;
+  }
 
   ngOnInit() {
     this.memberService.getMemberData(this.id).subscribe(
@@ -67,17 +45,24 @@ export class JobsDoneListComponent implements OnInit {
       }
     );
     this.jobsdonelistService.getJobsDoneListData(this.id).subscribe(
-      (data: JobsDoneList[]) => {
-        this.dataSource = new MatTableDataSource(data);
+      (jobsdata: JobsDoneList[]) => {
+        this.jobs = jobsdata;
+        for (let i = 0; i < this.jobs.length; i++) {
+          this.gutschriftSumme += this.jobs[i].gutschrift;
+          this.jobs[i].name = this.jobs[i].name.substring(2).charAt(0).toUpperCase() + this.jobs[i].name.toLowerCase().substring(2).slice(1);
+          if (this.jobs[i].year) {
+            var year = this.jobs[i].year;
+            this.jobs[i].startTime = '01.02.'+year;
+            this.jobs[i].endTime = '01.02.'+(++year);
+          }
+        }
       }
-    );  
+    );
   }
 
   public getServiceSum(): number {
     var sum = 0;
-    ELEMENT_DATA.forEach(element => {
-      sum += element.credit;
-    });
+    sum = this.gutschriftSumme;
     return sum;
   }
 
@@ -85,6 +70,45 @@ export class JobsDoneListComponent implements OnInit {
     var erg: any;
       erg = this.member.firstName + ' ' + this.member.lastName + ' (' + this.member.id + ')';
     return erg
+  }
+
+  openAddJobDialog(): void {
+    const dialogRef = this.AddJobDialog.open(AddJobsdonelistentryComponent, {
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result != null) {
+        this.savePilotLogEntry(result);
+      }
+    });
+  }
+
+  public savePilotLogEntry(jobsdone: JobsDoneList): void {
+    this.jobsdonelistService.addJobsDoneListEntry(jobsdone).subscribe(
+      (response) => {
+        if (response.status === 200) {
+          this.snackBar.open('Änderungen erfolgreich gespeichert.', 'Schließen',
+            {
+              duration: 3000,
+            }
+          );
+        }
+      },
+      error => {
+        if (error.status === 400) {
+          this.snackBar.open('Pflichtfelder nicht ausgefüllt', 'Schließen',
+            {
+              duration: 4000,
+            }
+          );
+        } else if (error.status === 0) {
+          this.snackBar.open('Es konnte keine Verbindung zum Server aufgebaut werden', 'Schließen',
+            {
+              duration: 4000,
+            }
+          );
+        }
+      }
+    );
   }
 
 }

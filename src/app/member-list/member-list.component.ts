@@ -7,6 +7,8 @@ import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { AddUserFormComponent } from './add-user-form/add-user-form.component';
 import { Member, Status, Gender, OfficeEnum, AuthorizationEnum } from './../models/member.model';
+import { JobsDoneList } from '../models/jobsdonelist.model';
+import { JobsdonelistService } from '../services/jobsdonelist.service';
 
 @Component({
   selector: 'app-member-list',
@@ -27,7 +29,7 @@ export class MemberListComponent implements OnInit {
   }
 
   constructor(public router: Router, public addUserDialog: MatDialog, public snackBar: MatSnackBar, public activatedRoute: ActivatedRoute,
-    public memberService: MemberService) {
+    public memberService: MemberService, public jobsdonelistService: JobsdonelistService) {
     this.displayedColumns = ['id', 'firstName', 'lastName', 'sumAufwand'];
   }
 
@@ -49,12 +51,13 @@ export class MemberListComponent implements OnInit {
     }
   }
 
-  public getAufwand(MemberID): string {
-    // Summe aller Aufwände für anzeige in Tabelle
-    return MemberID
+  public getAufwand(MemberID): number {
+    var sum = 0;
+    // Keine Ahnung...
+    return sum
   }
 
-  openAddUserDialog(): void {
+  openAddUserDialog(): any {
     const dialogRef = this.addUserDialog.open(AddUserFormComponent, {
     });
 
