@@ -5,8 +5,8 @@ import { MatTableDataSource, MatSort, MatDialog, MatSnackBar, MatSortable } from
 import { PlaneLogService } from '../services/planelog.service';
 import { PlaneService } from '../services/plane.service';
 import { Plane } from '../models/plane.model';
-import { ActivatedRoute, Router } from '@angular/router';
-import { AddPlaneLogComponent } from "./add-plane-log/add-plane-log.component";
+import { ActivatedRoute } from '@angular/router';
+import { AddPlaneLogComponent } from './add-plane-log/add-plane-log.component';
 
 
 @Component({
@@ -59,7 +59,7 @@ export class PlaneLogComponent implements OnInit {
         this.savePlaneLogEntry(result);
       }
     });
-  };
+  }
   public savePlaneLogEntry(planelog: PlaneLog): void {
     this.planeLogService.addPlaneLogEntry(planelog, this.plane.id).subscribe(
       (response) => {
@@ -85,13 +85,14 @@ export class PlaneLogComponent implements OnInit {
             (planedata: Plane) => {
               this.plane = planedata;
               this.planeLogService.getPlaneLogData(this.plane.id).subscribe(
+              // tslint:disable-next-line:no-shadowed-variable
               (planelog: PlaneLog[]) => {
               this.dataSource = new MatTableDataSource(planelog);
               // console.log(this.planelog);
             }
           );
         });
-    
+
       });
           this.dataSource.sort = this.sort;
         }
@@ -119,6 +120,6 @@ export class PlaneLogComponent implements OnInit {
       }
     );
   }
-  
+
 }
 
