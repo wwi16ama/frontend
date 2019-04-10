@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
 import { PlaneLog } from './../models/planelog.model';
-import { MatTableDataSource, MatSort, MatDialog, MatSnackBar } from '@angular/material';
+import { MatTableDataSource, MatSort, MatDialog, MatSnackBar, MatSortable } from '@angular/material';
 import { PlaneLogService } from '../services/planelog.service';
 import { PlaneService } from '../services/plane.service';
 import { Plane } from '../models/plane.model';
@@ -43,6 +43,8 @@ export class PlaneLogComponent implements OnInit {
           (planelog: PlaneLog[]) => {
           this.dataSource = new MatTableDataSource(planelog);
           // console.log(this.planelog);
+          this.sort.sort(<MatSortable>({id: 'refuelDateTime', start: 'desc'}));
+          this.dataSource.sort = this.sort;
         }
       );
     });
