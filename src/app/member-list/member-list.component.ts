@@ -31,7 +31,7 @@ export class MemberListComponent implements OnInit {
   }
 
   constructor(public router: Router, public addUserDialog: MatDialog, public snackBar: MatSnackBar, public activatedRoute: ActivatedRoute,
-    public memberService: MemberService, public jobsdonelistService: JobsdonelistService) {
+    public memberService: MemberService, public jobsdonelistService: JobsdonelistService, public authService: AuthService) {
     this.displayedColumns = ['id', 'firstName', 'lastName', 'sumAufwand'];
     this.allowedToAddNewMember = false;
   }
