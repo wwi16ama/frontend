@@ -47,6 +47,9 @@ export class AuthGuard implements CanActivate {
         case 'change-password':
           isAllowed = true;
           break;
+        case 'finance':
+          isAllowed = this.checkFinanceRoute();
+          break;
       }
       return isAllowed;
     }
@@ -76,5 +79,9 @@ export class AuthGuard implements CanActivate {
 
   private checkPlaneLogRoute(): boolean {
     return this.authService.memberHasAuthorization('PASSIVE') ? false : true;
+  }
+
+  private checkFinanceRoute(): boolean {
+    return this.authService.memberHasAuthorization('VV') ? true : true;
   }
 }

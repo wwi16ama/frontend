@@ -1,12 +1,12 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 
 import { PlaneLog } from './../models/planelog.model';
-import { MatTableDataSource, MatSort, MatDialog, MatSnackBar } from '@angular/material';
+import { MatTableDataSource, MatSort, MatDialog, MatSnackBar, MatSortable } from '@angular/material';
 import { PlaneLogService } from '../services/planelog.service';
 import { PlaneService } from '../services/plane.service';
 import { Plane } from '../models/plane.model';
-import { ActivatedRoute, Router } from '@angular/router';
-import { AddPlaneLogComponent } from "./add-plane-log/add-plane-log.component";
+import { ActivatedRoute } from '@angular/router';
+import { AddPlaneLogComponent } from './add-plane-log/add-plane-log.component';
 
 
 @Component({
@@ -17,37 +17,38 @@ import { AddPlaneLogComponent } from "./add-plane-log/add-plane-log.component";
 export class PlaneLogComponent implements OnInit {
 
   plane: Plane;
-  planelog: PlaneLog;
 
-    @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatSort) sort: MatSort;
 
-    displayedColumns: string[];
-    dataSource: any;
+  displayedColumns: string[];
+  dataSource: any;
 
-    constructor(
-      public planeLogService: PlaneLogService,
-      public planeService: PlaneService,
-      public activatedRoute: ActivatedRoute,
-      public addLogDialog: MatDialog,
-      public snackBar: MatSnackBar) {
-      this.displayedColumns = ['nameofplane', 'id', 'refuelDateTime', 'memberId', 'location', 'startCount', 'endCount', 'totalPrice'];
-    }
+  constructor(
+    public planeLogService: PlaneLogService,
+    public planeService: PlaneService,
+    public activatedRoute: ActivatedRoute,
+    public addLogDialog: MatDialog,
+    public snackBar: MatSnackBar) {
+    this.displayedColumns = ['nameofplane', 'id', 'refuelDateTime', 'memberId', 'location', 'startCount', 'endCount', 'fuelPrice'];
+  }
 
-    ngOnInit() {
-      this.activatedRoute.params.subscribe(
-        params => {
-      this.planeService.getPlaneData(params['id']).subscribe(
-        (planedata: Plane) => {
-          this.plane = planedata;
-          this.planeLogService.getPlaneLogData(this.plane.id).subscribe(
-          (planelog: PlaneLog[]) => {
-          this.dataSource = new MatTableDataSource(planelog);
-          // console.log(this.planelog);
-        }
-      );
-    });
+  ngOnInit() {
+    this.activatedRoute.params.subscribe(
+      params => {
+        this.planeService.getPlaneData(params['id']).subscribe(
+          (planedata: Plane) => {
+            this.plane = planedata;
+            this.planeLogService.getPlaneLogData(this.plane.id).subscribe(
+              (planelog: PlaneLog[]) => {
+                this.dataSource = new MatTableDataSource(planelog);
+                this.sort.sort(<MatSortable>({ id: 'refuelDateTime', start: 'desc' }));
+                this.dataSource.sort = this.sort;
+              }
+            );
+          });
 
-  }); }
+      });
+  }
 
   openAddLogDialog(): void {
     const dialogRef = this.addLogDialog.open(AddPlaneLogComponent, {
@@ -57,7 +58,7 @@ export class PlaneLogComponent implements OnInit {
         this.savePlaneLogEntry(result);
       }
     });
-  };
+  }
   public savePlaneLogEntry(planelog: PlaneLog): void {
     this.planeLogService.addPlaneLogEntry(planelog, this.plane.id).subscribe(
       (response) => {
@@ -67,7 +68,7 @@ export class PlaneLogComponent implements OnInit {
               duration: 3000,
             }
           );
-          const newPlaneLog = new PlaneLog (
+          const newPlaneLog = new PlaneLog(
             response.body.planeNumber,
             response.body.refuelDateTime,
             response.body.memberId,
@@ -77,20 +78,6 @@ export class PlaneLogComponent implements OnInit {
             response.body.totalPrice
           );
           this.dataSource.data.push(newPlaneLog);
-          this.activatedRoute.params.subscribe(
-            params => {
-          this.planeService.getPlaneData(params['id']).subscribe(
-            (planedata: Plane) => {
-              this.plane = planedata;
-              this.planeLogService.getPlaneLogData(this.plane.id).subscribe(
-              (planelog: PlaneLog[]) => {
-              this.dataSource = new MatTableDataSource(planelog);
-              // console.log(this.planelog);
-            }
-          );
-        });
-    
-      });
           this.dataSource.sort = this.sort;
         }
       },
@@ -117,6 +104,6 @@ export class PlaneLogComponent implements OnInit {
       }
     );
   }
-  
+
 }
 
