@@ -30,8 +30,8 @@ export const appRoutes: Routes = [
   { path: 'planeLog/:id', component: PlaneLogComponent },
   { path: 'change-password', component: ChangePasswordComponent, canActivate: [AuthGuard] },
   { path: 'jobsdonelist', component: JobsDoneListComponent, canActivate: [AuthGuard] },
-  { path: 'jobsdonelist/:id', component: JobsDoneListComponent}
-  { path: 'finance', component: FinanceComponent, canActivate: [AuthGuard] },
+  { path: 'jobsdonelist/:id', component: JobsDoneListComponent},
+  { path: 'finance', component: FinanceComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

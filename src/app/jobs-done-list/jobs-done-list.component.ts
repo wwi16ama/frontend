@@ -71,4 +71,6 @@ export class JobsDoneListComponent implements OnInit {
     return erg
   }
 
+  public openAddJobDialog(){}
+
 }

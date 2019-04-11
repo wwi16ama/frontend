@@ -61,7 +61,7 @@ registerLocaleData(localeDe);
     PlaneLogModule,
     PilotLogModule,
     ChangePasswordModule,
-    JobsDoneListModule
+    JobsDoneListModule,
     AddPlaneLogModule,
     FinanceModule,
     EditBalanceModule
