@@ -17,7 +17,6 @@ import { AddPlaneLogComponent } from './add-plane-log/add-plane-log.component';
 export class PlaneLogComponent implements OnInit {
 
   plane: Plane;
-  planelog: PlaneLog;
 
   @ViewChild(MatSort) sort: MatSort;
 
