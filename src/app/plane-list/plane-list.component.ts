@@ -35,7 +35,7 @@ export class PlaneListComponent implements OnInit {
   }
 
   ngOnInit() {
-    const hasVVOrSYSADMIN = this.authService.memberHasAuthorization('VV') || this.authService.memberHasAuthorization('SYSADMIN');
+    const hasVVOrSYSADMIN = this.authService.memberHasAuthorization('VORSTANDSVORSITZENDER') || this.authService.memberHasAuthorization('SYSTEMADMINISTRATOR');
     this.allowedToDeletePlane = hasVVOrSYSADMIN;
     this.allowedToAddNewPlane = hasVVOrSYSADMIN;
     this.allowedToEditPlane = hasVVOrSYSADMIN;

@@ -60,8 +60,8 @@ export class AuthGuard implements CanActivate {
 
   private checkMemberViewRoute(memberId: string): boolean {
     if (
-      this.authService.memberHasAuthorization('VV') ||
-      this.authService.memberHasAuthorization('SYSADMIN') ||
+      this.authService.memberHasAuthorization('VORSTANDSVORSITZENDER') ||
+      this.authService.memberHasAuthorization('SYSTEMADMINISTRATOR') ||
       this.authService.memberHasAuthorization('KASSIERER') ||
       this.authService.memberHasAuthorization('FLUGWART')
     ) {
