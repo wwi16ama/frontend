@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, ChangeDetectorRef } from '@angular/core';
 
-import { MatTableDataSource, MatDialog, MatSnackBar, MatSort, MatPaginator, MatSortable } from '@angular/material';
+import { MatTableDataSource, MatDialog, MatSnackBar, MatSort, MatPaginator } from '@angular/material';
 import { ListMember } from './../models/list-member.model';
 import { MemberService } from './../services/member.service';
 import { Router } from '@angular/router';
@@ -37,7 +37,7 @@ export class FinanceComponent implements OnInit {
 
   @ViewChild(MatSort) set content(sort: ElementRef) {
     this.sort = sort;
-    if (this.sort) {
+    if (this.sort && this.dataSource && this.dataSource_mem) {
       this.dataSource.sort = this.sort;
       this.dataSource_mem.sort = this.sort;
       this.cdr.detectChanges();
