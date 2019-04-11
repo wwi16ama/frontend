@@ -82,6 +82,6 @@ export class AuthGuard implements CanActivate {
   }
 
   private checkFinanceRoute(): boolean {
-    return this.authService.memberHasAuthorization('VV') ? true : true;
+    return this.authService.memberHasAuthorization('VORSTANDSVORSITZENDER') ? true : true;
   }
 }

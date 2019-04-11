@@ -15,6 +15,13 @@ export class Transaction {
     ) {}
 }
 
+export class AddTransaction {
+    constructor(
+        public amount: number,
+        public text: string
+    ) {}
+}
+
 export enum Type {
   MITGLIEDSBEITRAG = 'Jährlicher Mitgliedsbeitrag',
   GEBÜHRFLUGZEUG = 'Gebühren für die Flugzeugnutzung',
