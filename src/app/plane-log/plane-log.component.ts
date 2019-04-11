@@ -19,37 +19,38 @@ export class PlaneLogComponent implements OnInit {
   plane: Plane;
   planelog: PlaneLog;
 
-    @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatSort) sort: MatSort;
 
-    displayedColumns: string[];
-    dataSource: any;
+  displayedColumns: string[];
+  dataSource: any;
 
-    constructor(
-      public planeLogService: PlaneLogService,
-      public planeService: PlaneService,
-      public activatedRoute: ActivatedRoute,
-      public addLogDialog: MatDialog,
-      public snackBar: MatSnackBar) {
-      this.displayedColumns = ['nameofplane', 'id', 'refuelDateTime', 'memberId', 'location', 'startCount', 'endCount', 'fuelPrice'];
-    }
+  constructor(
+    public planeLogService: PlaneLogService,
+    public planeService: PlaneService,
+    public activatedRoute: ActivatedRoute,
+    public addLogDialog: MatDialog,
+    public snackBar: MatSnackBar) {
+    this.displayedColumns = ['nameofplane', 'id', 'refuelDateTime', 'memberId', 'location', 'startCount', 'endCount', 'fuelPrice'];
+  }
 
-    ngOnInit() {
-      this.activatedRoute.params.subscribe(
-        params => {
-      this.planeService.getPlaneData(params['id']).subscribe(
-        (planedata: Plane) => {
-          this.plane = planedata;
-          this.planeLogService.getPlaneLogData(this.plane.id).subscribe(
-          (planelog: PlaneLog[]) => {
-          this.dataSource = new MatTableDataSource(planelog);
-          // console.log(this.planelog);
-          this.sort.sort(<MatSortable>({id: 'refuelDateTime', start: 'desc'}));
-          this.dataSource.sort = this.sort;
-        }
-      );
-    });
+  ngOnInit() {
+    this.activatedRoute.params.subscribe(
+      params => {
+        this.planeService.getPlaneData(params['id']).subscribe(
+          (planedata: Plane) => {
+            this.plane = planedata;
+            this.planeLogService.getPlaneLogData(this.plane.id).subscribe(
+              (planelog: PlaneLog[]) => {
+                this.dataSource = new MatTableDataSource(planelog);
+                // console.log(this.planelog);
+                this.sort.sort(<MatSortable>({ id: 'refuelDateTime', start: 'desc' }));
+                this.dataSource.sort = this.sort;
+              }
+            );
+          });
 
-  }); }
+      });
+  }
 
   openAddLogDialog(): void {
     const dialogRef = this.addLogDialog.open(AddPlaneLogComponent, {
@@ -69,7 +70,7 @@ export class PlaneLogComponent implements OnInit {
               duration: 3000,
             }
           );
-          const newPlaneLog = new PlaneLog (
+          const newPlaneLog = new PlaneLog(
             response.body.planeNumber,
             response.body.refuelDateTime,
             response.body.memberId,
@@ -81,19 +82,19 @@ export class PlaneLogComponent implements OnInit {
           this.dataSource.data.push(newPlaneLog);
           this.activatedRoute.params.subscribe(
             params => {
-          this.planeService.getPlaneData(params['id']).subscribe(
-            (planedata: Plane) => {
-              this.plane = planedata;
-              this.planeLogService.getPlaneLogData(this.plane.id).subscribe(
-              // tslint:disable-next-line:no-shadowed-variable
-              (planelog: PlaneLog[]) => {
-              this.dataSource = new MatTableDataSource(planelog);
-              // console.log(this.planelog);
-            }
-          );
-        });
+              this.planeService.getPlaneData(params['id']).subscribe(
+                (planedata: Plane) => {
+                  this.plane = planedata;
+                  this.planeLogService.getPlaneLogData(this.plane.id).subscribe(
+                    // tslint:disable-next-line:no-shadowed-variable
+                    (planelog: PlaneLog[]) => {
+                      this.dataSource = new MatTableDataSource(planelog);
+                      // console.log(this.planelog);
+                    }
+                  );
+                });
 
-      });
+            });
           this.dataSource.sort = this.sort;
         }
       },
