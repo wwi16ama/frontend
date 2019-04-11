@@ -78,20 +78,6 @@ export class PlaneLogComponent implements OnInit {
             response.body.totalPrice
           );
           this.dataSource.data.push(newPlaneLog);
-          this.activatedRoute.params.subscribe(
-            params => {
-              this.planeService.getPlaneData(params['id']).subscribe(
-                (planedata: Plane) => {
-                  this.plane = planedata;
-                  this.planeLogService.getPlaneLogData(this.plane.id).subscribe(
-                    // tslint:disable-next-line:no-shadowed-variable
-                    (planelog: PlaneLog[]) => {
-                      this.dataSource = new MatTableDataSource(planelog);
-                    }
-                  );
-                });
-
-            });
           this.dataSource.sort = this.sort;
         }
       },
