@@ -31,7 +31,7 @@
       </div>
       <mat-divider></mat-divider>
       <h3 mat-subheader class="underline">Verwaltung</h3>
-      <div class="menu-button-wrapper">
+      <div class="menu-button-wrapper" *ngIf="hasAuthorization">
         <mat-list-item class="menu-button" (click)="navigateTo('finance')">
           <h4 mat-line>Finanzen verwalten</h4>
         </mat-list-item>

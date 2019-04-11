@@ -12,15 +12,20 @@ export class SiteNavigationComponent implements OnInit {
 
   opened: boolean;
   loggedIn: boolean;
+  hasAuthorization: boolean;
 
   constructor(public router: Router, public snackBar: MatSnackBar, public authService: AuthService) {
     this.opened = false;
     this.loggedIn = false;
+    this.hasAuthorization = false;
   }
 
   ngOnInit() {
     this.authService.isLoggedIn().subscribe((loggedIn) => {
       this.loggedIn = loggedIn;
+      this.hasAuthorization = this.authService.memberHasAuthorization('VORSTANDSVORSITZENDER') ||
+      this.authService.memberHasAuthorization('SYSTEMADMINISTRATOR') ||
+      this.authService.memberHasAuthorization('KASSIERER');
     });
   }
 
