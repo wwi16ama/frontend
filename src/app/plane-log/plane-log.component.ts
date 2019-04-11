@@ -41,7 +41,6 @@ export class PlaneLogComponent implements OnInit {
             this.planeLogService.getPlaneLogData(this.plane.id).subscribe(
               (planelog: PlaneLog[]) => {
                 this.dataSource = new MatTableDataSource(planelog);
-                // console.log(this.planelog);
                 this.sort.sort(<MatSortable>({ id: 'refuelDateTime', start: 'desc' }));
                 this.dataSource.sort = this.sort;
               }
@@ -88,7 +87,6 @@ export class PlaneLogComponent implements OnInit {
                     // tslint:disable-next-line:no-shadowed-variable
                     (planelog: PlaneLog[]) => {
                       this.dataSource = new MatTableDataSource(planelog);
-                      // console.log(this.planelog);
                     }
                   );
                 });
