@@ -15,7 +15,8 @@ export class AuthService {
     private authorization: string[];
 
     constructor(public httpClient: HttpClient) {
-        this.authorization = [];
+        const memberData = JSON.parse(sessionStorage.getItem('memberData'));
+        this.authorization = memberData !== null ? memberData.authorization : [];
         this.checkLoggedInStatus();
     }
 
