@@ -89,7 +89,7 @@ public formatMemberStatus (member: any): any {
 public saveMemberProfile(member: Member): void {
   const newMemberData = JSON.parse(JSON.stringify(member));
   member = this.formatMemberStatus(member);
-  this.memberService.updateMemberData(member).subscribe(
+  this.memberService.updateMemberDetailData(member).subscribe(
     (response) => {
       if (response.status === 204) {
         this.snackBar.open('Änderungen erfolgreich gespeichert.', 'Schließen',

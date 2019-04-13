@@ -62,6 +62,21 @@ export class MemberService {
     );
   }
 
+  public updateMemberDetailData(memberData: Member): Observable<any> {
+    const id = memberData.id;
+    const url = environment.baseUrl + '/members/' + id + '/changeContactDetails';
+    delete memberData['id'];
+    const headers = this.authService.setAuthHeader();
+    return this.httpClient.put<any>(
+      url,
+      memberData,
+      {
+        headers: headers,
+        observe: 'response'
+      }
+    );
+  }
+
   public addMemberData(memberData: Member): Observable<any> {
     const url = environment.baseUrl + '/members';
     const headers = this.authService.setAuthHeader();
