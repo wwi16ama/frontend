@@ -75,9 +75,23 @@ export class PlaneLogComponent implements OnInit {
             response.body.location,
             response.body.startCount,
             response.body.endCount,
-            response.body.totalPrice
+            response.body.fuelPrice
           );
           this.dataSource.data.push(newPlaneLog);
+          this.activatedRoute.params.subscribe(
+            params => {
+              this.planeService.getPlaneData(params['id']).subscribe(
+                (planedata: Plane) => {
+                  this.plane = planedata;
+                  this.planeLogService.getPlaneLogData(this.plane.id).subscribe(
+                    (planelog: PlaneLog[]) => {
+                      this.dataSource = new MatTableDataSource(planelog);
+                      this.sort.sort(<MatSortable>({ id: 'refuelDateTime', start: 'desc' }));
+                      this.dataSource.sort = this.sort;
+                    }
+                  );
+                });
+            });
           this.dataSource.sort = this.sort;
         }
       },

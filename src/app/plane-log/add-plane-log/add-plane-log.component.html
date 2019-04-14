@@ -20,21 +20,21 @@
           </mat-form-field>
 
           <mat-form-field class="input-width">
-            <input type="text" matInput placeholder="Anfangsstand" pattern="[0-9]*" digitOnly [formControl]="initialFuelLevelFormControl" 
+            <input type="text" matInput placeholder="Anfangsstand" ng-pattern="/^(?:[0-9]+(?:\.[0-9]{0,2})?)?$/" digitOnly [formControl]="initialFuelLevelFormControl" 
             id="intialFuelLevel" required>
             <mat-error *ngIf="locationFormControl.hasError('pattern')">Es sind nur Zahlen erlaubt</mat-error>
             <mat-error *ngIf="locationFormControl.hasError('required')">Der Anfangsstand muss angegeben werden</mat-error>
           </mat-form-field>
 
           <mat-form-field class="input-width">
-            <input type="text" matInput placeholder="Endstand" pattern="[0-9]*" digitOnly [formControl]="finalFuelLevelFormControl" 
+            <input type="text" matInput placeholder="Endstand" ng-pattern="/^(?:[0-9]+(?:\.[0-9]{0,2})?)?$/" digitOnly [formControl]="finalFuelLevelFormControl" 
             id="finalFuelLevel" required>
             <mat-error *ngIf="locationFormControl.hasError('pattern')">Es sind nur Zahlen erlaubt</mat-error>
             <mat-error *ngIf="locationFormControl.hasError('required')">Der Endstand muss angegeben werden</mat-error>
           </mat-form-field>
 
           <mat-form-field class="input-width">
-            <input type="text" matInput placeholder="Preis" pattern="[0-9]*" digitOnly [formControl]="priceFormControl" 
+            <input type="text" matInput placeholder="Preis" ng-pattern="/^(?:[0-9]+(?:\.[0-9]{0,2})?)?$/" digitOnly [formControl]="priceFormControl" 
             id="price" required>
             <mat-error *ngIf="locationFormControl.hasError('pattern')">Es sind nur Zahlen erlaubt</mat-error>
             <mat-error *ngIf="locationFormControl.hasError('required')">Der Preis muss angegeben werden</mat-error>
@@ -44,7 +44,7 @@
     </form>
   </mat-dialog-content>
   <mat-dialog-actions align="end">
-    <button mat-button mat-dialog-close>Abbrechen</button>
+    <button mat-button (click)="onNoClick()">Abbrechen</button>
     <button mat-raised-button (click)="saveLogData()" color="primary" cdkFocusInitial>Speichern</button>
   </mat-dialog-actions>
 </div>
