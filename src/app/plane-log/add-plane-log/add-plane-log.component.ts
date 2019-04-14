@@ -71,10 +71,15 @@ export class AddPlaneLogComponent implements OnInit {
         ).toString()),
         startCount: this.initialFuelLevelFormControl.value,
         endCount: this.finalFuelLevelFormControl.value,
-        totalPrice: this.priceFormControl.value
+        fuelPrice: this.priceFormControl.value
       };
       this.addLogDialogRef.close(newPlaneLog);
+      console.log(newPlaneLog);
   }}
+
+  public onNoClick(): void {
+    this.addLogDialogRef.close();
+  }
 
   public formatDate(date: string): string {
     const parseDate = new Date(date);
