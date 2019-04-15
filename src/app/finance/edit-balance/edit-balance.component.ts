@@ -12,21 +12,20 @@ import { Transaction } from 'src/app/models/account.model';
 export class EditBalanceComponent {
 
   amountFormControl: FormControl;
-  typeFormControl: FormControl;
+  textFormControl: FormControl;
 
   constructor(
     public editBalanceDialogRef: MatDialogRef<EditBalanceComponent>, public snackBar: MatSnackBar,
     @Inject(MAT_DIALOG_DATA) public Listmember: ListMember
   ) {
     this.initializeFormControls();
-    console.log(Listmember.id);
   }
 
   public initializeFormControls(): void {
     this.amountFormControl = new FormControl('', [
       Validators.required
     ]);
-    this.typeFormControl = new FormControl('', [
+    this.textFormControl = new FormControl('', [
       Validators.required
     ]);
   }
@@ -35,7 +34,7 @@ export class EditBalanceComponent {
     if (this.checkRequiredFields()) {
       const newTransaction = {
        amount: this.amountFormControl.value,
-       text: this.typeFormControl.value
+       text: this.textFormControl.value
       };
       console.log(newTransaction);
       this.editBalanceDialogRef.close(newTransaction);
@@ -50,7 +49,7 @@ export class EditBalanceComponent {
           }
         );
         return false;
-      } else if (this.typeFormControl.invalid) {
+      } else if (this.textFormControl.invalid) {
         this.snackBar.open('Kein korrekter Betreff.', 'Schließen',
           {
             duration: 3000,

@@ -5,7 +5,7 @@ import { ListMember } from './../models/list-member.model';
 import { MemberService } from './../services/member.service';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
-import { Account, AddTransaction, Type} from './../models/account.model';
+import { Account, AddTransaction} from './../models/account.model';
 import { Member, OfficeEnum} from './../models/member.model';
 import { AccountService } from './../services/account.service';
 import { EditBalanceComponent } from './edit-balance/edit-balance.component';
@@ -47,7 +47,7 @@ export class FinanceComponent implements OnInit {
   constructor(public accountService: AccountService, public router: Router, public addUserDialog: MatDialog,
     public snackBar: MatSnackBar, public activatedRoute: ActivatedRoute, public editBalanceDialog: MatDialog,
     public memberService: MemberService, public cdr: ChangeDetectorRef) {
-    this.displayedColumns = ['timestamp', 'amount', 'type'];
+    this.displayedColumns = ['timestamp', 'amount', 'text'];
     this.displayedColumns_mem = ['id', 'firstName', 'lastName', 'memberBankingAccountId'];
   }
 
@@ -62,7 +62,7 @@ export class FinanceComponent implements OnInit {
       (accountDataVereinskonto: Account) => {
         this.accountVereinskonto = accountDataVereinskonto;
         for (let i = 0; i < this.accountVereinskonto.transactions.length; i++) {
-          this.accountVereinskonto.transactions[i].type = Type[this.accountVereinskonto.transactions[i].type];
+          this.accountVereinskonto.transactions[i].text = this.accountVereinskonto.transactions[i].text;
         }
         this.dataSource = new MatTableDataSource(this.accountVereinskonto.transactions);
       }

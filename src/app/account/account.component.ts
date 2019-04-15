@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, ChangeDetectorRef } from '@angular/core';
 
-import { Account, Type } from './../models/account.model';
+import { Account } from './../models/account.model';
 import { AccountService } from './../services/account.service';
 import { Member, Status } from './../models/member.model';
 import { MemberService } from './../services/member.service';
@@ -37,7 +37,7 @@ export class AccountComponent implements OnInit {
     public accountService: AccountService, public memberService: MemberService, public cdr: ChangeDetectorRef,
     public editMemberProfileDialog: MatDialog, public snackBar: MatSnackBar, public authService: AuthService
   ) {
-    this.displayedColumns = ['timestamp', 'amount', 'type'];
+    this.displayedColumns = ['timestamp', 'amount', 'text'];
   }
 
   ngOnInit() {
@@ -49,7 +49,7 @@ export class AccountComponent implements OnInit {
           (data: Account) => {
             this.account = data;
             for (let i = 0; i < this.account.transactions.length; i++) {
-              this.account.transactions[i].type = Type[this.account.transactions[i].type];
+              this.account.transactions[i].text = this.account.transactions[i].text;
             }
             this.dataSource = new MatTableDataSource(this.account.transactions);
           }
@@ -58,9 +58,9 @@ export class AccountComponent implements OnInit {
     );
   }
 
-  public formatStringToEnum(account: any): any {
+  public formatStringToEnum (account: any): any {
     for (let i = 0; i < account.transactions.length; i++) {
-      account.transactions[i].type = Type.getEnumString(account.transactions[i].type);
+      account.transactions[i].text = account.transactions[i].text;
     }
     return account;
  }
