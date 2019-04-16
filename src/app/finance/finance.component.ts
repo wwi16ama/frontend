@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ChangeDetectorRef } from '@angular/core';
 
 import { MatTableDataSource, MatDialog, MatSnackBar, MatSort, MatPaginator } from '@angular/material';
 import { ListMember } from './../models/list-member.model';
@@ -26,23 +26,19 @@ export class FinanceComponent implements OnInit {
   listmember: ListMember;
   officeenum: OfficeEnum;
   authorized: boolean;
-  memberdata_global: ListMember[];
 
-  @ViewChild(MatPaginator) set paginator(paginator: MatPaginator) {
+  /*@ViewChild(MatPaginator) set paginator(paginator: MatPaginator) {
     if (this.dataSource && paginator) {
       this.dataSource.paginator = paginator;
       this.cdr.detectChanges();
     }
-  }
+  }*/
+  @ViewChild('memberListPaginator') memberListPaginator: MatPaginator;
+  @ViewChild('bankingAccountPaginator') bankingAccountPaginator: MatPaginator;
+  @ViewChild('memberListSort') memberListSort: MatSort;
+  @ViewChild('bankingAccountSort') bankingAccountSort: MatSort;
 
-  @ViewChild(MatSort) set content(sort: ElementRef) {
-    this.sort = sort;
-    if (this.sort && this.dataSource && this.dataSource_mem) {
-      this.dataSource.sort = this.sort;
-      this.dataSource_mem.sort = this.sort;
-      this.cdr.detectChanges();
-    }
-  }
+
 
   constructor(public accountService: AccountService, public router: Router, public addUserDialog: MatDialog,
     public snackBar: MatSnackBar, public activatedRoute: ActivatedRoute, public editBalanceDialog: MatDialog,
@@ -55,7 +51,8 @@ export class FinanceComponent implements OnInit {
     this.memberService.getMemberListData().subscribe(
       (memberdata: ListMember[]) => {
         this.dataSource_mem = new MatTableDataSource(memberdata);
-        this.memberdata_global = memberdata;
+        this.dataSource_mem.sort = this.memberListSort;
+        this.dataSource_mem.paginator = this.memberListPaginator;
       }
     );
     this.accountService.getAccountVereinskonto().subscribe(
@@ -65,25 +62,27 @@ export class FinanceComponent implements OnInit {
           this.accountVereinskonto.transactions[i].text = this.accountVereinskonto.transactions[i].text;
         }
         this.dataSource = new MatTableDataSource(this.accountVereinskonto.transactions);
+        this.dataSource.sort = this.bankingAccountSort;
+        this.dataSource.paginator = this.bankingAccountPaginator;
       }
     );
-    }
+  }
 
-    public openFinanceDialog(member: ListMember): void {
-      console.log(member);
-        const dialogRef = this.editBalanceDialog.open(EditBalanceComponent, {
-        maxWidth: '100vw',
-        minWidth: '0px',
-        maxHeight: '90vh',
-        disableClose: true,
-        data: JSON.parse(JSON.stringify(member))
-      });
-      dialogRef.afterClosed().subscribe(result => {
-        if (result != null) {
-          this.saveBalance(result, member.memberBankingAccountId);
-        }
-      });
-    }
+  public openFinanceDialog(member: ListMember): void {
+    console.log(member);
+    const dialogRef = this.editBalanceDialog.open(EditBalanceComponent, {
+      maxWidth: '100vw',
+      minWidth: '0px',
+      maxHeight: '90vh',
+      disableClose: true,
+      data: JSON.parse(JSON.stringify(member))
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result != null) {
+        this.saveBalance(result, member.memberBankingAccountId);
+      }
+    });
+  }
 
   public saveBalance(transaction: AddTransaction, bankId): void {
     this.accountService.addTransaction(transaction, bankId).subscribe(
@@ -94,7 +93,7 @@ export class FinanceComponent implements OnInit {
               duration: 3000,
             }
           );
-          }
+        }
       });
   }
 }
