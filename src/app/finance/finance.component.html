@@ -1,40 +1,39 @@
 <div class="divide-wrapper">
   <div class="finance-list-wrapper">
     <h1 class="title-text">Finanzverwaltung</h1>
-    <table mat-table [dataSource]="dataSource_mem" class="mat-elevation-z8" matSortActive="id" matSortDirection="desc"
-      #memberListSort="matSort" matSort>
-      <!-- ID Column -->
-      <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
-        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-      </ng-container>
+    <div class="financetable">
+      <table mat-table [dataSource]="dataSource_mem" class="mat-elevation-z8" matSortActive="id" matSortDirection="desc"
+        #memberListSort="matSort" matSort>
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
 
-      <!-- Vorname Column -->
-      <ng-container matColumnDef="firstName">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Vorname </th>
-        <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
-      </ng-container>
+        <ng-container matColumnDef="firstName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Vorname </th>
+          <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
+        </ng-container>
 
-      <!-- Nachname Column -->
-      <ng-container matColumnDef="lastName">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nachname </th>
-        <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
-      </ng-container>
+        <ng-container matColumnDef="lastName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Nachname </th>
+          <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+        </ng-container>
 
-      <!-- Kontonummer Column -->
-      <ng-container matColumnDef="memberBankingAccountId">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Kontonummer </th>
-        <td mat-cell *matCellDef="let element"> {{element.memberBankingAccountId}} </td>
-      </ng-container>
+        <ng-container matColumnDef="memberBankingAccountId">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Kontonummer </th>
+          <td mat-cell *matCellDef="let element"> {{element.memberBankingAccountId}} </td>
+        </ng-container>
 
-      <tr mat-header-row *matHeaderRowDef="displayedColumns_mem"></tr>
-      <tr class="pointer" mat-row *matRowDef="let row; columns: displayedColumns_mem;" (click)="openFinanceDialog(row)">
-      </tr>
-    </table>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns_mem"></tr>
+        <tr class="pointer" mat-row *matRowDef="let row; columns: displayedColumns_mem;" (click)="openFinanceDialog(row)">
+        </tr>
+      </table>
+      <mat-paginator #memberListPaginator [pageSizeOptions]="[5, 10, 25]"></mat-paginator>
+    </div>
   </div>
 </div>
 <div class="divide-wrapper">
-  <div class="member-list-wrapper">
+  <div class="finance-list-wrapper">
     <h1 class="title-text">Vereinskonto</h1>
     <mat-list *ngIf="accountVereinskonto != null">
       <h3 mat-subheader>Guthaben</h3>
@@ -71,7 +70,7 @@
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
       </table>
-      <mat-paginator class="matpaginator" [pageSizeOptions]="[5, 10, 25]"></mat-paginator>
+      <mat-paginator #bankingAccountPaginator [pageSizeOptions]="[5, 10, 25]"></mat-paginator>
     </div>
     <p></p>
   </div>

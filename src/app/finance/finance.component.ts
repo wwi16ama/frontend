@@ -27,13 +27,14 @@ export class FinanceComponent implements OnInit {
   officeenum: OfficeEnum;
   authorized: boolean;
 
-  @ViewChild(MatPaginator) set paginator(paginator: MatPaginator) {
+  /*@ViewChild(MatPaginator) set paginator(paginator: MatPaginator) {
     if (this.dataSource && paginator) {
       this.dataSource.paginator = paginator;
       this.cdr.detectChanges();
     }
-  }
-
+  }*/
+  @ViewChild('memberListPaginator') memberListPaginator: MatPaginator;
+  @ViewChild('bankingAccountPaginator') bankingAccountPaginator: MatPaginator;
   @ViewChild('memberListSort') memberListSort: MatSort;
   @ViewChild('bankingAccountSort') bankingAccountSort: MatSort;
 
@@ -51,6 +52,7 @@ export class FinanceComponent implements OnInit {
       (memberdata: ListMember[]) => {
         this.dataSource_mem = new MatTableDataSource(memberdata);
         this.dataSource_mem.sort = this.memberListSort;
+        this.dataSource_mem.paginator = this.memberListPaginator;
       }
     );
     this.accountService.getAccountVereinskonto().subscribe(
@@ -61,6 +63,7 @@ export class FinanceComponent implements OnInit {
         }
         this.dataSource = new MatTableDataSource(this.accountVereinskonto.transactions);
         this.dataSource.sort = this.bankingAccountSort;
+        this.dataSource.paginator = this.bankingAccountPaginator;
       }
     );
   }
