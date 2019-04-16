@@ -13,6 +13,8 @@ import { LoginComponent } from './login/login.component';
 import { PilotLogComponent } from './pilotlog/pilotlog.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { PlaneLogComponent } from './plane-log/plane-log.component';
+import { JobsDoneListComponent } from './jobs-done-list/jobs-done-list.component';
+import { FinanceComponent } from './finance/finance.component';
 
 export const appRoutes: Routes = [
   { path: '', redirectTo: '/login', pathMatch: 'full' },
@@ -20,17 +22,17 @@ export const appRoutes: Routes = [
   { path: 'member/:id', component: MemberViewComponent, canActivate: [AuthGuard] },
   { path: 'planelist', component: PlaneListComponent, canActivate: [AuthGuard] },
   { path: 'expensingbilllist', component: ExpensingBillListComponent, canActivate: [AuthGuard] },
-  { path: 'planelist', component: PlaneListComponent, canActivate: [AuthGuard] },
   { path: 'feelist', component: FeeListComponent, canActivate: [AuthGuard] },
   { path: 'creditlist', component: CreditListComponent, canActivate: [AuthGuard] },
   { path: 'account', component: AccountComponent, canActivate: [AuthGuard] },
-  { path: 'expensingbilllist', component: ExpensingBillListComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'pilotlog', component: PilotLogComponent, canActivate: [AuthGuard] },
   { path: 'planeLog/:id', component: PlaneLogComponent },
-  { path: 'change-password', component: ChangePasswordComponent, canActivate: [AuthGuard] }
+  { path: 'change-password', component: ChangePasswordComponent, canActivate: [AuthGuard] },
+  { path: 'jobsdonelist', component: JobsDoneListComponent, canActivate: [AuthGuard] },
+  { path: 'jobsdonelist/:id', component: JobsDoneListComponent},
+  { path: 'finance', component: FinanceComponent, canActivate: [AuthGuard] }
 ];
-
 
 @NgModule({
   imports: [

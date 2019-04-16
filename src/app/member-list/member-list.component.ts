@@ -7,6 +7,9 @@ import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { AddUserFormComponent } from './add-user-form/add-user-form.component';
 import { Member, Status, Gender, OfficeEnum, AuthorizationEnum } from './../models/member.model';
+import { JobsDoneList } from '../models/jobsdonelist.model';
+import { JobsdonelistService } from '../services/jobsdonelist.service';
+import { AuthService } from './../services/auth.service';
 
 @Component({
   selector: 'app-member-list',
@@ -17,6 +20,7 @@ export class MemberListComponent implements OnInit {
   sort: any;
   displayedColumns: string[];
   dataSource: any;
+  allowedToAddNewMember: boolean;
 
   @ViewChild(MatSort) set content(sort: ElementRef) {
     this.sort = sort;
@@ -27,11 +31,13 @@ export class MemberListComponent implements OnInit {
   }
 
   constructor(public router: Router, public addUserDialog: MatDialog, public snackBar: MatSnackBar, public activatedRoute: ActivatedRoute,
-    public memberService: MemberService) {
-    this.displayedColumns = ['id', 'firstName', 'lastName'];
+    public memberService: MemberService, public jobsdonelistService: JobsdonelistService, public authService: AuthService) {
+    this.displayedColumns = ['id', 'firstName', 'lastName', 'sumAufwand'];
+    this.allowedToAddNewMember = false;
   }
 
   ngOnInit() {
+    this.allowedToAddNewMember = this.authService.memberHasAuthorization('VORSTANDSVORSITZENDER') || this.authService.memberHasAuthorization('SYSTEMADMINISTRATOR');
     this.memberService.getMemberListData().subscribe(
       (data: ListMember[]) => {
         this.dataSource = new MatTableDataSource(data);
@@ -40,11 +46,22 @@ export class MemberListComponent implements OnInit {
     );
   }
 
-  public navigateTo(rowId): void {
-    this.router.navigate(['/member', rowId]);
+  public navigateTo(rowId: number, kennzeichen: string): void {
+    if (kennzeichen == 'A') {
+      this.router.navigate(['/jobsdonelist', rowId]);
+    }
+    else {
+      this.router.navigate(['/member', rowId]);
+    }
   }
 
-  openAddUserDialog(): void {
+  public getAufwand(MemberID): number {
+    var sum = 0;
+    // Keine Ahnung...
+    return sum
+  }
+
+  openAddUserDialog(): any {
     const dialogRef = this.addUserDialog.open(AddUserFormComponent, {
     });
 

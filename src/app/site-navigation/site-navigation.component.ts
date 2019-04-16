@@ -12,15 +12,20 @@ export class SiteNavigationComponent implements OnInit {
 
   opened: boolean;
   loggedIn: boolean;
+  hasAuthorization: boolean;
 
   constructor(public router: Router, public snackBar: MatSnackBar, public authService: AuthService) {
     this.opened = false;
     this.loggedIn = false;
+    this.hasAuthorization = false;
   }
 
   ngOnInit() {
     this.authService.isLoggedIn().subscribe((loggedIn) => {
       this.loggedIn = loggedIn;
+      this.hasAuthorization = this.authService.memberHasAuthorization('VORSTANDSVORSITZENDER') ||
+      this.authService.memberHasAuthorization('SYSTEMADMINISTRATOR') ||
+      this.authService.memberHasAuthorization('KASSIERER');
     });
   }
 
@@ -34,13 +39,34 @@ export class SiteNavigationComponent implements OnInit {
   }
 
   public logOut(): void {
-    this.snackBar.open('Logout erfolgreich', 'Schließen',
-      {
-        duration: 3000,
+
+    this.authService.logOut().subscribe(
+      (response) => {
+        if (response.status === 204) {
+          this.snackBar.open('Logout erfolgreich', 'Schließen',
+            {
+              duration: 3000,
+            }
+          );
+          this.navigateTo('/login');
+        } else {
+          this.snackBar.open('Logout nicht vollständig erfolgreich', 'Schließen',
+            {
+              duration: 3000,
+            }
+          );
+          this.navigateTo('/login');
+        }
+      },
+      (error) => {
+        this.snackBar.open('Logout nicht vollständig erfolgreich. Besteht eine Internetverbindung?', 'Schließen',
+          {
+            duration: 3000,
+          }
+        );
+        this.navigateTo('/login');
       }
     );
-    this.authService.logOut();
-    this.navigateTo('/login');
   }
 
 }

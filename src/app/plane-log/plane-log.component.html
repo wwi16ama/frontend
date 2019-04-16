@@ -3,9 +3,8 @@
   </h1>
   <h2 class="subtitle-text"> Betankungen</h2>
 
-   <!-- TODO: Remove disabled and class button-without-functionality when button functionality is implemented-->
 <div>
-    <button mat-fab color="primary" disabled class="button-without-functionality">
+    <button mat-fab color="primary" (click)="openAddLogDialog()" class="add-button">
     <mat-icon>add</mat-icon>
     </button>
 </div>
@@ -54,10 +53,10 @@
     <td mat-cell *matCellDef="let element"> {{element.endCount}} </td>
   </ng-container>
 
-    <!-- totalPrice Column -->
-    <ng-container matColumnDef="totalPrice">
+    <!-- fuelPrice Column -->
+    <ng-container matColumnDef="fuelPrice">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Preis </th>
-      <td mat-cell *matCellDef="let element"> {{element.totalPrice| currency:'€'}} </td>
+      <td mat-cell *matCellDef="let element"> {{element.fuelPrice| currency:'€'}} </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

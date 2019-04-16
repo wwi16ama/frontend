@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Member, Status, Gender, OfficeEnum, AuthorizationEnum } from './../models/member.model';
 import { MemberService } from './../services/member.service';
+import { AuthService } from './../services/auth.service';
 
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -17,17 +18,25 @@ import { DeleteMemberDialogComponent } from './delete-member-dialog/delete-membe
 })
 export class MemberViewComponent implements OnInit {
   member: Member;
+  allowedToDeleteMember: boolean;
+  allowedToEditMember: boolean;
 
   constructor(
     public memberService: MemberService,
     public activatedRoute: ActivatedRoute, public editMemberDialog: MatDialog, public deleteMemberDialog: MatDialog,
-    public snackBar: MatSnackBar, public router: Router
+    public snackBar: MatSnackBar, public router: Router, public authService: AuthService
   ) {
+    this.allowedToDeleteMember = false;
+    this.allowedToEditMember = false;
   }
 
   ngOnInit() {
+    this.allowedToDeleteMember = this.authService.memberHasAuthorization('VORSTANDSVORSITZENDER') || this.authService.memberHasAuthorization('SYSTEMADMINISTRATOR');
     this.activatedRoute.params.subscribe(
       params => {
+        this.allowedToEditMember = this.authService.memberHasAuthorization('VORSTANDSVORSITZENDER') ||
+          this.authService.memberHasAuthorization('SYSTEMADMINISTRATOR') ||
+          params['id'] === this.authService.getMemberID().toString();
         this.memberService.getMemberData(params['id']).subscribe(
           (data: Member) => {
             this.member = data;

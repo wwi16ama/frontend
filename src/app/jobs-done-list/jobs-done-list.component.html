@@ -1,0 +1,39 @@
+<div class="jobs-done-list-wrapper">
+  <h1 mat-subheader class="title-text">Aufwände</h1>
+  <h3 mat-subheader class="subheader">{{getUsr()}}</h3>
+  <button mat-raised-button color="primary" (click)="openAddJobDialog()">Hinzufügen</button>
+  <table mat-table [dataSource]="jobs" matSort class="mat-elevation-z8">
+
+    <!-- startdate Column -->
+    <ng-container matColumnDef="startTime">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Startdatum </th>
+      <td mat-cell *matCellDef="let element">{{element.startTime | date:'shortDate'}}</td>
+      <td mat-footer-cell *matFooterCellDef></td>
+    </ng-container>
+
+    <!-- enddate Column -->
+    <ng-container matColumnDef="endTime">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Enddatum </th>
+        <td mat-cell *matCellDef="let element">{{element.endTime | date:'shortDate'}}</td>
+        <td mat-footer-cell *matFooterCellDef></td>
+      </ng-container>
+
+    <!-- start Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Dienststart </th>
+      <td mat-cell *matCellDef="let element">{{element.name}}</td>
+      <td mat-footer-cell *matFooterCellDef></td>
+    </ng-container>
+
+    <!-- credit Column -->
+    <ng-container matColumnDef="gutschrift">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Gutschrift </th>
+      <td mat-cell *matCellDef="let element">{{element.gutschrift}} €</td>
+      <td mat-footer-cell *matFooterCellDef>Summe: {{getServiceSum()}} €</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+  </table>
+  <div>
