@@ -10,6 +10,9 @@ import { PlaneService } from '../../services/plane.service';
   styleUrls: ['./add-pilotlogentry.component.css']
 })
 export class AddPilotlogentryComponent implements OnInit {
+    minDate = new Date(2000, 0, 1);
+    maxDate: Date;
+
     planes: Plane[];
 
     planeNumber: string;
@@ -75,6 +78,14 @@ export class AddPilotlogentryComponent implements OnInit {
     this.arrivalLocationFormControl = new FormControl('', [
       Validators.required,
     ]);
+  }
+
+  public getCurrentDate(): Date {
+    const year = new Date().getFullYear();
+    const month = new Date().getMonth();
+    const day = new Date().getDate();
+    this.maxDate = new Date(year, month, day);
+    return this.maxDate;
   }
 
   public onNoClick(): void {
@@ -182,6 +193,7 @@ export class AddPilotlogentryComponent implements OnInit {
         this.planes = planedata;
       }
     );
+    this.getCurrentDate();
   }
 
 }
