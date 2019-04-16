@@ -100,10 +100,13 @@
     <mat-tab label="Kundenkonto">
         <div class="tab-content">
           <mat-form-field class="input-width">
-            <input type="text" matInput placeholder="Bankkonto" ng-model="iban" required [formControl]="bankingAccountFormControl">
+            <input type="text" matInput placeholder="Bankkonto" minlength = "22" maxlength = "27" pattern = "DE([0-9]\s?){20}" required [formControl]="bankingAccountFormControl">
             <mat-hint>DE19 1234 1234 1234 1234 12</mat-hint>
             <mat-error *ngIf="bankingAccountFormControl.hasError('required')">
-              Das Bankkonto ist <strong>erforderlich</strong>
+              Das Bankkonto ist <strong>erforderlich</strong>.
+            </mat-error>
+            <mat-error *ngIf="bankingAccountFormControl.hasError('pattern')">
+              Das Bankkonto ist im falschen Format angegeben!
             </mat-error>
           </mat-form-field>
         </div>
