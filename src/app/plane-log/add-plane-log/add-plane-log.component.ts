@@ -73,8 +73,15 @@ export class AddPlaneLogComponent implements OnInit {
         endCount: this.finalFuelLevelFormControl.value,
         fuelPrice: this.priceFormControl.value
       };
-      this.addLogDialogRef.close(newPlaneLog);
-      console.log(newPlaneLog);
+      if (this.initialFuelLevelFormControl.value > this.finalFuelLevelFormControl.value) {
+        this.addLogDialogRef.close(newPlaneLog);
+      } else {
+        this.snackBar.open('Der Anfangsstand muss größer als der Endstand sein.', 'Schließen',
+        {
+          duration: 3000,
+        }
+      );
+      }
   }}
 
   public onNoClick(): void {

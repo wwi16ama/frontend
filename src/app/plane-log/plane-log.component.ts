@@ -97,7 +97,7 @@ export class PlaneLogComponent implements OnInit {
       },
       error => {
         if (error.status === 400) {
-          this.snackBar.open('Pflichtfelder nicht ausgefüllt', 'Schließen',
+          this.snackBar.open('Pflichtfelder falsch oder nicht ausgefüllt', 'Schließen',
             {
               duration: 4000,
             }
