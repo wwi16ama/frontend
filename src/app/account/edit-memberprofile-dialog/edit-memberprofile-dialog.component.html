@@ -30,7 +30,7 @@
             <mat-error *ngIf="postalCodeFormControl.hasError('minlength')">Bitte geben Sie eine gültige Postleitzahl ein</mat-error>
           </mat-form-field>
           <mat-form-field class="input-width">
-            <input matInput placeholder="Stadt" pattern="[a-zA-Z_äÄöÖüÜß]+" [formControl]="cityFormControl" minlength="3" required>
+            <input matInput placeholder="Stadt" pattern="[a-zA-Z_äÄöÖüÜß \.\(\)-]+" [formControl]="cityFormControl" minlength="3" required>
             <mat-error *ngIf="cityFormControl.hasError('required')">Der Ort ist erforderlich</mat-error>
             <mat-error *ngIf="cityFormControl.hasError('minlength')">Der Ort muss mindestens 3 Zeichen lang sein</mat-error>
             <mat-error *ngIf="cityFormControl.hasError('pattern')">Der Ort darf keine Zahlen enthalten</mat-error>
