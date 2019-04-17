@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, ViewChild, ElementRef} from '@angular/core';
 
 import { PlaneLog } from './../models/planelog.model';
 import { MatTableDataSource, MatSort, MatDialog, MatSnackBar, MatSortable } from '@angular/material';
@@ -7,27 +7,31 @@ import { PlaneService } from '../services/plane.service';
 import { Plane } from '../models/plane.model';
 import { ActivatedRoute } from '@angular/router';
 import { AddPlaneLogComponent } from './add-plane-log/add-plane-log.component';
+import { EditPlaneLogComponent } from "./edit-plane-log/edit-plane-log.component";
 
 
 @Component({
   selector: 'app-plane-log',
   templateUrl: './plane-log.component.html',
-  styleUrls: ['./plane-log.component.css']
+  styleUrls: ['./plane-log.component.css'],
 })
 export class PlaneLogComponent implements OnInit {
 
   plane: Plane;
+  planeLog: PlaneLog;
 
   @ViewChild(MatSort) sort: MatSort;
 
   displayedColumns: string[];
   dataSource: any;
+  static editPlaneLog: any;
 
   constructor(
     public planeLogService: PlaneLogService,
     public planeService: PlaneService,
     public activatedRoute: ActivatedRoute,
     public addLogDialog: MatDialog,
+    public editPlaneLogDialog: MatDialog,
     public snackBar: MatSnackBar) {
     this.displayedColumns = ['nameofplane', 'id', 'refuelDateTime', 'memberId', 'location', 'startCount', 'endCount', 'fuelPrice'];
   }
@@ -48,6 +52,16 @@ export class PlaneLogComponent implements OnInit {
           });
 
       });
+  }
+
+  public getId(rowId: number, location: string, startCount: string, endCount: string, fuelPrice: string): void {
+    const dialogRef = this.editPlaneLogDialog.open(EditPlaneLogComponent, {
+    });
+    PlaneLogComponent.editPlaneLog = [rowId, location, startCount, endCount, fuelPrice];
+  }
+
+  static getEditPlaneLog() {
+    return this.editPlaneLog;
   }
 
   openAddLogDialog(): void {

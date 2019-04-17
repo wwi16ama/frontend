@@ -29,3 +29,6 @@ table {
   .add-button {
     float: right;
   }
+  .pointer {
+    cursor: pointer;
+  }
