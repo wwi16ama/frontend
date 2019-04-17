@@ -14,7 +14,7 @@
           
           <mat-form-field class="input-width">
             <input type="text" matInput placeholder="Abflugsort" [formControl]="departureLocationFormControl" 
-            id="departureLocation" maxlength="35" pattern="[a-zA-Z_äÄöÖüÜß0-9/. \-]+" required>
+            id="departureLocation" maxlength="35" pattern="[a-zA-Z_äÄöÖüÜß0-9/. \-\(\)]+" required>
             <mat-error *ngIf="departureLocationFormControl.hasError('pattern')">Kein korrekter Abflugsort</mat-error>
             <mat-error *ngIf="departureLocationFormControl.hasError('required')">Der Abflugsort muss angegeben werden</mat-error>
           </mat-form-field>
@@ -36,7 +36,7 @@
 
           <mat-form-field class="input-width">
             <input type="text" matInput placeholder="Landungsort" [formControl]="arrivalLocationFormControl" 
-            maxlength="35" pattern="[a-zA-Z_äÄöÖüÜß0-9/. \-]+" required>
+            maxlength="35" pattern="[a-zA-Z_äÄöÖüÜß0-9/. \-\(\)]+" required>
             <mat-error *ngIf="arrivalLocationFormControl.hasError('pattern')">Kein korrekter Landungsort</mat-error>
             <mat-error *ngIf="arrivalLocationFormControl.hasError('required')">Der Landungsort muss angegeben werden</mat-error>
           
