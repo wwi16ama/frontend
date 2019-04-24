@@ -6,6 +6,7 @@ import { MemberService } from './../services/member.service';
 import { JobsdonelistService } from './../services/jobsdonelist.service';
 import { AuthService } from './../services/auth.service';
 import { MatTableDataSource, MatPaginator, MatSort, MatSnackBar, MatDialog} from '@angular/material';
+import { AddJobsDialogComponent } from './add-jobs-dialog/add-jobs-dialog.component';
 
 
 @Component({
@@ -21,20 +22,23 @@ export class JobsDoneListComponent implements OnInit {
   sort: any;
   gutschriftSumme : any;
   displayedColumns: string[];
+  canAddService : boolean;
 
   constructor(public authService: AuthService, 
               public memberService: MemberService, 
               public jobsdonelistService: JobsdonelistService, 
               private route: ActivatedRoute, 
               public snackBar: MatSnackBar, 
-              public AddJobDialog: MatDialog) 
+              public addJobsDialog: MatDialog
+              ) 
   { 
     this.sub = this.route.params.subscribe(params => {
     this.id = +params['id']; 
     });
-    this.displayedColumns = ['startTime', 'endTime', 'name', 'gutschrift']; 
+    this.displayedColumns = ['startDate', 'endDate', 'name', 'gutschrift']; 
     this.jobs = [];
     this.gutschriftSumme = 0;
+    this.canAddService = this.authService.memberHasAuthorization('VORSTANDSVORSITZENDER');
   }
 
   ngOnInit() {
@@ -51,12 +55,22 @@ export class JobsDoneListComponent implements OnInit {
           this.jobs[i].name = this.jobs[i].name.substring(2).charAt(0).toUpperCase() + this.jobs[i].name.toLowerCase().substring(2).slice(1);
           if (this.jobs[i].year) {
             var year = this.jobs[i].year;
-            this.jobs[i].startTime = '01.02.'+year;
-            this.jobs[i].endTime = '01.02.'+(++year);
+            this.jobs[i].startDate = '01.02.'+year;
+            this.jobs[i].endDate = '01.02.'+(++year);
           }
         }
       }
     );
+  }
+
+  openAddJobsDialog(): void {
+    const dialogRef = this.addJobsDialog.open(AddJobsDialogComponent, {
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result != null) {
+        //this.saveJobsData(result);
+      }
+    });
   }
 
   public getServiceSum(): number {

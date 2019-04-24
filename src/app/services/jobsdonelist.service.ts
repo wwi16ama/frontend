@@ -23,4 +23,20 @@ export class JobsdonelistService {
       }
     );
   }
+
+  public getServiceSum(id): number {
+    var jobs: JobsDoneList[];
+    var sum = 0;
+    this.getJobsDoneListData(id).subscribe(
+      (jobsdata: JobsDoneList[]) => {
+        jobs = jobsdata;
+        for (let i = 0; i < jobs.length; i++) {
+          sum += jobs[i].gutschrift;
+        }
+      }
+    );
+
+    return sum;
+  }
+
 }

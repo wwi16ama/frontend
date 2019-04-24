@@ -3,8 +3,8 @@ export class JobsDoneList {
         public id: number,
         public name: Name,
         public gutschrift: number,
-        public startTime: string,
-        public endTime: string,
+        public startDate: string,
+        public endDate: string,
     ) {}
 }
 
