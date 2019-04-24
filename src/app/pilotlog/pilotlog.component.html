@@ -61,7 +61,7 @@
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-      <tr class="pointer" mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openEditPilotLogEntryDialog()"></tr>
+      <tr class="pointer" mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openEditPilotLogEntryDialog(row)"></tr>
 
     </table>
 </div>

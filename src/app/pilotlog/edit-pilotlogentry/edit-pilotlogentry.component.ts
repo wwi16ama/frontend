@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { MatSnackBar, MatDialogRef } from '@angular/material';
+import { MatSnackBar, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Plane } from '../../models/plane.model';
 import { PlaneService } from '../../services/plane.service';
+import { Pilotlog } from '../../models/pilotlog.model';
 
 @Component({
   selector: 'app-edit-pilotlogentry',
@@ -33,7 +34,9 @@ export class EditPilotlogentryComponent implements OnInit {
 
 
   constructor( public editPilotLogEntryDialogRef: MatDialogRef<EditPilotlogentryComponent>, public snackBar: MatSnackBar,
-    public planeService: PlaneService) {
+    public planeService: PlaneService,
+    @Inject(MAT_DIALOG_DATA) public pilotlog: Pilotlog
+    ) {
     this.planes = [];
     this.departureLocation = '';
     this.departureTime = '';
@@ -75,6 +78,20 @@ export class EditPilotlogentryComponent implements OnInit {
     this.arrivalLocationFormControl = new FormControl('', [
       Validators.required,
     ]);
+    this.planeNumberFormControl.setValue(pilotlog.planeNumber);
+    this.departureDayFormControl.setValue(pilotlog.departureTime.substring(0, 10));
+    // Einfügen: FormalCheck für Input
+    this.departureDayFormControl.
+    this.departureTimeFormControl.setValue(pilotlog.departureTime.substring(11, 16));
+    this.arrivalDayFormControl.setValue(pilotlog.arrivalTime);
+    this.arrivalTimeFormControl.setValue(pilotlog.arrivalTime.substring(11, 16));
+    this.departureLocationFormControl.setValue(pilotlog.departureLocation);
+    this.arrivalLocationFormControl.setValue(pilotlog.arrivalLocation);
+    this.usageTimeFormControl.setValue(pilotlog.usageTime);
+
+    if (this.pilotlog.flightWithGuests) {
+      this.flightWithGuests = true;
+    }
   }
 
   public onNoClick(): void {
@@ -82,7 +99,10 @@ export class EditPilotlogentryComponent implements OnInit {
   }
 
   public savePilotLogData(): void {
+
     if (this.checkRequiredFields()) {
+      console.log(this.departureDayFormControl.value + 'T' + this.departureTimeFormControl.value + ':00');
+
       const newPilotLog = {
         planeNumber: this.planeNumberFormControl.value,
         departureLocation: this.departureLocationFormControl.value,
@@ -91,8 +111,8 @@ export class EditPilotlogentryComponent implements OnInit {
           this.departureDayFormControl.value.getFullYear(),
           this.departureDayFormControl.value.getMonth(),
           this.departureDayFormControl.value.getDate(),
-          parseInt(this.departureTimeFormControl.value.slice(0, 2), 10),
-          parseInt(this.departureTimeFormControl.value.slice(3, 5), 10)
+          parseInt(this.departureTimeFormControl.value.substring(0, 2), 10),
+          parseInt(this.departureTimeFormControl.value.substring(2, 2), 10)
         ).toString()),
 
         arrivalTime: this.formatDate(new Date(

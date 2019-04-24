@@ -101,8 +101,10 @@ export class PilotLogComponent implements OnInit {
     });
   }
 
-  openEditPilotLogEntryDialog(): void {
+  openEditPilotLogEntryDialog(pilotlog: Pilotlog): void {
+    console.log(pilotlog);
     const dialogRef = this.editPilotLogEntryDialog.open(EditPilotlogentryComponent, {
+      data: JSON.parse(JSON.stringify(pilotlog))
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result != null) {
