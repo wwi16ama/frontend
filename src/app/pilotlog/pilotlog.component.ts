@@ -7,6 +7,7 @@ import { Pilotlog } from './../models/pilotlog.model';
 import { PilotlogService } from './../services/pilotlog.service';
 import { AuthService } from './../services/auth.service';
 import { AddPilotlogentryComponent } from './add-pilotlogentry/add-pilotlogentry.component';
+import { EditPilotlogentryComponent } from './edit-pilotlogentry/edit-pilotlogentry.component';
 
 @Component({
   selector: 'app-pilotlog',
@@ -27,7 +28,8 @@ export class PilotLogComponent implements OnInit {
     public pilotLogService: PilotlogService,
     public authService: AuthService,
     public addPilotLogEntryDialog: MatDialog,
-    public snackBar: MatSnackBar
+    public snackBar: MatSnackBar,
+    public editPilotLogEntryDialog: MatDialog
   ) {
     this.displayedColumns = ['flightId', 'planeNumber', 'departureLocation', 'departureTime',
       'arrivalLocation', 'arrivalTime', 'flightDuration', 'flightWithGuests', 'usageTime', 'flightPrice'];
@@ -100,7 +102,7 @@ export class PilotLogComponent implements OnInit {
   }
 
   openEditPilotLogEntryDialog(): void {
-    const dialogRef = this.addPilotLogEntryDialog.open(AddPilotlogentryComponent, {
+    const dialogRef = this.editPilotLogEntryDialog.open(EditPilotlogentryComponent, {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result != null) {

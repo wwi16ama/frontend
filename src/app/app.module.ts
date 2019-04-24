@@ -26,6 +26,8 @@ import { PilotLogModule } from './pilotlog/pilotlog.module';
 import { AddPilotlogentryModule } from './pilotlog/add-pilotlogentry/add-pilotlogentry.module';
 import { AddPilotlogentryComponent } from './pilotlog/add-pilotlogentry/add-pilotlogentry.component';
 import { FinanceModule } from './finance/finance.module';
+import { EditPilotlogentryModule } from './pilotlog/edit-pilotlogentry/edit-pilotlogentry.module';
+import { EditPilotlogentryComponent } from './pilotlog/edit-pilotlogentry/edit-pilotlogentry.component';
 
 
 // Spracheinstellung
@@ -64,7 +66,8 @@ registerLocaleData(localeDe);
     JobsDoneListModule,
     AddPlaneLogModule,
     FinanceModule,
-    EditBalanceModule
+    EditBalanceModule,
+    EditPilotlogentryModule
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'ger' },
@@ -82,7 +85,8 @@ registerLocaleData(localeDe);
     EditMemberProfileDialogComponent,
     AddPilotlogentryComponent,
     AddPlaneLogComponent,
-    EditBalanceComponent
+    EditBalanceComponent,
+    EditPilotlogentryComponent
   ]
 })
 export class AppModule {
