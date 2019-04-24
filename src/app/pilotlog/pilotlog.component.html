@@ -2,7 +2,7 @@
   <h1 class="title-text">Pilotenlogbuch</h1>
   <p *ngIf="member != null">Mitglied: {{member.firstName}} {{member.lastName}}</p>
   <div>
-    <button mat-raised-button  color="primary" (click)=" openAddPilotLogEntryDialog()">Hinzufügen</button>
+    <button mat-raised-button  color="primary" (click)="openAddPilotLogEntryDialog()">Hinzufügen</button>
   </div>
   
   <table class="mat-elevation-z8" mat-table [dataSource]="dataSource" matSortActive="flightId"
@@ -61,7 +61,7 @@
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      <tr class="pointer" mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openEditPilotLogEntryDialog()"></tr>
 
     </table>
 </div>

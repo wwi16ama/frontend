@@ -99,6 +99,16 @@ export class PilotLogComponent implements OnInit {
     });
   }
 
+  openEditPilotLogEntryDialog(): void {
+    const dialogRef = this.addPilotLogEntryDialog.open(AddPilotlogentryComponent, {
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result != null) {
+        this.savePilotLogEntry(result);
+      }
+    });
+  }
+
   public savePilotLogEntry(pilotlog: Pilotlog): void {
     this.pilotLogService.addPilotLogEntry(pilotlog).subscribe(
       (response) => {
