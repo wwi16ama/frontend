@@ -2,10 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { JobsDoneListComponent } from './jobs-done-list.component';
 import { MatTableModule, MatListModule, MatButtonModule, MatDatepickerModule, MatFormFieldModule, MatPaginatorModule, MatSortModule } from '@angular/material';
-import { AddJobsDialogComponent } from './add-jobs-dialog/add-jobs-dialog.component';
+import { AddJobsDialogModule } from './add-jobs-dialog/add-jobs-dialog.module';
 
 @NgModule({
-  declarations: [JobsDoneListComponent, AddJobsDialogComponent],
+  declarations: [JobsDoneListComponent],
   imports: [
     CommonModule,
     MatTableModule,
@@ -15,6 +15,7 @@ import { AddJobsDialogComponent } from './add-jobs-dialog/add-jobs-dialog.compon
     MatFormFieldModule,
     MatPaginatorModule,
     MatSortModule,
+    AddJobsDialogModule,
   ]
 })
 export class JobsDoneListModule { }

@@ -23,17 +23,36 @@ export class AddJobsDialogComponent implements OnInit {
   gutschrift: number;
   startDate: string;
   endDate: string;
+  possibleNames: string[];
 
   idFormControl: FormControl;
   nameFormControl: FormControl;
   gutschriftFormControl: FormControl;
   startDateFormControl: FormControl;
   endDateFormControl: FormControl;
+  matcher: ErrorStateMatcher;
 
   constructor(
-  ) { }
+    public addJobsDialogRef: MatDialogRef<AddJobsDialogComponent>
+  ) 
+  { 
+    this.possibleNames = ['Test1', 'Test2', 'Test3', 'Test4'];
+
+    this.initializeFormControls();
+  }
 
   ngOnInit() {
   }
 
+  public onNoClick(): void {
+    this.addJobsDialogRef.close();
+  }
+
+  public initializeFormControls(): void {
+    this.nameFormControl = new FormControl('', [
+      Validators.required,
+    ]);
+
+    this.matcher = new MyErrorStateMatcher();
+  }
 }

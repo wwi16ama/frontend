@@ -4,7 +4,17 @@
 
     <form>
       <div class="tab-content">
-        <div id="plane-header">Aufwand</div>
+        
+        <!--Dienstart auswählen-->
+        <mat-form-field class="input-width">
+          <mat-select placeholder="Dienstart" [(value)]="name" required>
+            <mat-option *ngFor="let name of possibleNames" [value]="name">{{name}}
+            </mat-option>
+          </mat-select>
+          <mat-error *ngIf="nameFormControl.hasError('required')">
+            Die Dienstart ist <strong>erforderlich</strong>
+          </mat-error>
+        </mat-form-field>
         
       </div>
     </form>
