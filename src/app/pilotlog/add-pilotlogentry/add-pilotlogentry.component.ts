@@ -191,15 +191,14 @@ export class AddPilotlogentryComponent implements OnInit {
       );
     return false;
   } else if (this.arrivalDayFormControl.value <= this.departureDayFormControl.value) {
-    if (this.arrivalTimeFormControl.value <= this.departureTimeFormControl.value) {
-      this.snackBar.open('Der Ankunfszeitpunkt darf nicht vor dem Abflugszeitpunkt liegen', 'Schließen',
-      {
-        duration: 3000,
-      }
-    );
-  return false;
-  }
-
+      if (this.arrivalTimeFormControl.value <= this.departureTimeFormControl.value) {
+        this.snackBar.open('Der Ankunfszeitpunkt darf nicht vor dem Abflugszeitpunkt liegen', 'Schließen',
+        {
+          duration: 3000,
+        }
+      );
+    return false;
+    }
   }
   return true;
 }
