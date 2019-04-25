@@ -126,7 +126,7 @@ export class PilotLogComponent implements OnInit {
       },
       error => {
         if (error.status === 400) {
-          this.snackBar.open('Pflichtfelder nicht ausgefüllt', 'Schließen',
+          this.snackBar.open('Das Landungsdatum darf nicht vor dem Abflugsdatum liegen', 'Schließen',
             {
               duration: 4000,
             }

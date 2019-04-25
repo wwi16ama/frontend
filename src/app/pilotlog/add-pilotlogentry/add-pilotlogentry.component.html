@@ -39,7 +39,6 @@
             maxlength="35" pattern="[a-zA-Z_äÄöÖüÜß0-9/. \-\(\)]+" required>
             <mat-error *ngIf="arrivalLocationFormControl.hasError('pattern')">Kein korrekter Landungsort</mat-error>
             <mat-error *ngIf="arrivalLocationFormControl.hasError('required')">Der Landungsort muss angegeben werden</mat-error>
-          
           </mat-form-field>
 
           <mat-form-field class="datepicker-width">
@@ -69,7 +68,6 @@
           <mat-checkbox labelPosition="after" [(ngModel)]="flightWithGuests" name="flightWithGuests" >
             <span>Gastflug</span>
           </mat-checkbox>
-          
         </div>
     </form>
   </mat-dialog-content>
