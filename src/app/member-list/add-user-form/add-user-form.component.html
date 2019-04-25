@@ -126,7 +126,7 @@
                   Das Passwort muss mindestens eine Zahl und einen Buchstaben enthalten
               </mat-error>
               </mat-form-field>
-              <mat-form-field class="input-width">
+              <mat-form-field class="input-width-password">
                 <input [errorStateMatcher]="passwordMatcher" type="password" matInput placeholder="Passwort bestätigen" required formControlName="passwordRepeat">
               <mat-error *ngIf="passwordFormGroup.hasError('passwordsNotSame')">
                 Bestätigung stimmt nicht mit Passwort überein
