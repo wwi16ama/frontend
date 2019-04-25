@@ -7,7 +7,7 @@
 
           <mat-form-field class="input-width">
             <input type="text" matInput placeholder="Ort" [formControl]="locationFormControl" 
-            id="location" maxlength="35" pattern="[a-zA-Z_äÄöÖüÜß0-9/. \-]+" required>
+            id="location" maxlength="35" pattern="[a-zA-Z_äÄöÖüÜß0-9/. \-\(\)\.]+" required>
             <mat-error *ngIf="locationFormControl.hasError('pattern')">Kein korrekter Ort</mat-error>
             <mat-error *ngIf="locationFormControl.hasError('required')">Der Ort muss angegeben werden</mat-error>
           </mat-form-field>
