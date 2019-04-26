@@ -86,8 +86,6 @@ export class AddPlaneLogComponent implements OnInit {
   }
 
    public checkRequiredFields(): boolean {
-     console.log(this.finalFuelLevelFormControl.value);
-     console.log(this.initialFuelLevelFormControl.value);
     if (this.locationFormControl.invalid ) {
       this.snackBar.open('Kein gültiger Ort.', 'Schließen',
         {
