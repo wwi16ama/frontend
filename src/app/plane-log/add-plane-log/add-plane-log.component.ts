@@ -20,7 +20,7 @@ export class AddPlaneLogComponent implements OnInit {
   initialFuelLevel: string;
   finalFuelLevel: string;
   price: string;
-  date= new Date();
+  date = new Date();
 
   planeNumberFormControl: FormControl;
   locationFormControl: FormControl;
@@ -30,14 +30,14 @@ export class AddPlaneLogComponent implements OnInit {
 
 
   constructor( public addLogDialogRef: MatDialogRef<AddPlaneLogComponent>, public snackBar: MatSnackBar,
-    public planeService: PlaneService, public memberService: MemberService, public authService: AuthService ) { 
+    public planeService: PlaneService, public memberService: MemberService, public authService: AuthService ) {
     addLogDialogRef.disableClose = true;
 
     this.planes = [];
-    this.location= '';
-    this.initialFuelLevel= '';
-    this.finalFuelLevel= '';
-    this.price= '';
+    this.location = '';
+    this.initialFuelLevel = '';
+    this.finalFuelLevel = '';
+    this.price = '';
 
     this.planeNumberFormControl = new FormControl ('', [
       Validators.required,
@@ -73,15 +73,7 @@ export class AddPlaneLogComponent implements OnInit {
         endCount: this.finalFuelLevelFormControl.value,
         fuelPrice: this.priceFormControl.value
       };
-      if (this.initialFuelLevelFormControl.value > this.finalFuelLevelFormControl.value) {
-        this.addLogDialogRef.close(newPlaneLog);
-      } else {
-        this.snackBar.open('Der Anfangsstand muss größer als der Endstand sein.', 'Schließen',
-        {
-          duration: 3000,
-        }
-      );
-      }
+      this.addLogDialogRef.close(newPlaneLog);
   }}
 
   public onNoClick(): void {
@@ -122,7 +114,14 @@ export class AddPlaneLogComponent implements OnInit {
         }
       );
       return false;
-    } 
+    } else if (this.finalFuelLevelFormControl.value <= this.initialFuelLevelFormControl.value) {
+      this.snackBar.open('Der Anfangsstand muss größer als der Endstand sein.', 'Schließen',
+        {
+          duration: 3000,
+        }
+      );
+      return false;
+    }
     return true;
   }
 
