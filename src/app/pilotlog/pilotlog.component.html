@@ -57,7 +57,7 @@
 
       <ng-container matColumnDef="flightPrice">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Flugpreis </th>
-        <td mat-cell *matCellDef="let element"> {{element.flightPrice}} €</td>
+        <td mat-cell *matCellDef="let element"> {{element.flightPrice | currency:'€'}} </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
