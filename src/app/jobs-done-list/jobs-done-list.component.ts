@@ -63,7 +63,7 @@ export class JobsDoneListComponent implements OnInit {
               duration: 3000,
             }
           );
-         // window.location.reload();
+          window.location.reload();
           this.jobs.sort = this.sort;
         }
       },

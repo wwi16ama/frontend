@@ -152,12 +152,8 @@ export class AddJobsDialogComponent implements OnInit {
         "id": '',
         "name": this.getServiceName(this.name),
         "gutschrift": this.getGutschrift(),
-        "startDate": this.startDateFormControl.value.getFullYear()+'-'+
-                      this.startDateFormControl.value.getMonth()+'-'+
-                      this.startDateFormControl.value.getDate(),
-        "endDate":  this.endDateFormControl.value.getFullYear()+'-'+
-                    this.endDateFormControl.value.getMonth()+'-'+
-                    this.endDateFormControl.value.getDate()
+        "startDate": this.getDateString(this.startDateFormControl.value),
+        "endDate":  this.getDateString(this.endDateFormControl.value)
       };
       this.addJobsDialogRef.close(newJobsDoneList);
     }
@@ -173,6 +169,21 @@ export class AddJobsDialogComponent implements OnInit {
     }
       
     }  
+  }
+
+  public getDateString(date: any): string {
+    var year = date.getFullYear();
+    var month = (date.getMonth() + 1);
+    var day = date.getDate();
+
+    if (month<10) {
+      month = '0' + month;
+    }
+
+    if (day<10) {
+      day = '0' + day;
+    }
+    return year + '-' + month + '-' + day
   }
 
   public formatDate(date: string): string {
