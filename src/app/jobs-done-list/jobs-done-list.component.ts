@@ -46,9 +46,43 @@ export class JobsDoneListComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result != null) {
+        console.log(result)
+        result.id = this.member.id;
         console.log(result);
+        this.saveService(result);
       }
     });
+  }
+
+  public saveService(jobsdonelist: JobsDoneList): void {
+    this.jobsdonelistService.addJobsDoneListData(jobsdonelist).subscribe(
+      (response) => {
+        if (response.status === 204) {
+          this.snackBar.open('Änderungen erfolgreich gespeichert.', 'Schließen',
+            {
+              duration: 3000,
+            }
+          );
+         // window.location.reload();
+          this.jobs.sort = this.sort;
+        }
+      },
+      error => {
+        if (error.status === 400) {
+          this.snackBar.open('Dienstart bereits vorhanden oder für den gewählten Benutzer ungültig.', 'Schließen',
+            {
+              duration: 4000,
+            }
+          );
+        } else if (error.status === 0) {
+          this.snackBar.open('Es konnte keine Verbindung zum Server aufgebaut werden', 'Schließen',
+            {
+              duration: 4000,
+            }
+          );
+        }
+      }
+    );
   }
 
   public getServiceSum(): number {

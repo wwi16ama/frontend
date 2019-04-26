@@ -44,7 +44,7 @@ export class AddJobsDialogComponent implements OnInit {
   { 
     this.possibleNames = ['Vorstandsmitglied', 'Fluglehrer', 'Flugwart', 'Tageseinsatz', 'Pilot'];
     this.name = '';
-    this.hideDate = false;
+    this.hideDate = true;
 
     this.initializeFormControls();
   }
@@ -89,10 +89,6 @@ export class AddJobsDialogComponent implements OnInit {
   }
 
   public initializeFormControls(): void {
-    this.nameFormControl = new FormControl('', [
-      Validators.required,
-    ]);
-
     this.startDateFormControl = new FormControl('', [
       Validators.required,
     ])
@@ -105,28 +101,28 @@ export class AddJobsDialogComponent implements OnInit {
   }
 
   public checkRequiredFields(): boolean {
-    if (this.nameFormControl.invalid ) {
+    if (!this.name) {
       this.snackBar.open('Keine gültige Dienstart.', 'Schließen',
         {
           duration: 3000,
         }
       );
       return false;
-    } else if (this.startDateFormControl.invalid) {
+    } else if (this.startDateFormControl.invalid&&!this.hideDate) {
       this.snackBar.open('Kein gültiges Startdatum.', 'Schließen',
         {
           duration: 3000,
         }
       );
       return false;
-    } else if (this.endDateFormControl.invalid) {
+    } else if (this.endDateFormControl.invalid&&!this.hideDate) {
       this.snackBar.open('Kein gültiges Enddatum', 'Schließen',
         {
           duration: 3000,
         }
       );
       return false;
-    } else if (this.startDate > this.endDate) {
+    } else if ((!this.hideDate)&&(!this.checkDate())) {
       this.snackBar.open('Das Startdatum muss vor dem Enddatum liegen', 'Schließen',
         {
           duration: 3000,
@@ -137,8 +133,21 @@ export class AddJobsDialogComponent implements OnInit {
     return true;
   }
 
+  public checkDate(): boolean {
+    var diff = (this.endDateFormControl.value.getTime() - this.startDateFormControl.value.getTime());
+    var diffDays = Math.ceil(diff / (1000 * 3600 * 24)); 
+    console.log(diffDays);
+    if (diffDays >= 0) {
+      return true
+    }
+    else {
+      return false
+    }
+  }
+
   public saveServiceData(): void {
-    if (!this.checkRequiredFields()) {
+    if (this.checkRequiredFields()) {
+      if (!this.hideDate) {
       const newJobsDoneList = {
         "id": '',
         "name": this.getServiceName(this.name),
@@ -151,6 +160,18 @@ export class AddJobsDialogComponent implements OnInit {
                     this.endDateFormControl.value.getDate()
       };
       this.addJobsDialogRef.close(newJobsDoneList);
+    }
+    else {
+      const newJobsDoneList = {
+        "id": '',
+        "name": this.getServiceName(this.name),
+        "gutschrift": this.getGutschrift(),
+        "startDate": (new Date().getFullYear()).toString() + '-02-01',
+        "endDate": (new Date().getFullYear() + 1).toString() + '-01-31'
+      };
+      this.addJobsDialogRef.close(newJobsDoneList);
+    }
+      
     }  
   }
 
@@ -161,8 +182,10 @@ export class AddJobsDialogComponent implements OnInit {
 
   public getGutschrift(): number {
     var erg : number;
-    var diff = Math.abs(this.endDateFormControl.value.getTime() - this.startDateFormControl.value.getTime());
-    var diffDays = Math.ceil(diff / (1000 * 3600 * 24)); 
+    if (!this.hideDate) {
+      var diff = Math.abs(this.endDateFormControl.value.getTime() - this.startDateFormControl.value.getTime());
+      var diffDays = Math.ceil(diff / (1000 * 3600 * 24)); 
+    }
     switch(this.name) { 
       case 'Vorstandsmitglied': {  
          erg = 200;
@@ -177,11 +200,11 @@ export class AddJobsDialogComponent implements OnInit {
          break;    
       } 
       case 'Tageseinsatz': { 
-        erg = 40 * diffDays;
+        erg = 40 * (diffDays + 1);
          break; 
       }  
       case 'Pilot': { 
-        erg = 40 * diffDays;
+        erg = 40 * (diffDays + 1);
          break;              
       } 
    }
@@ -192,8 +215,6 @@ export class AddJobsDialogComponent implements OnInit {
     switch(this.name) { 
       case 'Vorstandsmitglied': {  
          this.hideDate = true; 
-         this.startDate = '';
-         this.endDate = '';
          break; 
       } 
       case 'Fluglehrer': { 

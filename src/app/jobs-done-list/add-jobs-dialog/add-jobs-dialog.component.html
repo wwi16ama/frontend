@@ -11,9 +11,6 @@
             <mat-option *ngFor="let names of possibleNames" [value]="names">{{names}}
             </mat-option>
           </mat-select>
-          <mat-error *ngIf="nameFormControl.hasError('required')">
-            Die Dienstart ist <strong>erforderlich</strong>
-          </mat-error>
         </mat-form-field>
 
       <div *ngIf="!hideDate">
@@ -22,6 +19,9 @@
           [formControl]="startDateFormControl" required>
           <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
           <mat-datepicker #startDate></mat-datepicker>
+          <mat-error *ngIf="startDateFormControl.hasError('required')">
+            Das Startdatum ist <strong>erforderlich</strong>
+          </mat-error>
         </mat-form-field>
 
         <mat-form-field class="datepicker-width">
@@ -29,6 +29,9 @@
           [formControl]="endDateFormControl" required>
           <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
           <mat-datepicker #endDate></mat-datepicker>
+          <mat-error *ngIf="endDateFormControl.hasError('required')">
+            Das Enddatum ist <strong>erforderlich</strong>
+          </mat-error>
         </mat-form-field>
       </div>
         
