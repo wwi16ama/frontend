@@ -69,7 +69,6 @@ export class FinanceComponent implements OnInit {
   }
 
   public openFinanceDialog(member: ListMember): void {
-    console.log(member);
     const dialogRef = this.editBalanceDialog.open(EditBalanceComponent, {
       maxWidth: '100vw',
       minWidth: '0px',
