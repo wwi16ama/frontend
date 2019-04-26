@@ -23,6 +23,8 @@ export class EditPilotlogentryComponent implements OnInit {
     usageTime: number;
     flightWithGuests: boolean;
 
+    temp_olddata: Pilotlog;
+
     planeNumberFormControl: FormControl;
     departureTimeFormControl: FormControl;
     departureDayFormControl: FormControl;
@@ -78,12 +80,15 @@ export class EditPilotlogentryComponent implements OnInit {
     this.arrivalLocationFormControl = new FormControl('', [
       Validators.required,
     ]);
+
+    this.temp_olddata = pilotlog;
+
     this.planeNumberFormControl.setValue(pilotlog.planeNumber);
     this.departureDayFormControl.setValue(pilotlog.departureTime.substring(0, 10));
     // Einfügen: FormalCheck für Input
-    this.departureDayFormControl.
+    // this.departureDayFormControl.
     this.departureTimeFormControl.setValue(pilotlog.departureTime.substring(11, 16));
-    this.arrivalDayFormControl.setValue(pilotlog.arrivalTime);
+    this.arrivalDayFormControl.setValue(pilotlog.arrivalTime.substring(0, 10));
     this.arrivalTimeFormControl.setValue(pilotlog.arrivalTime.substring(11, 16));
     this.departureLocationFormControl.setValue(pilotlog.departureLocation);
     this.arrivalLocationFormControl.setValue(pilotlog.arrivalLocation);
@@ -101,33 +106,86 @@ export class EditPilotlogentryComponent implements OnInit {
   public savePilotLogData(): void {
 
     if (this.checkRequiredFields()) {
-      console.log(this.departureDayFormControl.value + 'T' + this.departureTimeFormControl.value + ':00');
+      console.log(this.departureDayFormControl.value.toString() + '=' + this.temp_olddata.departureTime.substring(0, 10)
+      + '&' + this.arrivalDayFormControl.value.toString() + '=' + this.temp_olddata.arrivalTime.substring(0, 10) );
 
-      const newPilotLog = {
-        planeNumber: this.planeNumberFormControl.value,
-        departureLocation: this.departureLocationFormControl.value,
-
-        departureTime: this.formatDate(new Date(
-          this.departureDayFormControl.value.getFullYear(),
-          this.departureDayFormControl.value.getMonth(),
-          this.departureDayFormControl.value.getDate(),
-          parseInt(this.departureTimeFormControl.value.substring(0, 2), 10),
-          parseInt(this.departureTimeFormControl.value.substring(2, 2), 10)
-        ).toString()),
-
-        arrivalTime: this.formatDate(new Date(
-          this.arrivalDayFormControl.value.getFullYear(),
-          this.arrivalDayFormControl.value.getMonth(),
-          this.arrivalDayFormControl.value.getDate(),
-          parseInt(this.arrivalTimeFormControl.value.slice(0, 2), 10),
-          parseInt(this.arrivalTimeFormControl.value.slice(3, 5), 10)
-        ).toString()),
-
-        arrivalLocation: this.arrivalLocationFormControl.value,
-        usageTime: this.usageTimeFormControl.value,
-        flightWithGuests: this.flightWithGuests
-      };
-      this.editPilotLogEntryDialogRef.close(newPilotLog);
+      if (this.departureDayFormControl.value.toString() === this.temp_olddata.departureTime.substring(0, 10)
+      && this.arrivalDayFormControl.value.toString() === this.temp_olddata.arrivalTime.substring(0, 10) ) {
+        console.log('Case 1: nichts geändert');
+        const newPilotLog = {
+          planeNumber: this.planeNumberFormControl.value,
+          departureLocation: this.departureLocationFormControl.value,
+          departureTime: this.departureDayFormControl.value + 'T' + this.departureTimeFormControl.value + ':00.000Z',
+          arrivalTime: this.arrivalDayFormControl.value + 'T' + this.arrivalTimeFormControl.value + ':00.000Z',
+          arrivalLocation: this.arrivalLocationFormControl.value,
+          usageTime: this.usageTimeFormControl.value,
+          flightWithGuests: this.flightWithGuests
+          };
+        this.editPilotLogEntryDialogRef.close(newPilotLog);
+        } else if (this.departureDayFormControl.value.toString() !== this.temp_olddata.departureTime.substring(0, 10) &&
+        this.arrivalDayFormControl.value.toString() === this.temp_olddata.arrivalTime.substring(0, 10)) {
+        console.log('Case 2: departure geändert');
+        const newPilotLog = {
+          planeNumber: this.planeNumberFormControl.value,
+          departureLocation: this.departureLocationFormControl.value,
+          departureTime: this.formatDate(new Date(
+            this.departureDayFormControl.value.getFullYear(),
+            this.departureDayFormControl.value.getMonth(),
+            this.departureDayFormControl.value.getDate(),
+            parseInt(this.departureTimeFormControl.value.slice(0, 2), 10),
+            parseInt(this.departureTimeFormControl.value.slice(3, 5), 10)
+          ).toString()),
+          arrivalTime: this.arrivalDayFormControl.value + 'T' + this.arrivalTimeFormControl.value + ':00.000Z',
+          arrivalLocation: this.arrivalLocationFormControl.value,
+          usageTime: this.usageTimeFormControl.value,
+          flightWithGuests: this.flightWithGuests
+          };
+        this.editPilotLogEntryDialogRef.close(newPilotLog);
+      } else if (this.departureDayFormControl.value.toString() === this.temp_olddata.departureTime.substring(0, 10)
+      && this.arrivalDayFormControl.value.toString() !== this.temp_olddata.arrivalTime.substring(0, 10)) {
+        console.log('Case 3: arrival geändert');
+        const newPilotLog = {
+          planeNumber: this.planeNumberFormControl.value,
+          departureLocation: this.departureLocationFormControl.value,
+          departureTime: this.departureDayFormControl.value + 'T' + this.departureTimeFormControl.value + ':00.000Z',
+          arrivalTime: this.formatDate(new Date(
+            this.arrivalDayFormControl.value.getFullYear(),
+            this.arrivalDayFormControl.value.getMonth(),
+            this.arrivalDayFormControl.value.getDate(),
+            parseInt(this.arrivalTimeFormControl.value.slice(0, 2), 10),
+            parseInt(this.arrivalTimeFormControl.value.slice(3, 5), 10)
+          ).toString()),
+          arrivalLocation: this.arrivalLocationFormControl.value,
+          usageTime: this.usageTimeFormControl.value,
+          flightWithGuests: this.flightWithGuests
+          };
+        this.editPilotLogEntryDialogRef.close(newPilotLog);
+      } else if (this.departureDayFormControl.value.toString() !== this.temp_olddata.departureTime.substring(0, 10)
+      && this.arrivalDayFormControl.value.toString() !== this.temp_olddata.arrivalTime.substring(0, 10)) {
+        console.log('Case 4: beides geändert');
+        const newPilotLog = {
+          planeNumber: this.planeNumberFormControl.value,
+          departureLocation: this.departureLocationFormControl.value,
+          departureTime: this.formatDate(new Date(
+            this.departureDayFormControl.value.getFullYear(),
+            this.departureDayFormControl.value.getMonth(),
+            this.departureDayFormControl.value.getDate(),
+            parseInt(this.departureTimeFormControl.value.slice(0, 2), 10),
+            parseInt(this.departureTimeFormControl.value.slice(3, 5), 10)
+          ).toString()),
+          arrivalTime: this.formatDate(new Date(
+            this.arrivalDayFormControl.value.getFullYear(),
+            this.arrivalDayFormControl.value.getMonth(),
+            this.arrivalDayFormControl.value.getDate(),
+            parseInt(this.arrivalTimeFormControl.value.slice(0, 2), 10),
+            parseInt(this.arrivalTimeFormControl.value.slice(3, 5), 10)
+          ).toString()),
+          arrivalLocation: this.arrivalLocationFormControl.value,
+          usageTime: this.usageTimeFormControl.value,
+          flightWithGuests: this.flightWithGuests
+          };
+        this.editPilotLogEntryDialogRef.close(newPilotLog);
+      }
   }}
 
   public formatDate(date: string): string {

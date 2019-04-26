@@ -96,6 +96,7 @@ export class PilotLogComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result != null) {
+        console.log(result);
         this.savePilotLogEntry(result);
       }
     });
@@ -108,6 +109,7 @@ export class PilotLogComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result != null) {
+        console.log(result);
         this.savePilotLogEntry(result);
       }
     });
