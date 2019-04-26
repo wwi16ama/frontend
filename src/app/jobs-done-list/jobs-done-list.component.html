@@ -1,6 +1,6 @@
 <div class="jobs-done-list-wrapper">
   <h1 mat-subheader class="title-text">Aufwände</h1>
-  <h3 mat-subheader class="subheader">{{getUsr()}}</h3>
+  <h3 *ngIf="member != null" mat-subheader class="subheader">{{getUsr()}}</h3>
   <button mat-raised-button color="primary" [disabled]="!canAddService" (click)="openAddJobsDialog()">Hinzufügen</button>
   <table mat-table [dataSource]="jobs" matSort class="mat-elevation-z8">
 
