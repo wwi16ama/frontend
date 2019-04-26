@@ -41,6 +41,28 @@ export class JobsDoneListComponent implements OnInit {
     this.canAddService = this.authService.memberHasAuthorization('VORSTANDSVORSITZENDER');
   }
 
+  openAddJobsDialog(): void {
+    const dialogRef = this.addJobsDialog.open(AddJobsDialogComponent, {
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result != null) {
+        console.log(result);
+      }
+    });
+  }
+
+  public getServiceSum(): number {
+    var sum = 0;
+    sum = this.gutschriftSumme;
+    return sum;
+  }
+
+  public getUsr(): string {
+    var erg: any;
+      erg = this.member.firstName + ' ' + this.member.lastName + ' (' + this.member.id + ')';
+    return erg
+  }
+
   ngOnInit() {
     this.memberService.getMemberData(this.id).subscribe(
       (memberdata: Member) => {
@@ -62,29 +84,5 @@ export class JobsDoneListComponent implements OnInit {
       }
     );
   }
-
-  openAddJobsDialog(): void {
-    const dialogRef = this.addJobsDialog.open(AddJobsDialogComponent, {
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result != null) {
-        //this.saveJobsData(result);
-      }
-    });
-  }
-
-  public getServiceSum(): number {
-    var sum = 0;
-    sum = this.gutschriftSumme;
-    return sum;
-  }
-
-  public getUsr(): string {
-    var erg: any;
-      erg = this.member.firstName + ' ' + this.member.lastName + ' (' + this.member.id + ')';
-    return erg
-  }
-
-  public openAddJobDialog(){}
 
 }

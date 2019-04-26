@@ -18,12 +18,17 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   styleUrls: ['./add-jobs-dialog.component.css']
 })
 export class AddJobsDialogComponent implements OnInit {
+
+  minDate = new Date(2000, 0, 1);
+  maxDate: Date;
+
   id: number;
   name: string;
   gutschrift: number;
   startDate: string;
   endDate: string;
   possibleNames: string[];
+  hideDate: boolean;
 
   idFormControl: FormControl;
   nameFormControl: FormControl;
@@ -33,15 +38,50 @@ export class AddJobsDialogComponent implements OnInit {
   matcher: ErrorStateMatcher;
 
   constructor(
-    public addJobsDialogRef: MatDialogRef<AddJobsDialogComponent>
+    public addJobsDialogRef: MatDialogRef<AddJobsDialogComponent>,
+    public snackBar: MatSnackBar
   ) 
   { 
-    this.possibleNames = ['Test1', 'Test2', 'Test3', 'Test4'];
+    this.possibleNames = ['Vorstandsmitglied', 'Fluglehrer', 'Flugwart', 'Tageseinsatz', 'Pilot'];
+    this.name = '';
+    this.hideDate = false;
 
     this.initializeFormControls();
   }
 
-  ngOnInit() {
+  public getCurrentDate(): Date {
+    const year = new Date().getFullYear();
+    const month = new Date().getMonth();
+    const day = new Date().getDate();
+    this.maxDate = new Date(year, month, day);
+    return this.maxDate;
+  }
+
+  public getServiceName(serviceNameAnzeige): string {
+    var serviceName = '';
+    switch(serviceNameAnzeige) { 
+      case 'Vorstandsmitglied': {  
+         serviceName = 'J_VORSTANDSMITGLIED'; 
+         break; 
+      } 
+      case 'Fluglehrer': { 
+         serviceName = 'J_FLUGLEHRER'; 
+         break; 
+      } 
+      case 'Flugwart': {
+         serviceName = 'J_FLUGWART'; 
+         break;    
+      } 
+      case 'Tageseinsatz': { 
+         serviceName = 'T_TAGESEINSATZ'; 
+         break; 
+      }  
+      case 'Pilot': { 
+         serviceName = 'T_PILOT'; 
+         break;              
+      } 
+   }
+    return serviceName
   }
 
   public onNoClick(): void {
@@ -53,6 +93,129 @@ export class AddJobsDialogComponent implements OnInit {
       Validators.required,
     ]);
 
+    this.startDateFormControl = new FormControl('', [
+      Validators.required,
+    ])
+
+    this.endDateFormControl = new FormControl('', [
+      Validators.required,
+    ])
+
     this.matcher = new MyErrorStateMatcher();
+  }
+
+  public checkRequiredFields(): boolean {
+    if (this.nameFormControl.invalid ) {
+      this.snackBar.open('Keine gültige Dienstart.', 'Schließen',
+        {
+          duration: 3000,
+        }
+      );
+      return false;
+    } else if (this.startDateFormControl.invalid) {
+      this.snackBar.open('Kein gültiges Startdatum.', 'Schließen',
+        {
+          duration: 3000,
+        }
+      );
+      return false;
+    } else if (this.endDateFormControl.invalid) {
+      this.snackBar.open('Kein gültiges Enddatum', 'Schließen',
+        {
+          duration: 3000,
+        }
+      );
+      return false;
+    } else if (this.startDate > this.endDate) {
+      this.snackBar.open('Das Startdatum muss vor dem Enddatum liegen', 'Schließen',
+        {
+          duration: 3000,
+        }
+      );
+      return false;
+    }
+    return true;
+  }
+
+  public saveServiceData(): void {
+    if (!this.checkRequiredFields()) {
+      const newJobsDoneList = {
+        "id": '',
+        "name": this.getServiceName(this.name),
+        "gutschrift": this.getGutschrift(),
+        "startDate": this.startDateFormControl.value.getFullYear()+'-'+
+                      this.startDateFormControl.value.getMonth()+'-'+
+                      this.startDateFormControl.value.getDate(),
+        "endDate":  this.endDateFormControl.value.getFullYear()+'-'+
+                    this.endDateFormControl.value.getMonth()+'-'+
+                    this.endDateFormControl.value.getDate()
+      };
+      this.addJobsDialogRef.close(newJobsDoneList);
+    }  
+  }
+
+  public formatDate(date: string): string {
+    const parseDate = new Date(date);
+    return new Date(parseDate.getTime() - parseDate.getTimezoneOffset() * 60000).toISOString();
+  }
+
+  public getGutschrift(): number {
+    var erg : number;
+    var diff = Math.abs(this.endDateFormControl.value.getTime() - this.startDateFormControl.value.getTime());
+    var diffDays = Math.ceil(diff / (1000 * 3600 * 24)); 
+    switch(this.name) { 
+      case 'Vorstandsmitglied': {  
+         erg = 200;
+         break; 
+      } 
+      case 'Fluglehrer': { 
+        erg = 200;
+         break; 
+      } 
+      case 'Flugwart': {
+        erg = 100;
+         break;    
+      } 
+      case 'Tageseinsatz': { 
+        erg = 40 * diffDays;
+         break; 
+      }  
+      case 'Pilot': { 
+        erg = 40 * diffDays;
+         break;              
+      } 
+   }
+    return erg;
+  }
+
+  public setHideDate(): void {
+    switch(this.name) { 
+      case 'Vorstandsmitglied': {  
+         this.hideDate = true; 
+         this.startDate = '';
+         this.endDate = '';
+         break; 
+      } 
+      case 'Fluglehrer': { 
+         this.hideDate = true;
+         break; 
+      } 
+      case 'Flugwart': {
+        this.hideDate = true; 
+         break;    
+      } 
+      case 'Tageseinsatz': { 
+        this.hideDate = false;
+         break; 
+      }  
+      case 'Pilot': { 
+        this.hideDate = false;
+         break;              
+      } 
+   }
+  }
+  
+  ngOnInit() {
+    this.getCurrentDate();
   }
 }

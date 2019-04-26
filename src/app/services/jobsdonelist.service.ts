@@ -24,6 +24,19 @@ export class JobsdonelistService {
     );
   }
 
+  public addJobsDoneListData(jobsdonelist: JobsDoneList): Observable<any> {
+    const url = environment.baseUrl + '/services/' + jobsdonelist.id;
+    const headers = this.authService.setAuthHeader();
+    return this.httpClient.post<JobsDoneList>(
+      url,
+      jobsdonelist,
+      {
+        headers: headers,
+        observe: 'response'
+      }
+    );
+  }
+
   public getServiceSum(id): number {
     var jobs: JobsDoneList[];
     var sum = 0;
