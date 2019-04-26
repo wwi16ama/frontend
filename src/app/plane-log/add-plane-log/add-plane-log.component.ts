@@ -86,6 +86,8 @@ export class AddPlaneLogComponent implements OnInit {
   }
 
    public checkRequiredFields(): boolean {
+     console.log(this.finalFuelLevelFormControl.value);
+     console.log(this.initialFuelLevelFormControl.value);
     if (this.locationFormControl.invalid ) {
       this.snackBar.open('Kein gültiger Ort.', 'Schließen',
         {
@@ -114,11 +116,11 @@ export class AddPlaneLogComponent implements OnInit {
         }
       );
       return false;
-    } else if (this.initialFuelLevelFormControl.value > this.finalFuelLevelFormControl.value) {
+    } else if (this.finalFuelLevelFormControl.value <= this.initialFuelLevelFormControl.value) {
       this.snackBar.open('Der Anfangsstand muss größer als der Endstand sein.', 'Schließen',
-      {
-        duration: 3000,
-      }
+        {
+          duration: 3000,
+        }
       );
       return false;
     }
