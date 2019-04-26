@@ -151,7 +151,7 @@ export class AddJobsDialogComponent implements OnInit {
       const newJobsDoneList = {
         "id": '',
         "name": this.getServiceName(this.name),
-        "gutschrift": this.getGutschrift(),
+        "gutschrift": 0,
         "startDate": this.getDateString(this.startDateFormControl.value),
         "endDate":  this.getDateString(this.endDateFormControl.value)
       };
@@ -161,7 +161,7 @@ export class AddJobsDialogComponent implements OnInit {
       const newJobsDoneList = {
         "id": '',
         "name": this.getServiceName(this.name),
-        "gutschrift": this.getGutschrift(),
+        "gutschrift": 0,
         "startDate": (new Date().getFullYear()).toString() + '-02-01',
         "endDate": (new Date().getFullYear() + 1).toString() + '-01-31'
       };
@@ -189,37 +189,6 @@ export class AddJobsDialogComponent implements OnInit {
   public formatDate(date: string): string {
     const parseDate = new Date(date);
     return new Date(parseDate.getTime() - parseDate.getTimezoneOffset() * 60000).toISOString();
-  }
-
-  public getGutschrift(): number {
-    var erg : number;
-    if (!this.hideDate) {
-      var diff = Math.abs(this.endDateFormControl.value.getTime() - this.startDateFormControl.value.getTime());
-      var diffDays = Math.ceil(diff / (1000 * 3600 * 24)); 
-    }
-    switch(this.name) { 
-      case 'Vorstandsmitglied': {  
-         erg = 200;
-         break; 
-      } 
-      case 'Fluglehrer': { 
-        erg = 200;
-         break; 
-      } 
-      case 'Flugwart': {
-        erg = 100;
-         break;    
-      } 
-      case 'Tageseinsatz': { 
-        erg = 40 * (diffDays + 1);
-         break; 
-      }  
-      case 'Pilot': { 
-        erg = 40 * (diffDays + 1);
-         break;              
-      } 
-   }
-    return erg;
   }
 
   public setHideDate(): void {
