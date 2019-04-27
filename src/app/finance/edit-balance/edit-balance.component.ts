@@ -30,13 +30,11 @@ export class EditBalanceComponent {
     ]);
   }
   public saveBalanceData(): void {
-    console.log(this.amountFormControl.value);
     if (this.checkRequiredFields()) {
       const newTransaction = {
        amount: this.amountFormControl.value,
        text: this.textFormControl.value
       };
-      console.log(newTransaction);
       this.editBalanceDialogRef.close(newTransaction);
     }
     }

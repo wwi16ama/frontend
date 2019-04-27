@@ -4,13 +4,13 @@
       <mat-tab label="Übersicht">
         <div class="tab-content">
           <mat-form-field class="input-width">
-            <input matInput placeholder="Vorname" minlength="3" pattern="[a-zA-Z_äÄöÖüÜß]+" ng-pattern-restrict [formControl]="firstNameFormControl" required>
+            <input matInput placeholder="Vorname" minlength="3" pattern="[a-zA-Z_äÄöÖüÜß\-]+" ng-pattern-restrict [formControl]="firstNameFormControl" required>
             <mat-error *ngIf="firstNameFormControl.hasError('required')">Der Vorname ist erforderlich</mat-error>
             <mat-error *ngIf="firstNameFormControl.hasError('minlength')">Der Vorname muss mindestens 3 Zeichen lang sein</mat-error>
             <mat-error *ngIf="firstNameFormControl.hasError('pattern')">Der Vorname darf keine Zahlen enthalten</mat-error>
           </mat-form-field>
           <mat-form-field class="input-width">
-            <input matInput placeholder="Nachname" minlength="3" pattern="[a-zA-Z_äÄöÖüÜß]+" ng-pattern-restrict [formControl]="lastNameFormControl" required>
+            <input matInput placeholder="Nachname" minlength="3" pattern="[a-zA-Z_äÄöÖüÜß\-]+" ng-pattern-restrict [formControl]="lastNameFormControl" required>
             <mat-error *ngIf="lastNameFormControl.hasError('required')">Der Name ist erforderlich</mat-error>
             <mat-error *ngIf="lastNameFormControl.hasError('minlength')">Der Name muss mindestens 3 Zeichen lang sein</mat-error>
             <mat-error *ngIf="lastNameFormControl.hasError('pattern')">Der Name darf keine Zahlen enthalten</mat-error>
@@ -57,7 +57,7 @@
             <mat-error *ngIf="postalCodeFormControl.hasError('minlength')">Bitte geben Sie eine gültige Postleitzahl ein</mat-error>
           </mat-form-field>
           <mat-form-field class="input-width">
-            <input matInput placeholder="Stadt" pattern="[a-zA-Z_äÄöÖüÜß]+" ng-pattern-restrict [formControl]="cityFormControl" minlength="3" required>
+            <input matInput placeholder="Stadt" pattern="[a-zA-Z_äÄöÖüÜß \.\(\)-]+" ng-pattern-restrict [formControl]="cityFormControl" minlength="3" required>
             <mat-error *ngIf="cityFormControl.hasError('required')">Der Ort ist erforderlich</mat-error>
             <mat-error *ngIf="cityFormControl.hasError('minlength')">Der Ort muss mindestens 3 Zeichen lang sein</mat-error>
             <mat-error *ngIf="cityFormControl.hasError('pattern')">Der Ort darf keine Zahlen enthalten</mat-error>

@@ -21,6 +21,7 @@ export class MemberListComponent implements OnInit {
   displayedColumns: string[];
   dataSource: any;
   allowedToAddNewMember: boolean;
+  allowedToSeeServices: boolean;
 
   @ViewChild(MatSort) set content(sort: ElementRef) {
     this.sort = sort;
@@ -34,10 +35,15 @@ export class MemberListComponent implements OnInit {
     public memberService: MemberService, public jobsdonelistService: JobsdonelistService, public authService: AuthService) {
     this.displayedColumns = ['id', 'firstName', 'lastName', 'sumAufwand'];
     this.allowedToAddNewMember = false;
+    this.allowedToSeeServices = false;
   }
 
   ngOnInit() {
     this.allowedToAddNewMember = this.authService.memberHasAuthorization('VORSTANDSVORSITZENDER') || this.authService.memberHasAuthorization('SYSTEMADMINISTRATOR');
+    this.allowedToSeeServices = this.authService.memberHasAuthorization('VORSTANDSVORSITZENDER');
+    if (!this.allowedToSeeServices) {
+      this.displayedColumns = ['id', 'firstName', 'lastName'];
+    }
     this.memberService.getMemberListData().subscribe(
       (data: ListMember[]) => {
         this.dataSource = new MatTableDataSource(data);
@@ -48,17 +54,13 @@ export class MemberListComponent implements OnInit {
 
   public navigateTo(rowId: number, kennzeichen: string): void {
     if (kennzeichen == 'A') {
-      this.router.navigate(['/jobsdonelist', rowId]);
+      if (this.allowedToSeeServices) {
+        this.router.navigate(['/jobsdonelist', rowId]);
+      }
     }
     else {
       this.router.navigate(['/member', rowId]);
     }
-  }
-
-  public getAufwand(MemberID): number {
-    var sum = 0;
-    // Keine Ahnung...
-    return sum
   }
 
   openAddUserDialog(): any {
@@ -83,6 +85,7 @@ export class MemberListComponent implements OnInit {
             }
           );
           this.dataSource.data.push(response.body);
+          window.location.reload();
           this.dataSource.sort = this.sort;
         }
       },

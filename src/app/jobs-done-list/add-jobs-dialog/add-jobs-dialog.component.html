@@ -1,0 +1,46 @@
+<div class="dialog-wrapper">
+  <h2 mat-dialog-title>Aufwand hinzufügen</h2>
+  <mat-dialog-content>
+
+    <form>
+      <div class="tab-content">
+        
+        <!--Dienstart auswählen-->
+        <mat-form-field class="input-width">
+          <mat-select placeholder="Dienstart" [(value)]="name" (selectionChange)="setHideDate()" required>
+            <mat-option *ngFor="let names of possibleNames" [value]="names">{{names}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+      <div *ngIf="!hideDate">
+        <mat-form-field class="datepicker-width">
+          <input matInput [matDatepicker]="startDate" [min]="minDate" [max]="maxDate" placeholder="Start" 
+          [formControl]="startDateFormControl" required>
+          <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
+          <mat-datepicker #startDate></mat-datepicker>
+          <mat-error *ngIf="startDateFormControl.hasError('required')">
+            Das Startdatum ist <strong>erforderlich</strong>
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field class="datepicker-width">
+          <input matInput [matDatepicker]="endDate" [min]="minDate" [max]="maxDate" placeholder="Ende" 
+          [formControl]="endDateFormControl" required>
+          <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
+          <mat-datepicker #endDate></mat-datepicker>
+          <mat-error *ngIf="endDateFormControl.hasError('required')">
+            Das Enddatum ist <strong>erforderlich</strong>
+          </mat-error>
+        </mat-form-field>
+      </div>
+        
+      </div>
+    </form>
+  </mat-dialog-content>
+
+  <div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">Abbrechen</button>
+    <button mat-raised-button color="primary" (click)="saveServiceData()">Speichern</button>
+  </div>
+</div>
