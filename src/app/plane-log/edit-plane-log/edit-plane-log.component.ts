@@ -30,7 +30,7 @@ export class EditPlaneLogComponent implements OnInit {
   finalFuelLevelFormControl: FormControl;
   priceFormControl: FormControl;
 
-  constructor(public planeLogService: PlaneLogService, public editPlaneLogDialogRef: MatDialogRef<EditPlaneLogComponent>, public snackBar: MatSnackBar, public authService: AuthService) {
+  constructor(public planeLogService: PlaneLogService, public memberService: MemberService, public editPlaneLogDialogRef: MatDialogRef<EditPlaneLogComponent>, public snackBar: MatSnackBar, public authService: AuthService) {
     editPlaneLogDialogRef.disableClose = true;
 
     this.planeNumberFormControl = new FormControl ('', [
@@ -121,6 +121,11 @@ export class EditPlaneLogComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.memberService.getMemberData(this.authService.getMemberID()).subscribe(
+      (memberdata: Member) => {
+        this.member = memberdata;
+      }
+    );
     this.editPlaneLog = PlaneLogComponent.getEditPlaneLog();
     this.locationFormControl.setValue(this.editPlaneLog[1]);
     this.initialFuelLevelFormControl.setValue(this.editPlaneLog[2]);
