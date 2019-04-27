@@ -38,6 +38,9 @@ import { AddPlaneLogModule } from './plane-log/add-plane-log/add-plane-log.modul
 import { AddPlaneLogComponent } from './plane-log/add-plane-log/add-plane-log.component';
 import { EditBalanceModule } from './finance/edit-balance/edit-balance.module';
 import { EditBalanceComponent } from './finance/edit-balance/edit-balance.component';
+import { EditPlaneLogComponent } from './plane-log/edit-plane-log/edit-plane-log.component';
+import { EditPlaneLogModule } from './plane-log/edit-plane-log/edit-plane-log.module';
+
 import { AddJobsDialogModule } from './jobs-done-list/add-jobs-dialog/add-jobs-dialog.module';
 import { AddJobsDialogComponent } from './jobs-done-list/add-jobs-dialog/add-jobs-dialog.component';
 
@@ -67,6 +70,7 @@ registerLocaleData(localeDe);
     AddPlaneLogModule,
     FinanceModule,
     EditBalanceModule,
+    EditPlaneLogModule,
     AddJobsDialogModule
   ],
   providers: [
@@ -86,6 +90,7 @@ registerLocaleData(localeDe);
     AddPilotlogentryComponent,
     AddPlaneLogComponent,
     EditBalanceComponent,
+    EditPlaneLogComponent,
     AddJobsDialogComponent
   ]
 })

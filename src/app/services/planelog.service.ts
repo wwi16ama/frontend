@@ -34,4 +34,16 @@ import { AuthService } from './auth.service';
       }
     );
   }
+  public updatePlaneLogEntry(planelog:  PlaneLog, planeID, PlaneLogEntryID): Observable<any> {
+    const url = environment.baseUrl + '/planeLog/' + planeID + '/' + PlaneLogEntryID;
+    const headers = this.authService.setAuthHeader();
+    return this.httpClient.put<PlaneLog>(
+      url,
+      planelog,
+      {
+        headers: headers,
+        observe: 'response'
+      }
+    );
+  }
 }
