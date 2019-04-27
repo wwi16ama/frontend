@@ -90,7 +90,7 @@ describe('MemberListComponent', () => {
       const testId = 0;
       const testParams = ['/member', testId];
       spyOn(component.router, 'navigate');
-      component.navigateTo(testId);
+      component.navigateTo(testId, '');
       expect(component.router.navigate).toHaveBeenCalledWith(testParams);
     });
   });

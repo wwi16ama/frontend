@@ -6,6 +6,7 @@ import { MemberService } from './../services/member.service';
 import { JobsdonelistService } from './../services/jobsdonelist.service';
 import { AuthService } from './../services/auth.service';
 import { MatTableDataSource, MatPaginator, MatSort, MatSnackBar, MatDialog} from '@angular/material';
+import { AddJobsDialogComponent } from './add-jobs-dialog/add-jobs-dialog.component';
 
 
 @Component({
@@ -21,13 +22,15 @@ export class JobsDoneListComponent implements OnInit {
   sort: any;
   gutschriftSumme : any;
   displayedColumns: string[];
+  canAddService : boolean;
 
   constructor(public authService: AuthService, 
               public memberService: MemberService, 
               public jobsdonelistService: JobsdonelistService, 
               private route: ActivatedRoute, 
               public snackBar: MatSnackBar, 
-              public AddJobDialog: MatDialog) 
+              public addJobsDialog: MatDialog
+              ) 
   { 
     this.sub = this.route.params.subscribe(params => {
     this.id = +params['id']; 
@@ -35,6 +38,63 @@ export class JobsDoneListComponent implements OnInit {
     this.displayedColumns = ['startDate', 'endDate', 'name', 'gutschrift']; 
     this.jobs = [];
     this.gutschriftSumme = 0;
+    this.canAddService = this.authService.memberHasAuthorization('VORSTANDSVORSITZENDER');
+  }
+
+  openAddJobsDialog(): void {
+    const dialogRef = this.addJobsDialog.open(AddJobsDialogComponent, {
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result != null) {
+        console.log(result)
+        result.id = this.member.id;
+        console.log(result);
+        this.saveService(result);
+      }
+    });
+  }
+
+  public saveService(jobsdonelist: JobsDoneList): void {
+    this.jobsdonelistService.addJobsDoneListData(jobsdonelist).subscribe(
+      (response) => {
+        if (response.status === 204) {
+          this.snackBar.open('Änderungen erfolgreich gespeichert.', 'Schließen',
+            {
+              duration: 3000,
+            }
+          );
+          window.location.reload();
+          this.jobs.sort = this.sort;
+        }
+      },
+      error => {
+        if (error.status === 400) {
+          this.snackBar.open('Dienstart bereits vorhanden oder für den gewählten Benutzer ungültig.', 'Schließen',
+            {
+              duration: 4000,
+            }
+          );
+        } else if (error.status === 0) {
+          this.snackBar.open('Es konnte keine Verbindung zum Server aufgebaut werden', 'Schließen',
+            {
+              duration: 4000,
+            }
+          );
+        }
+      }
+    );
+  }
+
+  public getServiceSum(): number {
+    var sum = 0;
+    sum = this.gutschriftSumme;
+    return sum;
+  }
+
+  public getUsr(): string {
+    var erg: any;
+      erg = this.member.firstName + ' ' + this.member.lastName + ' (' + this.member.id + ')';
+    return erg
   }
 
   ngOnInit() {
@@ -58,19 +118,5 @@ export class JobsDoneListComponent implements OnInit {
       }
     );
   }
-
-  public getServiceSum(): number {
-    var sum = 0;
-    sum = this.gutschriftSumme;
-    return sum;
-  }
-
-  public getUsr(): string {
-    var erg: any;
-      erg = this.member.firstName + ' ' + this.member.lastName + ' (' + this.member.id + ')';
-    return erg
-  }
-
-  public openAddJobDialog(){}
 
 }
