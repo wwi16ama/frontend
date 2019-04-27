@@ -114,7 +114,7 @@ export class AddPlaneLogComponent implements OnInit {
         }
       );
       return false;
-    } else if (this.finalFuelLevelFormControl.value <= this.initialFuelLevelFormControl.value) {
+    } else if (Number(this.finalFuelLevelFormControl.value) >= Number(this.initialFuelLevelFormControl.value)) {
       this.snackBar.open('Der Anfangsstand muss größer als der Endstand sein.', 'Schließen',
         {
           duration: 3000,
