@@ -14,7 +14,7 @@
         </mat-form-field>
 
       <div *ngIf="!hideDate">
-        <mat-form-field class="datepicker-width">
+        <mat-form-field class="datepicker-left">
           <input matInput [matDatepicker]="startDate" [min]="minDate" [max]="maxDate" placeholder="Start" 
           [formControl]="startDateFormControl" required>
           <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
@@ -24,7 +24,7 @@
           </mat-error>
         </mat-form-field>
 
-        <mat-form-field class="datepicker-width">
+        <mat-form-field class="datepicker-right">
           <input matInput [matDatepicker]="endDate" [min]="minDate" [max]="maxDate" placeholder="Ende" 
           [formControl]="endDateFormControl" required>
           <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
