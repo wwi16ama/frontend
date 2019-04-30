@@ -40,8 +40,7 @@ export class AddJobsDialogComponent implements OnInit {
   constructor(
     public addJobsDialogRef: MatDialogRef<AddJobsDialogComponent>,
     public snackBar: MatSnackBar
-  ) 
-  { 
+  ) {
     this.possibleNames = ['Vorstandsmitglied', 'Fluglehrer', 'Flugwart', 'Tageseinsatz', 'Pilot'];
     this.name = '';
     this.hideDate = true;
@@ -58,30 +57,30 @@ export class AddJobsDialogComponent implements OnInit {
   }
 
   public getServiceName(serviceNameAnzeige): string {
-    var serviceName = '';
-    switch(serviceNameAnzeige) { 
-      case 'Vorstandsmitglied': {  
-         serviceName = 'J_VORSTANDSMITGLIED'; 
-         break; 
-      } 
-      case 'Fluglehrer': { 
-         serviceName = 'J_FLUGLEHRER'; 
-         break; 
-      } 
+    let serviceName = '';
+    switch ( serviceNameAnzeige) {
+      case 'Vorstandsmitglied': {
+         serviceName = 'J_VORSTANDSMITGLIED';
+         break;
+      }
+      case 'Fluglehrer': {
+         serviceName = 'J_FLUGLEHRER';
+         break;
+      }
       case 'Flugwart': {
-         serviceName = 'J_FLUGWART'; 
-         break;    
-      } 
-      case 'Tageseinsatz': { 
-         serviceName = 'T_TAGESEINSATZ'; 
-         break; 
-      }  
-      case 'Pilot': { 
-         serviceName = 'T_PILOT'; 
-         break;              
-      } 
+         serviceName = 'J_FLUGWART';
+         break;
+      }
+      case 'Tageseinsatz': {
+         serviceName = 'T_TAGESEINSATZ';
+         break;
+      }
+      case 'Pilot': {
+         serviceName = 'T_PILOT';
+         break;
+      }
    }
-    return serviceName
+    return serviceName;
   }
 
   public onNoClick(): void {
@@ -91,11 +90,11 @@ export class AddJobsDialogComponent implements OnInit {
   public initializeFormControls(): void {
     this.startDateFormControl = new FormControl('', [
       Validators.required,
-    ])
+    ]);
 
     this.endDateFormControl = new FormControl('', [
       Validators.required,
-    ])
+    ]);
 
     this.matcher = new MyErrorStateMatcher();
   }
@@ -108,21 +107,21 @@ export class AddJobsDialogComponent implements OnInit {
         }
       );
       return false;
-    } else if (this.startDateFormControl.invalid&&!this.hideDate) {
+    } else if (this.startDateFormControl.invalid && !this.hideDate) {
       this.snackBar.open('Kein gültiges Startdatum.', 'Schließen',
         {
           duration: 3000,
         }
       );
       return false;
-    } else if (this.endDateFormControl.invalid&&!this.hideDate) {
+    } else if (this.endDateFormControl.invalid && !this.hideDate) {
       this.snackBar.open('Kein gültiges Enddatum', 'Schließen',
         {
           duration: 3000,
         }
       );
       return false;
-    } else if ((!this.hideDate)&&(!this.checkDate())) {
+    } else if ((!this.hideDate) && (!this.checkDate())) {
       this.snackBar.open('Das Startdatum muss vor dem Enddatum liegen', 'Schließen',
         {
           duration: 3000,
@@ -134,14 +133,12 @@ export class AddJobsDialogComponent implements OnInit {
   }
 
   public checkDate(): boolean {
-    var diff = (this.endDateFormControl.value.getTime() - this.startDateFormControl.value.getTime());
-    var diffDays = Math.ceil(diff / (1000 * 3600 * 24)); 
-    console.log(diffDays);
+    const diff = (this.endDateFormControl.value.getTime() - this.startDateFormControl.value.getTime());
+    const diffDays = Math.ceil(diff / (1000 * 3600 * 24));
     if (diffDays >= 0) {
-      return true
-    }
-    else {
-      return false
+      return true;
+    } else {
+      return false;
     }
   }
 
@@ -149,41 +146,39 @@ export class AddJobsDialogComponent implements OnInit {
     if (this.checkRequiredFields()) {
       if (!this.hideDate) {
       const newJobsDoneList = {
-        "id": '',
-        "name": this.getServiceName(this.name),
-        "gutschrift": 0,
-        "startDate": this.getDateString(this.startDateFormControl.value),
-        "endDate":  this.getDateString(this.endDateFormControl.value)
+        'id': '',
+        'name': this.getServiceName(this.name),
+        'gutschrift': 0,
+        'startDate': this.getDateString(this.startDateFormControl.value),
+        'endDate':  this.getDateString(this.endDateFormControl.value)
       };
       this.addJobsDialogRef.close(newJobsDoneList);
-    }
-    else {
+    } else {
       const newJobsDoneList = {
-        "id": '',
-        "name": this.getServiceName(this.name),
-        "gutschrift": 0,
-        "startDate": (new Date().getFullYear()).toString() + '-02-01',
-        "endDate": (new Date().getFullYear() + 1).toString() + '-01-31'
+        'id': '',
+        'name': this.getServiceName(this.name),
+        'gutschrift': 0,
+        'startDate': (new Date().getFullYear()).toString() + '-02-01',
+        'endDate': (new Date().getFullYear() + 1).toString() + '-01-31'
       };
       this.addJobsDialogRef.close(newJobsDoneList);
     }
-      
-    }  
+    }
   }
 
   public getDateString(date: any): string {
-    var year = date.getFullYear();
-    var month = (date.getMonth() + 1);
-    var day = date.getDate();
+    const year = date.getFullYear();
+    let month = (date.getMonth() + 1);
+    let day = date.getDate();
 
-    if (month<10) {
+    if (month < 10) {
       month = '0' + month;
     }
 
-    if (day<10) {
+    if (day < 10) {
       day = '0' + day;
     }
-    return year + '-' + month + '-' + day
+    return year + '-' + month + '-' + day;
   }
 
   public formatDate(date: string): string {
@@ -192,30 +187,29 @@ export class AddJobsDialogComponent implements OnInit {
   }
 
   public setHideDate(): void {
-    switch(this.name) { 
-      case 'Vorstandsmitglied': {  
-         this.hideDate = true; 
-         break; 
-      } 
-      case 'Fluglehrer': { 
+    switch (this.name) {
+      case 'Vorstandsmitglied': {
          this.hideDate = true;
-         break; 
-      } 
+         break;
+      }
+      case 'Fluglehrer': {
+         this.hideDate = true;
+         break;
+      }
       case 'Flugwart': {
-        this.hideDate = true; 
-         break;    
-      } 
-      case 'Tageseinsatz': { 
+        this.hideDate = true;
+         break;
+      }
+      case 'Tageseinsatz': {
         this.hideDate = false;
-         break; 
-      }  
-      case 'Pilot': { 
+         break;
+      }
+      case 'Pilot': {
         this.hideDate = false;
-         break;              
-      } 
+         break;
+      }
    }
   }
-  
   ngOnInit() {
     this.getCurrentDate();
   }

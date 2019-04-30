@@ -26,15 +26,16 @@
     margin-right: 15px;
 }
 
-.add-button {
-    margin-top: 10px;
+.datepicker-right {
+    width: 45%;
+    flex-grow: inherit;
+    flex-shrink: inherit;
+    margin-left: 5%;
 }
-#plane-header {
-    font-weight: bold;
-    margin-bottom: 10px;
-   }
-#upload-header {
-    font-weight: bold;
-    margin-top: 25px;
-    margin-bottom: 20px;
-   }
+
+.datepicker-left {
+    width: 45%;
+    flex-grow: inherit;
+    flex-shrink: inherit;
+    margin-right: 5%;
+}

@@ -18,24 +18,23 @@ export class JobsDoneListComponent implements OnInit {
   private sub: any;
   id: number;
   member: Member;
-  jobs : any;
+  jobs: any;
   sort: any;
-  gutschriftSumme : any;
+  gutschriftSumme: any;
   displayedColumns: string[];
-  canAddService : boolean;
+  canAddService: boolean;
 
-  constructor(public authService: AuthService, 
-              public memberService: MemberService, 
-              public jobsdonelistService: JobsdonelistService, 
-              private route: ActivatedRoute, 
-              public snackBar: MatSnackBar, 
+  constructor(public authService: AuthService,
+              public memberService: MemberService,
+              public jobsdonelistService: JobsdonelistService,
+              private route: ActivatedRoute,
+              public snackBar: MatSnackBar,
               public addJobsDialog: MatDialog
-              ) 
-  { 
+              ) {
     this.sub = this.route.params.subscribe(params => {
-    this.id = +params['id']; 
+    this.id = +params['id'];
     });
-    this.displayedColumns = ['startDate', 'endDate', 'name', 'gutschrift']; 
+    this.displayedColumns = ['startDate', 'endDate', 'name', 'gutschrift'];
     this.jobs = [];
     this.gutschriftSumme = 0;
     this.canAddService = this.authService.memberHasAuthorization('VORSTANDSVORSITZENDER');
@@ -46,9 +45,7 @@ export class JobsDoneListComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result != null) {
-        console.log(result)
         result.id = this.member.id;
-        console.log(result);
         this.saveService(result);
       }
     });
@@ -86,15 +83,13 @@ export class JobsDoneListComponent implements OnInit {
   }
 
   public getServiceSum(): number {
-    var sum = 0;
-    sum = this.gutschriftSumme;
+    const sum = this.gutschriftSumme;
     return sum;
   }
 
   public getUsr(): string {
-    var erg: any;
-      erg = this.member.firstName + ' ' + this.member.lastName + ' (' + this.member.id + ')';
-    return erg
+    const erg = this.member.firstName + ' ' + this.member.lastName + ' (' + this.member.id + ')';
+    return erg;
   }
 
   ngOnInit() {
@@ -108,11 +103,12 @@ export class JobsDoneListComponent implements OnInit {
         this.jobs = jobsdata;
         for (let i = 0; i < this.jobs.length; i++) {
           this.gutschriftSumme += this.jobs[i].gutschrift;
-          this.jobs[i].name = this.jobs[i].name.substring(2).charAt(0).toUpperCase() + this.jobs[i].name.toLowerCase().substring(2).slice(1);
+          this.jobs[i].name = this.jobs[i].name.substring(2).charAt(0).toUpperCase() +
+          this.jobs[i].name.toLowerCase().substring(2).slice(1);
           if (this.jobs[i].year) {
-            var year = this.jobs[i].year;
-            this.jobs[i].startDate = '01.02.'+year;
-            this.jobs[i].endDate = '01.02.'+(++year);
+            const year = this.jobs[i].year;
+            this.jobs[i].startDate = '01.02.' + year;
+            this.jobs[i].endDate = '01.02.' + (year + 1);
           }
         }
       }
