@@ -30,7 +30,7 @@ export class EditPlaneLogComponent implements OnInit {
   finalFuelLevelFormControl: FormControl;
   priceFormControl: FormControl;
 
-  constructor(public planeLogService: PlaneLogService, public memberService: MemberService, 
+  constructor(public planeLogService: PlaneLogService, public memberService: MemberService,
     public editPlaneLogDialogRef: MatDialogRef<EditPlaneLogComponent>, public snackBar: MatSnackBar, public authService: AuthService) {
     editPlaneLogDialogRef.disableClose = true;
 
@@ -72,15 +72,7 @@ export class EditPlaneLogComponent implements OnInit {
         endCount: this.finalFuelLevelFormControl.value,
         fuelPrice: this.priceFormControl.value
       };
-      if (this.initialFuelLevelFormControl.value > this.finalFuelLevelFormControl.value) {
         this.editPlaneLogDialogRef.close(newPlaneLog);
-      } else {
-        this.snackBar.open('Der Anfangsstand muss größer als der Endstand sein.', 'Schließen',
-        {
-          duration: 3000,
-        }
-      );
-      }
   }}
 
   public formatDate(date: string): string {
