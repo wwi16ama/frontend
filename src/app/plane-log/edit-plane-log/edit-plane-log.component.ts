@@ -7,7 +7,7 @@ import { PlaneLogService } from '../../services/planelog.service';
 import { PlaneLog } from '../../models/planelog.model';
 import { Member } from '../../models/member.model';
 import { MemberService } from '../../services/member.service';
-import { PlaneLogComponent } from "../plane-log.component";
+import { PlaneLogComponent } from '../plane-log.component';
 
 @Component({
   selector: 'app-edit-plane-log',
@@ -21,7 +21,7 @@ export class EditPlaneLogComponent implements OnInit {
   initialFuelLevel: string;
   finalFuelLevel: string;
   price: string;
-  date= new Date();
+  date = new Date();
   editPlaneLog: any;
 
   planeNumberFormControl: FormControl;
@@ -30,7 +30,8 @@ export class EditPlaneLogComponent implements OnInit {
   finalFuelLevelFormControl: FormControl;
   priceFormControl: FormControl;
 
-  constructor(public planeLogService: PlaneLogService, public memberService: MemberService, public editPlaneLogDialogRef: MatDialogRef<EditPlaneLogComponent>, public snackBar: MatSnackBar, public authService: AuthService) {
+  constructor(public planeLogService: PlaneLogService, public memberService: MemberService, 
+    public editPlaneLogDialogRef: MatDialogRef<EditPlaneLogComponent>, public snackBar: MatSnackBar, public authService: AuthService) {
     editPlaneLogDialogRef.disableClose = true;
 
     this.planeNumberFormControl = new FormControl ('', [
@@ -116,7 +117,14 @@ export class EditPlaneLogComponent implements OnInit {
         }
       );
       return false;
-    } 
+    } else if (Number(this.finalFuelLevelFormControl.value) >= Number(this.initialFuelLevelFormControl.value)) {
+        this.snackBar.open('Der Anfangsstand muss größer als der Endstand sein.', 'Schließen',
+          {
+            duration: 3000,
+          }
+        );
+        return false;
+    }
     return true;
   }
 
