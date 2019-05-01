@@ -10,6 +10,9 @@ import { PlaneService } from '../../services/plane.service';
   styleUrls: ['./add-pilotlogentry.component.css']
 })
 export class AddPilotlogentryComponent implements OnInit {
+    minDate = new Date(2000, 0, 1);
+    maxDate: Date;
+
     planes: Plane[];
 
     planeNumber: string;
@@ -75,6 +78,14 @@ export class AddPilotlogentryComponent implements OnInit {
     this.arrivalLocationFormControl = new FormControl('', [
       Validators.required,
     ]);
+  }
+
+  public getCurrentDate(): Date {
+    const year = new Date().getFullYear();
+    const month = new Date().getMonth();
+    const day = new Date().getDate();
+    this.maxDate = new Date(year, month, day);
+    return this.maxDate;
   }
 
   public onNoClick(): void {
@@ -172,9 +183,25 @@ export class AddPilotlogentryComponent implements OnInit {
         }
       );
       return false;
+    } else if (this.arrivalDayFormControl.value < this.departureDayFormControl.value) {
+      this.snackBar.open('Der Ankunfstag darf nicht vor dem Abflugtag liegen', 'Schließen',
+        {
+          duration: 3000,
+        }
+      );
+    return false;
+  } else if (this.arrivalDayFormControl.value <= this.departureDayFormControl.value) {
+      if (this.arrivalTimeFormControl.value <= this.departureTimeFormControl.value) {
+        this.snackBar.open('Der Ankunfszeitpunkt darf nicht vor dem Abflugszeitpunkt liegen', 'Schließen',
+        {
+          duration: 3000,
+        }
+      );
+    return false;
     }
-    return true;
   }
+  return true;
+}
 
   ngOnInit() {
     this.planeService.getPlaneListData().subscribe(
@@ -182,6 +209,7 @@ export class AddPilotlogentryComponent implements OnInit {
         this.planes = planedata;
       }
     );
+    this.getCurrentDate();
   }
 
 }

@@ -1,19 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MatSnackBar } from '@angular/material';
-import { Member } from '../../models/member.model';
-import { MemberService } from '../../services/member.service';
 import { AuthService } from '../../services/auth.service';
 import { Plane } from '../../models/plane.model';
-import { PlaneService } from '../../services/plane.service';
+import { PlaneLogService } from '../../services/planelog.service';
+import { PlaneLog } from '../../models/planelog.model';
+import { Member } from '../../models/member.model';
+import { MemberService } from '../../services/member.service';
+import { PlaneLogComponent } from '../plane-log.component';
 
 @Component({
-  selector: 'app-add-plane-log',
-  templateUrl: './add-plane-log.component.html',
-  styleUrls: ['./add-plane-log.component.css']
+  selector: 'app-edit-plane-log',
+  templateUrl: './edit-plane-log.component.html',
+  styleUrls: ['./edit-plane-log.component.css'],
 })
-export class AddPlaneLogComponent implements OnInit {
-  planes: Plane[];
+export class EditPlaneLogComponent implements OnInit {
   member: Member;
   planeNumber: string;
   location: string;
@@ -21,6 +22,7 @@ export class AddPlaneLogComponent implements OnInit {
   finalFuelLevel: string;
   price: string;
   date = new Date();
+  editPlaneLog: any;
 
   planeNumberFormControl: FormControl;
   locationFormControl: FormControl;
@@ -28,16 +30,9 @@ export class AddPlaneLogComponent implements OnInit {
   finalFuelLevelFormControl: FormControl;
   priceFormControl: FormControl;
 
-
-  constructor( public addLogDialogRef: MatDialogRef<AddPlaneLogComponent>, public snackBar: MatSnackBar,
-    public planeService: PlaneService, public memberService: MemberService, public authService: AuthService ) {
-    addLogDialogRef.disableClose = true;
-
-    this.planes = [];
-    this.location = '';
-    this.initialFuelLevel = '';
-    this.finalFuelLevel = '';
-    this.price = '';
+  constructor(public planeLogService: PlaneLogService, public memberService: MemberService,
+    public editPlaneLogDialogRef: MatDialogRef<EditPlaneLogComponent>, public snackBar: MatSnackBar, public authService: AuthService) {
+    editPlaneLogDialogRef.disableClose = true;
 
     this.planeNumberFormControl = new FormControl ('', [
       Validators.required,
@@ -56,7 +51,11 @@ export class AddPlaneLogComponent implements OnInit {
     ]);
    }
 
-   public saveLogData(): void {
+   public onNoClick(): void {
+    this.editPlaneLogDialogRef.close();
+  }
+
+  public updatePlaneLogData(): void {
     if (this.checkRequiredFields()) {
       const newPlaneLog = {
         memberId: this.member.id,
@@ -73,12 +72,8 @@ export class AddPlaneLogComponent implements OnInit {
         endCount: this.finalFuelLevelFormControl.value,
         fuelPrice: this.priceFormControl.value
       };
-      this.addLogDialogRef.close(newPlaneLog);
+        this.editPlaneLogDialogRef.close(newPlaneLog);
   }}
-
-  public onNoClick(): void {
-    this.addLogDialogRef.close();
-  }
 
   public formatDate(date: string): string {
     const parseDate = new Date(date);
@@ -115,27 +110,27 @@ export class AddPlaneLogComponent implements OnInit {
       );
       return false;
     } else if (Number(this.finalFuelLevelFormControl.value) >= Number(this.initialFuelLevelFormControl.value)) {
-      this.snackBar.open('Der Anfangsstand muss größer als der Endstand sein.', 'Schließen',
-        {
-          duration: 3000,
-        }
-      );
-      return false;
+        this.snackBar.open('Der Anfangsstand muss größer als der Endstand sein.', 'Schließen',
+          {
+            duration: 3000,
+          }
+        );
+        return false;
     }
     return true;
   }
 
   ngOnInit() {
-    this.planeService.getPlaneListData().subscribe(
-      (planedata: Plane[]) => {
-        this.planes = planedata;
-      }
-    );
     this.memberService.getMemberData(this.authService.getMemberID()).subscribe(
       (memberdata: Member) => {
         this.member = memberdata;
       }
     );
+    this.editPlaneLog = PlaneLogComponent.getEditPlaneLog();
+    this.locationFormControl.setValue(this.editPlaneLog[1]);
+    this.initialFuelLevelFormControl.setValue(this.editPlaneLog[2]);
+    this.finalFuelLevelFormControl.setValue(this.editPlaneLog[3]);
+    this.priceFormControl.setValue(this.editPlaneLog[4]);
   }
 
 }

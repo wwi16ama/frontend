@@ -14,13 +14,13 @@
           
           <mat-form-field class="input-width">
             <input type="text" matInput placeholder="Abflugsort" [formControl]="departureLocationFormControl" 
-            id="departureLocation" maxlength="35" pattern="[a-zA-Z_äÄöÖüÜß0-9/. \-]+" required>
+            id="departureLocation" maxlength="35" pattern="[a-zA-Z_äÄöÖüÜß/. \-\(\)]+" required>
             <mat-error *ngIf="departureLocationFormControl.hasError('pattern')">Kein korrekter Abflugsort</mat-error>
             <mat-error *ngIf="departureLocationFormControl.hasError('required')">Der Abflugsort muss angegeben werden</mat-error>
           </mat-form-field>
 
           <mat-form-field class="datepicker-width">
-            <input matInput [matDatepicker]="departureDay" placeholder="Abflugtag" 
+            <input matInput [matDatepicker]="departureDay" [min]="minDate" [max]="maxDate" placeholder="Abflugtag" 
             [formControl]="departureDayFormControl" required>
             <mat-datepicker-toggle matSuffix [for]="departureDay"></mat-datepicker-toggle>
             <mat-datepicker #departureDay></mat-datepicker>
@@ -36,14 +36,13 @@
 
           <mat-form-field class="input-width">
             <input type="text" matInput placeholder="Landungsort" [formControl]="arrivalLocationFormControl" 
-            maxlength="35" pattern="[a-zA-Z_äÄöÖüÜß0-9/. \-]+" required>
+            maxlength="35" pattern="[a-zA-Z_äÄöÖüÜß/. \-\(\)]+" required>
             <mat-error *ngIf="arrivalLocationFormControl.hasError('pattern')">Kein korrekter Landungsort</mat-error>
             <mat-error *ngIf="arrivalLocationFormControl.hasError('required')">Der Landungsort muss angegeben werden</mat-error>
-          
           </mat-form-field>
 
           <mat-form-field class="datepicker-width">
-            <input matInput [matDatepicker]="arrivalDay" placeholder="Landungstag" 
+            <input matInput [matDatepicker]="arrivalDay" [min]="minDate" [max]="maxDate" placeholder="Landungstag" 
             [formControl]="arrivalDayFormControl" required>
             <mat-datepicker-toggle matSuffix [for]="arrivalDay"></mat-datepicker-toggle>
             <mat-datepicker #arrivalDay></mat-datepicker>
@@ -59,7 +58,7 @@
 
           <mat-form-field class="input-width">
             <input type="text" matInput placeholder="Nutzungsdauer in Stunden" [formControl]="usageTimeFormControl"
-            pattern="^(0?[0-9]|[1-9][0-9])$" maxlength="2" required>
+            pattern="^([0-9]*)$" required>
             <mat-error *ngIf="usageTimeFormControl.hasError('pattern')">
               Geben Sie ein Zahl zwischen 1 und 99 ein.</mat-error>
             <mat-error *ngIf="usageTimeFormControl.hasError('required')">Die Nutzungsdauer ist erforderlich!</mat-error>
@@ -69,7 +68,6 @@
           <mat-checkbox labelPosition="after" [(ngModel)]="flightWithGuests" name="flightWithGuests" >
             <span>Gastflug</span>
           </mat-checkbox>
-          
         </div>
     </form>
   </mat-dialog-content>

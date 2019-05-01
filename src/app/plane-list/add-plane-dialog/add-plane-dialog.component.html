@@ -71,9 +71,9 @@
           <span matSuffix>€&nbsp;</span>
         </mat-form-field>
         <mat-form-field class="input-width">
-          <input matInput placeholder="Bildlink" [formControl]="pictureUrlFormControl" pattern="^(.){0,255}$">
+          <input matInput placeholder="Bildlink" [formControl]="pictureUrlFormControl" pattern="^(.){0,500}$">
           <mat-error *ngIf="pictureUrlFormControl.hasError('pattern')">
-            Der Bildlink darf maximal 255 Zeichen lang sein
+            Der Bildlink darf maximal 500 Zeichen lang sein
           </mat-error>
         </mat-form-field>
       </div>

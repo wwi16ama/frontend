@@ -5,7 +5,7 @@
         <div class="tab-content">
           <mat-form-field class="input-width">
             <input type="text" matInput placeholder="Name" minlength="3" 
-            pattern="[a-zA-Z_äÄöÖüÜß]+" ng-pattern-restrict [formControl]="lastNameFormControl" required>
+            pattern="[a-zA-Z_äÄöÖüÜß\-]+" ng-pattern-restrict [formControl]="lastNameFormControl" required>
             <mat-error *ngIf="lastNameFormControl.hasError('required')">
               Der Name ist <strong>erforderlich</strong>
             </mat-error>
@@ -18,7 +18,7 @@
           </mat-form-field>
           <mat-form-field class="input-width">
             <input type="text" matInput placeholder="Vorname" minlength="3"
-            pattern="[a-zA-Z_äÄöÖüÜß]+" ng-pattern-restrict [formControl]="firstNameFormControl" required>
+            pattern="[a-zA-Z_äÄöÖüÜß\-]+" ng-pattern-restrict [formControl]="firstNameFormControl" required>
             <mat-error *ngIf="firstNameFormControl.hasError('required')">
               Der Vorname ist <strong>erforderlich</strong>
             </mat-error>
@@ -30,7 +30,7 @@
             </mat-error>
           </mat-form-field>
           <mat-form-field class="input-width">
-            <input matInput [matDatepicker]="birthday" placeholder="Geburtstag" [formControl]="dateOfBirthFormControl" required>
+            <input matInput [matDatepicker]="birthday" [max] = "maxDate" placeholder="Geburtstag" [formControl]="dateOfBirthFormControl" required>
             <mat-datepicker-toggle matSuffix [for]="birthday"></mat-datepicker-toggle>
             <mat-datepicker #birthday></mat-datepicker>
             <mat-error *ngIf="dateOfBirthFormControl.hasError('required')">
@@ -83,7 +83,7 @@
               </mat-error>
             </mat-form-field>
             <mat-form-field class="input-width">
-              <input type="text" pattern="[a-zA-Z_äÄöÖüÜß]+" ng-pattern-restrict
+              <input type="text" pattern="[a-zA-Z_äÄöÖüÜß \.\-\(\)]+" ng-pattern-restrict
               matInput placeholder="Ort" [formControl]="cityFormControl" minlength="3" required>
               <mat-error *ngIf="cityFormControl.hasError('required')">
                 Der Ort ist <strong>erforderlich</strong>
@@ -100,10 +100,13 @@
     <mat-tab label="Kundenkonto">
         <div class="tab-content">
           <mat-form-field class="input-width">
-            <input type="text" matInput placeholder="Bankkonto" ng-model="iban" required [formControl]="bankingAccountFormControl">
+            <input type="text" matInput placeholder="Bankkonto" minlength = "22" maxlength = "27" pattern = "DE([0-9]\s?){20}" required [formControl]="bankingAccountFormControl">
             <mat-hint>DE19 1234 1234 1234 1234 12</mat-hint>
             <mat-error *ngIf="bankingAccountFormControl.hasError('required')">
-              Das Bankkonto ist <strong>erforderlich</strong>
+              Das Bankkonto ist <strong>erforderlich</strong>.
+            </mat-error>
+            <mat-error *ngIf="bankingAccountFormControl.hasError('pattern')">
+              Das Bankkonto ist im falschen Format angegeben!
             </mat-error>
           </mat-form-field>
         </div>
@@ -123,7 +126,7 @@
                   Das Passwort muss mindestens eine Zahl und einen Buchstaben enthalten
               </mat-error>
               </mat-form-field>
-              <mat-form-field class="input-width">
+              <mat-form-field class="input-width-password">
                 <input [errorStateMatcher]="passwordMatcher" type="password" matInput placeholder="Passwort bestätigen" required formControlName="passwordRepeat">
               <mat-error *ngIf="passwordFormGroup.hasError('passwordsNotSame')">
                 Bestätigung stimmt nicht mit Passwort überein

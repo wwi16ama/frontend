@@ -12,12 +12,12 @@
             </mat-error>
           </mat-form-field>
         <mat-form-field class="input-width">
-            <input matInput placeholder="Betreff" id='input_type' [formControl]="typeFormControl" required
+            <input matInput placeholder="Betreff" id='input_text' [formControl]="textFormControl" required
             pattern=".{4,50}">
-            <mat-error *ngIf="typeFormControl.hasError('required')">
+            <mat-error *ngIf="textFormControl.hasError('required')">
                 Ein Betreff ist <strong>erforderlich</strong>.
             </mat-error>
-            <mat-error *ngIf="typeFormControl.hasError('pattern')">
+            <mat-error *ngIf="textFormControl.hasError('pattern')">
                 Bitte einen <strong>gültigen</strong> Betreff eingeben.
             </mat-error>
         </mat-form-field>

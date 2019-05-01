@@ -12,6 +12,8 @@ import { PasswordErrorStateMatcher } from './../../error-state-matcher/password-
 })
 export class AddUserFormComponent {
 
+  maxDate: Date;
+
   possibleOffices: Office[];
   flightAuthorizations: any[];
   addAuthorization: boolean;
@@ -44,6 +46,7 @@ export class AddUserFormComponent {
     public addUserDialogRef: MatDialogRef<AddUserFormComponent>, public snackBar: MatSnackBar,
     public formbuilder: FormBuilder
   ) {
+    this.getCurrentDate();
     addUserDialogRef.disableClose = true;
     this.offices = [];
     this.flightAuthorizations = [];
@@ -71,6 +74,14 @@ export class AddUserFormComponent {
     this.addNewAuthorizationPossible = true;
     this.initializeFormControls();
     this.admissioned = false;
+  }
+
+  public getCurrentDate(): Date {
+    const year = new Date().getFullYear();
+    const month = new Date().getMonth();
+    const day = new Date().getDate();
+    this.maxDate = new Date(year, month, day);
+    return this.maxDate;
   }
 
   public onNoClick(): void {

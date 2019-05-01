@@ -1,5 +1,5 @@
 <div class="dialog-wrapper">
-  <h2 mat-dialog-title>Logbucheintrag hinzufügen</h2>
+  <h2 mat-dialog-title>Logbucheintrag bearbeiten</h2>
   <mat-dialog-content>
     <form>
       <div class="tab-content">
@@ -7,7 +7,7 @@
 
           <mat-form-field class="input-width">
             <input type="text" matInput placeholder="Ort" [formControl]="locationFormControl" 
-            id="location" maxlength="35" pattern="[a-zA-Z_äÄöÖüÜß0-9/. \-\(\)\.]+" required>
+            id="location" maxlength="35" pattern="[a-zA-Z_äÄöÖüÜß0-9/. \-]+" required>
             <mat-error *ngIf="locationFormControl.hasError('pattern')">Kein korrekter Ort</mat-error>
             <mat-error *ngIf="locationFormControl.hasError('required')">Der Ort muss angegeben werden</mat-error>
           </mat-form-field>
@@ -38,6 +38,6 @@
   </mat-dialog-content>
   <mat-dialog-actions align="end">
     <button mat-button (click)="onNoClick()">Abbrechen</button>
-    <button mat-raised-button (click)="saveLogData()" color="primary" cdkFocusInitial>Speichern</button>
+    <button mat-raised-button color="primary" (click)="updatePlaneLogData()" cdkFocusInitial>Speichern</button>
   </mat-dialog-actions>
 </div>

@@ -1,0 +1,41 @@
+.dialog-wrapper {
+    width: 30vw;
+    margin-top: 0px;
+   }
+
+.mat-dialog-content {
+    padding: 0 0;
+   }
+
+.tab-content {
+    padding: 24px 24px;
+    display: block !important;
+    flex-grow: inherit;
+    flex-shrink: inherit;
+    }
+
+.input-width {
+    width: 100%;
+    display: block;
+    flex-grow: inherit;
+    flex-shrink: inherit;
+}
+
+.authorization-title {
+    display: inline-block;
+    margin-right: 15px;
+}
+
+.datepicker-right {
+    width: 45%;
+    flex-grow: inherit;
+    flex-shrink: inherit;
+    margin-left: 5%;
+}
+
+.datepicker-left {
+    width: 45%;
+    flex-grow: inherit;
+    flex-shrink: inherit;
+    margin-right: 5%;
+}

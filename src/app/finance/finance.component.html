@@ -1,76 +1,77 @@
 <div class="divide-wrapper">
-  <div class="member-list-wrapper">
+  <div class="finance-list-wrapper">
     <h1 class="title-text">Finanzverwaltung</h1>
-    <table *ngIf="dataSource_mem" mat-table [dataSource]="dataSource_mem" matSort class="mat-elevation-z8"
-    matSortActive="id" matSortDirection="desc" matSort>
-      <!-- ID Column -->
-      <ng-container matColumnDef="id">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
-        <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-      </ng-container>
-  
-      <!-- Vorname Column -->
-      <ng-container matColumnDef="firstName">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Vorname </th>
-        <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
-      </ng-container>
-  
-      <!-- Nachname Column -->
-      <ng-container matColumnDef="lastName">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Nachname </th>
-        <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
-      </ng-container>
-  
-       <!-- Kontonummer Column -->
-       <ng-container matColumnDef="memberBankingAccountId">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header> Kontonummer </th>
-        <td mat-cell *matCellDef="let element"> {{element.memberBankingAccountId}} </td>
-      </ng-container>    
-  
-      <tr mat-header-row *matHeaderRowDef="displayedColumns_mem"></tr>
-      <tr class="pointer" mat-row *matRowDef="let row; columns: displayedColumns_mem;" (click)="openFinanceDialog(row)"></tr>
-    </table>
+    <div class="financetable">
+      <table mat-table [dataSource]="dataSource_mem" matSortActive="id" matSortDirection="desc"
+        #memberListSort="matSort" matSort>
+        <ng-container matColumnDef="id">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+          <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="firstName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Vorname </th>
+          <td mat-cell *matCellDef="let element"> {{element.firstName}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="lastName">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Nachname </th>
+          <td mat-cell *matCellDef="let element"> {{element.lastName}} </td>
+        </ng-container>
+
+        <ng-container matColumnDef="memberBankingAccountId">
+          <th mat-header-cell *matHeaderCellDef mat-sort-header> Kontonummer </th>
+          <td mat-cell *matCellDef="let element"> {{element.memberBankingAccountId}} </td>
+        </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns_mem"></tr>
+        <tr class="pointer" mat-row *matRowDef="let row; columns: displayedColumns_mem;" (click)="openFinanceDialog(row)">
+        </tr>
+      </table>
+      <mat-paginator #memberListPaginator [pageSizeOptions]="[5, 10, 25]"></mat-paginator>
+    </div>
   </div>
 </div>
 <div class="divide-wrapper">
-  <div class="member-list-wrapper">
+  <div class="finance-list-wrapper">
     <h1 class="title-text">Vereinskonto</h1>
     <mat-list *ngIf="accountVereinskonto != null">
       <h3 mat-subheader>Guthaben</h3>
       <mat-list-item>
         <h4 mat-line>
-          <span class="spacing" [ngClass]="{'color-red': accountVereinskonto.balance <= 0, 'color-green': accountVereinskonto.balance >=0}"><b>{{accountVereinskonto.balance | currency: "€"}}</b></span>
+          <span class="spacing"
+            [ngClass]="{'color-red': accountVereinskonto.balance <= 0, 'color-green': accountVereinskonto.balance >=0}"><b>{{accountVereinskonto.balance | currency: "€"}}</b></span>
         </h4>
       </mat-list-item>
       <mat-divider></mat-divider>
       <h3 mat-subheader>Transaktionen</h3>
-      <div class="transactiontable">
-        <table *ngIf="dataSource != null" mat-table [dataSource]="dataSource" matSortActive="timestamp"
-          matSortDirection="desc" matSort>
-          <ng-container matColumnDef="timestamp">
-            <th class="datewidth" mat-header-cell *matHeaderCellDef mat-sort-header> Datum </th>
-            <td class="datewidth" mat-cell *matCellDef="let element">{{element.timestamp | date : 'dd.MM.yyyy'}}</td>
-          </ng-container>
-
-          <ng-container matColumnDef="amount">
-            <th class="amountwidth" mat-header-cell *matHeaderCellDef mat-sort-header> Betrag </th>
-            <td class="amountwidth" mat-cell *matCellDef="let element" [ngClass]="{'color-red': element.amount <= 0, 'color-green': element.amount >=0}">
-              {{element.amount | currency: "€"}}</td>
-          </ng-container>
-
-          <ng-container matColumnDef="type">
-            <th class="typewidth" mat-header-cell *matHeaderCellDef mat-sort-header> Typ </th>
-            <td class="typewidth" mat-cell *matCellDef="let element"> {{element.type}} </td>
-          </ng-container>
-
-          <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-
-        </table>
-        <mat-paginator class="matpaginator" [pageSizeOptions]="[5, 10, 25]"></mat-paginator>
-      </div>
-      <mat-divider></mat-divider>
     </mat-list>
+    <div class="transactiontable">
+      <table mat-table [dataSource]="dataSource" matSortActive="timestamp" matSortDirection="desc"
+        #bankingAccountSort="matSort" matSort>
+        <ng-container matColumnDef="timestamp">
+          <th class="datewidth" mat-header-cell *matHeaderCellDef mat-sort-header> Datum </th>
+          <td class="datewidth" mat-cell *matCellDef="let element">{{element.timestamp | date : 'dd.MM.yyyy'}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="amount">
+          <th class="amountwidth" mat-header-cell *matHeaderCellDef mat-sort-header> Betrag </th>
+          <td class="amountwidth" mat-cell *matCellDef="let element"
+            [ngClass]="{'color-red': element.amount <= 0, 'color-green': element.amount >=0}">
+            {{element.amount | currency: "€"}}</td>
+        </ng-container>
+
+          <ng-container matColumnDef="text">
+            <th class="textwidth" mat-header-cell *matHeaderCellDef mat-sort-header> Typ / Betreff</th>
+            <td class="textwidth" mat-cell *matCellDef="let element"> {{element.text}} </td>
+          </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+      </table>
+      <mat-paginator #bankingAccountPaginator [pageSizeOptions]="[5, 10, 25]"></mat-paginator>
+    </div>
     <p></p>
   </div>
 </div>

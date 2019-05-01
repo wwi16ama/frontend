@@ -93,10 +93,10 @@
                 {{element.amount | currency: "€"}}</td>
             </ng-container>
 
-            <!--Type -->
-            <ng-container matColumnDef="type">
-              <th class="typewidth" mat-header-cell *matHeaderCellDef mat-sort-header> Typ </th>
-              <td class="typewidth" mat-cell *matCellDef="let element"> {{element.type}} </td>
+            <!--Text -->
+            <ng-container matColumnDef="text">
+              <th class="textwidth" mat-header-cell *matHeaderCellDef mat-sort-header> Typ / Betreff</th>
+              <td class="textwidth" mat-cell *matCellDef="let element"> {{element.text}} </td>
             </ng-container>
 
             <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
