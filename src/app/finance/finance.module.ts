@@ -7,9 +7,10 @@ import { MatPaginatorModule, MatIconModule, MatButtonModule, MatCheckboxModule, 
   MatNativeDateModule, MatSortModule, MatDialogModule, MatTabsModule, MatTableModule, MatListModule } from '@angular/material';
 import { SharedDirectivesModule } from '../directives/shared-directives.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ExternalTransactionComponent } from './external-transaction/external-transaction.component';
 
 @NgModule({
-  declarations: [FinanceComponent],
+  declarations: [FinanceComponent, ExternalTransactionComponent],
   imports: [
     CommonModule,
     SharedDirectivesModule,

@@ -9,6 +9,7 @@ import { Account, AddTransaction} from './../models/account.model';
 import { Member, OfficeEnum} from './../models/member.model';
 import { AccountService } from './../services/account.service';
 import { EditBalanceComponent } from './edit-balance/edit-balance.component';
+import { ExternalTransactionComponent } from './external-transaction/external-transaction.component';
 
 @Component({
   selector: 'app-finance',
@@ -42,7 +43,7 @@ export class FinanceComponent implements OnInit {
 
   constructor(public accountService: AccountService, public router: Router, public addUserDialog: MatDialog,
     public snackBar: MatSnackBar, public activatedRoute: ActivatedRoute, public editBalanceDialog: MatDialog,
-    public memberService: MemberService, public cdr: ChangeDetectorRef) {
+    public memberService: MemberService, public cdr: ChangeDetectorRef, public externalTransactionDialog: MatDialog,) {
     this.displayedColumns = ['timestamp', 'amount', 'text'];
     this.displayedColumns_mem = ['id', 'firstName', 'lastName', 'memberBankingAccountId'];
   }
@@ -94,5 +95,20 @@ export class FinanceComponent implements OnInit {
           );
         }
       });
+  }
+
+  openexternalTransactionDialog(): void {
+    const dialogRef = this.externalTransactionDialog.open(ExternalTransactionComponent, {
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result != null) {
+        //this.saveexternalTransaction(result);
+        this.saveexternalTransaction();
+      }
+    });
+  }
+
+  public saveexternalTransaction() {
+
   }
 }
