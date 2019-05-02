@@ -74,7 +74,7 @@ export class PilotLogComponent implements OnInit {
   public addFlightDuration(): void {
     for (let i = 0; i < this.pilotlog.length; i++) {
       const newPilotLog = new Pilotlog(
-        this.pilotlog[i].flightId,
+        i+1,
         this.pilotlog[i].planeNumber,
         this.pilotlog[i].departureLocation,
         this.pilotlog[i].departureTime,
