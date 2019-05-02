@@ -67,7 +67,7 @@
       <mat-tab label="Kundenkonto">
         <div class="tab-content">
           <mat-form-field class="input-width">
-            <input matInput placeholder="Bankkonto" pattern="DE[0-9]{20}" minlength="22" maxlength="22" [formControl]="bankingAccountFormControl" required>
+            <input matInput placeholder="Bankkonto" minlength = "22" maxlength = "27" pattern = "DE([0-9]\s?){20}" [formControl]="bankingAccountFormControl" required>
             <mat-error *ngIf="bankingAccountFormControl.hasError('required')">Das Bankkonto ist erforderlich</mat-error>
             <mat-error *ngIf="bankingAccountFormControl.hasError('minlength')">Das Bankkonto muss 22 Zeichen lang sein</mat-error>
             <mat-error *ngIf="bankingAccountFormControl.hasError('pattern')">Bitte geben Sie ein gültiges Bankkonto an</mat-error>
