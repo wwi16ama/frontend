@@ -13,9 +13,9 @@ export class ExternalTransactionComponent implements OnInit {
   textFormControl: FormControl;
 
   constructor(
-    public addexternalTransactionDialogRef: MatDialogRef<ExternalTransactionComponent>,
+    public addExternalTransactionDialogRef: MatDialogRef<ExternalTransactionComponent>,
     public snackBar: MatSnackBar
-  ) { 
+  ) {
     this.initializeFormControls();
   }
 
@@ -32,16 +32,16 @@ export class ExternalTransactionComponent implements OnInit {
   }
 
   public onNoClick(): void {
-    this.addexternalTransactionDialogRef.close();
+    this.addExternalTransactionDialogRef.close();
   }
 
   public saveExternalTransaction(): void {
     if (this.checkRequiredFields()) {
-      const newexternalTransaction = {
+      const newExternalTransaction = {
        amount: this.amountFormControl.value,
        text: this.textFormControl.value
       };
-      this.addexternalTransactionDialogRef.close(newexternalTransaction);
+      this.addExternalTransactionDialogRef.close(newExternalTransaction);
     }
   }
 

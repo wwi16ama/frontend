@@ -17,6 +17,7 @@ import { ExternalTransactionComponent } from './external-transaction/external-tr
   styleUrls: ['./finance.component.css']
 })
 export class FinanceComponent implements OnInit {
+
   sort: any;
   dataSource: any;
   dataSource_mem: any;
@@ -39,11 +40,9 @@ export class FinanceComponent implements OnInit {
   @ViewChild('memberListSort') memberListSort: MatSort;
   @ViewChild('bankingAccountSort') bankingAccountSort: MatSort;
 
-
-
   constructor(public accountService: AccountService, public router: Router, public addUserDialog: MatDialog,
     public snackBar: MatSnackBar, public activatedRoute: ActivatedRoute, public editBalanceDialog: MatDialog,
-    public memberService: MemberService, public cdr: ChangeDetectorRef, public externalTransactionDialog: MatDialog,) {
+    public memberService: MemberService, public cdr: ChangeDetectorRef, public externalTransactionDialog: MatDialog) {
     this.displayedColumns = ['timestamp', 'amount', 'text'];
     this.displayedColumns_mem = ['id', 'firstName', 'lastName', 'memberBankingAccountId'];
   }
@@ -102,13 +101,13 @@ export class FinanceComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result != null) {
-        this.saveexternalTransaction(result);
+        this.saveExternalTransaction(result);
       }
     });
   }
 
-  public saveexternalTransaction(externaltransaction: AddTransaction): void {
-    this.accountService.addExternalTransaction(externaltransaction).subscribe(
+  public saveExternalTransaction(externalTransaction: AddTransaction): void {
+    this.accountService.addExternalTransaction(externalTransaction).subscribe(
       (response) => {
         if (response.status === 200) {
           this.snackBar.open('Änderungen erfolgreich gespeichert.', 'Schließen',
@@ -116,22 +115,22 @@ export class FinanceComponent implements OnInit {
               duration: 3000,
             }
           );
-          const newexternalTransaction = new AddTransaction (
+          const newExternalTransaction = new AddTransaction (
             response.body.amount,
             response.body.text
           );
-          this.dataSource.accountDataVereinskonto.push(newexternalTransaction);
+          this.dataSource.accountDataVereinskonto.push(newExternalTransaction);
           this.dataSource.sort = this.bankingAccountSort;
         }
       },
-      error=>{
+      error => {
       if (error.status === 400) {
           this.snackBar.open('Pflichtfelder falsch oder nicht ausgefüllt', 'Schließen',
             {
               duration: 4000,
             }
           );
-        } else if (error.status === 404){
+        } else if (error.status === 404) {
           this.snackBar.open('Account wurde nicht gefunden', 'Schließen',
             {
               duration: 4000,
