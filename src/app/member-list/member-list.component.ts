@@ -22,6 +22,7 @@ export class MemberListComponent implements OnInit {
   dataSource: any;
   allowedToAddNewMember: boolean;
   allowedToSeeServices: boolean;
+  memberList: ListMember;
 
   @ViewChild(MatSort) set content(sort: ElementRef) {
     this.sort = sort;
@@ -33,19 +34,26 @@ export class MemberListComponent implements OnInit {
 
   constructor(public router: Router, public addUserDialog: MatDialog, public snackBar: MatSnackBar, public activatedRoute: ActivatedRoute,
     public memberService: MemberService, public jobsdonelistService: JobsdonelistService, public authService: AuthService) {
-    this.displayedColumns = ['id', 'firstName', 'lastName', 'sumAufwand'];
+    this.displayedColumns = ['id', 'firstName', 'lastName', 'offices', 'sumCredits'];
     this.allowedToAddNewMember = false;
     this.allowedToSeeServices = false;
   }
 
   ngOnInit() {
-    this.allowedToAddNewMember = this.authService.memberHasAuthorization('VORSTANDSVORSITZENDER') || this.authService.memberHasAuthorization('SYSTEMADMINISTRATOR');
+    this.allowedToAddNewMember = this.authService.memberHasAuthorization('VORSTANDSVORSITZENDER') ||
+     this.authService.memberHasAuthorization('SYSTEMADMINISTRATOR');
     this.allowedToSeeServices = this.authService.memberHasAuthorization('VORSTANDSVORSITZENDER');
     if (!this.allowedToSeeServices) {
-      this.displayedColumns = ['id', 'firstName', 'lastName'];
+      this.displayedColumns = ['id', 'firstName', 'lastName', 'offices'];
     }
     this.memberService.getMemberListData().subscribe(
       (data: ListMember[]) => {
+        for (let i = 0; i < data.length; i++) {
+          this.memberList = data[i];
+          for (let k = 0; k < this.memberList.offices.length; k++) {
+            this.memberList.offices[k] = OfficeEnum[this.memberList.offices[k].title];
+          }
+        }
         this.dataSource = new MatTableDataSource(data);
         this.dataSource.sort = this.sort;
       }
@@ -53,12 +61,11 @@ export class MemberListComponent implements OnInit {
   }
 
   public navigateTo(rowId: number, kennzeichen: string): void {
-    if (kennzeichen == 'A') {
+    if (kennzeichen === 'A') {
       if (this.allowedToSeeServices) {
         this.router.navigate(['/jobsdonelist', rowId]);
       }
-    }
-    else {
+    } else {
       this.router.navigate(['/member', rowId]);
     }
   }
