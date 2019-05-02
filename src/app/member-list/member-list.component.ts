@@ -40,7 +40,8 @@ export class MemberListComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.allowedToAddNewMember = this.authService.memberHasAuthorization('VORSTANDSVORSITZENDER') || this.authService.memberHasAuthorization('SYSTEMADMINISTRATOR');
+    this.allowedToAddNewMember = this.authService.memberHasAuthorization('VORSTANDSVORSITZENDER') ||
+     this.authService.memberHasAuthorization('SYSTEMADMINISTRATOR');
     this.allowedToSeeServices = this.authService.memberHasAuthorization('VORSTANDSVORSITZENDER');
     if (!this.allowedToSeeServices) {
       this.displayedColumns = ['id', 'firstName', 'lastName', 'offices'];
@@ -48,9 +49,9 @@ export class MemberListComponent implements OnInit {
     this.memberService.getMemberListData().subscribe(
       (data: ListMember[]) => {
         for (let i = 0; i < data.length; i++) {
-          this.memberList = data[i]
+          this.memberList = data[i];
           for (let k = 0; k < this.memberList.offices.length; k++) {
-            this.memberList.offices[k] = OfficeEnum[this.memberList.offices[k].title]
+            this.memberList.offices[k] = OfficeEnum[this.memberList.offices[k].title];
           }
         }
         this.dataSource = new MatTableDataSource(data);
@@ -60,12 +61,11 @@ export class MemberListComponent implements OnInit {
   }
 
   public navigateTo(rowId: number, kennzeichen: string): void {
-    if (kennzeichen == 'A') {
+    if (kennzeichen === 'A') {
       if (this.allowedToSeeServices) {
         this.router.navigate(['/jobsdonelist', rowId]);
       }
-    }
-    else {
+    } else {
       this.router.navigate(['/member', rowId]);
     }
   }
