@@ -63,7 +63,7 @@ export class AccountService {
   public addExternalTransaction( externalTransaction: AddTransaction): Observable<any> {
     const url = environment.baseUrl + '/accounts/vereinskonto/transactions';
     const headers = this.authService.setAuthHeader();
-    return this.httpClient.post<Transaction>(
+    return this.httpClient.post<AddTransaction>(
       url,
       externalTransaction,
       {
