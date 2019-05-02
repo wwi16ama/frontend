@@ -5,7 +5,7 @@ import { ListMember } from './../models/list-member.model';
 import { MemberService } from './../services/member.service';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
-import { Account, AddTransaction} from './../models/account.model';
+import { Account, AddTransaction, Transaction} from './../models/account.model';
 import { Member, OfficeEnum} from './../models/member.model';
 import { AccountService } from './../services/account.service';
 import { EditBalanceComponent } from './edit-balance/edit-balance.component';
@@ -102,13 +102,42 @@ export class FinanceComponent implements OnInit {
     });
     dialogRef.afterClosed().subscribe(result => {
       if (result != null) {
-        //this.saveexternalTransaction(result);
-        this.saveexternalTransaction();
+        this.saveexternalTransaction(result);
       }
     });
   }
 
-  public saveexternalTransaction() {
-
+  public saveexternalTransaction(externaltransaction: AddTransaction): void {
+    this.accountService.addExternalTransaction(externaltransaction).subscribe(
+      (response) => {
+        if (response.status === 200) {
+          this.snackBar.open('Änderungen erfolgreich gespeichert.', 'Schließen',
+            {
+              duration: 3000,
+            }
+          );
+          const newexternalTransaction = new AddTransaction (
+            response.body.amount,
+            response.body.text
+          );
+          this.dataSource.accountDataVereinskonto.push(newexternalTransaction);
+          this.dataSource.sort = this.bankingAccountSort;
+        }
+      },
+      error=>{
+      if (error.status === 400) {
+          this.snackBar.open('Pflichtfelder falsch oder nicht ausgefüllt', 'Schließen',
+            {
+              duration: 4000,
+            }
+          );
+        } else if (error.status === 404){
+          this.snackBar.open('Account wurde nicht gefunden', 'Schließen',
+            {
+              duration: 4000,
+            }
+          );
+        }
+      });
   }
 }

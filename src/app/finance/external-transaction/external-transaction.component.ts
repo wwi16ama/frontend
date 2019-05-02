@@ -36,7 +36,13 @@ export class ExternalTransactionComponent implements OnInit {
   }
 
   public saveExternalTransaction(): void {
-
+    if (this.checkRequiredFields()) {
+      const newexternalTransaction = {
+       amount: this.amountFormControl.value,
+       text: this.textFormControl.value
+      };
+      this.addexternalTransactionDialogRef.close(newexternalTransaction);
+    }
   }
 
   public checkRequiredFields(): boolean {

@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatDialogModule, MatButtonModule, MatFormFieldModule} from '@angular/material';
-import { FormsModule } from '@angular/forms';
+import { MatDialogModule, MatButtonModule, MatFormFieldModule, MatInputModule} from '@angular/material';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ExternalTransactionComponent } from './external-transaction.component';
 
 @NgModule({
@@ -11,7 +11,9 @@ import { ExternalTransactionComponent } from './external-transaction.component';
     MatDialogModule,
     MatButtonModule,
     FormsModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    ReactiveFormsModule,
+    MatInputModule
   ],
   exports: [ExternalTransactionComponent]
 })
