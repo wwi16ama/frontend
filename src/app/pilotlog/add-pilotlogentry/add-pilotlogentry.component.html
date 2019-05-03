@@ -20,7 +20,7 @@
           </mat-form-field>
 
           <mat-form-field class="datepicker-width">
-            <input matInput [matDatepicker]="departureDay" [min]="minDate" [max]="maxDate" placeholder="Abflugtag" 
+            <input readonly matInput [matDatepicker]="departureDay" [min]="minDate" [max]="maxDate" placeholder="Abflugtag" 
             [formControl]="departureDayFormControl" required>
             <mat-datepicker-toggle matSuffix [for]="departureDay"></mat-datepicker-toggle>
             <mat-datepicker #departureDay></mat-datepicker>
@@ -42,7 +42,7 @@
           </mat-form-field>
 
           <mat-form-field class="datepicker-width">
-            <input matInput [matDatepicker]="arrivalDay" [min]="minDate" [max]="maxDate" placeholder="Landungstag" 
+            <input readonly matInput [matDatepicker]="arrivalDay" [min]="minDate" [max]="maxDate" placeholder="Landungstag" 
             [formControl]="arrivalDayFormControl" required>
             <mat-datepicker-toggle matSuffix [for]="arrivalDay"></mat-datepicker-toggle>
             <mat-datepicker #arrivalDay></mat-datepicker>

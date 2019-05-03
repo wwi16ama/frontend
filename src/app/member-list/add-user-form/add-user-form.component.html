@@ -30,7 +30,7 @@
             </mat-error>
           </mat-form-field>
           <mat-form-field class="input-width">
-            <input matInput [matDatepicker]="birthday" [max] = "maxDate" placeholder="Geburtstag" [formControl]="dateOfBirthFormControl" required>
+            <input readonly matInput [matDatepicker]="birthday" [max] = "maxDate" placeholder="Geburtstag" [formControl]="dateOfBirthFormControl" required>
             <mat-datepicker-toggle matSuffix [for]="birthday"></mat-datepicker-toggle>
             <mat-datepicker #birthday></mat-datepicker>
             <mat-error *ngIf="dateOfBirthFormControl.hasError('required')">

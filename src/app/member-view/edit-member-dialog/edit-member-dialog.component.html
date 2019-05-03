@@ -16,7 +16,7 @@
             <mat-error *ngIf="lastNameFormControl.hasError('pattern')">Der Name darf keine Zahlen enthalten</mat-error>
           </mat-form-field>
           <mat-form-field class="input-width">
-            <input matInput [matDatepicker]="dateOfBirthPicker" placeholder="Geburtstag" [formControl]="dateOfBirthFormControl" required>
+            <input readonly matInput [matDatepicker]="dateOfBirthPicker" placeholder="Geburtstag" [formControl]="dateOfBirthFormControl" required>
             <mat-datepicker-toggle matSuffix [for]="dateOfBirthPicker"></mat-datepicker-toggle>
             <mat-datepicker #dateOfBirthPicker></mat-datepicker>
             <mat-error *ngIf="dateOfBirthFormControl.hasError('required')">Der Geburtstag ist erforderlich</mat-error>
@@ -88,7 +88,7 @@
           <ng-container *ngFor="let authorization of flightAuthorizations">
             <p class="authorization-title">{{ authorization.authorization }}</p>
             <mat-form-field>
-              <input [formControl]="authorization.expires" matInput [matDatepicker]="flightAuthorizationsDate" placeholder="Gültig bis">
+              <input readonly [formControl]="authorization.expires" matInput [matDatepicker]="flightAuthorizationsDate" placeholder="Gültig bis">
               <mat-datepicker-toggle matSuffix [for]="flightAuthorizationsDate"></mat-datepicker-toggle>
               <mat-datepicker #flightAuthorizationsDate></mat-datepicker>
             </mat-form-field>
