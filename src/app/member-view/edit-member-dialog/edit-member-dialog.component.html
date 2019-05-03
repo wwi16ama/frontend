@@ -105,7 +105,7 @@
               </mat-select>
             </mat-form-field>
             <mat-form-field class="half-input-width new-authorization-input spacing-right">
-              <input [formControl]="newAuthorization.expires" matInput [matDatepicker]="newFlightAuthorizationsDate"
+              <input readonly [formControl]="newAuthorization.expires" matInput [matDatepicker]="newFlightAuthorizationsDate"
                 placeholder="Gültig bis">
               <mat-datepicker-toggle matSuffix [for]="newFlightAuthorizationsDate"></mat-datepicker-toggle>
               <mat-datepicker #newFlightAuthorizationsDate></mat-datepicker>
