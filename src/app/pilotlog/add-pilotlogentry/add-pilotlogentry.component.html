@@ -60,7 +60,7 @@
             <input type="text" matInput placeholder="Nutzungsdauer in Stunden" [formControl]="usageTimeFormControl"
             pattern="^([0-9]*)$" required>
             <mat-error *ngIf="usageTimeFormControl.hasError('pattern')">
-              Geben Sie ein Zahl zwischen 1 und 99 ein.</mat-error>
+              Geben Sie eine ganze Zahl ein.</mat-error>
             <mat-error *ngIf="usageTimeFormControl.hasError('required')">Die Nutzungsdauer ist erforderlich!</mat-error>
             <span matSuffix>Std.</span>
           </mat-form-field>
