@@ -115,11 +115,13 @@ export class FinanceComponent implements OnInit {
               duration: 3000,
             }
           );
-          const newExternalTransaction = new AddTransaction (
+          const newExternalTransaction = new Transaction (
+            response.body.id,
+            response.body.timestamp,
             response.body.amount,
             response.body.text
           );
-          this.dataSource.accountDataVereinskonto.push(newExternalTransaction);
+          this.dataSource.data.push(newExternalTransaction);
           this.dataSource.sort = this.bankingAccountSort;
         }
       },
