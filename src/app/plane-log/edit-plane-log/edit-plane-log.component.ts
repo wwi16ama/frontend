@@ -55,6 +55,21 @@ export class EditPlaneLogComponent implements OnInit {
     this.editPlaneLogDialogRef.close();
   }
 
+  public variableCheck(): void {
+    this.initialFuelLevel = this.editPlaneLog[2];
+    this.finalFuelLevel = this.editPlaneLog[3];
+    this.price = this.editPlaneLog[4];
+    if (Number(this.initialFuelLevel) % 1 == 0) {
+      this.initialFuelLevel = this.initialFuelLevel + ".00";
+    }
+    if (Number(this.finalFuelLevel) % 1 == 0) {
+      this.finalFuelLevel = this.finalFuelLevel + ".00";
+    }
+    if (Number(this.price) % 1 == 0) {
+      this.price = this.price + ".00";
+    }
+  }
+
   public updatePlaneLogData(): void {
     if (this.checkRequiredFields()) {
       const newPlaneLog = {
@@ -127,10 +142,11 @@ export class EditPlaneLogComponent implements OnInit {
       }
     );
     this.editPlaneLog = PlaneLogComponent.getEditPlaneLog();
+    this.variableCheck();
     this.locationFormControl.setValue(this.editPlaneLog[1]);
-    this.initialFuelLevelFormControl.setValue(this.editPlaneLog[2]);
-    this.finalFuelLevelFormControl.setValue(this.editPlaneLog[3]);
-    this.priceFormControl.setValue(this.editPlaneLog[4]);
+    this.initialFuelLevelFormControl.setValue(this.initialFuelLevel);
+    this.finalFuelLevelFormControl.setValue(this.finalFuelLevel);
+    this.priceFormControl.setValue(this.price);
   }
 
 }

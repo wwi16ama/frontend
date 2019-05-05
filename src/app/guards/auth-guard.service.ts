@@ -50,6 +50,9 @@ export class AuthGuard implements CanActivate {
         case 'finance':
           isAllowed = this.checkFinanceRoute();
           break;
+        case 'jobsdonelist':
+          isAllowed = true;
+          break;
       }
       return isAllowed;
     }

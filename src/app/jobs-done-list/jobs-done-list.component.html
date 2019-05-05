@@ -29,7 +29,7 @@
     <ng-container matColumnDef="gutschrift">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Gutschrift </th>
       <td mat-cell *matCellDef="let element">{{element.gutschrift}} €</td>
-      <td mat-footer-cell *matFooterCellDef>Summe: {{getServiceSum()}} €</td>
+      <td mat-footer-cell *matFooterCellDef>Summe: {{gutschriftSumme}} €</td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

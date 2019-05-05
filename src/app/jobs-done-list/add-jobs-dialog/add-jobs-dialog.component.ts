@@ -41,7 +41,7 @@ export class AddJobsDialogComponent implements OnInit {
     public addJobsDialogRef: MatDialogRef<AddJobsDialogComponent>,
     public snackBar: MatSnackBar
   ) {
-    this.possibleNames = ['Vorstandsmitglied', 'Fluglehrer', 'Flugwart', 'Tageseinsatz', 'Pilot'];
+    this.possibleNames = ['Vorstandsmitglied', 'Fluglehrer', 'Flugwart', 'Kontrollturmdienst', 'Pilot'];
     this.name = '';
     this.hideDate = true;
 
@@ -71,7 +71,7 @@ export class AddJobsDialogComponent implements OnInit {
          serviceName = 'J_FLUGWART';
          break;
       }
-      case 'Tageseinsatz': {
+      case 'Kontrollturmdienst': {
          serviceName = 'T_TAGESEINSATZ';
          break;
       }
@@ -200,7 +200,7 @@ export class AddJobsDialogComponent implements OnInit {
         this.hideDate = true;
          break;
       }
-      case 'Tageseinsatz': {
+      case 'Kontrollturmdienst': {
         this.hideDate = false;
          break;
       }
