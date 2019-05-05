@@ -20,12 +20,16 @@
       <td mat-cell *matCellDef="let element" (click)="navigateTo(element.id, 'X')"> {{element.lastName}} </td>
     </ng-container>
 
-    <!-- Aufwand Column -->
-    <ng-container matColumnDef="sumAufwand">
+    <!-- Offices Column -->
+    <ng-container matColumnDef="offices">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Ämter </th>
+      <td mat-cell *matCellDef="let element" (click)="navigateTo(element.id, 'X')"> {{element.offices}} </td>
+    </ng-container>
+
+    <!-- Aufwände Column -->
+    <ng-container matColumnDef="sumCredits">
       <th mat-header-cell *matHeaderCellDef mat-sort-header> Aufwände </th>
-      <td mat-cell *matCellDef="let element" (click)="navigateTo(element.id, 'A')">
-        <a onmouseover="style='text-decoration:underline'" onmouseout="style='text-decoration:none'">Anzeigen</a>
-      </td>
+      <td mat-cell *matCellDef="let element" (click)="navigateTo(element.id, 'A')"> {{element.sumCredits | currency:'€'}} </td>
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
