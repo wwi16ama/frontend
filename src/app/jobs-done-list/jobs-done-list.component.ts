@@ -60,8 +60,27 @@ export class JobsDoneListComponent implements OnInit {
               duration: 3000,
             }
           );
-          window.location.reload();
+          this.jobsdonelistService.getJobsDoneListData(this.id).subscribe(
+            (jobsdata: JobsDoneList[]) => {
+              this.jobs = jobsdata;
+              this.gutschriftSumme = 0;
+              for (let i = 0; i < this.jobs.length; i++) {
+                this.jobs[i].name = this.jobs[i].name.substring(2).charAt(0).toUpperCase() +
+                this.jobs[i].name.toLowerCase().substring(2).slice(1);
+                this.gutschriftSumme += this.jobs[i].gutschrift;
+                if (this.jobs[i].name == 'Tageseinsatz') {
+                  this.jobs[i].name = 'Kontrollturmdienst';
+                }
+                if (this.jobs[i].year) {
+                  const year = this.jobs[i].year;
+                  this.jobs[i].startDate = '01.02.' + year;
+                  this.jobs[i].endDate = '01.02.' + (year + 1);
+                }
+              }
+            }
+          );
           this.jobs.sort = this.sort;
+          this.gutschriftSumme += jobsdonelist.gutschrift;
         }
       },
       error => {
@@ -109,6 +128,9 @@ export class JobsDoneListComponent implements OnInit {
             const year = this.jobs[i].year;
             this.jobs[i].startDate = '01.02.' + year;
             this.jobs[i].endDate = '01.02.' + (year + 1);
+          }
+          if (this.jobs[i].name == 'Tageseinsatz') {
+            this.jobs[i].name = 'Kontrollturmdienst';
           }
         }
       }
