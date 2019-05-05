@@ -16,7 +16,7 @@
             <mat-error *ngIf="lastNameFormControl.hasError('pattern')">Der Name darf keine Zahlen enthalten</mat-error>
           </mat-form-field>
           <mat-form-field class="input-width">
-            <input matInput [matDatepicker]="dateOfBirthPicker" placeholder="Geburtstag" [formControl]="dateOfBirthFormControl" required>
+            <input readonly matInput [matDatepicker]="dateOfBirthPicker" placeholder="Geburtstag" [formControl]="dateOfBirthFormControl" required>
             <mat-datepicker-toggle matSuffix [for]="dateOfBirthPicker"></mat-datepicker-toggle>
             <mat-datepicker #dateOfBirthPicker></mat-datepicker>
             <mat-error *ngIf="dateOfBirthFormControl.hasError('required')">Der Geburtstag ist erforderlich</mat-error>
@@ -67,7 +67,7 @@
       <mat-tab label="Kundenkonto">
         <div class="tab-content">
           <mat-form-field class="input-width">
-            <input matInput placeholder="Bankkonto" pattern="DE[0-9]{20}" minlength="22" maxlength="22" [formControl]="bankingAccountFormControl" required>
+            <input matInput placeholder="Bankkonto" minlength = "22" maxlength = "27" pattern = "DE([0-9]\s?){20}" [formControl]="bankingAccountFormControl" required>
             <mat-error *ngIf="bankingAccountFormControl.hasError('required')">Das Bankkonto ist erforderlich</mat-error>
             <mat-error *ngIf="bankingAccountFormControl.hasError('minlength')">Das Bankkonto muss 22 Zeichen lang sein</mat-error>
             <mat-error *ngIf="bankingAccountFormControl.hasError('pattern')">Bitte geben Sie ein gültiges Bankkonto an</mat-error>
@@ -88,7 +88,7 @@
           <ng-container *ngFor="let authorization of flightAuthorizations">
             <p class="authorization-title">{{ authorization.authorization }}</p>
             <mat-form-field>
-              <input [formControl]="authorization.expires" matInput [matDatepicker]="flightAuthorizationsDate" placeholder="Gültig bis">
+              <input readonly [formControl]="authorization.expires" matInput [matDatepicker]="flightAuthorizationsDate" placeholder="Gültig bis">
               <mat-datepicker-toggle matSuffix [for]="flightAuthorizationsDate"></mat-datepicker-toggle>
               <mat-datepicker #flightAuthorizationsDate></mat-datepicker>
             </mat-form-field>
@@ -105,7 +105,7 @@
               </mat-select>
             </mat-form-field>
             <mat-form-field class="half-input-width new-authorization-input spacing-right">
-              <input [formControl]="newAuthorization.expires" matInput [matDatepicker]="newFlightAuthorizationsDate"
+              <input readonly [formControl]="newAuthorization.expires" matInput [matDatepicker]="newFlightAuthorizationsDate"
                 placeholder="Gültig bis">
               <mat-datepicker-toggle matSuffix [for]="newFlightAuthorizationsDate"></mat-datepicker-toggle>
               <mat-datepicker #newFlightAuthorizationsDate></mat-datepicker>

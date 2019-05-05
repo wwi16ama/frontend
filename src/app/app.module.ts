@@ -26,7 +26,7 @@ import { PilotLogModule } from './pilotlog/pilotlog.module';
 import { AddPilotlogentryModule } from './pilotlog/add-pilotlogentry/add-pilotlogentry.module';
 import { AddPilotlogentryComponent } from './pilotlog/add-pilotlogentry/add-pilotlogentry.component';
 import { FinanceModule } from './finance/finance.module';
-
+import { ExternalTransactionComponent } from './finance/external-transaction/external-transaction.component';
 
 // Spracheinstellung
 import { LOCALE_ID } from '@angular/core';
@@ -43,6 +43,7 @@ import { EditPlaneLogModule } from './plane-log/edit-plane-log/edit-plane-log.mo
 
 import { AddJobsDialogModule } from './jobs-done-list/add-jobs-dialog/add-jobs-dialog.module';
 import { AddJobsDialogComponent } from './jobs-done-list/add-jobs-dialog/add-jobs-dialog.component';
+import { ExternalTransactionModule } from './finance/external-transaction/external-transaction.module';
 
 registerLocaleData(localeDe);
 
@@ -71,7 +72,8 @@ registerLocaleData(localeDe);
     FinanceModule,
     EditBalanceModule,
     EditPlaneLogModule,
-    AddJobsDialogModule
+    AddJobsDialogModule,
+    ExternalTransactionModule
   ],
   providers: [
     { provide: MAT_DATE_LOCALE, useValue: 'ger' },
@@ -91,7 +93,8 @@ registerLocaleData(localeDe);
     AddPlaneLogComponent,
     EditBalanceComponent,
     EditPlaneLogComponent,
-    AddJobsDialogComponent
+    AddJobsDialogComponent,
+    ExternalTransactionComponent
   ]
 })
 export class AppModule {

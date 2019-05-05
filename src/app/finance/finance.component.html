@@ -45,6 +45,7 @@
       </mat-list-item>
       <mat-divider></mat-divider>
       <h3 mat-subheader>Transaktionen</h3>
+      <button mat-raised-button  color="primary" (click)=" openexternalTransactionDialog()">externe Transaktion</button>
     </mat-list>
     <div class="transactiontable">
       <table mat-table [dataSource]="dataSource" matSortActive="timestamp" matSortDirection="desc"

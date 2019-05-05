@@ -16,6 +16,11 @@
     width: calc(100% - 16px);
     margin: 8px;
   }
+
+  button {
+    margin: 8px;
+  }
+
   
   .pointer {
     cursor: pointer;
